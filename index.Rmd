@@ -29,7 +29,7 @@ url: 'https\://privefl.github.io/advr38book/'
 
 It is impossible to become expert in R in only training course. Yet, this course aims at giving a wide understanding on many aspects of R. Some external resources will be refered to in this book so that you would be able to deepen what you would have learned in this course.
 
-This course is originally composed of 10 sessions of 3 hours each and is composed of
+This course is originally composed of 10 sessions:
 
 1. Programmation with R (2 sessions)
 2. Data analysis with R (3 sessions)
