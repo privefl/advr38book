@@ -1,6 +1,7 @@
 book_filename: "advr38"
 rmd_files: ["index.Rmd"]
 output_dir: docs
+new_session: yes
 language:
   ui:
     chapter_name: "Chapter "
