@@ -9,11 +9,40 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 description: "This contains materials for the Advanced R course of the doctoral school of Grenoble, France (2018)."
-cover-image: images/hexsticker.png
+cover-image: https://github.com/r-in-grenoble/r-in-grenoble.github.io/raw/master/hexsticker.png
 twitter-handle: privefl
 github-repo: privefl/advr38book
 url: 'https\://privefl.github.io/advr38book/'
 ---
 
-# Prerequisites {-}
 
+# Introduction {-}
+
+## Prerequisites {-}
+
+- Have at least a basic knowledge of R,
+
+- Download the latest versions of [R](https://www.r-project.org/) (> 3.4) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (> 1.1),
+
+- Install associated package **advr38pkg** with `devtools::install_github("privefl/advr38pkg")`. This will install other dependencies that are needed in this book.
+
+## Content {-}
+
+It is impossible to become expert in R in only training course. Yet, this course aims at giving a wide understanding on many aspects of R. Some external resources will be refered to in this book so that you would be able to deepen what you would have learned in this course.
+
+This course is originally composed of 10 sessions of 3 hours each and is composed of
+
+1. Programmation with R (2 sessions)
+2. Data analysis with R (3 sessions)
+3. R code optimisation (2 sessions)
+4. R packages (2 sessions)
+5. Bonus: Shiny? (1 session)
+
+
+## Author {-}
+
+[Florian Privé](https://privefl.github.io/) is a PhD student in predictive human genetics, fond of Data Science and an R(cpp) enthusiast, and co-organizer of [the Grenoble R user group](https://r-in-grenoble.github.io/).
+
+```{r, out.width="30%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("https://github.com/r-in-grenoble/r-in-grenoble.github.io/raw/master/hexsticker.png")
+```
