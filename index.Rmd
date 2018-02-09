@@ -9,7 +9,6 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 description: "This contains materials for the Advanced R course of the doctoral school of Grenoble, France (2018)."
-cover-image: https://github.com/r-in-grenoble/r-in-grenoble.github.io/raw/master/hexsticker.png
 twitter-handle: privefl
 github-repo: privefl/advr38book
 url: 'https\://privefl.github.io/advr38book/'
