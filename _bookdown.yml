@@ -1,0 +1,6 @@
+book_filename: "advr38"
+rmd_files: ["index.Rmd"]
+output_dir: docs
+language:
+  ui:
+    chapter_name: "Chapter "
