@@ -14,21 +14,6 @@ github-repo: privefl/advr38book
 url: 'https\://privefl.github.io/advr38book/'
 ---
 
-
-```{r, include=FALSE}
-# Spelling check
-words <- spelling::spell_check_files(
-  path = list.files(pattern = "\\.Rmd$"),
-  ignore = scan(system.file("WORDLIST", package = "advr38pkg"), ""),
-  lang = "en-US"
-)
-if (nrow(words)) {
-  capture.output(print(words), file = "spelling.errors")
-  stop("Check spelling! Check file 'spelling.errors'")
-} 
-```
-
-
 # Introduction {-}
 
 ## Prerequisites {-}
@@ -51,13 +36,11 @@ This course is originally composed of 10 sessions (3 hours each):
 4. R packages (2 sessions)
 5. Bonus: Shiny? (1 session)
 
-
 ## Author {-}
 
 [Florian Privé](https://privefl.github.io/) is a PhD student in predictive human genetics, fond of Data Science and an R(cpp) enthusiast, and co-organizer of [the Grenoble R user group](https://r-in-grenoble.github.io/).
 
-
-```{r, out.width="30%", echo=FALSE, fig.align='center'}
+```{r, out.width="30%", echo=FALSE}
 knitr::include_graphics("https://github.com/r-in-grenoble/r-in-grenoble.github.io/raw/master/hexsticker.png")
 ```
 

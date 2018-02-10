@@ -1,7 +1,8 @@
-book_filename: "advr38"
+before_chapter_script: ["spelling-check.R", "knitr-options.R"]
 rmd_files: ["index.Rmd"]
 output_dir: docs
 new_session: yes
+edit: https://github.com/privefl/advr38book/edit/master/%s
 language:
   ui:
     chapter_name: "Chapter "
