@@ -1,5 +1,5 @@
 --- 
-title: "Advanced R Course"
+title: "[WIP] Advanced R Course [WIP]"
 subtitle: "Originally, materials for the doctoral school of Grenoble, France"
 author: "Florian Privé"
 date: "`r Sys.Date()`"
