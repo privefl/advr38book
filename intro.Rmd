@@ -1,0 +1,44 @@
+# Introduction
+
+```{r setup, include=FALSE}
+source("knitr-options.R")
+source("spelling-check.R")
+```
+
+## Prerequisites
+
+- Have at least a basic knowledge of R,
+
+- Download the latest versions of [R](https://www.r-project.org/) (> 3.4) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (> 1.1),
+
+- Install associated package **advr38pkg** with `devtools::install_github("privefl/advr38pkg")`. This will install other dependencies that are needed in this book.
+
+## Content
+
+It is impossible to become expert in R in only training course. Yet, this course aims at giving a wide understanding on many aspects of R. Some external resources will be referred to in this book so that you would be able to deepen what you would have learned in this course.
+
+This course is originally composed of 10 sessions (3 hours each):
+
+1. R Programming (2 sessions)
+2. Data analysis with R (3 sessions)
+3. R code optimization (2 sessions)
+4. R packages (2 sessions)
+5. Bonus: Shiny? (1 session)
+
+## Useful resources
+
+- [Course on R debugging and robust programming](https://github.com/lgatto/2016-02-25-adv-programming-EMBL) by Laurent Gatto & Robert Stojnic
+
+- [Advanced R](http://adv-r.had.co.nz/) by Hadley Wickham
+
+- [R for Data Science](http://r4ds.had.co.nz/index.html) by Garrett Grolemund & Hadley Wickham
+
+- [R packages](http://r-pkgs.had.co.nz/) by Hadley Wickham
+
+- [Efficient R programming](https://bookdown.org/csgillespie/efficientR/) by Colin Gillespie & Robin Lovelace
+
+- [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) by Roger D. Peng
+
+- other resources linked from this material
+
+

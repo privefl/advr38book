@@ -4,7 +4,7 @@
 .Ruserdata
 advr38.rds
 packages.bib
-docs/index.md
+docs/*.md
 spelling.errors
 _main.rds
 .httr-oauth

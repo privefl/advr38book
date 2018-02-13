@@ -4,29 +4,21 @@
 
 ## R base / useful functions
 
-- `rle()`
-- `match()` -> search from corresponding table
 - accessors: `for` uses `[[`, not `[`
-- paste and sprintf
-- `order()`, `rank()` -> arrange with multiple columns
-- Package **glue**
-- `outer()`
-- `reshape2::colsplit()`
-- `cut()` and `split()`
-- packages **gtools** (macros, `mixedsort()`) and **R.utils**
 - `sweep()`
-- `expand.grid()`
-- `rep()` and `seq()` (+ extensions)
 - `ifelse` is bad -> `if` for one.
-- `apply`, `lapply()`, `sapply`, `mapply`, `tapply`
-- `replicate()`
+- scoping, environments, `...`
+- one expression with `{ }`
+- R inferno
+- debugging: `browser()`
 
 ## Tidyverse
 
+- importing data with RStudio
 - train many models with cross-validation (with **dplyr** and many models)
 - [purrr cookbook](http://colinfay.me/purrr-cookbook/)
 - `dplyr::case_when()`
-
+- `separate()`
 
 ## Performance
 
@@ -36,9 +28,24 @@
   - `t(X) %*% X`
   - `A %*% B %*% c`
 - une vectorization (e.g. `runif()`), package **matrixStats**
+- deferred evaluation
   
 ### Parallel
 
 - linear algebra -> use MRO
+- bootstrap replicates
+  
+### Rcpp
+
+- Differences between R and Rcpp
+  - R is dynamically typed; C++ is statically typed.
+  - indices begins at 1, and 0 for C++
+- Rcpp sugar
+- Rcout
+- beware everything is passed by reference (need to use `clone()`)
+
   
 ## Solve problems
+
+- deferred evaluation for loops
+- computation of Pi with 2 uniforms in circle

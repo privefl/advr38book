@@ -1,5 +1,4 @@
-before_chapter_script: ["spelling-check.R", "knitr-options.R"]
-rmd_files: ["index.Rmd"]
+rmd_files: ["index.Rmd", "intro.Rmd", "good-practices.Rmd", "rprog.Rmd"]
 output_dir: docs
 new_session: yes
 edit: https://github.com/privefl/advr38book/edit/master/%s

@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="introduction.html">
+<link rel="prev" href="introduction.html">
+<link rel="next" href="r-programming.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -138,22 +138,39 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Advanced R Course</h1>
-<h3 class="subtitle"><em>Originally, materials for the doctoral school of Grenoble, France</em></h3>
-<h4 class="author"><em>Florian Privé</em></h4>
-<h4 class="date"><em>2018-02-13</em></h4>
+<div id="good-practices" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Good practices</h1>
+<div id="rstudio" class="section level2">
+<h2><span class="header-section-number">2.1</span> RStudio</h2>
+<p>Download the latest version of <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> (&gt; 1.1) and use it!</p>
+<p>RStudio features:</p>
+<ul>
+<li>everything you can expect from a good IDE</li>
+<li>keyboard shortcuts I use
+<ol style="list-style-type: decimal">
+<li><em>Ctrl + Space</em> (auto-completion, better than <em>Tab</em>)</li>
+<li><em>Ctrl + Up</em> (command history &amp; search)</li>
+<li><em>Ctrl + Click</em> (function source code)</li>
+<li><em>Ctrl + Enter</em> (execute line of code)</li>
+<li><em>Ctrl + Shift + K</em> (knit)</li>
+<li><em>Ctrl + Shift + B</em> (build package, website or book)</li>
+<li><em>Ctrl + Shift + M</em> (pipe)</li>
+<li><em>Alt + Shift + K</em> to see all shortcuts…</li>
+</ol></li>
+<li>Panels (everything is integrated, including <strong>Git</strong> and a terminal)</li>
+<li>Interactive data importation from files and connections (see <a href="https://www.rstudio.com/resources/webinars/importing-data-into-r/">this webinar</a>)</li>
+</ul>
+<p><img src="images/data-import-environment.png" width="70%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong>R Projects</strong></li>
+</ul>
 </div>
-<div id="about" class="section level1 unnumbered">
-<h1>About</h1>
-<div id="license" class="section level2 unnumbered">
-<h2>License</h2>
-<p>This material is licensed under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>.</p>
-</div>
-<div id="author" class="section level2 unnumbered">
-<h2>Author</h2>
-<p><a href="https://privefl.github.io/">Florian Privé</a> is a PhD student in predictive human genetics, fond of Data Science and an R(cpp) enthusiast. He is also the founder and co-organizer of <a href="https://r-in-grenoble.github.io/">the Grenoble R user group</a>.</p>
-<p><img src="https://github.com/r-in-grenoble/r-in-grenoble.github.io/raw/master/hexsticker.png" width="25%" style="display: block; margin: auto;" /></p>
+<div id="stack-overflow" class="section level2">
+<h2><span class="header-section-number">2.2</span> Stack Overflow</h2>
+<p>The most common use of Stack Overflow is when you have an error or a question, you google it, and most of the times the first links are Q/A on Stack Overflow.</p>
+<p><img src="images/meme-SO.jpg" width="25%" style="display: block; margin: auto;" /></p>
+<p>You can ask questions on Stack Overflow (using the tag <code>r</code>). You need to <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example">make a great R reproducible example</a> if you want your question to be answered. Most of the times, while making this reproducible example, you will find the answer to your problem.</p>
+<p>If you’re confident in your R skills, you can go to the next step and <a href="https://stackoverflow.com/unanswered/tagged/r?tab=newest">answer questions on Stack Overflow</a>. It’s a good way to increase your skills, or just to <a href="https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/">procrastinate while writing a scientific manuscript</a>.</p>
 
 </div>
 </div>
@@ -162,8 +179,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-programming.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -192,7 +209,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/privefl/advr38book/edit/master/index.Rmd",
+"link": "https://github.com/privefl/advr38book/edit/master/good-practices.Rmd",
 "text": "Edit"
 },
 "download": null,

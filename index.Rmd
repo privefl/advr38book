@@ -14,31 +14,21 @@ github-repo: privefl/advr38book
 url: 'https\://privefl.github.io/advr38book/'
 ---
 
-# Introduction {-}
 
-## Prerequisites {-}
+# About {-}
 
-- Have at least a basic knowledge of R,
+```{r setup, include=FALSE}
+source("knitr-options.R")
+source("spelling-check.R")
+```
 
-- Download the latest versions of [R](https://www.r-project.org/) (> 3.4) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (> 1.1),
+## License {-}
 
-- Install associated package **advr38pkg** with `devtools::install_github("privefl/advr38pkg")`. This will install other dependencies that are needed in this book.
-
-## Content {-}
-
-It is impossible to become expert in R in only training course. Yet, this course aims at giving a wide understanding on many aspects of R. Some external resources will be referred to in this book so that you would be able to deepen what you would have learned in this course.
-
-This course is originally composed of 10 sessions (3 hours each):
-
-1. R Programming (2 sessions)
-2. Data analysis with R (3 sessions)
-3. R code optimization (2 sessions)
-4. R packages (2 sessions)
-5. Bonus: Shiny? (1 session)
+This material is licensed under the [Creative Commons Attribution-ShareAlike 3.0 License](http://creativecommons.org/licenses/by-sa/3.0/). 
 
 ## Author {-}
 
-[Florian Privé](https://privefl.github.io/) is a PhD student in predictive human genetics, fond of Data Science and an R(cpp) enthusiast, and co-organizer of [the Grenoble R user group](https://r-in-grenoble.github.io/).
+[Florian Privé](https://privefl.github.io/) is a PhD student in predictive human genetics, fond of Data Science and an R(cpp) enthusiast. He is also the founder and co-organizer of [the Grenoble R user group](https://r-in-grenoble.github.io/).
 
 ```{r, out.width="25%", echo=FALSE}
 knitr::include_graphics("https://github.com/r-in-grenoble/r-in-grenoble.github.io/raw/master/hexsticker.png")
