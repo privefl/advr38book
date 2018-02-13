@@ -9,10 +9,10 @@ bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
 description: "This contains materials for the Advanced R course of the doctoral school of Grenoble, France (2018)."
-twitter-handle: privefl
-github-repo: privefl/advr38book
+twitter-handle: "privefl"
+github-repo: "privefl/advr38book"
 url: 'https\://privefl.github.io/advr38book/'
-cover-image: https://github.com/r-in-grenoble/r-in-grenoble.github.io/raw/master/hexsticker.png
+cover-image: "images/hexsticker.png"
 ---
 
 
@@ -32,6 +32,6 @@ This material is licensed under the [Creative Commons Attribution-ShareAlike 3.0
 [Florian Privé](https://privefl.github.io/) is a PhD student in predictive human genetics, fond of Data Science and an R(cpp) enthusiast. He is also the founder and co-organizer of [the Grenoble R user group](https://r-in-grenoble.github.io/).
 
 ```{r, out.width="25%", echo=FALSE}
-knitr::include_graphics("https://github.com/r-in-grenoble/r-in-grenoble.github.io/raw/master/hexsticker.png")
+knitr::include_graphics("images/hexsticker.png")
 ```
 

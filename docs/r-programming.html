@@ -12,7 +12,7 @@
   <meta property="og:title" content="Advanced R Course" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://privefl.github.io/advr38book/" />
-  <meta property="og:image" content="https://privefl.github.io/advr38book/<a href="https://github.com/r-in-grenoble/r-in-grenoble.github.io/raw/master/hexsticker.png" class="uri">https://github.com/r-in-grenoble/r-in-grenoble.github.io/raw/master/hexsticker.png</a>" />
+  <meta property="og:image" content="https://privefl.github.io/advr38book/images/hexsticker.png" />
   <meta property="og:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France (2018)." />
   <meta name="github-repo" content="privefl/advr38book" />
 
@@ -20,7 +20,7 @@
   <meta name="twitter:title" content="Advanced R Course" />
   <meta name="twitter:site" content="@privefl" />
   <meta name="twitter:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France (2018)." />
-  <meta name="twitter:image" content="https://privefl.github.io/advr38book/<a href="https://github.com/r-in-grenoble/r-in-grenoble.github.io/raw/master/hexsticker.png" class="uri">https://github.com/r-in-grenoble/r-in-grenoble.github.io/raw/master/hexsticker.png</a>" />
+  <meta name="twitter:image" content="https://privefl.github.io/advr38book/images/hexsticker.png" />
 
 <meta name="author" content="Florian Privé">
 
@@ -244,17 +244,17 @@ a &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">4</sp
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep_len</span>(<span class="dv">1</span>:<span class="dv">3</span>, <span class="dv">7</span>)</code></pre></div>
 <pre><code>#&gt; [1] 1 2 3 1 2 3 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">replicate</span>(<span class="dv">5</span>, <span class="kw">rnorm</span>(<span class="dv">10</span>))</code></pre></div>
-<pre><code>#&gt;             [,1]        [,2]        [,3]       [,4]        [,5]
-#&gt;  [1,]  0.8374692  0.95815278 -0.40270942 -1.6679877 -1.00393261
-#&gt;  [2,] -0.4632656 -0.12616230 -0.41831638 -1.3274787 -0.64618150
-#&gt;  [3,]  0.5247158 -0.65837467 -0.15728531  0.1796588  2.04699091
-#&gt;  [4,] -1.4130367 -0.06215564  0.05599867 -0.6331938 -0.93172492
-#&gt;  [5,] -1.2260194 -0.99179989 -0.67880226  0.1638210 -0.38286091
-#&gt;  [6,]  0.8681461  0.60295894 -0.80535010  0.4866031 -0.40171720
-#&gt;  [7,] -1.3127052 -0.74314302  0.42316639 -0.9183357 -0.06981061
-#&gt;  [8,]  0.4713303  1.18997755  0.16665929  0.6920879  1.56031107
-#&gt;  [9,]  0.1763251 -0.64625381 -0.62385015  1.8348680 -0.29103925
-#&gt; [10,] -1.5855047  0.14284396  1.22165807 -1.7404877 -1.16512610</code></pre>
+<pre><code>#&gt;              [,1]        [,2]       [,3]        [,4]        [,5]
+#&gt;  [1,]  0.10041438 -0.43250570  1.5008423  0.78469339  1.74618375
+#&gt;  [2,] -0.07620571 -0.35528073 -0.1491061 -0.08731176  3.17133500
+#&gt;  [3,]  0.64657089  0.29983086 -1.7006425 -0.77634636 -0.42437578
+#&gt;  [4,]  0.46807497  0.04113479  0.6705933 -0.56572566 -1.22182962
+#&gt;  [5,]  0.65138688  0.56149133 -0.8636241  0.02297089  0.39095920
+#&gt;  [6,] -0.50225461  0.85228287 -0.3258102  1.82261435  1.01564027
+#&gt;  [7,]  1.83831411  0.99165139 -0.5845939  0.23665149  0.01593072
+#&gt;  [8,]  1.13558299 -0.99170374  0.5836603 -2.34725169 -1.26119599
+#&gt;  [9,]  1.53752487 -0.06140901 -0.9259988  0.71071943  0.84455186
+#&gt; [10,] -0.31983287  0.45243054  0.4273265 -0.07601053  0.05823599</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">2</span>))</code></pre></div>
 <pre><code>#&gt; [1] 1 2 2 6 8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">order</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</code></pre></div>
@@ -279,11 +279,11 @@ a &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">4</sp
 #&gt;   1 2 1
 #&gt;   2 1 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">10</span>, <span class="dt">max =</span> <span class="dv">100</span>))</code></pre></div>
-<pre><code>#&gt;  [1] 68 37 77 27 84 76 89 63 67 92</code></pre>
+<pre><code>#&gt;  [1] 34 17 69 93 10 82  3  9 66 63</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(x, <span class="dt">digits =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>#&gt;  [1] 67.51 36.88 77.18 27.48 83.55 76.17 88.50 62.71 66.81 92.05</code></pre>
+<pre><code>#&gt;  [1] 34.29 17.49 68.83 93.09 10.39 82.34  3.12  9.42 66.09 63.17</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(x, -<span class="dv">1</span>)</code></pre></div>
-<pre><code>#&gt;  [1] 70 40 80 30 80 80 90 60 70 90</code></pre>
+<pre><code>#&gt;  [1] 30 20 70 90 10 80  0 10 70 60</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pmin</span>(<span class="dv">1</span>:<span class="dv">4</span>, <span class="dv">4</span>:<span class="dv">1</span>)</code></pre></div>
 <pre><code>#&gt; [1] 1 2 2 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pmax</span>(<span class="dv">1</span>:<span class="dv">4</span>, <span class="dv">4</span>:<span class="dv">1</span>)</code></pre></div>
@@ -321,11 +321,11 @@ glue::<span class="kw">glue</span>(<span class="st">&quot;I am {me}&quot;</span>
 <pre><code>#&gt; [1] &quot;01-intro.pdf&quot;       &quot;good-practices.pdf&quot; &quot;index.pdf&quot;         
 #&gt; [4] &quot;intro.pdf&quot;          &quot;rprog.pdf&quot;          &quot;rstudio-git.pdf&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(y &lt;-<span class="st"> </span><span class="kw">sample</span>(letters[<span class="dv">1</span>:<span class="dv">4</span>], <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</code></pre></div>
-<pre><code>#&gt;  [1] &quot;d&quot; &quot;c&quot; &quot;a&quot; &quot;c&quot; &quot;b&quot; &quot;d&quot; &quot;b&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot;</code></pre>
+<pre><code>#&gt;  [1] &quot;c&quot; &quot;c&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;c&quot; &quot;b&quot; &quot;c&quot; &quot;c&quot; &quot;d&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">match</span>(y, letters[<span class="dv">1</span>:<span class="dv">4</span>])</code></pre></div>
-<pre><code>#&gt;  [1] 4 3 1 3 2 4 2 4 4 4</code></pre>
+<pre><code>#&gt;  [1] 3 3 1 1 1 3 2 3 3 4</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y %in%<span class="st"> </span>letters[<span class="dv">1</span>:<span class="dv">2</span>]</code></pre></div>
-<pre><code>#&gt;  [1] FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE</code></pre>
+<pre><code>#&gt;  [1] FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rle</span>(<span class="kw">rep</span>(<span class="dv">1</span>:<span class="dv">4</span>, <span class="dv">4</span>:<span class="dv">1</span>))</code></pre></div>
 <pre><code>#&gt; Run Length Encoding
 #&gt;   lengths: int [1:4] 4 3 2 1
@@ -357,11 +357,11 @@ glue::<span class="kw">glue</span>(<span class="st">&quot;I am {me}&quot;</span>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>) &amp;&amp;<span class="st"> </span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>)  ## no warning!!</code></pre></div>
 <pre><code>#&gt; [1] FALSE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>))</code></pre></div>
-<pre><code>#&gt;  [1] -0.2970153  1.1857493 -0.1217418 -0.3689861  1.2117053 -0.5041963
-#&gt;  [7]  0.6175849 -0.2352154  0.8074548 -0.3005149</code></pre>
+<pre><code>#&gt;  [1] -0.34414919  1.02769914  0.27682197  1.63333276 -2.13358613
+#&gt;  [6] -0.63439539 -0.21713358  0.67805073  0.04575664 -0.20929430</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(x &gt;<span class="st"> </span><span class="dv">0</span>, x, -x)</code></pre></div>
-<pre><code>#&gt;  [1] 0.2970153 1.1857493 0.1217418 0.3689861 1.2117053 0.5041963 0.6175849
-#&gt;  [8] 0.2352154 0.8074548 0.3005149</code></pre>
+<pre><code>#&gt;  [1] 0.34414919 1.02769914 0.27682197 1.63333276 2.13358613 0.63439539
+#&gt;  [7] 0.21713358 0.67805073 0.04575664 0.20929430</code></pre>
 <p>Beware with <code>ifelse()</code> (learn more <a href="https://privefl.github.io/blog/On-the-ifelse-function/">there</a>), for example</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(<span class="ot">FALSE</span>, <span class="dv">0</span>, <span class="dv">1</span>:<span class="dv">5</span>)</code></pre></div>
 <pre><code>#&gt; [1] 1</code></pre>
