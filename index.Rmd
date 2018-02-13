@@ -12,6 +12,7 @@ description: "This contains materials for the Advanced R course of the doctoral 
 twitter-handle: privefl
 github-repo: privefl/advr38book
 url: 'https\://privefl.github.io/advr38book/'
+cover-image: https://github.com/r-in-grenoble/r-in-grenoble.github.io/raw/master/hexsticker.png
 ---
 
 
