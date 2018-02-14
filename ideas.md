@@ -4,13 +4,14 @@
 
 ## R base / useful functions
 
-- accessors: `for` uses `[[`, not `[`
+
 - `sweep()`
 - `ifelse` is bad -> `if` for one.
 - scoping, environments, `...`
 - one expression with `{ }`
-- R inferno
 - debugging: `browser()`
+- lazy evaluation
+- classes (at least S3)
 
 ## Tidyverse
 
@@ -19,6 +20,8 @@
 - [purrr cookbook](http://colinfay.me/purrr-cookbook/)
 - `dplyr::case_when()`
 - `separate()`
+- Not tody: GoT data (seasons), data("VADeaths") -> https://bookdown.org/rdpeng/RProgDA/basic-data-manipulation.html#spreading-and-gathering-data
+
 
 ## Performance
 
@@ -29,6 +32,7 @@
   - `A %*% B %*% c`
 - une vectorization (e.g. `runif()`), package **matrixStats**
 - deferred evaluation
+- accessors: `for` uses `[[`, not `[` -> reimplement lapply()
   
 ### Parallel
 
