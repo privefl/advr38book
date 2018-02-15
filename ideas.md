@@ -2,12 +2,15 @@
 
 - Make a bookdown and an associated R package
 
+## Instructions
+
+- always ask questions
+- next time if can't answer now
+
 ## R base / useful functions
 
 
-- `sweep()`
-- `ifelse` is bad -> `if` for one.
-- scoping, environments, `...`
+- `...`
 - one expression with `{ }`
 - debugging: `browser()`
 - lazy evaluation

@@ -139,6 +139,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.4.5" data-path="r-programming.html"><a href="r-programming.html#exercises-1"><i class="fa fa-check"></i><b>3.4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="r-programming.html"><a href="r-programming.html#environments-and-scoping"><i class="fa fa-check"></i><b>3.5</b> Environments and scoping</a></li>
+<li class="chapter" data-level="3.6" data-path="r-programming.html"><a href="r-programming.html#attributes-and-classes"><i class="fa fa-check"></i><b>3.6</b> Attributes and classes</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -216,11 +217,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="others" class="section level3">
 <h3><span class="header-section-number">3.1.3</span> Others</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">10</span>)</code></pre></div>
-<pre><code>#&gt;  [1] 10  5  9  2  1  7  3  4  6  8</code></pre>
+<pre><code>#&gt;  [1]  6  5  4  8 10  9  7  3  1  2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">10</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  2  7  3  8  6 10  9  5  4  1</code></pre>
+<pre><code>#&gt;  [1]  5  2  1 10  3  6  7  9  8  4</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="fl">10.1</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  6  7  2  9  8  3 10  4  5  1</code></pre>
+<pre><code>#&gt;  [1]  7 10  1  5  9  2  4  8  3  6</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span>:<span class="dv">0</span></code></pre></div>
 <pre><code>#&gt; [1] 1 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq_len</span>(<span class="dv">0</span>)  ## prefer using seq_len (e.g. in for-loops)</code></pre></div>
@@ -272,10 +273,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">3.2.2</span> Exercise</h3>
 <p>Use the automatic type coercion to convert this boolean matrix to a numeric one (with 0s and 1s). [What do you need to change to get an integer matrix instead?]</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>), <span class="dv">12</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>), <span class="dv">3</span>))</code></pre></div>
-<pre><code>#&gt;       [,1]  [,2]  [,3]  [,4]
-#&gt; [1,] FALSE  TRUE FALSE FALSE
-#&gt; [2,]  TRUE  TRUE FALSE  TRUE
-#&gt; [3,] FALSE FALSE FALSE FALSE</code></pre>
+<pre><code>#&gt;       [,1] [,2]  [,3]  [,4]
+#&gt; [1,]  TRUE TRUE  TRUE  TRUE
+#&gt; [2,] FALSE TRUE  TRUE FALSE
+#&gt; [3,]  TRUE TRUE FALSE FALSE</code></pre>
 </div>
 </div>
 <div id="base-objects-and-accessors" class="section level2">
@@ -325,18 +326,18 @@ vec</code></pre></div>
 <li>The <code>[</code> accessor is used to access a subset of the data <strong>with the same class</strong>.</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">5</span>))</code></pre></div>
-<pre><code>#&gt; [1] 0.6065662 0.4995165 0.8692389 0.4727959 0.8244662</code></pre>
+<pre><code>#&gt; [1] 0.4739910 0.5442705 0.1026661 0.4834926 0.9042201</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">2</span>:<span class="dv">3</span>]</code></pre></div>
-<pre><code>#&gt; [1] 0.4995165 0.8692389</code></pre>
+<pre><code>#&gt; [1] 0.5442705 0.1026661</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">2</span>:<span class="dv">8</span>]</code></pre></div>
-<pre><code>#&gt; [1] 0.4995165 0.8692389 0.4727959 0.8244662        NA        NA        NA</code></pre>
+<pre><code>#&gt; [1] 0.5442705 0.1026661 0.4834926 0.9042201        NA        NA        NA</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(y &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">runif</span>(<span class="dv">12</span>), <span class="dv">3</span>))</code></pre></div>
-<pre><code>#&gt;            [,1]       [,2]      [,3]      [,4]
-#&gt; [1,] 0.97038005 0.05394946 0.8143162 0.3559794
-#&gt; [2,] 0.98719316 0.98897207 0.8884962 0.8988307
-#&gt; [3,] 0.03980802 0.47948858 0.7193166 0.9957526</code></pre>
+<pre><code>#&gt;           [,1]      [,2]      [,3]      [,4]
+#&gt; [1,] 0.9419440 0.9869121 0.3772305 0.3465643
+#&gt; [2,] 0.5888055 0.4564029 0.2796932 0.7990853
+#&gt; [3,] 0.3886014 0.3689320 0.9668232 0.5132197</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y[<span class="dv">4</span>:<span class="dv">9</span>]  ## a matrix is a vector</code></pre></div>
-<pre><code>#&gt; [1] 0.05394946 0.98897207 0.47948858 0.81431621 0.88849620 0.71931657</code></pre>
+<pre><code>#&gt; [1] 0.9869121 0.4564029 0.3689320 0.3772305 0.2796932 0.9668232</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(l &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">2</span>:<span class="dv">3</span>, <span class="dt">b =</span> <span class="st">&quot;toto&quot;</span>, <span class="dt">c =</span> <span class="kw">runif</span>(<span class="dv">10</span>)))</code></pre></div>
 <pre><code>#&gt; $a
 #&gt; [1] 2 3
@@ -345,15 +346,15 @@ vec</code></pre></div>
 #&gt; [1] &quot;toto&quot;
 #&gt; 
 #&gt; $c
-#&gt;  [1] 0.07500057 0.25054774 0.43749099 0.23487429 0.68450897 0.83039653
-#&gt;  [7] 0.03812388 0.19861173 0.14069042 0.31319292</code></pre>
+#&gt;  [1] 0.04060634 0.26900535 0.62345419 0.43296973 0.99824930 0.41872223
+#&gt;  [7] 0.05345963 0.22433844 0.63148308 0.46247503</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l[<span class="dv">2</span>:<span class="dv">3</span>]</code></pre></div>
 <pre><code>#&gt; $b
 #&gt; [1] &quot;toto&quot;
 #&gt; 
 #&gt; $c
-#&gt;  [1] 0.07500057 0.25054774 0.43749099 0.23487429 0.68450897 0.83039653
-#&gt;  [7] 0.03812388 0.19861173 0.14069042 0.31319292</code></pre>
+#&gt;  [1] 0.04060634 0.26900535 0.62345419 0.43296973 0.99824930 0.41872223
+#&gt;  [7] 0.05345963 0.22433844 0.63148308 0.46247503</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iris)</code></pre></div>
 <pre><code>#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 #&gt; 1          5.1         3.5          1.4         0.2  setosa
@@ -374,11 +375,11 @@ vec</code></pre></div>
 <pre><code>#&gt; [1] &quot;data.frame&quot;</code></pre>
 <p>You can also use a logical and character vectors to index these objects.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">4</span>))</code></pre></div>
-<pre><code>#&gt; [1] 0.2624125 0.3138729 0.1661808 0.3198458</code></pre>
+<pre><code>#&gt; [1] 0.03931747 0.73944427 0.66420465 0.94463994</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)]</code></pre></div>
-<pre><code>#&gt; [1] 0.3138729 0.3198458</code></pre>
+<pre><code>#&gt; [1] 0.7394443 0.9446399</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>)]  ## the logical vector is recycled</code></pre></div>
-<pre><code>#&gt; [1] 0.3138729 0.3198458</code></pre>
+<pre><code>#&gt; [1] 0.7394443 0.9446399</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iris[<span class="kw">c</span>(<span class="st">&quot;Petal.Length&quot;</span>, <span class="st">&quot;Species&quot;</span>)])</code></pre></div>
 <pre><code>#&gt;   Petal.Length Species
 #&gt; 1          1.4  setosa
@@ -577,6 +578,24 @@ a &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">4</sp
 #&gt; [29] residuals      rstandard      rstudent       simulate      
 #&gt; [33] summary        variable.names vcov          
 #&gt; see &#39;?methods&#39; for accessing help and source code</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Call a function with arguments as a list</span>
+(l &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span>:<span class="dv">5</span>, function(i) i))</code></pre></div>
+<pre><code>#&gt; [[1]]
+#&gt; [1] 1
+#&gt; 
+#&gt; [[2]]
+#&gt; [1] 2
+#&gt; 
+#&gt; [[3]]
+#&gt; [1] 3
+#&gt; 
+#&gt; [[4]]
+#&gt; [1] 4
+#&gt; 
+#&gt; [[5]]
+#&gt; [1] 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">do.call</span>(<span class="st">&#39;c&#39;</span>, l)</code></pre></div>
+<pre><code>#&gt; [1] 1 2 3 4 5</code></pre>
 </div>
 <div id="sequence-and-vector-operations" class="section level3">
 <h3><span class="header-section-number">3.4.2</span> Sequence and vector operations</h3>
@@ -599,17 +618,17 @@ a &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">4</sp
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep_len</span>(<span class="dv">1</span>:<span class="dv">3</span>, <span class="dv">7</span>)</code></pre></div>
 <pre><code>#&gt; [1] 1 2 3 1 2 3 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">replicate</span>(<span class="dv">5</span>, <span class="kw">rnorm</span>(<span class="dv">10</span>))</code></pre></div>
-<pre><code>#&gt;             [,1]       [,2]        [,3]       [,4]       [,5]
-#&gt;  [1,]  1.0387322  2.0548091 -0.73701951  0.4081848  0.2032727
-#&gt;  [2,]  1.6763588 -0.3593592 -0.38391909 -1.5310463  1.6042753
-#&gt;  [3,]  0.5393831 -1.0988240 -0.53972216  0.9680776  1.2358432
-#&gt;  [4,] -0.2637377 -0.1200223 -0.36528801 -1.5491616  0.8397597
-#&gt;  [5,]  0.3028258 -0.2270897 -0.45265458  0.4961840 -1.2091926
-#&gt;  [6,] -0.1526582 -0.1978528 -0.72016196  1.0162274  0.1967861
-#&gt;  [7,]  1.1563967  1.3207786 -1.13325488 -0.7782895  0.2605273
-#&gt;  [8,]  0.9959892 -0.7745340  0.04912738 -1.1750141 -1.1826519
-#&gt;  [9,] -2.9435294 -0.6866992 -2.12934016 -0.4331838  1.1008980
-#&gt; [10,] -1.8628640 -1.0753409 -0.49827792 -1.4173970 -1.5426480</code></pre>
+<pre><code>#&gt;             [,1]       [,2]        [,3]       [,4]        [,5]
+#&gt;  [1,] -2.1938597  1.1123136 -0.03527187  0.3653308 -0.89639759
+#&gt;  [2,]  0.1120176 -0.1064337  0.15550598 -1.9592759  0.48234581
+#&gt;  [3,] -1.5976967  1.1254701 -0.92859359 -0.7986238  1.22448097
+#&gt;  [4,]  0.4039352  0.3931119  0.92346020  1.3015715  0.05944302
+#&gt;  [5,] -0.8632489  1.3122141 -1.09371889 -0.1347130  0.73910354
+#&gt;  [6,] -0.9125849 -0.4016100  0.36456721 -1.3665508  0.02755932
+#&gt;  [7,] -1.2234617 -1.4260769  1.06610879 -0.6063858 -0.65793917
+#&gt;  [8,]  0.3184739  1.0234864 -1.76069260  0.1439910  0.72127554
+#&gt;  [9,]  0.7797387 -0.2191276  0.53102586 -1.3108181 -0.17375586
+#&gt; [10,]  0.1774806  2.8763827 -1.05112194 -0.9438834 -0.29276530</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">2</span>))</code></pre></div>
 <pre><code>#&gt; [1] 1 2 2 6 8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">order</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</code></pre></div>
@@ -634,19 +653,19 @@ a &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">4</sp
 #&gt;   1 2 1
 #&gt;   2 1 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">10</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  6  5  8  9  1  4  7  3 10  2</code></pre>
+<pre><code>#&gt;  [1]  8 10  5  3  6  1  9  2  4  7</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">5</span>)</code></pre></div>
-<pre><code>#&gt; [1]  9  8  1 10  6</code></pre>
+<pre><code>#&gt; [1] 8 3 2 7 5</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  4  1  3  9  9  4  4  8  5  7  7  5 10  6  5  2 10  3  1  8  7 10  8
-#&gt; [24]  5  3  8  1  9  5  1  3  7 10  2  5  6  8  2  3  5  9  7  8  8  5  2
-#&gt; [47] 10  6 10 10</code></pre>
+<pre><code>#&gt;  [1]  7  6 10  9  9  3  7  4  4 10  6  7  2  9  4  7 10  3 10 10  3  3  7
+#&gt; [24]  2  9  1  6  9  4  2  6  4  4 10  4  6  8 10  9  3  1  2  6  3  5  4
+#&gt; [47]  4  8  7  8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">10</span>, <span class="dt">max =</span> <span class="dv">100</span>))</code></pre></div>
-<pre><code>#&gt;  [1] 79 75 22 26 52 38 42 17 43 23</code></pre>
+<pre><code>#&gt;  [1] 96 94 12 57 22 77 63 85 84  3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(x, <span class="dt">digits =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>#&gt;  [1] 78.82 74.82 22.26 25.72 51.57 38.49 42.24 17.13 42.75 23.10</code></pre>
+<pre><code>#&gt;  [1] 96.19 93.77 12.20 56.64 22.38 77.42 63.42 85.15 83.63  2.81</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(x, -<span class="dv">1</span>)</code></pre></div>
-<pre><code>#&gt;  [1] 80 70 20 30 50 40 40 20 40 20</code></pre>
+<pre><code>#&gt;  [1] 100  90  10  60  20  80  60  90  80   0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pmin</span>(<span class="dv">1</span>:<span class="dv">4</span>, <span class="dv">4</span>:<span class="dv">1</span>)</code></pre></div>
 <pre><code>#&gt; [1] 1 2 2 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pmax</span>(<span class="dv">1</span>:<span class="dv">4</span>, <span class="dv">4</span>:<span class="dv">1</span>)</code></pre></div>
@@ -685,11 +704,11 @@ glue::<span class="kw">glue</span>(<span class="st">&quot;I am {me}&quot;</span>
 <pre><code>#&gt; [1] &quot;01-intro.pdf&quot;       &quot;good-practices.pdf&quot; &quot;index.pdf&quot;         
 #&gt; [4] &quot;intro.pdf&quot;          &quot;rprog.pdf&quot;          &quot;rstudio-git.pdf&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(y &lt;-<span class="st"> </span><span class="kw">sample</span>(letters[<span class="dv">1</span>:<span class="dv">4</span>], <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</code></pre></div>
-<pre><code>#&gt;  [1] &quot;a&quot; &quot;c&quot; &quot;c&quot; &quot;b&quot; &quot;c&quot; &quot;c&quot; &quot;d&quot; &quot;b&quot; &quot;d&quot; &quot;b&quot;</code></pre>
+<pre><code>#&gt;  [1] &quot;d&quot; &quot;a&quot; &quot;d&quot; &quot;d&quot; &quot;b&quot; &quot;a&quot; &quot;a&quot; &quot;d&quot; &quot;d&quot; &quot;c&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">match</span>(y, letters[<span class="dv">1</span>:<span class="dv">4</span>])</code></pre></div>
-<pre><code>#&gt;  [1] 1 3 3 2 3 3 4 2 4 2</code></pre>
+<pre><code>#&gt;  [1] 4 1 4 4 2 1 1 4 4 3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y %in%<span class="st"> </span>letters[<span class="dv">1</span>:<span class="dv">2</span>]</code></pre></div>
-<pre><code>#&gt;  [1]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE</code></pre>
+<pre><code>#&gt;  [1] FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rle</span>(<span class="kw">rep</span>(<span class="dv">1</span>:<span class="dv">4</span>, <span class="dv">4</span>:<span class="dv">1</span>))</code></pre></div>
 <pre><code>#&gt; Run Length Encoding
 #&gt;   lengths: int [1:4] 4 3 2 1
@@ -721,11 +740,11 @@ glue::<span class="kw">glue</span>(<span class="st">&quot;I am {me}&quot;</span>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>) &amp;&amp;<span class="st"> </span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>)  ## no warning!!</code></pre></div>
 <pre><code>#&gt; [1] FALSE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>))</code></pre></div>
-<pre><code>#&gt;  [1]  0.72250638 -1.66672558  0.25473254  1.22696836 -1.00932757
-#&gt;  [6]  1.86878207  0.08943934  0.80849704 -0.95951358 -0.48512161</code></pre>
+<pre><code>#&gt;  [1] -0.56187434 -0.18838986 -0.05513469  0.42038071 -0.31106709
+#&gt;  [6]  0.58323552  0.79448543  0.05229858  0.10871908  0.31697678</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(x &gt;<span class="st"> </span><span class="dv">0</span>, x, -x)</code></pre></div>
-<pre><code>#&gt;  [1] 0.72250638 1.66672558 0.25473254 1.22696836 1.00932757 1.86878207
-#&gt;  [7] 0.08943934 0.80849704 0.95951358 0.48512161</code></pre>
+<pre><code>#&gt;  [1] 0.56187434 0.18838986 0.05513469 0.42038071 0.31106709 0.58323552
+#&gt;  [7] 0.79448543 0.05229858 0.10871908 0.31697678</code></pre>
 <p>Beware with <code>ifelse()</code> (learn more <a href="https://privefl.github.io/blog/On-the-ifelse-function/">there</a>), for example</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(<span class="ot">FALSE</span>, <span class="dv">0</span>, <span class="dv">1</span>:<span class="dv">5</span>)</code></pre></div>
 <pre><code>#&gt; [1] 1</code></pre>
@@ -739,13 +758,13 @@ glue::<span class="kw">glue</span>(<span class="st">&quot;I am {me}&quot;</span>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">advr38pkg::<span class="kw">split_ind</span>(<span class="dv">1</span>:<span class="dv">40</span>, <span class="dv">3</span>)</code></pre></div>
 <pre><code>#&gt; $`1`
-#&gt;  [1]  4 10 11 15 17 18 22 23 29 31 32 34 37 40
+#&gt;  [1]  1  6  7  8 10 12 13 17 19 24 26 29 33 40
 #&gt; 
 #&gt; $`2`
-#&gt;  [1]  1  5  6  7  8 12 13 16 20 25 28 33 35
+#&gt;  [1]  3  5  9 11 16 20 22 27 31 34 36 38 39
 #&gt; 
 #&gt; $`3`
-#&gt;  [1]  2  3  9 14 19 21 24 26 27 30 36 38 39</code></pre>
+#&gt;  [1]  2  4 14 15 18 21 23 25 28 30 32 35 37</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Use <code>match()</code> and some accessor to add a column “my_val” to this data <code>my_mtcars</code> by putting the corresponding value of the column specified in “my_col”. [Can your solution be used for any number of column names?]</li>
 </ol>
@@ -757,8 +776,8 @@ my_mtcars$my_col &lt;-<span class="st"> </span><span class="kw">sample</span>(<s
 #&gt; Mazda RX4         21.0 110    mpg   21.0
 #&gt; Mazda RX4 Wag     21.0 110    mpg   21.0
 #&gt; Datsun 710        22.8  93     hp     93
-#&gt; Hornet 4 Drive    21.4 110    mpg   21.4
-#&gt; Hornet Sportabout 18.7 175     hp    175
+#&gt; Hornet 4 Drive    21.4 110     hp    110
+#&gt; Hornet Sportabout 18.7 175    mpg   18.7
 #&gt; Valiant           18.1 105    mpg   18.1</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>In the following data frame, for the first 3 columns, replace letters by corresponding numbers based on the <code>code</code>:</li>
@@ -806,12 +825,12 @@ df</code></pre></div>
 }
 x &lt;-<span class="st"> </span><span class="dv">100</span>
 <span class="kw">h</span>()</code></pre></div>
-<pre><code>#&gt; &lt;environment: 0x44ba9f0&gt;
+<pre><code>#&gt; &lt;environment: 0x62f2ff8&gt;
 #&gt; [1] &quot;g&quot; &quot;x&quot;
 #&gt; &lt;environment: R_GlobalEnv&gt;
-#&gt; &lt;environment: 0x44a1620&gt;
+#&gt; &lt;environment: 0x62f7660&gt;
 #&gt; [1] &quot;f&quot;
-#&gt; &lt;environment: 0x44ba9f0&gt;</code></pre>
+#&gt; &lt;environment: 0x62f2ff8&gt;</code></pre>
 <pre><code>#&gt; [1] 11</code></pre>
 <p>Variable <code>x</code> is not defined inside <code>f</code> so R will look at the environment of <code>f</code> (where <code>f</code> was defined) and then at the parent environment, and so on. Here, the first <code>x</code> that is found has value <code>10</code>.</p>
 <p>Be aware that for functions, packages environments are checked last so that you can redefine them without noticing.</p>
@@ -837,6 +856,143 @@ f &lt;-<span class="st"> </span>function(i) {
 <pre><code>#&gt; [1] 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">count2</code></pre></div>
 <pre><code>#&gt; [1] 10</code></pre>
+<p>Finally, how works the <code>...</code>? Basically, you copy and paste what is put in <code>...</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f1 &lt;-<span class="st"> </span>function(...) {
+  <span class="kw">list</span>(...)
+}
+<span class="kw">f1</span>(<span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">b =</span> <span class="dv">3</span>)</code></pre></div>
+<pre><code>#&gt; $a
+#&gt; [1] 2
+#&gt; 
+#&gt; $b
+#&gt; [1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">b =</span> <span class="dv">3</span>)</code></pre></div>
+<pre><code>#&gt; $a
+#&gt; [1] 2
+#&gt; 
+#&gt; $b
+#&gt; [1] 3</code></pre>
+</div>
+<div id="attributes-and-classes" class="section level2">
+<h2><span class="header-section-number">3.6</span> Attributes and classes</h2>
+<p>Attributes are metadata associated with an object. You can get/set the list of attributes with <code>attributes()</code> or one particular attribute with <code>attr()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attributes</span>(iris)</code></pre></div>
+<pre><code>#&gt; $names
+#&gt; [1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot; 
+#&gt; [5] &quot;Species&quot;     
+#&gt; 
+#&gt; $row.names
+#&gt;   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+#&gt;  [18]  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34
+#&gt;  [35]  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51
+#&gt;  [52]  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68
+#&gt;  [69]  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85
+#&gt;  [86]  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 101 102
+#&gt; [103] 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119
+#&gt; [120] 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136
+#&gt; [137] 137 138 139 140 141 142 143 144 145 146 147 148 149 150
+#&gt; 
+#&gt; $class
+#&gt; [1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(iris)</code></pre></div>
+<pre><code>#&gt; [1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attr</span>(iris, <span class="st">&quot;row.names&quot;</span>)</code></pre></div>
+<pre><code>#&gt;   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+#&gt;  [18]  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34
+#&gt;  [35]  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51
+#&gt;  [52]  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68
+#&gt;  [69]  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85
+#&gt;  [86]  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 101 102
+#&gt; [103] 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119
+#&gt; [120] 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136
+#&gt; [137] 137 138 139 140 141 142 143 144 145 146 147 148 149 150</code></pre>
+<p>You can use <code>structure()</code> to create an object and add some arbitrary attributes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">structure</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">my_fancy_attribute =</span> <span class="st">&quot;blabla&quot;</span>)</code></pre></div>
+<pre><code>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10
+#&gt; attr(,&quot;my_fancy_attribute&quot;)
+#&gt; [1] &quot;blabla&quot;</code></pre>
+<p>There are also some attributes with some specific accessor functions to get and set values. For example, use <code>names(x)</code>, <code>dim(x)</code> and <code>class(x)</code> instead of <code>attr(x, &quot;names&quot;)</code>, <code>attr(x, &quot;dim&quot;)</code> and <code>attr(x, &quot;class&quot;)</code>. You can also put comments in an object with <code>comment()</code>.</p>
+<hr />
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(mylm &lt;-<span class="st"> </span><span class="kw">lm</span>(Sepal.Length ~<span class="st"> </span>., <span class="dt">data =</span> iris))</code></pre></div>
+<pre><code>#&gt; [1] &quot;lm&quot;</code></pre>
+<p>I’ve just fitted a linear model in order to predict the sepal length variable of the <code>iris</code> dataset based on the other variables. Using <code>lm()</code> gets me an object of class <code>lm</code>. What are the methods I can use for this object?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">methods</span>(<span class="dt">class =</span> <span class="kw">class</span>(mylm))</code></pre></div>
+<pre><code>#&gt;  [1] add1           alias          anova          case.names    
+#&gt;  [5] confint        cooks.distance deviance       dfbeta        
+#&gt;  [9] dfbetas        drop1          dummy.coef     effects       
+#&gt; [13] extractAIC     family         formula        hatvalues     
+#&gt; [17] influence      kappa          labels         logLik        
+#&gt; [21] model.frame    model.matrix   nobs           plot          
+#&gt; [25] predict        print          proj           qr            
+#&gt; [29] residuals      rstandard      rstudent       simulate      
+#&gt; [33] summary        variable.names vcov          
+#&gt; see &#39;?methods&#39; for accessing help and source code</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mylm)</code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Sepal.Length ~ ., data = iris)
+#&gt; 
+#&gt; Residuals:
+#&gt;      Min       1Q   Median       3Q      Max 
+#&gt; -0.79424 -0.21874  0.00899  0.20255  0.73103 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                   Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)        2.17127    0.27979   7.760 1.43e-12 ***
+#&gt; Sepal.Width        0.49589    0.08607   5.761 4.87e-08 ***
+#&gt; Petal.Length       0.82924    0.06853  12.101  &lt; 2e-16 ***
+#&gt; Petal.Width       -0.31516    0.15120  -2.084  0.03889 *  
+#&gt; Speciesversicolor -0.72356    0.24017  -3.013  0.00306 ** 
+#&gt; Speciesvirginica  -1.02350    0.33373  -3.067  0.00258 ** 
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 0.3068 on 144 degrees of freedom
+#&gt; Multiple R-squared:  0.8673, Adjusted R-squared:  0.8627 
+#&gt; F-statistic: 188.3 on 5 and 144 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(mylm)</code></pre></div>
+<p><img src="rprog_files/figure-html/unnamed-chunk-42-1.svg" width="70%" style="display: block; margin: auto;" /><img src="rprog_files/figure-html/unnamed-chunk-42-2.svg" width="70%" style="display: block; margin: auto;" /><img src="rprog_files/figure-html/unnamed-chunk-42-3.svg" width="70%" style="display: block; margin: auto;" /><img src="rprog_files/figure-html/unnamed-chunk-42-4.svg" width="70%" style="display: block; margin: auto;" /></p>
+<hr />
+<p>R has the easiest way to create a class and to use methods on them and it’s called S3. If you want to know more about the other types of classes, see the <a href="https://adv-r.hadley.nz/">Advanced R book</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">agent007 &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first =</span> <span class="st">&quot;James&quot;</span>, <span class="dt">last =</span> <span class="st">&quot;Bond&quot;</span>)
+agent007</code></pre></div>
+<pre><code>#&gt; $first
+#&gt; [1] &quot;James&quot;
+#&gt; 
+#&gt; $last
+#&gt; [1] &quot;Bond&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(agent007) &lt;-<span class="st"> &quot;Person&quot;</span>
+<span class="co"># Just make a function called &lt;method_name&gt;.&lt;class_name&gt;()</span>
+print.Person &lt;-<span class="st"> </span>function(x) {
+  <span class="kw">print</span>(glue::<span class="kw">glue</span>(<span class="st">&quot;My name is {x$last}, {x$first} {x$last}.&quot;</span>))
+}
+
+agent007</code></pre></div>
+<pre><code>#&gt; My name is Bond, James Bond.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Constructor as simple function</span>
+Person &lt;-<span class="st"> </span>function(first, last) {
+  <span class="kw">structure</span>(<span class="kw">list</span>(<span class="dt">first =</span> first, <span class="dt">last =</span> last), <span class="dt">class =</span> <span class="st">&quot;Person&quot;</span>)
+}
+(me &lt;-<span class="st"> </span><span class="kw">Person</span>(<span class="st">&quot;Florian&quot;</span>, <span class="st">&quot;Privé&quot;</span>))</code></pre></div>
+<pre><code>#&gt; My name is Privé, Florian Privé.</code></pre>
+<p>An object can have many classes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Worker &lt;-<span class="st"> </span>function(first, last, job) {
+    obj &lt;-<span class="st"> </span><span class="kw">Person</span>(first, last)
+    obj$job &lt;-<span class="st"> </span>job
+    <span class="kw">class</span>(obj) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Worker&quot;</span>, <span class="kw">class</span>(obj))
+    obj
+}
+print.Worker &lt;-<span class="st"> </span>function(x) {
+    <span class="kw">print.Person</span>(x) 
+    <span class="kw">print</span>(glue::<span class="kw">glue</span>(<span class="st">&quot;I am a {x$job}.&quot;</span>))
+}
+
+(worker_007 &lt;-<span class="st"> </span><span class="kw">Worker</span>(<span class="st">&quot;James&quot;</span>, <span class="st">&quot;Bond&quot;</span>, <span class="st">&quot;secret agent&quot;</span>))</code></pre></div>
+<pre><code>#&gt; My name is Bond, James Bond.
+#&gt; I am a secret agent.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(worker_me &lt;-<span class="st"> </span><span class="kw">Worker</span>(<span class="st">&quot;Florian&quot;</span>, <span class="st">&quot;Privé&quot;</span>, <span class="st">&quot;PhD student&quot;</span>))</code></pre></div>
+<pre><code>#&gt; My name is Privé, Florian Privé.
+#&gt; I am a PhD student.</code></pre>
 
 </div>
 </div>

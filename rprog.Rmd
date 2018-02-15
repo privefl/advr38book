@@ -243,6 +243,13 @@ methods(summary)
 methods(class = "lm")
 ```
 
+```{r}
+# Call a function with arguments as a list
+(l <- lapply(1:5, function(i) i))
+do.call('c', l)
+```
+
+
 ### Sequence and vector operations
 
 ```{r}
@@ -425,4 +432,91 @@ count1
 count2
 ```
 
+Finally, how works the `...`? Basically, you copy and paste what is put in `...`:
 
+```{r}
+f1 <- function(...) {
+  list(...)
+}
+f1(a = 2, b = 3)
+list(a = 2, b = 3)
+```
+
+
+
+## Attributes and classes
+
+Attributes are metadata associated with an object. You can get/set the list of attributes with `attributes()` or one particular attribute with `attr()`.
+
+```{r}
+attributes(iris)
+class(iris)
+attr(iris, "row.names")
+```
+
+You can use `structure()` to create an object and add some arbitrary attributes.
+
+```{r}
+structure(1:10, my_fancy_attribute = "blabla")
+```
+
+There are also some attributes with some specific accessor functions to get and set values. For example, use `names(x)`, `dim(x)` and `class(x)` instead of `attr(x, "names")`, `attr(x, "dim")` and `attr(x, "class")`. You can also put comments in an object with `comment()`.
+
+***
+
+```{r}
+class(mylm <- lm(Sepal.Length ~ ., data = iris))
+```
+
+I've just fitted a linear model in order to predict the sepal length variable of the `iris` dataset based on the other variables. Using `lm()` gets me an object of class `lm`. What are the methods I can use for this object?
+
+```{r}
+methods(class = class(mylm))
+summary(mylm)
+plot(mylm)
+```
+
+***
+
+R has the easiest way to create a class and to use methods on them and it's called S3. If you want to know more about the other types of classes, see the [Advanced R book](https://adv-r.hadley.nz/).
+
+```{r}
+agent007 <- list(first = "James", last = "Bond")
+agent007
+```
+
+```{r}
+class(agent007) <- "Person"
+# Just make a function called <method_name>.<class_name>()
+print.Person <- function(x) {
+  print(glue::glue("My name is {x$last}, {x$first} {x$last}."))
+}
+
+agent007
+```
+
+```{r}
+# Constructor as simple function
+Person <- function(first, last) {
+  structure(list(first = first, last = last), class = "Person")
+}
+(me <- Person("Florian", "Privé"))
+```
+
+An object can have many classes:
+
+```{r}
+Worker <- function(first, last, job) {
+    obj <- Person(first, last)
+    obj$job <- job
+    class(obj) <- c("Worker", class(obj))
+    obj
+}
+print.Worker <- function(x) {
+    print.Person(x) 
+    print(glue::glue("I am a {x$job}."))
+}
+
+(worker_007 <- Worker("James", "Bond", "secret agent"))
+(worker_me <- Worker("Florian", "Privé", "PhD student"))
+```
