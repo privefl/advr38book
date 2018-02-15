@@ -6,6 +6,7 @@
 
 - always ask questions
 - next time if can't answer now
+- tell if something missing
 
 ## R base / useful functions
 
@@ -23,7 +24,7 @@
 - [purrr cookbook](http://colinfay.me/purrr-cookbook/)
 - `dplyr::case_when()`
 - `separate()`
-- Not tody: GoT data (seasons), data("VADeaths") -> https://bookdown.org/rdpeng/RProgDA/basic-data-manipulation.html#spreading-and-gathering-data
+- Not tidy: GoT data (seasons), data("VADeaths") -> https://bookdown.org/rdpeng/RProgDA/basic-data-manipulation.html#spreading-and-gathering-data
 
 
 ## Performance
