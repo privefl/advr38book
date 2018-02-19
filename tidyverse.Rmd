@@ -1,0 +1,39 @@
+# Data analysis with the tidyverse
+
+```{r setup, include=FALSE}
+source("knitr-options.R")
+source("spelling-check.R")
+```
+
+The tidyverse is an opinionated [collection of R packages](https://www.tidyverse.org/packages/) designed for data science. All packages share an underlying design philosophy, grammar, and data structures. 
+
+For learning how to do data analysis from importing data and tidying it to analyzing it and reporting results, we will use [book R for Data Science](http://r4ds.had.co.nz/) and [this course](https://dcl-2017-04.github.io/curriculum/upcoming.html) which are respectively licensed under the [Attribution-NonCommercial-NoDerivs 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) and the [Attribution-NonCommercial 4.0](https://creativecommons.org/licenses/by-nc/4.0/) licenses.
+
+## Import data
+
+We have seen the "Import Dataset" button of RStudio:
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/data-import-environment.png")
+```
+
+- You can use [package **readr**](http://readr.tidyverse.org/) (part of the tidyverse).
+
+- Personnally, I also really like `data.table::read()` (with parameter `data.table = FALSE` if you want a `data.frame` instead of a `data.table`) which is very fast and convenient, and have been available for quite some time.
+
+- Use [package **feather**](https://blog.rstudio.com/2016/03/29/feather/) to read/write data frames from/to R/Python.
+
+- Check other available package with [this list](https://github.com/rstudio/RStartHere#import).
+
+## Tidy data
+
+So, what does "tidy" means in "tidyverse"?
+
+
+## Other "tidy" packages
+
+- analysis of text data: [package **tidytext**](https://github.com/juliasilge/tidytext) with [the associated book](https://www.tidytextmining.com/),
+
+- analysis of financial data: [package **tidyquant**](https://business-science.github.io/tidyquant/index.html),
+
+- analysis of time series data: [package **tidytime**].

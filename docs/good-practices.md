@@ -111,7 +111,7 @@ system.time(
 
 ```
 #> utilisateur     système      écoulé 
-#>       0.105       0.001       0.107
+#>       0.104       0.000       0.105
 ```
 
 ```r
@@ -322,6 +322,15 @@ TODO: video
 
 ## Getting help
 
+### Help yourself, learn how to debug
+
+A basic solution is to print everything, but it's usually not working well on complex problems. A convenient solution to see all the variables' states in your code is to place some `browser()` anywhere you want to check the variables' states.
+
+Learn more with [this book chapter](https://bookdown.org/rdpeng/rprogdatascience/debugging.html) and [this RStudio article](https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio).
+
+
+### External help
+
 Can't remember useful functions? Use [cheat sheets](https://www.rstudio.com/resources/cheatsheets/).
 
 You can search for specific R stuff on https://rseek.org/. You should also read documentations carefully. If you're using a package, search for vignettes and a GitHub repository.
@@ -333,3 +342,8 @@ You can also use [Stack Overflow](https://stackoverflow.com/). The most common u
 You can ask questions on Stack Overflow (using the tag `r`). You need to [make a great R reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) if you want your question to be answered. Most of the times, while making this reproducible example, you will find the answer to your problem.
 
 If you're confident enough in your R skills, you can go to the next step and [answer questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). It's a good way to increase your skills, or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).
+
+### Exercises
+
+TODO
+
