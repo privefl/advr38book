@@ -1,7 +1,3 @@
 [
-[" ", " ", " "],
-[" ", " ", " "],
-[" ", " ", " "],
-[" ", " ", " "],
-[" ", " ", " "]
+["introduction.html", "Chapter 1 Introduction 1.1 Prerequisites 1.2 Content 1.3 Useful resources", " Chapter 1 Introduction 1.1 Prerequisites Have at least a basic knowledge of R, Download the latest versions of R (&gt; 3.4) and RStudio (&gt; 1.1), Install associated package advr38pkg with devtools::install_github(&quot;privefl/advr38pkg&quot;). This will install other dependencies that are needed in this book. 1.2 Content It is impossible to become expert in R in only one training course. Yet, this course aims at giving a wide understanding on many aspects of R. Some external resources will be referred to in this book for you to be able to deepen what you would have learned in this course. This course is originally composed of 10 sessions (3 hours each): R programming (2 sessions) Data analysis with the tidyverse (3 sessions) R code performance (2 sessions) R packages (2 sessions) Bonus: Shiny? (1 session) 1.3 Useful resources Course on R debugging and robust programming by Laurent Gatto &amp; Robert Stojnic, Data Challenge Lab by Hadley Wickham, Advanced R by Hadley Wickham, and some solutions, R for Data Science by Garrett Grolemund &amp; Hadley Wickham, and some solutions, R packages by Hadley Wickham, Efficient R programming by Colin Gillespie &amp; Robin Lovelace, R Programming for Data Science by Roger D. Peng, Mastering Software Development in R by Roger D. Peng, Sean Kross and Brooke Anderson, other resources linked from this material. "]
 ]

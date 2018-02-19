@@ -29,6 +29,8 @@ This course is originally composed of 10 sessions (3 hours each):
 
 - [Course on R debugging and robust programming](https://github.com/lgatto/2016-02-25-adv-programming-EMBL) by Laurent Gatto & Robert Stojnic,
 
+- [Data Challenge Lab](https://dcl-2017-04.github.io/curriculum/upcoming.html) by Hadley Wickham,
+
 - [Advanced R](http://adv-r.had.co.nz/) by Hadley Wickham, and [some solutions](https://bookdown.org/Tazinho/Advanced-R-Solutions/),
 
 - [R for Data Science](http://r4ds.had.co.nz/index.html) by Garrett Grolemund & Hadley Wickham, and [some solutions](https://jrnold.github.io/r4ds-exercise-solutions/),
