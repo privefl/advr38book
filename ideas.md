@@ -37,6 +37,7 @@
 - une vectorization (e.g. `runif()`), package **matrixStats**
 - deferred evaluation
 - accessors: `for` uses `[[`, not `[` -> reimplement lapply()
+- use optimized packages: MatrixStats
   
 ### Parallel
 

@@ -110,8 +110,8 @@ system.time(
 ```
 
 ```
-#> utilisateur     système      écoulé 
-#>       0.102       0.003       0.105
+#>    user  system elapsed 
+#>   0.107   0.000   0.107
 ```
 
 ```r
@@ -123,7 +123,7 @@ system.time(
 ```
 
 ```
-#> Error in system.time(x = rnorm(1e+06)): argument inutilisé (x = rnorm(1e+06))
+#> Error in system.time(x = rnorm(1e+06)): unused argument (x = rnorm(1e+06))
 ```
 
 - Don't put `;` at the end of a line, and don't use `;` to put multiple commands 

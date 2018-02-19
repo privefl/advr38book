@@ -4,3 +4,5 @@ knitr::opts_chunk$set(
   fig.align = 'center',
   dev = "svg"
 )
+
+Sys.setenv(LANGUAGE = "en")
