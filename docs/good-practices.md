@@ -111,7 +111,7 @@ system.time(
 
 ```
 #> utilisateur     système      écoulé 
-#>       0.104       0.000       0.105
+#>       0.102       0.003       0.105
 ```
 
 ```r
