@@ -15,6 +15,9 @@ You can use [package **styler**](https://github.com/r-lib/styler) (that provides
 knitr::include_graphics("https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif")
 ```
 
+### Naming
+
+Be smart with your naming. I can't tell the number of times I've seen `df <- as.matrix(mtcars)` on Stack Overflow. 
 
 ### Spacing
 

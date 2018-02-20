@@ -25,7 +25,7 @@
 <meta name="author" content="Florian Privé">
 
 
-<meta name="date" content="2018-02-19">
+<meta name="date" content="2018-02-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -114,10 +114,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="2" data-path="good-practices.html"><a href="good-practices.html"><i class="fa fa-check"></i><b>2</b> Good practices</a><ul>
 <li class="chapter" data-level="2.1" data-path="good-practices.html"><a href="good-practices.html#coding-style"><i class="fa fa-check"></i><b>2.1</b> Coding style</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="good-practices.html"><a href="good-practices.html#spacing"><i class="fa fa-check"></i><b>2.1.1</b> Spacing</a></li>
-<li class="chapter" data-level="2.1.2" data-path="good-practices.html"><a href="good-practices.html#indenting"><i class="fa fa-check"></i><b>2.1.2</b> Indenting</a></li>
-<li class="chapter" data-level="2.1.3" data-path="good-practices.html"><a href="good-practices.html#long-lines"><i class="fa fa-check"></i><b>2.1.3</b> Long lines</a></li>
-<li class="chapter" data-level="2.1.4" data-path="good-practices.html"><a href="good-practices.html#other"><i class="fa fa-check"></i><b>2.1.4</b> Other</a></li>
+<li class="chapter" data-level="2.1.1" data-path="good-practices.html"><a href="good-practices.html#naming"><i class="fa fa-check"></i><b>2.1.1</b> Naming</a></li>
+<li class="chapter" data-level="2.1.2" data-path="good-practices.html"><a href="good-practices.html#spacing"><i class="fa fa-check"></i><b>2.1.2</b> Spacing</a></li>
+<li class="chapter" data-level="2.1.3" data-path="good-practices.html"><a href="good-practices.html#indenting"><i class="fa fa-check"></i><b>2.1.3</b> Indenting</a></li>
+<li class="chapter" data-level="2.1.4" data-path="good-practices.html"><a href="good-practices.html#long-lines"><i class="fa fa-check"></i><b>2.1.4</b> Long lines</a></li>
+<li class="chapter" data-level="2.1.5" data-path="good-practices.html"><a href="good-practices.html#other"><i class="fa fa-check"></i><b>2.1.5</b> Other</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a></li>
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#version-control-git"><i class="fa fa-check"></i><b>2.3</b> Version control (Git)</a><ul>
@@ -157,15 +158,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html"><i class="fa fa-check"></i><b>4</b> Data analysis with the tidyverse</a></li>
 <li class="chapter" data-level="5" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>5</b> Performance</a><ul>
-<li class="chapter" data-level="5.1" data-path="performance.html"><a href="performance.html#common-mistakes-and-solutions"><i class="fa fa-check"></i><b>5.1</b> Common mistakes and solutions</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="performance.html"><a href="performance.html#growing-an-object"><i class="fa fa-check"></i><b>5.1.1</b> Growing an object</a></li>
-<li class="chapter" data-level="5.1.2" data-path="performance.html"><a href="performance.html#trying-to-optimize-everything"><i class="fa fa-check"></i><b>5.1.2</b> Trying to optimize everything</a></li>
-<li class="chapter" data-level="5.1.3" data-path="performance.html"><a href="performance.html#exercise-1"><i class="fa fa-check"></i><b>5.1.3</b> Exercise</a></li>
+<li class="chapter" data-level="5.1" data-path="performance.html"><a href="performance.html#early-advice"><i class="fa fa-check"></i><b>5.1</b> Early advice</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="performance.html"><a href="performance.html#never-grow-an-object-pre-allocate"><i class="fa fa-check"></i><b>5.1.1</b> NEVER GROW AN OBJECT, PRE-ALLOCATE</a></li>
+<li class="chapter" data-level="5.1.2" data-path="performance.html"><a href="performance.html#use-the-right-function"><i class="fa fa-check"></i><b>5.1.2</b> Use the right function</a></li>
+<li class="chapter" data-level="5.1.3" data-path="performance.html"><a href="performance.html#do-not-try-to-optimize-everything"><i class="fa fa-check"></i><b>5.1.3</b> Do not try to optimize everything</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="performance.html"><a href="performance.html#vectorization"><i class="fa fa-check"></i><b>5.2</b> Vectorization</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="performance.html"><a href="performance.html#exercises-3"><i class="fa fa-check"></i><b>5.2.1</b> Exercises</a></li>
+<li class="chapter" data-level="5.2" data-path="performance.html"><a href="performance.html#data-structures"><i class="fa fa-check"></i><b>5.2</b> Data structures</a></li>
+<li class="chapter" data-level="5.3" data-path="performance.html"><a href="performance.html#algorithms"><i class="fa fa-check"></i><b>5.3</b> Algorithms</a></li>
+<li class="chapter" data-level="5.4" data-path="performance.html"><a href="performance.html#rcpp"><i class="fa fa-check"></i><b>5.4</b> Rcpp</a></li>
+<li class="chapter" data-level="5.5" data-path="performance.html"><a href="performance.html#parallel"><i class="fa fa-check"></i><b>5.5</b> Parallel</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="performance.html"><a href="performance.html#exercise-1"><i class="fa fa-check"></i><b>5.5.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.3</b> Linear algebra</a></li>
+<li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#vectorization"><i class="fa fa-check"></i><b>5.6</b> Vectorization</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="performance.html"><a href="performance.html#exercises-3"><i class="fa fa-check"></i><b>5.6.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.7</b> Linear algebra</a></li>
+<li class="chapter" data-level="5.8" data-path="performance.html"><a href="performance.html#exercises-4"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -190,11 +198,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 5</span> Performance</h1>
 <p>The people who say that R is just always slow usually are not great R programmers. It is true that writing inefficient R code is easy, yet writing efficient R code is also possible when you know what you’re doing. In this chapter, you will learn how to write R(cpp) code that is fast.</p>
 <p>Some years ago, when introducing the Julia language, some really unfair benchmark comparisons were released (e.g. with loops where obvious and simpler vectorized code would have been much faster). I’m still mad at Julia for this and <a href="https://matloff.wordpress.com/2014/05/21/r-beats-python-r-beats-julia-anyone-else-wanna-challenge-r/">I am not the only one</a>.</p>
-<div id="common-mistakes-and-solutions" class="section level2">
-<h2><span class="header-section-number">5.1</span> Common mistakes and solutions</h2>
-<div id="growing-an-object" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> Growing an object</h3>
-<p><strong>NEVER GROW AN OBJECT</strong></p>
+<div id="early-advice" class="section level2">
+<h2><span class="header-section-number">5.1</span> Early advice</h2>
+<div id="never-grow-an-object-pre-allocate" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> NEVER GROW AN OBJECT, PRE-ALLOCATE</h3>
 <p>Example computing the cumulative sums of a vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e4</span>)  <span class="co"># Try also with n = 1e5</span>
 <span class="kw">system.time</span>({
@@ -206,7 +213,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.163   0.002   0.164</code></pre>
+#&gt;   0.157   0.003   0.159</code></pre>
 <p>Here, at each iterating, you reallocating a vector (of increasing size). It makes your computation quadratic with the size of <code>x</code> (if you multiply the size by 2, you can expect the execution time to be multiplied by 4, for large sample sizes), whereas it should be only linear. Indeed, we will see that execution time can be composed of computation time but also allocation time.</p>
 <p>A good solution is to always pre-allocating your results (if you know the size):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
@@ -218,7 +225,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.006   0.000   0.006</code></pre>
+#&gt;   0.003   0.000   0.003</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all.equal</span>(res2, res)</code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
 <p>An even better solution would be to avoid the loop by using a vectorized function:</p>
@@ -230,7 +237,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e7</span>)
 <span class="kw">system.time</span>(<span class="kw">cumsum</span>(x))</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.044   0.006   0.052</code></pre>
+#&gt;   0.044   0.006   0.050</code></pre>
 <p>As a second example, let us generate a matrix of uniform values (max changing for every column):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="fl">1e3</span>
 max &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">1000</span>
@@ -241,10 +248,10 @@ max &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">100
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.601   0.229   0.830</code></pre>
+#&gt;   0.576   0.127   0.703</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat, <span class="dv">2</span>, max)[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.999764 1.999654 2.994555 3.996506 4.999664 5.986646 6.994761
-#&gt;  [8] 7.993455 8.989736 9.984301</code></pre>
+<pre><code>#&gt;  [1] 0.9981485 1.9997092 2.9995324 3.9960845 4.9994574 5.9951551 6.9943302
+#&gt;  [8] 7.9875131 8.9923887 9.9896885</code></pre>
 <p>So, we can either pre-allocate a list or a matrix:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
   l &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, <span class="kw">length</span>(max))
@@ -254,10 +261,10 @@ max &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">100
   mat2 &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;cbind&quot;</span>, l)
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.032   0.001   0.033</code></pre>
+#&gt;   0.032   0.000   0.032</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat2, <span class="dv">2</span>, max)[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9993215 1.9986477 2.9999922 3.9933047 4.9984811 5.9915939 6.9848479
-#&gt;  [8] 7.9998921 8.9958427 9.9946621</code></pre>
+<pre><code>#&gt;  [1] 0.9963507 1.9948378 2.9964613 3.9961717 4.9991155 5.9971370 6.9941215
+#&gt;  [8] 7.9549021 8.9994672 9.9981601</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
   mat3 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, n, <span class="kw">length</span>(max))
   for (i in <span class="kw">seq_along</span>(max)) {
@@ -265,36 +272,64 @@ max &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">100
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.034   0.000   0.035</code></pre>
+#&gt;   0.034   0.000   0.033</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat3, <span class="dv">2</span>, max)[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9981747 1.9998035 2.9956297 3.9946061 4.9952660 5.9918817 6.9939379
-#&gt;  [8] 7.9997888 8.9865920 9.9924091</code></pre>
+<pre><code>#&gt;  [1] 0.9982591 1.9979846 2.9979494 3.9933310 4.9768746 5.9933230 6.9894004
+#&gt;  [8] 7.9909962 8.9981047 9.9910282</code></pre>
 <p>Instead of pre-allocating yourself, you can use <code>sapply</code> (or <code>lapply</code> and calling <code>do.call()</code> after, as previously done):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(
   mat4 &lt;-<span class="st"> </span><span class="kw">sapply</span>(max, function(m) <span class="kw">runif</span>(n, <span class="dt">max =</span> m))
 )</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.033   0.000   0.034</code></pre>
+#&gt;   0.032   0.000   0.033</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat4, <span class="dv">2</span>, max)[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9999645 1.9981928 2.9993311 3.9993598 4.9934163 5.9983745 6.9985639
-#&gt;  [8] 7.9883881 8.9877855 9.9981783</code></pre>
+<pre><code>#&gt;  [1] 0.9992475 1.9978178 2.9997562 3.9959076 4.9967208 5.9964726 6.9964749
+#&gt;  [8] 7.9957967 8.9867173 9.9739381</code></pre>
 </div>
-<div id="trying-to-optimize-everything" class="section level3">
-<h3><span class="header-section-number">5.1.2</span> Trying to optimize everything</h3>
+<div id="use-the-right-function" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Use the right function</h3>
+<p>Often, to optimize your code, you can simply find the right function in the right package to do what you need to do.</p>
+<p>For example, using <code>rowMeans(x)</code> instead of <code>apply(x, 1, mean)</code> can save you a lot of time. If you want more efficient functions that apply to rows and columns of matrices, you can check <a href="https://github.com/HenrikBengtsson/matrixStats">package <strong>matrixStats</strong></a>.</p>
+<p>Another example is when reading large text files. In such cases, prefer using <code>data.table::fread()</code> rather than <code>read.table()</code>.</p>
+<p>Generally, packages that uses C/Rcpp are efficient.</p>
+</div>
+<div id="do-not-try-to-optimize-everything" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> Do not try to optimize everything</h3>
+<blockquote>
+<p>The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming.</p>
+<p>– Donald Knuth</p>
+</blockquote>
 <p>If you try to optimize each and every part of your code, you will end up losing a lot of time writing it and it will probably less readable.</p>
 <p>R is great to prototyping quickly because you can write code in a concise and easy way. Begin by doing just that. If performance matters, then profile your code to see which part of your code is taking too much time and optimize only this part!</p>
 <p>Learn more on how to profile your code in RStudio in <a href="https://support.rstudio.com/hc/en-us/articles/218221837-Profiling-with-RStudio">this article</a>.</p>
+<!-- ```{r, echo=FALSE} -->
+<!-- knitr::include_graphics("https://twitter.com/twitter/statuses/874522268331671557") -->
+<!-- ``` -->
 </div>
+</div>
+<div id="data-structures" class="section level2">
+<h2><span class="header-section-number">5.2</span> Data structures</h2>
+<!-- matrix instead of df -->
+<!-- integer instead of character -->
+</div>
+<div id="algorithms" class="section level2">
+<h2><span class="header-section-number">5.3</span> Algorithms</h2>
+</div>
+<div id="rcpp" class="section level2">
+<h2><span class="header-section-number">5.4</span> Rcpp</h2>
+</div>
+<div id="parallel" class="section level2">
+<h2><span class="header-section-number">5.5</span> Parallel</h2>
 <div id="exercise-1" class="section level3">
-<h3><span class="header-section-number">5.1.3</span> Exercise</h3>
+<h3><span class="header-section-number">5.5.1</span> Exercise</h3>
 <p>TODO</p>
 </div>
 </div>
 <div id="vectorization" class="section level2">
-<h2><span class="header-section-number">5.2</span> Vectorization</h2>
+<h2><span class="header-section-number">5.6</span> Vectorization</h2>
 <p>See <a href="http://www.noamross.net/blog/2014/4/16/vectorization-in-r--why.html">this great blog post by Noam Ross</a> to understand vectorization.</p>
 <div id="exercises-3" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Exercises</h3>
+<h3><span class="header-section-number">5.6.1</span> Exercises</h3>
 <p>Monte-Carlo integration (example from <a href="https://bookdown.org/csgillespie/efficientR/programming.html#vectorised-code">book Efficient R programming</a>)</p>
 <p>Suppose we wish to estimate the integral <span class="math inline">\(\int_0^1 x^2 dx\)</span> using a Monte-Carlo method. Essentially, we throw darts at the curve and count the number of darts that fall below the curve (as in the following figure).</p>
 <p><img src="https://bookdown.org/csgillespie/efficientR/_main_files/figure-html/3-1-1.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -329,16 +364,58 @@ max &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">100
 <p><strong>Your task: Find a vectorized solution for this problem:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">monte_carlo_vec</span>(N))</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.061   0.000   0.061</code></pre>
+#&gt;    0.06    0.00    0.06</code></pre>
 <hr />
 <p>TODO smoothing on data points</p>
 </div>
 </div>
 <div id="linear-algebra" class="section level2">
-<h2><span class="header-section-number">5.3</span> Linear algebra</h2>
+<h2><span class="header-section-number">5.7</span> Linear algebra</h2>
 <p>In R, prefer using <code>crossprod(X)</code> and <code>tcrossprod(X)</code> instead of <code>t(X) %*% X</code> and <code>X %*% t(X)</code>. Also using <code>A %*% (B %*% y)</code> and <code>solve(A, y)</code> will be faster than <code>A %*% B %*% y</code> and <code>solve(A) %*% y</code>.</p>
 <p>Don’t re-implement linear algebra such as matrix products yourself. There exists some highly optimized libraries for this. If you want to use linear algebra in Rcpp, try <a href="http://dirk.eddelbuettel.com/code/rcpp.armadillo.html">RcppArmadillo</a> or <a href="http://dirk.eddelbuettel.com/code/rcpp.eigen.html">RcppEigen</a>.</p>
 <p>If you want to use some optimized multi-threaded linear library, install <a href="https://mran.revolutionanalytics.com/documents/rro/multithread">Microsoft R Open</a>.</p>
+</div>
+<div id="exercises-4" class="section level2">
+<h2><span class="header-section-number">5.8</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>TODO <a href="http://blog.felixriedel.com/2013/05/pairwise-distances-in-r/" class="uri">http://blog.felixriedel.com/2013/05/pairwise-distances-in-r/</a></p></li>
+<li><p>Generate <span class="math inline">\(10^8\)</span> (begin with <span class="math inline">\(10^5\)</span>) steps of the process described by the formula:<span class="math display">\[X(0)=0\]</span><span class="math display">\[X(t+1)=X(t)+Y(t)\]</span> where <span class="math inline">\(Y(t)\)</span> are independent random variables with the distribution <span class="math inline">\(N(0,1)\)</span>. Then, calculate in what percentage of indices <span class="math inline">\(t\)</span> the value of <span class="math inline">\(X(t)\)</span> was negative. You don’t need to store values of <span class="math inline">\(X\)</span> if you don’t want to. What would be the benefit of writing an Rcpp function over a simple vectorized R function?</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
+<span class="kw">system.time</span>(p &lt;-<span class="st"> </span>advr38pkg::<span class="kw">random_walk_neg_prop</span>(<span class="fl">1e7</span>))</code></pre></div>
+<pre><code>#&gt;    user  system elapsed 
+#&gt;   0.502   0.001   0.503</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p</code></pre></div>
+<pre><code>#&gt; [1] 0.3400444</code></pre>
+<ol style="list-style-type: decimal">
+<li>Speed up these loops:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(mtcars)
+ind &lt;-<span class="st"> </span><span class="kw">seq_len</span>(<span class="kw">nrow</span>(mat))
+<span class="kw">dim</span>(mat_big &lt;-<span class="st"> </span>mat[<span class="kw">rep</span>(ind, <span class="dv">1000</span>), ])</code></pre></div>
+<pre><code>#&gt; [1] 32000    11</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">last_row &lt;-<span class="st"> </span>mat_big[<span class="kw">nrow</span>(mat_big), ]
+
+<span class="kw">system.time</span>({
+  for (j in <span class="dv">1</span>:<span class="kw">ncol</span>(mat_big)) {
+    for (i in <span class="dv">1</span>:<span class="kw">nrow</span>(mat_big)) {
+      mat_big[i, j] &lt;-<span class="st"> </span><span class="dv">10</span> *<span class="st"> </span>mat_big[i, j] *<span class="st"> </span>last_row[j]
+    }
+  }
+})</code></pre></div>
+<pre><code>#&gt;    user  system elapsed 
+#&gt;   0.435   0.000   0.435</code></pre>
+<ol style="list-style-type: decimal">
+<li>Make a fast function that returns all prime numbers up to a number <code>N</code>.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="fl">1e6</span>
+<span class="kw">system.time</span>(
+  primes &lt;-<span class="st"> </span>advr38pkg::<span class="kw">AllPrimesUpTo</span>(N)
+)</code></pre></div>
+<pre><code>#&gt;    user  system elapsed 
+#&gt;   0.053   0.008   0.061</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(primes, <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>)</code></pre></div>
+<p><img src="performance_files/figure-html/unnamed-chunk-15-1.svg" width="70%" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>

@@ -10,6 +10,9 @@ You can use [package **styler**](https://github.com/r-lib/styler) (that provides
 
 <img src="https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif" width="70%" style="display: block; margin: auto;" />
 
+### Naming
+
+Be smart with your naming. I can't tell the number of times I've seen `df <- as.matrix(mtcars)` on Stack Overflow. 
 
 ### Spacing
 
@@ -111,7 +114,7 @@ system.time(
 
 ```
 #>    user  system elapsed 
-#>   0.107   0.000   0.107
+#>   0.101   0.000   0.102
 ```
 
 ```r

@@ -30,14 +30,8 @@
 ## Performance
 
 - Use the right data structures, for examples integers instead of characters
-- Linear Algebra tricks:
-  - `solve(A) %*% B`
-  - `t(X) %*% X`
-  - `A %*% B %*% c`
-- une vectorization (e.g. `runif()`), package **matrixStats**
 - deferred evaluation
-- accessors: `for` uses `[[`, not `[` -> reimplement lapply()
-- use optimized packages: MatrixStats
+- Rule of thumb: if compile faster then your code is bad
   
 ### Parallel
 

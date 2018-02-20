@@ -10,11 +10,9 @@ In this chapter, you will learn how to write R(cpp) code that is fast.
 
 Some years ago, when introducing the Julia language, some really unfair benchmark comparisons were released (e.g. with loops where obvious and simpler vectorized code would have been much faster). I'm still mad at Julia for this and [I am not the only one](https://matloff.wordpress.com/2014/05/21/r-beats-python-r-beats-julia-anyone-else-wanna-challenge-r/).
 
-## Common mistakes and solutions
+## Early advice
 
-### Growing an object
-
-**NEVER GROW AN OBJECT**
+### NEVER GROW AN OBJECT, PRE-ALLOCATE
 
 Example computing the cumulative sums of a vector:
 
@@ -101,13 +99,43 @@ system.time(
 apply(mat4, 2, max)[1:10]
 ```
 
-### Trying to optimize everything
+### Use the right function
+
+Often, to optimize your code, you can simply find the right function in the right package to do what you need to do. 
+
+For example, using `rowMeans(x)` instead of `apply(x, 1, mean)` can save you a lot of time. If you want more efficient functions that apply to rows and columns of matrices, you can check [package **matrixStats**](https://github.com/HenrikBengtsson/matrixStats). 
+
+Another example is when reading large text files. In such cases, prefer using `data.table::fread()` rather than `read.table()`.
+
+Generally, packages that uses C/Rcpp are efficient.
+
+### Do not try to optimize everything
+
+> The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming.
+> 
+> -- Donald Knuth
 
 If you try to optimize each and every part of your code, you will end up losing a lot of time writing it and it will probably less readable.
 
 R is great to prototyping quickly because you can write code in a concise and easy way. Begin by doing just that. If performance matters, then profile your code to see which part of your code is taking too much time and optimize only this part!
 
 Learn more on how to profile your code in RStudio in [this article](https://support.rstudio.com/hc/en-us/articles/218221837-Profiling-with-RStudio).
+
+<!-- ```{r, echo=FALSE} -->
+<!-- knitr::include_graphics("https://twitter.com/twitter/statuses/874522268331671557") -->
+<!-- ``` -->
+
+
+## Data structures
+
+<!-- matrix instead of df -->
+<!-- integer instead of character -->
+
+## Algorithms
+
+## Rcpp
+
+## Parallel
 
 
 
@@ -166,7 +194,7 @@ system.time(monte_carlo(N))
 **Your task: Find a vectorized solution for this problem:**
 
 ```{r echo=FALSE}
-monte_carlo_vec <- function(N) sum(runif(N)^2 > runif(N))/N
+monte_carlo_vec <- function(N) mean(runif(N)^2 > runif(N))
 ```
 
 ```{r}
@@ -176,8 +204,8 @@ system.time(monte_carlo_vec(N))
 
 ***
 
-
 TODO smoothing on data points
+
 
 
 ## Linear algebra
@@ -187,3 +215,47 @@ In R, prefer using `crossprod(X)` and `tcrossprod(X)` instead of `t(X) %*% X` an
 Don't re-implement linear algebra such as matrix products yourself. There exists some highly optimized libraries for this. If you want to use linear algebra in Rcpp, try [RcppArmadillo](http://dirk.eddelbuettel.com/code/rcpp.armadillo.html) or [RcppEigen](http://dirk.eddelbuettel.com/code/rcpp.eigen.html).
 
 If you want to use some optimized multi-threaded linear library, install [Microsoft R Open](https://mran.revolutionanalytics.com/documents/rro/multithread). 
+
+
+## Exercises
+
+1. TODO http://blog.felixriedel.com/2013/05/pairwise-distances-in-r/
+
+1. Generate $10^8$ (begin with $10^5$) steps of the process described by the formula:$$X(0)=0$$$$X(t+1)=X(t)+Y(t)$$ where $Y(t)$ are independent random variables with the distribution $N(0,1)$. Then, calculate in what percentage of indices $t$ the value of $X(t)$ was negative. You don't need to store values of $X$ if you don't want to.
+What would be the benefit of writing an Rcpp function over a simple vectorized R function?
+
+```{r}
+set.seed(1)
+system.time(p <- advr38pkg::random_walk_neg_prop(1e7))
+p
+```
+
+1. Speed up these loops:
+
+```{r}
+mat <- as.matrix(mtcars)
+ind <- seq_len(nrow(mat))
+dim(mat_big <- mat[rep(ind, 1000), ])
+last_row <- mat_big[nrow(mat_big), ]
+
+system.time({
+  for (j in 1:ncol(mat_big)) {
+    for (i in 1:nrow(mat_big)) {
+      mat_big[i, j] <- 10 * mat_big[i, j] * last_row[j]
+    }
+  }
+})
+```
+
+
+1. Make a fast function that returns all prime numbers up to a number `N`.
+
+```{r}
+N <- 1e6
+system.time(
+  primes <- advr38pkg::AllPrimesUpTo(N)
+)
+plot(primes, pch = 20, cex = 0.5)
+```
+
+
