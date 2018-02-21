@@ -5,4 +5,6 @@ knitr::opts_chunk$set(
   dev = "svg"
 )
 
+options(width = 100)
+
 Sys.setenv(LANGUAGE = "en")
