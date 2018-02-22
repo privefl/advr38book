@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Advanced R Course</title>
   <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France (2018).">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="Advanced R Course" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Florian Privé">
 
 
-<meta name="date" content="2018-02-20">
+<meta name="date" content="2018-02-22">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -48,10 +48,13 @@
 
 
 <script src="libs/htmlwidgets-1.0/htmlwidgets.js"></script>
-<script src="libs/datatables-binding-0.2/datatables.js"></script>
-<link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.4/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -174,9 +177,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="performance.html"><a href="performance.html#algorithms-data-structures"><i class="fa fa-check"></i><b>5.3</b> Algorithms &amp; data structures</a></li>
 <li class="chapter" data-level="5.4" data-path="performance.html"><a href="performance.html#rcpp"><i class="fa fa-check"></i><b>5.4</b> Rcpp</a></li>
-<li class="chapter" data-level="5.5" data-path="performance.html"><a href="performance.html#parallel"><i class="fa fa-check"></i><b>5.5</b> Parallel</a></li>
-<li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.6</b> Linear algebra</a></li>
-<li class="chapter" data-level="5.7" data-path="performance.html"><a href="performance.html#exos"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
+<li class="chapter" data-level="5.5" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.5</b> Linear algebra</a></li>
+<li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#exos"><i class="fa fa-check"></i><b>5.6</b> Exercises</a></li>
+<li class="chapter" data-level="5.7" data-path="performance.html"><a href="performance.html#parallel"><i class="fa fa-check"></i><b>5.7</b> Parallel</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -199,7 +202,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="performance" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Performance</h1>
-<p>The people who say that R is just always slow usually are not great R programmers. It is true that writing inefficient R code is easy, yet writing efficient R code is also possible when you know what you’re doing. In this chapter, you will learn how to write R(cpp) code that is fast.</p>
+<p>Some resources used here or for further reading:</p>
+<ul>
+<li><a href="https://adv-r.hadley.nz/performance.html">Advanced R</a></li>
+<li><a href="https://bookdown.org/csgillespie/efficientR/">Efficient R programming</a></li>
+</ul>
+<p>The people who say that R is <em>just always slow</em> are usually not great R programmers. It is true that writing inefficient R code is easy, yet writing efficient R code is also possible when you know what you’re doing. In this chapter, you will learn how to write R(cpp) code that is fast.</p>
 <p>Some years ago, when introducing the Julia language, some really unfair benchmark comparisons were released (e.g. with loops where obvious and simpler vectorized code would have been much faster). I’m still mad at Julia for this and <a href="https://matloff.wordpress.com/2014/05/21/r-beats-python-r-beats-julia-anyone-else-wanna-challenge-r/">I am not the only one</a>.</p>
 <div id="early-advice" class="section level2">
 <h2><span class="header-section-number">5.1</span> Early advice</h2>
@@ -216,7 +224,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.269   0.001   0.276</code></pre>
+#&gt;   0.197   0.001   0.197</code></pre>
 <p>Here, at each iterating, you reallocating a vector (of increasing size). It makes your computation quadratic with the size of <code>x</code> (if you multiply the size by 2, you can expect the execution time to be multiplied by 4, for large sample sizes), whereas it should be only linear. Indeed, we will see that execution time can be composed of computation time but also allocation time.</p>
 <p>A good solution is to always pre-allocating your results (if you know the size):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
@@ -228,7 +236,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.006   0.000   0.006</code></pre>
+#&gt;   0.003   0.000   0.004</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all.equal</span>(res2, res)</code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
 <p>An even better solution would be to avoid the loop by using a vectorized function:</p>
@@ -240,7 +248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e7</span>)
 <span class="kw">system.time</span>(<span class="kw">cumsum</span>(x))</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.065   0.005   0.070</code></pre>
+#&gt;   0.046   0.008   0.054</code></pre>
 <p>As a second example, let us generate a matrix of uniform values (max changing for every column):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="fl">1e3</span>
 max &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">1000</span>
@@ -251,10 +259,10 @@ max &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">100
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.900   0.282   1.196</code></pre>
+#&gt;   0.622   0.140   0.763</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat, <span class="dv">2</span>, max)[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9990492 1.9989135 2.9993128 3.9975548 4.9927126 5.9921664 6.9919280 7.9986538 8.9998740
-#&gt; [10] 9.9845651</code></pre>
+<pre><code>#&gt;  [1] 0.9993523 1.9985826 2.9988023 3.9992594 4.9968951 5.9913240 6.9895377 7.9915656 8.9967887
+#&gt; [10] 9.9792941</code></pre>
 <p>So, we can either pre-allocate a list or a matrix:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
   l &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, <span class="kw">length</span>(max))
@@ -264,9 +272,10 @@ max &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">100
   mat2 &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;cbind&quot;</span>, l)
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.056   0.000   0.056</code></pre>
+#&gt;   0.033   0.000   0.033</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat2, <span class="dv">2</span>, max)[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.999915 1.999282 2.999420 3.995500 4.998388 5.992099 6.987666 7.996923 8.984965 9.981122</code></pre>
+<pre><code>#&gt;  [1] 0.9985255 1.9984433 2.9979210 3.9950636 4.9937481 5.9909545 6.9868293 7.9949808 8.9976928
+#&gt; [10] 9.9706199</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
   mat3 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, n, <span class="kw">length</span>(max))
   for (i in <span class="kw">seq_along</span>(max)) {
@@ -274,19 +283,19 @@ max &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">100
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.059   0.000   0.058</code></pre>
+#&gt;   0.035   0.001   0.036</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat3, <span class="dv">2</span>, max)[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9999286 1.9997505 2.9989938 3.9989244 4.9969102 5.9997703 6.9913534 7.9956414 8.9913388
-#&gt; [10] 9.9946355</code></pre>
+<pre><code>#&gt;  [1] 0.9997804 1.9984322 2.9999137 3.9980941 4.9920184 5.9954594 6.9817297 7.9942830 8.9933673
+#&gt; [10] 9.9974063</code></pre>
 <p>Instead of pre-allocating yourself, you can use <code>sapply</code> (or <code>lapply</code> and calling <code>do.call()</code> after, as previously done):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(
   mat4 &lt;-<span class="st"> </span><span class="kw">sapply</span>(max, function(m) <span class="kw">runif</span>(n, <span class="dt">max =</span> m))
 )</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.056   0.000   0.057</code></pre>
+#&gt;   0.033   0.000   0.034</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat4, <span class="dv">2</span>, max)[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9999325 1.9980093 2.9977755 3.9941221 4.9706374 5.9856781 6.9965903 7.9907457 8.9792992
-#&gt; [10] 9.9938183</code></pre>
+<pre><code>#&gt;  [1] 0.9999618 1.9967193 2.9911415 3.9887740 4.9995998 5.9807046 6.9756844 7.9962971 8.9880979
+#&gt; [10] 9.9869451</code></pre>
 </div>
 <div id="access-columns-of-a-matrix" class="section level3">
 <h3><span class="header-section-number">5.1.2</span> Access columns of a matrix</h3>
@@ -311,8 +320,8 @@ vec</code></pre></div>
 <div id="do-not-try-to-optimize-everything" class="section level3">
 <h3><span class="header-section-number">5.1.4</span> Do not try to optimize everything</h3>
 <blockquote>
-<p>The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming.</p>
-<p>– Donald Knuth</p>
+<p>“Programmers waste enormous amounts of time thinking about, or worrying about, the speed of noncritical parts of their programs, and these attempts at efficiency actually have a strong negative impact when debugging and maintenance are considered.”</p>
+<p>— Donald Knuth.</p>
 </blockquote>
 <p>If you try to optimize each and every part of your code, you will end up losing a lot of time writing it and it will probably less readable.</p>
 <p>R is great to prototyping quickly because you can write code in a concise and easy way. Begin by doing just that. If performance matters, then profile your code to see which part of your code is taking too much time and optimize only this part!</p>
@@ -361,36 +370,32 @@ vec</code></pre></div>
 <p><strong>Your task: Find a vectorized solution for this problem:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">monte_carlo_vec</span>(N))</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.102   0.000   0.102</code></pre>
+#&gt;   0.061   0.000   0.061</code></pre>
 </div>
 </div>
 <div id="algorithms-data-structures" class="section level2">
 <h2><span class="header-section-number">5.3</span> Algorithms &amp; data structures</h2>
 <p>Sometimes, getting the right data structure (e.g. using a matrix instead of a data frame or integers instead of characters) can save you some computation time.</p>
 <p>Is your algorithm doing some redundant computations making it e.g. quadratic instead of linear with respect to the dimension of your data?</p>
-<p>See exercises (section <a href="performance.html#exos">5.7</a>) for some insights.</p>
+<p>See exercises (section <a href="performance.html#exos">5.6</a>) for some insights.</p>
 </div>
 <div id="rcpp" class="section level2">
 <h2><span class="header-section-number">5.4</span> Rcpp</h2>
-</div>
-<div id="parallel" class="section level2">
-<h2><span class="header-section-number">5.5</span> Parallel</h2>
-<p>I basically always use <code>foreach</code> and recommend to do so. See <a href="https://privefl.github.io/blog/a-guide-to-parallelism-in-r/">this guide to parallelism in R with <code>foreach</code></a>.</p>
-<p>Just remember to optimize your code before trying to parallelize it.</p>
+<p>See <a href="https://privefl.github.io/R-presentation/Rcpp.html">this presentation</a>.</p>
 </div>
 <div id="linear-algebra" class="section level2">
-<h2><span class="header-section-number">5.6</span> Linear algebra</h2>
+<h2><span class="header-section-number">5.5</span> Linear algebra</h2>
 <p>In R, prefer using <code>crossprod(X)</code> and <code>tcrossprod(X)</code> instead of <code>t(X) %*% X</code> and <code>X %*% t(X)</code>. Also using <code>A %*% (B %*% y)</code> and <code>solve(A, y)</code> will be faster than <code>A %*% B %*% y</code> and <code>solve(A) %*% y</code>.</p>
 <p>Don’t re-implement linear algebra such as matrix products yourself. There exists some highly optimized libraries for this. If you want to use linear algebra in Rcpp, try <a href="http://dirk.eddelbuettel.com/code/rcpp.armadillo.html">RcppArmadillo</a> or <a href="http://dirk.eddelbuettel.com/code/rcpp.eigen.html">RcppEigen</a>.</p>
 <p>If you want to use some optimized multi-threaded linear library, install <a href="https://mran.revolutionanalytics.com/documents/rro/multithread">Microsoft R Open</a>.</p>
 </div>
 <div id="exos" class="section level2">
-<h2><span class="header-section-number">5.7</span> Exercises</h2>
+<h2><span class="header-section-number">5.6</span> Exercises</h2>
 <p>Generate <span class="math inline">\(10^8\)</span> (begin with <span class="math inline">\(10^5\)</span>) steps of the process described by the formula:<span class="math display">\[X(0)=0\]</span><span class="math display">\[X(t+1)=X(t)+Y(t)\]</span> where <span class="math inline">\(Y(t)\)</span> are independent random variables with the distribution <span class="math inline">\(N(0,1)\)</span>. Then, calculate in what percentage of indices <span class="math inline">\(t\)</span> the value of <span class="math inline">\(X(t)\)</span> was negative. You don’t need to store values of <span class="math inline">\(X\)</span> if you don’t want to. What would be the benefit of writing an Rcpp function over a simple vectorized R function?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
 <span class="kw">system.time</span>(p &lt;-<span class="st"> </span>advr38pkg::<span class="kw">random_walk_neg_prop</span>(<span class="fl">1e7</span>))</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.769   0.000   0.770</code></pre>
+#&gt;   0.537   0.000   0.537</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p</code></pre></div>
 <pre><code>#&gt; [1] 0.3400444</code></pre>
 <hr />
@@ -407,7 +412,7 @@ last_row &lt;-<span class="st"> </span>mat_big[<span class="kw">nrow</span>(mat_
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.927   0.000   0.927</code></pre>
+#&gt;   0.491   0.000   0.491</code></pre>
 <hr />
 <p>Why <code>colSums()</code> on a whole matrix is faster than on only half of it?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m0 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="fl">1e6</span>), <span class="fl">1e3</span>, <span class="fl">1e3</span>)
@@ -415,10 +420,10 @@ microbenchmark::<span class="kw">microbenchmark</span>(
   <span class="kw">colSums</span>(m0[, <span class="dv">1</span>:<span class="dv">500</span>]), 
   <span class="kw">colSums</span>(m0)
 )</code></pre></div>
-<pre><code>#&gt; Unit: milliseconds
+<pre><code>#&gt; Unit: microseconds
 #&gt;                  expr      min       lq     mean   median       uq       max neval
-#&gt;  colSums(m0[, 1:500]) 4.769532 5.823647 6.102419 5.902148 5.979567 10.578232   100
-#&gt;           colSums(m0) 1.021151 1.053068 1.067026 1.069446 1.079712  1.107125   100</code></pre>
+#&gt;  colSums(m0[, 1:500]) 2409.942 3238.784 3999.599 3464.057 4345.767 10603.090   100
+#&gt;           colSums(m0)  812.814  871.585 1088.730  931.229 1160.238  2411.549   100</code></pre>
 <hr />
 <p>Try to speed up this code by vectorizing it first. Then, recode it in Rcpp and benchmark all the solutions you came up with.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">M &lt;-<span class="st"> </span><span class="dv">50</span>
@@ -454,11 +459,11 @@ breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">
   advr38pkg::<span class="kw">count_by_breaks_fast</span>(x, breaks)
 )</code></pre></div>
 <pre><code>#&gt; Unit: microseconds
-#&gt;                                        expr      min       lq      mean    median       uq      max
-#&gt;                       table(cut(x, breaks)) 4026.560 4062.040 4183.0370 4089.2080 4139.110 9364.669
-#&gt;        hist(x, breaks, plot = FALSE)$counts  562.084  612.753  657.8373  646.9410  696.179  776.846
-#&gt;       advr38pkg::count_by_breaks(x, breaks)  565.855  589.880  663.1746  602.2075  665.833  899.906
-#&gt;  advr38pkg::count_by_breaks_fast(x, breaks)  300.877  320.852  348.1024  337.0545  381.055  438.813
+#&gt;                                        expr      min        lq      mean   median       uq      max
+#&gt;                       table(cut(x, breaks)) 2124.502 2195.0065 2282.6628 2222.769 2300.641 5621.522
+#&gt;        hist(x, breaks, plot = FALSE)$counts  333.842  354.4445  391.9826  380.391  423.309  494.756
+#&gt;       advr38pkg::count_by_breaks(x, breaks)  346.134  363.1405  413.1152  374.210  414.963  568.438
+#&gt;  advr38pkg::count_by_breaks_fast(x, breaks)  160.845  176.0705  198.2786  187.908  223.213  257.575
 #&gt;  neval
 #&gt;    100
 #&gt;    100
@@ -474,15 +479,15 @@ microbenchmark::<span class="kw">microbenchmark</span>(
 )</code></pre></div>
 <pre><code>#&gt; Unit: milliseconds
 #&gt;                                          expr       min         lq       mean     median         uq
-#&gt;        advr38pkg::count_by_breaks(x2, breaks)  3.391982   3.408535   4.063219   3.447367   5.206320
-#&gt;   advr38pkg::count_by_breaks_fast(x2, breaks)  1.368820   1.416731   1.814132   1.466773   2.336995
-#&gt;       advr38pkg::count_by_breaks(x2, breaks2) 82.858163 118.703678 133.270503 120.473526 165.094145
-#&gt;  advr38pkg::count_by_breaks_fast(x2, breaks2)  1.400389   1.443830   1.831793   1.477807   2.395976
+#&gt;        advr38pkg::count_by_breaks(x2, breaks)  3.126025   3.265986   3.742725   3.325771   4.200952
+#&gt;   advr38pkg::count_by_breaks_fast(x2, breaks)  1.268248   1.306590   1.561127   1.373813   1.582464
+#&gt;       advr38pkg::count_by_breaks(x2, breaks2) 75.012575 114.233988 127.025009 116.327864 146.404927
+#&gt;  advr38pkg::count_by_breaks_fast(x2, breaks2)  1.312318   1.351499   1.556768   1.406394   1.590810
 #&gt;         max neval
-#&gt;    6.598606   100
-#&gt;    3.051506   100
-#&gt;  217.828749   100
-#&gt;    2.502344   100</code></pre>
+#&gt;    6.103567   100
+#&gt;    3.924660   100
+#&gt;  186.776522   100
+#&gt;    2.670241   100</code></pre>
 <hr />
 <p>An user wants to implement some sampling on a sparse matrix and provide this code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Matrix)
@@ -502,7 +507,7 @@ for (j in <span class="dv">1</span>:N) {
   primes &lt;-<span class="st"> </span>advr38pkg::<span class="kw">AllPrimesUpTo</span>(N)
 )</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.062   0.000   0.062</code></pre>
+#&gt;   0.061   0.000   0.061</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(primes, <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>)</code></pre></div>
 <p><img src="performance_files/figure-html/unnamed-chunk-21-1.svg" width="70%" style="display: block; margin: auto;" /></p>
 <hr />
@@ -552,6 +557,12 @@ DT::<span class="kw">datatable</span>(allanimals)</code></pre></div>
   result
 }</code></pre></div>
 <p>To see a comparison of different computation strategies, see <a href="http://blog.felixriedel.com/2013/05/pairwise-distances-in-r/">this nice blog post</a>.</p>
+</div>
+<div id="parallel" class="section level2">
+<h2><span class="header-section-number">5.7</span> Parallel</h2>
+<p>I basically always use <code>foreach</code> and recommend to do so. See <a href="https://privefl.github.io/blog/a-guide-to-parallelism-in-r/">this guide to parallelism in R with <code>foreach</code></a>.</p>
+<p>Just remember to optimize your code before trying to parallelize it.</p>
+<p>Try to parallelize some of your solutions for the previous exercises.</p>
 
 </div>
 </div>
@@ -579,10 +590,11 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -606,9 +618,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

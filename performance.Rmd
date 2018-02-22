@@ -5,7 +5,12 @@ source("knitr-options.R")
 source("spelling-check.R")
 ```
 
-The people who say that R is just always slow usually are not great R programmers. It is true that writing inefficient R code is easy, yet writing efficient R code is also possible when you know what you're doing. 
+Some resources used here or for further reading:
+
+- [Advanced R](https://adv-r.hadley.nz/performance.html)
+- [Efficient R programming](https://bookdown.org/csgillespie/efficientR/)
+
+The people who say that R is *just always slow* are usually not great R programmers. It is true that writing inefficient R code is easy, yet writing efficient R code is also possible when you know what you're doing. 
 In this chapter, you will learn how to write R(cpp) code that is fast.
 
 Some years ago, when introducing the Julia language, some really unfair benchmark comparisons were released (e.g. with loops where obvious and simpler vectorized code would have been much faster). I'm still mad at Julia for this and [I am not the only one](https://matloff.wordpress.com/2014/05/21/r-beats-python-r-beats-julia-anyone-else-wanna-challenge-r/).
@@ -124,9 +129,13 @@ Generally, packages that uses C/Rcpp are efficient.
 
 ### Do not try to optimize everything
 
-> The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming.
-> 
-> -- Donald Knuth
+
+> "Programmers waste enormous amounts of time thinking about, or worrying
+> about, the speed of noncritical parts of their programs, and these attempts 
+> at efficiency actually have a strong negative impact when debugging and
+> maintenance are considered."
+>
+> --- Donald Knuth.
 
 If you try to optimize each and every part of your code, you will end up losing a lot of time writing it and it will probably less readable.
 
@@ -207,12 +216,7 @@ See exercises (section \@ref(exos)) for some insights.
 
 ## Rcpp
 
-## Parallel
-
-I basically always use `foreach` and recommend to do so. See [this guide to parallelism in R with `foreach`](https://privefl.github.io/blog/a-guide-to-parallelism-in-r/). 
-
-Just remember to optimize your code before trying to parallelize it. 
-
+See [this presentation](https://privefl.github.io/R-presentation/Rcpp.html).
 
 ## Linear algebra
 
@@ -415,3 +419,13 @@ naive_pdist <- function(A, B) {
 ```
 
 To see a comparison of different computation strategies, see [this nice blog post](http://blog.felixriedel.com/2013/05/pairwise-distances-in-r/).
+
+
+## Parallel
+
+I basically always use `foreach` and recommend to do so. See [this guide to parallelism in R with `foreach`](https://privefl.github.io/blog/a-guide-to-parallelism-in-r/). 
+
+Just remember to optimize your code before trying to parallelize it. 
+
+Try to parallelize some of your solutions for the previous exercises.
+
