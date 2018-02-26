@@ -25,26 +25,25 @@ Put a space before and after `=` when naming arguments in function calls.
 Most infix operators (`==`, `+`, `-`, `<-`, etc.) are also surrounded by
 spaces, except those with relatively high precedence: `^`, `:`, `::`, and `:::`. Always put a space after a comma, and never before (just like in regular English).
 
-```{r, eval = FALSE}
+```{r, eval=FALSE}
 # Good
 average <- mean((feet / 12) + inches, na.rm = TRUE)
 sqrt(x^2 + y^2)
 x <- 1:10
-base::get
+base::sum
 
 # Bad
-average<-mean(feet/12 + inches,na.rm=TRUE)
+average<-mean(feet/12+inches,na.rm=TRUE)
 sqrt(x ^ 2 + y ^ 2)
 x <- 1 : 10
-base :: get
+base :: sum
 ```
 
 ### Indenting
 
-Curly braces, `{}`, define the the most important hierarchy of R code. To make 
-this hierarchy easy to see, always indent the code inside `{}` by two spaces.
+Curly braces, `{}`, define the the most important hierarchy of R code. To make this hierarchy easy to see, always indent the code inside `{}` by two spaces.
 
-```{r, eval = FALSE}
+```{r, eval=FALSE}
 # Good
 if (y < 0 && debug) {
   message("y is negative")
@@ -90,7 +89,7 @@ If a function call is too long to fit on a single line, use one line each for
 the function name, each argument, and the closing `)`. 
 This makes the code easier to read and to change later. 
 
-```{r, eval = FALSE}
+```{r, eval=FALSE}
 # Good
 do_something_very_complicated(
   something = "that",
@@ -107,7 +106,7 @@ do_something_very_complicated("that", requires, many, arguments,
 
 - Use `<-`, not `=`, for assignment. Keep `=` for parameters.
 
-```{r, error=TRUE}
+```{r, eval=FALSE}
 # Good
 x <- 5
 system.time(
@@ -126,12 +125,8 @@ on one line.
 
 - Only use `return()` for early returns. Otherwise rely on R to return the result of the last evaluated expression.
 
-```{r eval = FALSE}
+```{r, eval=FALSE}
 # Good
-find_abs <- function(x, y) {
-  if (x > 0) return(x)
-  x * -1
-}
 add_two <- function(x, y) {
   x + y
 }
@@ -144,7 +139,7 @@ add_two <- function(x, y) {
 
 - Use `"`, not `'`, for quoting text. The only exception is when the text already contains double quotes and no single quotes.
 
-```{r}
+```{r, eval=FALSE}
 # Good
 "Text"
 'Text with "quotes"'
@@ -209,16 +204,10 @@ knitr::include_graphics("https://www.tacomaworld.com/attachments/i-also-like-to-
 
 Have you ever:
 
-- **Made a change to code, realized it was a mistake and wanted to revert back?**
-- **Lost code or had a backup that was too old?**
-- Had to maintain multiple versions of a product?
-- Wanted to see the difference between two (or more) versions of your code?
-- Wanted to prove that a particular change broke or fixed a piece of code?
-- Wanted to review the history of some code?
-- **Wanted to submit a change to someone else's code?**
-- **Wanted to share your code, or let other people work on your code?**
-- Wanted to see how much work is being done, and where, when and by whom?
-- Wanted to experiment with a new feature without interfering with working code?
+- Made a change to code, realized it was a mistake and wanted to revert back?
+- Lost code or had a backup that was too old?
+- Wanted to submit a change to someone else's code?
+- Wanted to share your code, or let other people work on your code?
 
 In these cases, and no doubt others, a version control system should make your life easier (see https://stackoverflow.com/a/1408464/6103040).
 
@@ -272,7 +261,9 @@ knitr::include_graphics("images/git.svg")
 
 - How to link between an RStudio project and a GitHub repository?
 
-TODO: video
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8Q3fYwgyNGQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</center>
 
 - Help with Git:
 ```{r, out.width="30%", echo=FALSE}

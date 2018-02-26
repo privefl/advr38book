@@ -26,19 +26,18 @@ spaces, except those with relatively high precedence: `^`, `:`, `::`, and `:::`.
 average <- mean((feet / 12) + inches, na.rm = TRUE)
 sqrt(x^2 + y^2)
 x <- 1:10
-base::get
+base::sum
 
 # Bad
-average<-mean(feet/12 + inches,na.rm=TRUE)
+average<-mean(feet/12+inches,na.rm=TRUE)
 sqrt(x ^ 2 + y ^ 2)
 x <- 1 : 10
-base :: get
+base :: sum
 ```
 
 ### Indenting
 
-Curly braces, `{}`, define the the most important hierarchy of R code. To make 
-this hierarchy easy to see, always indent the code inside `{}` by two spaces.
+Curly braces, `{}`, define the the most important hierarchy of R code. To make this hierarchy easy to see, always indent the code inside `{}` by two spaces.
 
 
 ```r
@@ -110,23 +109,12 @@ x <- 5
 system.time(
   x <- rnorm(1e6)
 )
-```
 
-```
-#>    user  system elapsed 
-#>   0.108   0.002   0.109
-```
-
-```r
 # Bad
 x = 5
 system.time(
   x = rnorm(1e6)
 )
-```
-
-```
-#> Error in system.time(x = rnorm(1e+06)): unused argument (x = rnorm(1e+06))
 ```
 
 - Don't put `;` at the end of a line, and don't use `;` to put multiple commands 
@@ -137,10 +125,6 @@ on one line.
 
 ```r
 # Good
-find_abs <- function(x, y) {
-  if (x > 0) return(x)
-  x * -1
-}
 add_two <- function(x, y) {
   x + y
 }
@@ -157,43 +141,12 @@ add_two <- function(x, y) {
 ```r
 # Good
 "Text"
-```
-
-```
-#> [1] "Text"
-```
-
-```r
 'Text with "quotes"'
-```
-
-```
-#> [1] "Text with \"quotes\""
-```
-
-```r
 '<a href="http://style.tidyverse.org">A link</a>'
-```
 
-```
-#> [1] "<a href=\"http://style.tidyverse.org\">A link</a>"
-```
-
-```r
 # Bad
 'Text'
-```
-
-```
-#> [1] "Text"
-```
-
-```r
 'Text with "double" and \'single\' quotes'
-```
-
-```
-#> [1] "Text with \"double\" and 'single' quotes"
 ```
 
 
@@ -247,16 +200,10 @@ Read more at https://www.tidyverse.org/articles/2017/12/workflow-vs-script/ and 
 
 Have you ever:
 
-- **Made a change to code, realized it was a mistake and wanted to revert back?**
-- **Lost code or had a backup that was too old?**
-- Had to maintain multiple versions of a product?
-- Wanted to see the difference between two (or more) versions of your code?
-- Wanted to prove that a particular change broke or fixed a piece of code?
-- Wanted to review the history of some code?
-- **Wanted to submit a change to someone else's code?**
-- **Wanted to share your code, or let other people work on your code?**
-- Wanted to see how much work is being done, and where, when and by whom?
-- Wanted to experiment with a new feature without interfering with working code?
+- Made a change to code, realized it was a mistake and wanted to revert back?
+- Lost code or had a backup that was too old?
+- Wanted to submit a change to someone else's code?
+- Wanted to share your code, or let other people work on your code?
 
 In these cases, and no doubt others, a version control system should make your life easier (see https://stackoverflow.com/a/1408464/6103040).
 
@@ -306,7 +253,9 @@ Also, see https://stackoverflow.com/q/2712421/6103040.
 
 - How to link between an RStudio project and a GitHub repository?
 
-TODO: video
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8Q3fYwgyNGQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</center>
 
 - Help with Git:
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdltx925phiPYsw72GpjM30TBMn30YLTi8kAlf-N2sC_kTQNTiFQ" width="30%" style="display: block; margin: auto;" />

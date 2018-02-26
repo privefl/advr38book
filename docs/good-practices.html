@@ -218,13 +218,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 average &lt;-<span class="st"> </span><span class="kw">mean</span>((feet /<span class="st"> </span><span class="dv">12</span>) +<span class="st"> </span>inches, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
 <span class="kw">sqrt</span>(x^<span class="dv">2</span> +<span class="st"> </span>y^<span class="dv">2</span>)
 x &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
-base::get
+base::sum
 
 <span class="co"># Bad</span>
-average&lt;-<span class="kw">mean</span>(feet/<span class="dv">12</span> +<span class="st"> </span>inches,<span class="dt">na.rm=</span><span class="ot">TRUE</span>)
+average&lt;-<span class="kw">mean</span>(feet/<span class="dv">12</span>+inches,<span class="dt">na.rm=</span><span class="ot">TRUE</span>)
 <span class="kw">sqrt</span>(x ^<span class="st"> </span><span class="dv">2</span> +<span class="st"> </span>y ^<span class="st"> </span><span class="dv">2</span>)
 x &lt;-<span class="st"> </span><span class="dv">1</span> :<span class="st"> </span><span class="dv">10</span>
-base ::<span class="st"> </span>get</code></pre></div>
+base ::<span class="st"> </span>sum</code></pre></div>
 </div>
 <div id="indenting" class="section level3">
 <h3><span class="header-section-number">2.1.3</span> Indenting</h3>
@@ -282,24 +282,18 @@ if (y ==<span class="st"> </span><span class="dv">0</span>)
 x &lt;-<span class="st"> </span><span class="dv">5</span>
 <span class="kw">system.time</span>(
   x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e6</span>)
-)</code></pre></div>
-<pre><code>#&gt;    user  system elapsed 
-#&gt;   0.108   0.002   0.109</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Bad</span>
+)
+
+<span class="co"># Bad</span>
 x =<span class="st"> </span><span class="dv">5</span>
 <span class="kw">system.time</span>(
   <span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="fl">1e6</span>)
 )</code></pre></div>
-<pre><code>#&gt; Error in system.time(x = rnorm(1e+06)): unused argument (x = rnorm(1e+06))</code></pre>
 <ul>
 <li><p>Don’t put <code>;</code> at the end of a line, and don’t use <code>;</code> to put multiple commands on one line.</p></li>
 <li><p>Only use <code>return()</code> for early returns. Otherwise rely on R to return the result of the last evaluated expression.</p></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-find_abs &lt;-<span class="st"> </span>function(x, y) {
-  if (x &gt;<span class="st"> </span><span class="dv">0</span>) <span class="kw">return</span>(x)
-  x *<span class="st"> </span>-<span class="dv">1</span>
-}
 add_two &lt;-<span class="st"> </span>function(x, y) {
   x +<span class="st"> </span>y
 }
@@ -312,17 +306,13 @@ add_two &lt;-<span class="st"> </span>function(x, y) {
 <li>Use <code>&quot;</code>, not <code>'</code>, for quoting text. The only exception is when the text already contains double quotes and no single quotes.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-<span class="st">&quot;Text&quot;</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;Text&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&#39;Text with &quot;quotes&quot;&#39;</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;Text with \&quot;quotes\&quot;&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&#39;&lt;a href=&quot;http://style.tidyverse.org&quot;&gt;A link&lt;/a&gt;&#39;</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;&lt;a href=\&quot;http://style.tidyverse.org\&quot;&gt;A link&lt;/a&gt;&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Bad</span>
-<span class="st">&#39;Text&#39;</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;Text&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&#39;Text with &quot;double&quot; and </span><span class="ch">\&#39;</span><span class="st">single</span><span class="ch">\&#39;</span><span class="st"> quotes&#39;</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;Text with \&quot;double\&quot; and &#39;single&#39; quotes&quot;</code></pre>
+<span class="st">&quot;Text&quot;</span>
+<span class="st">&#39;Text with &quot;quotes&quot;&#39;</span>
+<span class="st">&#39;&lt;a href=&quot;http://style.tidyverse.org&quot;&gt;A link&lt;/a&gt;&#39;</span>
+
+<span class="co"># Bad</span>
+<span class="st">&#39;Text&#39;</span>
+<span class="st">&#39;Text with &quot;double&quot; and </span><span class="ch">\&#39;</span><span class="st">single</span><span class="ch">\&#39;</span><span class="st"> quotes&#39;</span></code></pre></div>
 </div>
 </div>
 <div id="rstudio" class="section level2">
@@ -383,16 +373,10 @@ Figure 2.1: You don’t use Version Control?
 </div>
 <p>Have you ever:</p>
 <ul>
-<li><strong>Made a change to code, realized it was a mistake and wanted to revert back?</strong></li>
-<li><strong>Lost code or had a backup that was too old?</strong></li>
-<li>Had to maintain multiple versions of a product?</li>
-<li>Wanted to see the difference between two (or more) versions of your code?</li>
-<li>Wanted to prove that a particular change broke or fixed a piece of code?</li>
-<li>Wanted to review the history of some code?</li>
-<li><strong>Wanted to submit a change to someone else’s code?</strong></li>
-<li><strong>Wanted to share your code, or let other people work on your code?</strong></li>
-<li>Wanted to see how much work is being done, and where, when and by whom?</li>
-<li>Wanted to experiment with a new feature without interfering with working code?</li>
+<li>Made a change to code, realized it was a mistake and wanted to revert back?</li>
+<li>Lost code or had a backup that was too old?</li>
+<li>Wanted to submit a change to someone else’s code?</li>
+<li>Wanted to share your code, or let other people work on your code?</li>
 </ul>
 <p>In these cases, and no doubt others, a version control system should make your life easier (see <a href="https://stackoverflow.com/a/1408464/6103040" class="uri">https://stackoverflow.com/a/1408464/6103040</a>).</p>
 <ul>
@@ -445,7 +429,10 @@ Figure 2.1: You don’t use Version Control?
 </ul></li>
 <li>How to link between an RStudio project and a GitHub repository?</li>
 </ul>
-<p>TODO: video</p>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8Q3fYwgyNGQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</center>
 <ul>
 <li>Help with Git: <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdltx925phiPYsw72GpjM30TBMn30YLTi8kAlf-N2sC_kTQNTiFQ" width="30%" style="display: block; margin: auto;" />
 <ul>
@@ -529,19 +516,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
