@@ -202,11 +202,23 @@ advr38pkg::sum_every(1:10, 2)
 colMeans(iris[sapply(iris, is.numeric)])
 ```
 
-3. Convert this matrix to a vector by replacing `c(0,0,1) <-> 0; c(0,1,0) <-> 1; c(0,0,1) <-> 2; other <-> NA` (use a 3x3x3 array code).
+3. Convert this matrix to a vector by replacing `c(1,0,0) <-> 0; c(0,1,0) <-> 1; c(0,0,1) <-> 2; other <-> NA`
 
 ```{r}
 mat <- matrix(0, 10, 3); mat[c(1, 5, 8, 12, 16, 17, 19, 23, 24, 29)] <- 1; mat
 ```
+
+by using this array:
+
+```{r}
+myarray <- array(dim = c(2, 2, 2))
+myarray[2, 1, 1] <- 0
+myarray[1, 2, 1] <- 1
+myarray[1, 1, 2] <- 2
+myarray
+```
+
+Begin by using `apply()` and then replace it by a special accessor; what is the advantage?
 
 Expected result:
 
