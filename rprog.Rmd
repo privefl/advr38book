@@ -282,12 +282,14 @@ rep(1:4, 2)
 rep(1:4, each = 2)
 rep(1:4, 4:1)
 rep_len(1:3, 7)
-replicate(5, rnorm(10))
+replicate(5, rnorm(10))  ## How to use a multiline expression?
 ```
 
 ```{r}
 sort(c(1, 6, 8, 2, 2))
 order(c(1, 6, 8, 2, 2), c(0, 0, 0, 2, 1))
+rank(c(1, 6, 8, 2, 2))
+rank(c(1, 6, 8, 2, 2), ties.method = "first")
 sort(c("a1", "a2", "a10"))
 gtools::mixedsort(c("a1", "a2", "a10"))  # not in base, obviously
 which.max(c(1, 5, 3, 6, 2, 0))
@@ -320,7 +322,7 @@ paste0("test", 0)
 paste0("PC", 1:10)
 me <- "Florian"
 glue::glue("I am {me}")  ## not in base, but SO useful
-(x <- list.files(pattern = "\\.Rmd$"))
+(x <- list.files(pattern = "\\.Rmd$", full.names = TRUE))
 sub("\\.Rmd$", ".pdf", x)
 (y <- sample(letters[1:4], 10, replace = TRUE))
 match(y, letters[1:4])
@@ -375,7 +377,7 @@ Expected result:
 ind <- cbind(seq_len(nrow(my_mtcars)), 
              match(my_mtcars[["my_col"]], names(my_mtcars)))
 my_mtcars$my_val <- my_mtcars[ind]
-head(my_mtcars)
+head(my_mtcars, n = 10)
 ```
 
 3. In the following data frame, for the first 3 columns, replace letters by corresponding numbers based on the `code`:
