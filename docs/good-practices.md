@@ -154,6 +154,8 @@ add_two <- function(x, y) {
 
 Download the latest version of [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (> 1.1) and use it!
 
+Learn more about new features of RStudio v1.1 [there](https://www.rstudio.com/resources/videos/rstudio-1-1-new-features/).
+
 RStudio features:
 
 - everything you can expect from a good IDE
@@ -278,7 +280,7 @@ Also, see https://stackoverflow.com/q/2712421/6103040.
 
 A basic solution is to print everything, but it's usually not working well on complex problems. A convenient solution to see all the variables' states in your code is to place some `browser()` anywhere you want to check the variables' states.
 
-Learn more with [this book chapter](https://bookdown.org/rdpeng/rprogdatascience/debugging.html) and [this RStudio article](https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio).
+Learn more with [this book chapter](https://bookdown.org/rdpeng/rprogdatascience/debugging.html), [this other book chapter](http://adv-r.had.co.nz/Exceptions-Debugging.html), [this webinar](https://www.rstudio.com/resources/videos/debugging-techniques-in-rstudio/) and [this RStudio article](https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio).
 
 
 ### External help

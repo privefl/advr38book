@@ -161,7 +161,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="r-programming.html"><a href="r-programming.html#environments-and-scoping"><i class="fa fa-check"></i><b>3.5</b> Environments and scoping</a></li>
 <li class="chapter" data-level="3.6" data-path="r-programming.html"><a href="r-programming.html#attributes-and-classes"><i class="fa fa-check"></i><b>3.6</b> Attributes and classes</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html"><i class="fa fa-check"></i><b>4</b> Data analysis with the tidyverse</a></li>
+<li class="chapter" data-level="4" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html"><i class="fa fa-check"></i><b>4</b> Data analysis with the tidyverse</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html#other-resources"><i class="fa fa-check"></i><b>4.1</b> Other resources</a></li>
+<li class="chapter" data-level="4.2" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html#other-tidy-packages"><i class="fa fa-check"></i><b>4.2</b> Other “tidy” packages</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>5</b> Performance</a><ul>
 <li class="chapter" data-level="5.1" data-path="performance.html"><a href="performance.html#early-advice"><i class="fa fa-check"></i><b>5.1</b> Early advice</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="performance.html"><a href="performance.html#never-grow-a-vector"><i class="fa fa-check"></i><b>5.1.1</b> NEVER GROW A VECTOR</a></li>
@@ -315,6 +318,7 @@ add_two &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {
 <div id="rstudio" class="section level2">
 <h2><span class="header-section-number">2.2</span> RStudio</h2>
 <p>Download the latest version of <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> (&gt; 1.1) and use it!</p>
+<p>Learn more about new features of RStudio v1.1 <a href="https://www.rstudio.com/resources/videos/rstudio-1-1-new-features/">there</a>.</p>
 <p>RStudio features:</p>
 <ul>
 <li>everything you can expect from a good IDE</li>
@@ -448,7 +452,7 @@ Figure 2.1: You don’t use Version Control?
 <div id="help-yourself-learn-how-to-debug" class="section level3">
 <h3><span class="header-section-number">2.4.1</span> Help yourself, learn how to debug</h3>
 <p>A basic solution is to print everything, but it’s usually not working well on complex problems. A convenient solution to see all the variables’ states in your code is to place some <code>browser()</code> anywhere you want to check the variables’ states.</p>
-<p>Learn more with <a href="https://bookdown.org/rdpeng/rprogdatascience/debugging.html">this book chapter</a> and <a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio">this RStudio article</a>.</p>
+<p>Learn more with <a href="https://bookdown.org/rdpeng/rprogdatascience/debugging.html">this book chapter</a>, <a href="http://adv-r.had.co.nz/Exceptions-Debugging.html">this other book chapter</a>, <a href="https://www.rstudio.com/resources/videos/debugging-techniques-in-rstudio/">this webinar</a> and <a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio">this RStudio article</a>.</p>
 </div>
 <div id="external-help" class="section level3">
 <h3><span class="header-section-number">2.4.2</span> External help</h3>
@@ -512,17 +516,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
