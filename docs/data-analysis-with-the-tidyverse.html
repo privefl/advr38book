@@ -125,8 +125,9 @@
 <li class="chapter" data-level="3.6" data-path="r-programming.html"><a href="r-programming.html#attributes-and-classes"><i class="fa fa-check"></i><b>3.6</b> Attributes and classes</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html"><i class="fa fa-check"></i><b>4</b> Data analysis with the tidyverse</a><ul>
-<li class="chapter" data-level="4.1" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html#other-resources"><i class="fa fa-check"></i><b>4.1</b> Other resources</a></li>
-<li class="chapter" data-level="4.2" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html#other-tidy-packages"><i class="fa fa-check"></i><b>4.2</b> Other “tidy” packages</a></li>
+<li class="chapter" data-level="4.1" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html#program"><i class="fa fa-check"></i><b>4.1</b> Program</a></li>
+<li class="chapter" data-level="4.2" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html#other-resources"><i class="fa fa-check"></i><b>4.2</b> Other resources</a></li>
+<li class="chapter" data-level="4.3" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html#other-tidy-packages"><i class="fa fa-check"></i><b>4.3</b> Other “tidy” packages</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>5</b> Performance</a><ul>
 <li class="chapter" data-level="5.1" data-path="performance.html"><a href="performance.html#early-advice"><i class="fa fa-check"></i><b>5.1</b> Early advice</a><ul>
@@ -166,16 +167,23 @@
 <div id="data-analysis-with-the-tidyverse" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Data analysis with the tidyverse</h1>
 <p>The tidyverse is an opinionated <a href="https://www.tidyverse.org/packages/">collection of R packages</a> designed for data science. All packages share an underlying design philosophy, grammar, and data structures.</p>
-<p>For learning how to do data analysis from importing data and tidying it to analyzing it and reporting results, we will use <a href="http://r4ds.had.co.nz/">book R for Data Science</a>.</p>
+<p>For learning how to do data analysis from importing data and tidying it to analyzing it and reporting results, we will use <a href="http://r4ds.had.co.nz/">book R for Data Science</a>. You can find most of the solutions to the exercises <a href="https://jrnold.github.io/r4ds-exercise-solutions/">there</a>.</p>
+<div id="program" class="section level2">
+<h2><span class="header-section-number">4.1</span> Program</h2>
+<ol style="list-style-type: decimal">
+<li><p><a href="http://r4ds.had.co.nz/r-markdown.html">R Markdown</a></p></li>
+<li><p><a href="http://r4ds.had.co.nz/data-visualisation.html">data visualization with {ggplot2}</a> + <a href="https://privefl.github.io/R-presentation/ggplot2.html">my {ggplot2} presentation</a> + <a href="https://gist.github.com/privefl/5a66f89b8b32e32983069d5d09d2fdff">the theme I use</a></p></li>
+<li><p><a href="http://r4ds.had.co.nz/transform.html">data transformation with {dplyr}</a> + <a href="http://dplyr.tidyverse.org/reference/summarise_all.html">summarize and mutate multiple columns</a></p></li>
+<li><p><a href="https://jrnold.github.io/r4ds-exercise-solutions/tibbles.html">tibbles</a></p></li>
+</ol>
+</div>
 <div id="other-resources" class="section level2">
-<h2><span class="header-section-number">4.1</span> Other resources</h2>
+<h2><span class="header-section-number">4.2</span> Other resources</h2>
 <ul>
 <li><p><a href="https://juba.github.io/tidyverse/index.html">[IN FRENCH] introduction à R et au tidyverse</a></p></li>
 <li><p><a href="http://tidyr.tidyverse.org/articles/tidy-data.html">tidy data</a></p></li>
 <li><p><a href="http://www.significantdigits.org/2017/10/switching-from-base-r-to-tidyverse/">switching from base R to tidyverse</a></p></li>
 <li><p><a href="https://dcl-2017-04.github.io/curriculum/upcoming.html">gradual training course</a></p></li>
-<li><p><a href="https://privefl.github.io/R-presentation/ggplot2.html">my ggplot2 presentation</a></p></li>
-<li><p><a href="https://blog.rstudio.com/2016/03/24/tibble-1-0-0/">tibbles vs data frames</a></p></li>
 <li><p><a href="https://stackoverflow.com/q/45101045/6103040">why use purrr::map instead of lapply?</a></p></li>
 <li><p><a href="https://github.com/jtr13/codehelp/blob/master/R/reorder.md">reorder those bars</a></p></li>
 <li><p><a href="https://www.rstudio.com/resources/videos/the-lesser-known-stars-of-the-tidyverse/">the lesser known stars of the tidyverse</a></p></li>
@@ -194,11 +202,11 @@
 <!-- So, what does "tidy" mean in "tidyverse"? -->
 </div>
 <div id="other-tidy-packages" class="section level2">
-<h2><span class="header-section-number">4.2</span> Other “tidy” packages</h2>
+<h2><span class="header-section-number">4.3</span> Other “tidy” packages</h2>
 <ul>
-<li><p>analysis of text data: <a href="https://github.com/juliasilge/tidytext">package <strong>tidytext</strong></a> with <a href="https://www.tidytextmining.com/">the associated book</a>,</p></li>
-<li><p>analysis of financial data: <a href="https://business-science.github.io/tidyquant/index.html">package <strong>tidyquant</strong></a>,</p></li>
-<li><p>analysis of time series data: <a href="https://github.com/jayhesselberth/tidytime">package <strong>tidytime</strong></a>.</p></li>
+<li><p>analysis of text data: <a href="https://github.com/juliasilge/tidytext">package {tidytext}</a> with <a href="https://www.tidytextmining.com/">the associated book</a>,</p></li>
+<li><p>analysis of financial data: <a href="https://business-science.github.io/tidyquant/index.html">package {tidyquant}</a>,</p></li>
+<li><p>analysis of time series data: <a href="https://github.com/jayhesselberth/tidytime">package {tidytime}</a>.</p></li>
 </ul>
 
 </div>

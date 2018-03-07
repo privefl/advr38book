@@ -7,7 +7,17 @@ source("spelling-check.R")
 
 The tidyverse is an opinionated [collection of R packages](https://www.tidyverse.org/packages/) designed for data science. All packages share an underlying design philosophy, grammar, and data structures. 
 
-For learning how to do data analysis from importing data and tidying it to analyzing it and reporting results, we will use [book R for Data Science](http://r4ds.had.co.nz/).
+For learning how to do data analysis from importing data and tidying it to analyzing it and reporting results, we will use [book R for Data Science](http://r4ds.had.co.nz/). You can find most of the solutions to the exercises [there](https://jrnold.github.io/r4ds-exercise-solutions/).
+
+## Program
+
+1. [R Markdown](http://r4ds.had.co.nz/r-markdown.html)
+
+1. [data visualization with {ggplot2}](http://r4ds.had.co.nz/data-visualisation.html) + [my {ggplot2} presentation](https://privefl.github.io/R-presentation/ggplot2.html) + [the theme I use](https://gist.github.com/privefl/5a66f89b8b32e32983069d5d09d2fdff)
+
+1. [data transformation with {dplyr}](http://r4ds.had.co.nz/transform.html) + [summarize and mutate multiple columns](http://dplyr.tidyverse.org/reference/summarise_all.html)
+
+1. [tibbles](https://jrnold.github.io/r4ds-exercise-solutions/tibbles.html)
 
 ## Other resources
 
@@ -18,10 +28,6 @@ For learning how to do data analysis from importing data and tidying it to analy
 - [switching from base R to tidyverse](http://www.significantdigits.org/2017/10/switching-from-base-r-to-tidyverse/)
 
 - [gradual training course](https://dcl-2017-04.github.io/curriculum/upcoming.html)
-
-- [my ggplot2 presentation](https://privefl.github.io/R-presentation/ggplot2.html)
-
-- [tibbles vs data frames](https://blog.rstudio.com/2016/03/24/tibble-1-0-0/)
 
 - [why use purrr::map instead of lapply?](https://stackoverflow.com/q/45101045/6103040)
 
@@ -54,8 +60,8 @@ For learning how to do data analysis from importing data and tidying it to analy
 
 ## Other "tidy" packages
 
-- analysis of text data: [package **tidytext**](https://github.com/juliasilge/tidytext) with [the associated book](https://www.tidytextmining.com/),
+- analysis of text data: [package {tidytext}](https://github.com/juliasilge/tidytext) with [the associated book](https://www.tidytextmining.com/),
 
-- analysis of financial data: [package **tidyquant**](https://business-science.github.io/tidyquant/index.html),
+- analysis of financial data: [package {tidyquant}](https://business-science.github.io/tidyquant/index.html),
 
-- analysis of time series data: [package **tidytime**](https://github.com/jayhesselberth/tidytime).
+- analysis of time series data: [package {tidytime}](https://github.com/jayhesselberth/tidytime).
