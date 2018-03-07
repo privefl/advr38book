@@ -7,7 +7,7 @@ source("spelling-check.R")
 
 The tidyverse is an opinionated [collection of R packages](https://www.tidyverse.org/packages/) designed for data science. All packages share an underlying design philosophy, grammar, and data structures. 
 
-For learning how to do data analysis from importing data and tidying it to analyzing it and reporting results, we will use [book R for Data Science](http://r4ds.had.co.nz/). You can find most of the solutions to the exercises [there](https://jrnold.github.io/r4ds-exercise-solutions/).
+For learning how to do data analysis from importing data and tidying it to analyzing it and reporting results, we will use [book R for Data Science](http://r4ds.had.co.nz/). You can find most of the exercise solutions [there](https://jrnold.github.io/r4ds-exercise-solutions/).
 
 ## Program
 
@@ -18,6 +18,8 @@ For learning how to do data analysis from importing data and tidying it to analy
 1. [data transformation with {dplyr}](http://r4ds.had.co.nz/transform.html) + [summarize and mutate multiple columns](http://dplyr.tidyverse.org/reference/summarise_all.html)
 
 1. [tibbles](https://jrnold.github.io/r4ds-exercise-solutions/tibbles.html)
+
+1. TODO..
 
 ## Other resources
 
