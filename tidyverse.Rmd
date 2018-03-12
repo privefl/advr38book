@@ -24,6 +24,7 @@ For learning how to do data analysis from importing data and tidying it to analy
 **The other chapters of R for Data Science book are very interesting and you should read them.**
 Unfortunately, we won't have time to cover them in class.
 
+
 ## Other resources
 
 - [[IN FRENCH] introduction à R et au tidyverse](https://juba.github.io/tidyverse/index.html)
@@ -36,27 +37,9 @@ Unfortunately, we won't have time to cover them in class.
 
 - [the lesser known stars of the tidyverse](https://www.rstudio.com/resources/videos/the-lesser-known-stars-of-the-tidyverse/)
 
+- [summary statistics of variables](https://github.com/ropenscilabs/skimr)
+
 - [live data analysis by Hadley](https://youtu.be/go5Au01Jrvs)
-
-<!-- ## Import data -->
-
-<!-- We have seen the "Import Dataset" button of RStudio: -->
-
-<!-- ```{r, echo=FALSE} -->
-<!-- knitr::include_graphics("images/data-import-environment.png") -->
-<!-- ``` -->
-
-<!-- - You can use [package **readr**](http://readr.tidyverse.org/) (part of the tidyverse). -->
-
-<!-- - Personally, I also really like `data.table::read()` (with parameter `data.table = FALSE` if you want a `data.frame` instead of a `data.table`) which is very fast and convenient, and have been available for quite some time. -->
-
-<!-- - Use [package **feather**](https://blog.rstudio.com/2016/03/29/feather/) to read/write data frames from/to R/Python. -->
-
-<!-- - Check other available package with [this list](https://github.com/rstudio/RStartHere#import). -->
-
-<!-- ## Tidy data -->
-
-<!-- So, what does "tidy" mean in "tidyverse"? -->
 
 
 ## Other "tidy" packages
