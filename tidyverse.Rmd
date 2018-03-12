@@ -21,8 +21,6 @@ For learning how to do data analysis from importing data and tidying it to analy
 
 1. [tidy data](http://r4ds.had.co.nz/tidy-data.html)
 
-1. [data import](http://r4ds.had.co.nz/data-import.html#getting-started)
-
 **The other chapters of R for Data Science book are very interesting and you should read them.**
 Unfortunately, we won't have time to cover them in class.
 
