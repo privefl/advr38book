@@ -19,17 +19,18 @@ For learning how to do data analysis from importing data and tidying it to analy
 
 1. [tibbles](https://jrnold.github.io/r4ds-exercise-solutions/tibbles.html)
 
-1. TODO..
+1. [tidy data](http://r4ds.had.co.nz/tidy-data.html)
+
+1. [data import](http://r4ds.had.co.nz/data-import.html#getting-started)
+
+**The other chapters of R for Data Science book are very interesting and you should read them.**
+Unfortunately, we won't have time to cover them in class.
 
 ## Other resources
 
 - [[IN FRENCH] introduction à R et au tidyverse](https://juba.github.io/tidyverse/index.html)
 
-- [tidy data](http://tidyr.tidyverse.org/articles/tidy-data.html)
-
-- [switching from base R to tidyverse](http://www.significantdigits.org/2017/10/switching-from-base-r-to-tidyverse/)
-
-- [gradual training course](https://dcl-2017-04.github.io/curriculum/upcoming.html)
+- [switching from base R to the tidyverse](http://www.significantdigits.org/2017/10/switching-from-base-r-to-tidyverse/)
 
 - [why use purrr::map instead of lapply?](https://stackoverflow.com/q/45101045/6103040)
 
