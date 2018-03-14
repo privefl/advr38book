@@ -15,21 +15,36 @@ For learning how to do data analysis from importing data and tidying it to analy
 
 1. [data visualization with {ggplot2}](http://r4ds.had.co.nz/data-visualisation.html) + [my {ggplot2} presentation](https://privefl.github.io/R-presentation/ggplot2.html) + [the theme I use](https://gist.github.com/privefl/5a66f89b8b32e32983069d5d09d2fdff)
 
-1. [data transformation with {dplyr}](http://r4ds.had.co.nz/transform.html) + [summarize and mutate multiple columns](http://dplyr.tidyverse.org/reference/summarise_all.html)
+1. [data transformation with {dplyr}](http://r4ds.had.co.nz/transform.html)
 
 1. [tibbles](https://jrnold.github.io/r4ds-exercise-solutions/tibbles.html)
 
-1. [tidy data](http://r4ds.had.co.nz/tidy-data.html)
+## Other chapters from this book
 
 **The other chapters of R for Data Science book are very interesting and you should read them.**
-Unfortunately, we won't have time to cover them in class.
+Unfortunately, we won't have time to cover them in class. A brief introduction of what you could learn:
 
+1. [tidy data](http://r4ds.had.co.nz/tidy-data.html) will rationalize the concept of "tidy" data that is used in the tidyverse and that is easier to work with
+
+1. [data import](http://r4ds.had.co.nz/data-import.html) will give you tools to import data (e.g. as a replacement of `read.table`)
+
+1. [relational data](http://r4ds.had.co.nz/relational-data.html) will give you tools to *join* information from several datasets
+
+1. [strings](http://r4ds.had.co.nz/strings.html) will help you work with strings and regular expressions
+
+1. [factors](http://r4ds.had.co.nz/factors.html) will help you work with factors
+
+1. [dates and times](http://r4ds.had.co.nz/dates-and-times.html) will help you work with dates and times
+
+1. [many models](http://r4ds.had.co.nz/many-models.html) will introduce the concept of *list-columns* that enable you to store complex objects in a structured way inside a data frame
 
 ## Other resources
 
 - [[IN FRENCH] introduction à R et au tidyverse](https://juba.github.io/tidyverse/index.html)
 
 - [switching from base R to the tidyverse](http://www.significantdigits.org/2017/10/switching-from-base-r-to-tidyverse/)
+
+- [summarize and mutate multiple columns](http://dplyr.tidyverse.org/reference/summarise_all.html)
 
 - [why use purrr::map instead of lapply?](https://stackoverflow.com/q/45101045/6103040)
 
