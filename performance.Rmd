@@ -155,7 +155,7 @@ Learn more on how to profile your code in RStudio in [this article](https://supp
 
 See [this great blog post by Noam Ross](http://www.noamross.net/blog/2014/4/16/vectorization-in-r--why.html) to understand vectorization. 
 
-### Exercise
+### Exercises
 
 Monte-Carlo integration (example from [book Efficient R programming](https://bookdown.org/csgillespie/efficientR/programming.html#vectorised-code))
 
@@ -208,6 +208,29 @@ monte_carlo_vec <- function(N) mean(runif(N)^2 > runif(N))
 ```{r}
 system.time(monte_carlo_vec(N))
 ```
+
+***
+
+You have this data and this working code (a loop) that is slow 
+```{r, eval=FALSE}
+mydf <- readRDS(system.file("extdata/one-million.rds", package = "advr38pkg"))
+
+QRA_3Dmatrix <- array(0, dim = c(max(mydf$ID), max(mydf$Volume), 2))  
+
+for (i in seq_len(nrow(mydf))) {
+  # Row corresponds to IDcell 
+  row    <- mydf[[i, 1]]    
+  # Column corresponds to the volume class
+  column <- mydf[[i, 3]]      
+  # Number of events, initially zero, then +1
+  QRA_3Dmatrix[row, column, 1] <- QRA_3Dmatrix[row, column, 1] + 1  
+  # Sum energy 
+  QRA_3Dmatrix[row, column, 2] <- QRA_3Dmatrix[row, column, 2] + 
+    1 - 1.358 / (1 + exp( (1000 * mydf[[i, 2]] - 129000) / 120300 ))
+}
+```
+
+Rewrite this code in a vectorized way (avoiding the loop). Remember to test on a smaller set at the beginning.
 
 
 ## Algorithms & data structures
