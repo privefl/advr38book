@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Advanced R Course</title>
   <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France (2018).">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="Advanced R Course" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Florian Privé">
 
 
-<meta name="date" content="2018-02-27">
+<meta name="date" content="2018-03-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,11 +47,14 @@
 
 
 
-<script src="libs/htmlwidgets-0.9/htmlwidgets.js"></script>
-<script src="libs/datatables-binding-0.2/datatables.js"></script>
-<link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="libs/htmlwidgets-1.0/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.4/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -161,22 +164,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="r-programming.html"><a href="r-programming.html#environments-and-scoping"><i class="fa fa-check"></i><b>3.5</b> Environments and scoping</a></li>
 <li class="chapter" data-level="3.6" data-path="r-programming.html"><a href="r-programming.html#attributes-and-classes"><i class="fa fa-check"></i><b>3.6</b> Attributes and classes</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html"><i class="fa fa-check"></i><b>4</b> Data analysis with the tidyverse</a></li>
+<li class="chapter" data-level="4" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html"><i class="fa fa-check"></i><b>4</b> Data analysis with the tidyverse</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html#program"><i class="fa fa-check"></i><b>4.1</b> Program</a></li>
+<li class="chapter" data-level="4.2" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html#other-chapters-from-this-book"><i class="fa fa-check"></i><b>4.2</b> Other chapters from this book</a></li>
+<li class="chapter" data-level="4.3" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html#other-resources"><i class="fa fa-check"></i><b>4.3</b> Other resources</a></li>
+<li class="chapter" data-level="4.4" data-path="data-analysis-with-the-tidyverse.html"><a href="data-analysis-with-the-tidyverse.html#other-tidy-packages"><i class="fa fa-check"></i><b>4.4</b> Other “tidy” packages</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>5</b> Performance</a><ul>
-<li class="chapter" data-level="5.1" data-path="performance.html"><a href="performance.html#early-advice"><i class="fa fa-check"></i><b>5.1</b> Early advice</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="performance.html"><a href="performance.html#never-grow-a-vector"><i class="fa fa-check"></i><b>5.1.1</b> NEVER GROW A VECTOR</a></li>
-<li class="chapter" data-level="5.1.2" data-path="performance.html"><a href="performance.html#access-columns-of-a-matrix"><i class="fa fa-check"></i><b>5.1.2</b> Access columns of a matrix</a></li>
-<li class="chapter" data-level="5.1.3" data-path="performance.html"><a href="performance.html#use-the-right-function"><i class="fa fa-check"></i><b>5.1.3</b> Use the right function</a></li>
-<li class="chapter" data-level="5.1.4" data-path="performance.html"><a href="performance.html#do-not-try-to-optimize-everything"><i class="fa fa-check"></i><b>5.1.4</b> Do not try to optimize everything</a></li>
+<li class="chapter" data-level="5.1" data-path="performance.html"><a href="performance.html#rs-memory-management"><i class="fa fa-check"></i><b>5.1</b> R’s memory management</a></li>
+<li class="chapter" data-level="5.2" data-path="performance.html"><a href="performance.html#early-advice"><i class="fa fa-check"></i><b>5.2</b> Early advice</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="performance.html"><a href="performance.html#never-grow-a-vector"><i class="fa fa-check"></i><b>5.2.1</b> NEVER GROW A VECTOR</a></li>
+<li class="chapter" data-level="5.2.2" data-path="performance.html"><a href="performance.html#access-columns-of-a-matrix"><i class="fa fa-check"></i><b>5.2.2</b> Access columns of a matrix</a></li>
+<li class="chapter" data-level="5.2.3" data-path="performance.html"><a href="performance.html#use-the-right-function"><i class="fa fa-check"></i><b>5.2.3</b> Use the right function</a></li>
+<li class="chapter" data-level="5.2.4" data-path="performance.html"><a href="performance.html#do-not-try-to-optimize-everything"><i class="fa fa-check"></i><b>5.2.4</b> Do not try to optimize everything</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="performance.html"><a href="performance.html#vectorization"><i class="fa fa-check"></i><b>5.2</b> Vectorization</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="performance.html"><a href="performance.html#exercise-1"><i class="fa fa-check"></i><b>5.2.1</b> Exercise</a></li>
+<li class="chapter" data-level="5.3" data-path="performance.html"><a href="performance.html#vectorization"><i class="fa fa-check"></i><b>5.3</b> Vectorization</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="performance.html"><a href="performance.html#exercises-3"><i class="fa fa-check"></i><b>5.3.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="performance.html"><a href="performance.html#algorithms-data-structures"><i class="fa fa-check"></i><b>5.3</b> Algorithms &amp; data structures</a></li>
-<li class="chapter" data-level="5.4" data-path="performance.html"><a href="performance.html#rcpp"><i class="fa fa-check"></i><b>5.4</b> Rcpp</a></li>
-<li class="chapter" data-level="5.5" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.5</b> Linear algebra</a></li>
-<li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#exos"><i class="fa fa-check"></i><b>5.6</b> Exercises</a></li>
-<li class="chapter" data-level="5.7" data-path="performance.html"><a href="performance.html#parallel"><i class="fa fa-check"></i><b>5.7</b> Parallel</a></li>
+<li class="chapter" data-level="5.4" data-path="performance.html"><a href="performance.html#algorithms-data-structures"><i class="fa fa-check"></i><b>5.4</b> Algorithms &amp; data structures</a></li>
+<li class="chapter" data-level="5.5" data-path="performance.html"><a href="performance.html#rcpp"><i class="fa fa-check"></i><b>5.5</b> Rcpp</a></li>
+<li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.6</b> Linear algebra</a></li>
+<li class="chapter" data-level="5.7" data-path="performance.html"><a href="performance.html#exos"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
+<li class="chapter" data-level="5.8" data-path="performance.html"><a href="performance.html#parallel"><i class="fa fa-check"></i><b>5.8</b> Parallel</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -201,7 +210,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1 class="title">Advanced R Course</h1>
 <h3 class="subtitle"><em>Originally, materials for the doctoral school of Grenoble, France</em></h3>
 <h4 class="author"><em>Florian Privé</em></h4>
-<h4 class="date"><em>2018-02-27</em></h4>
+<h4 class="date"><em>2018-03-14</em></h4>
 </div>
 <div id="about" class="section level1 unnumbered">
 <h1>About</h1>
@@ -240,10 +249,11 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -267,9 +277,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
