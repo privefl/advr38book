@@ -63,4 +63,10 @@ Unfortunately, we won't have time to cover them in class. A brief introduction o
 
 - analysis of financial data: [package {tidyquant}](https://business-science.github.io/tidyquant/index.html),
 
-- analysis of time series data: [package {tidytime}](https://github.com/jayhesselberth/tidytime).
+- analysis of time series data: [package {tidytime}](https://github.com/jayhesselberth/tidytime),
+
+- a tidy API for graph manipulation: [package {tidygraph}](https://github.com/thomasp85/tidygraph),
+
+- many other packages I may not know.
+
+
