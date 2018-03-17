@@ -125,7 +125,7 @@ So, as you can see in this example, R matrices are column-oriented, which means 
 
 Often, to optimize your code, you can simply find the right function in the right package to do what you need to do. 
 
-For example, using `rowMeans(x)` instead of `apply(x, 1, mean)` can save you a lot of time. If you want more efficient functions that apply to rows and columns of matrices, you can check [package **matrixStats**](https://github.com/HenrikBengtsson/matrixStats). 
+For example, using `rowMeans(x)` instead of `apply(x, 1, mean)` can save you a lot of time. If you want more efficient functions that apply to rows and columns of matrices, you can check [package {matrixStats}](https://github.com/HenrikBengtsson/matrixStats). 
 
 Another example is when reading large text files. In such cases, prefer using `data.table::fread()` rather than `read.table()`.
 
@@ -230,7 +230,7 @@ for (i in seq_len(nrow(mydf))) {
 }
 ```
 
-Rewrite this code in a vectorized way (avoiding the loop). Remember to test on a smaller set at the beginning.
+Rewrite this code in a vectorized way (avoiding the loop). For example, can you make use of package {dplyr} here? Remember to test on a smaller set at the beginning.
 
 
 ## Algorithms & data structures

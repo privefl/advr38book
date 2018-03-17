@@ -25,7 +25,7 @@
 <meta name="author" content="Florian Privé">
 
 
-<meta name="date" content="2018-03-14">
+<meta name="date" content="2018-03-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -221,47 +221,47 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">2.1.2</span> Spacing</h3>
 <p>Put a space before and after <code>=</code> when naming arguments in function calls. Most infix operators (<code>==</code>, <code>+</code>, <code>-</code>, <code>&lt;-</code>, etc.) are also surrounded by spaces, except those with relatively high precedence: <code>^</code>, <code>:</code>, <code>::</code>, and <code>:::</code>. Always put a space after a comma, and never before (just like in regular English).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-average &lt;-<span class="st"> </span><span class="kw">mean</span>((feet /<span class="st"> </span><span class="dv">12</span>) +<span class="st"> </span>inches, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-<span class="kw">sqrt</span>(x^<span class="dv">2</span> +<span class="st"> </span>y^<span class="dv">2</span>)
-x &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
-base::sum
+average &lt;-<span class="st"> </span><span class="kw">mean</span>((feet <span class="op">/</span><span class="st"> </span><span class="dv">12</span>) <span class="op">+</span><span class="st"> </span>inches, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="kw">sqrt</span>(x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span>)
+x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+base<span class="op">::</span>sum
 
 <span class="co"># Bad</span>
-average&lt;-<span class="kw">mean</span>(feet/<span class="dv">12</span>+inches,<span class="dt">na.rm=</span><span class="ot">TRUE</span>)
-<span class="kw">sqrt</span>(x ^<span class="st"> </span><span class="dv">2</span> +<span class="st"> </span>y ^<span class="st"> </span><span class="dv">2</span>)
-x &lt;-<span class="st"> </span><span class="dv">1</span> :<span class="st"> </span><span class="dv">10</span>
-base ::<span class="st"> </span>sum</code></pre></div>
+average&lt;-<span class="kw">mean</span>(feet<span class="op">/</span><span class="dv">12</span><span class="op">+</span>inches,<span class="dt">na.rm=</span><span class="ot">TRUE</span>)
+<span class="kw">sqrt</span>(x <span class="op">^</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)
+x &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">:</span><span class="st"> </span><span class="dv">10</span>
+base <span class="op">::</span><span class="st"> </span>sum</code></pre></div>
 </div>
 <div id="indenting" class="section level3">
 <h3><span class="header-section-number">2.1.3</span> Indenting</h3>
 <p>Curly braces, <code>{}</code>, define the the most important hierarchy of R code. To make this hierarchy easy to see, always indent the code inside <code>{}</code> by two spaces.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-if (y &lt;<span class="st"> </span><span class="dv">0</span> &amp;&amp;<span class="st"> </span>debug) {
+<span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span>debug) {
   <span class="kw">message</span>(<span class="st">&quot;y is negative&quot;</span>)
 }
 
-if (y ==<span class="st"> </span><span class="dv">0</span>) {
-  if (x &gt;<span class="st"> </span><span class="dv">0</span>) {
+<span class="cf">if</span> (y <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {
+  <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {
     <span class="kw">log</span>(x)
-  } else {
+  } <span class="cf">else</span> {
     <span class="kw">message</span>(<span class="st">&quot;x is negative or zero&quot;</span>)
   }
-} else {
-  y ^<span class="st"> </span>x
+} <span class="cf">else</span> {
+  y <span class="op">^</span><span class="st"> </span>x
 }
 
 <span class="co"># Bad</span>
-if (y &lt;<span class="st"> </span><span class="dv">0</span> &amp;&amp;<span class="st"> </span>debug)
+<span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span>debug)
 <span class="kw">message</span>(<span class="st">&quot;Y is negative&quot;</span>)
 
-if (y ==<span class="st"> </span><span class="dv">0</span>)
+<span class="cf">if</span> (y <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)
 {
-    if (x &gt;<span class="st"> </span><span class="dv">0</span>) {
+    <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {
       <span class="kw">log</span>(x)
-    } else {
+    } <span class="cf">else</span> {
   <span class="kw">message</span>(<span class="st">&quot;x is negative or zero&quot;</span>)
     }
-} else { y ^<span class="st"> </span>x }</code></pre></div>
+} <span class="cf">else</span> { y <span class="op">^</span><span class="st"> </span>x }</code></pre></div>
 </div>
 <div id="long-lines" class="section level3">
 <h3><span class="header-section-number">2.1.4</span> Long lines</h3>
@@ -300,13 +300,13 @@ x =<span class="st"> </span><span class="dv">5</span>
 <li><p>Only use <code>return()</code> for early returns. Otherwise rely on R to return the result of the last evaluated expression.</p></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-add_two &lt;-<span class="st"> </span>function(x, y) {
-  x +<span class="st"> </span>y
+add_two &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {
+  x <span class="op">+</span><span class="st"> </span>y
 }
 
 <span class="co"># Bad</span>
-add_two &lt;-<span class="st"> </span>function(x, y) {
-  <span class="kw">return</span>(x +<span class="st"> </span>y)
+add_two &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {
+  <span class="kw">return</span>(x <span class="op">+</span><span class="st"> </span>y)
 }</code></pre></div>
 <ul>
 <li>Use <code>&quot;</code>, not <code>'</code>, for quoting text. The only exception is when the text already contains double quotes and no single quotes.</li>
