@@ -27,6 +27,12 @@ neg_prop_r(N)
 # hist(rnorm(1e5))
 
 set.seed(1)
-N <- 1e4
+N <- 1e7
 neg_prop_cpp(N)
+
+N <- 1e5
+microbenchmark::microbenchmark(
+  neg_prop_r(N),
+  neg_prop_cpp(N)
+)
 */
