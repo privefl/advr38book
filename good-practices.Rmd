@@ -196,7 +196,7 @@ knitr::include_graphics("images/diagnostics.png")
 
 Read more at https://www.tidyverse.org/articles/2017/12/workflow-vs-script/ and also see chapter [*Efficient set-up*](https://bookdown.org/csgillespie/efficientR/set-up.html) of book *Efficient R programming*.
 
-## Version control (Git)
+## Version control (Git) {#git}
 
 ### Why use Git?
 

@@ -1,0 +1,28 @@
+# Packages
+
+```{r setup, include=FALSE}
+source("knitr-options.R")
+source("spelling-check.R")
+```
+
+## Resources
+
+- [R Packages book](http://r-pkgs.had.co.nz/)
+
+## Quick start
+
+In my first package, I just put some functions I used again and again in my work.
+
+To quickly start your package, just follow these steps:
+
+1. Create an RStudio project (not a package). Here I advise you to create a new project in GitHub and then to clone it as an RStudio project. It is a good practice to put all your (public) stuff on GitHub (as we learned in section \@ref(git))
+
+1. Run the following lines of R code.
+
+```{r}
+usethis::use_description()
+usethis::use_namespace()
+usethis::use_package_doc()
+usethis::use_roxygen_md()
+```
+

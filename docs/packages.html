@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="r-programming.html">
-<link rel="next" href="performance.html">
+<link rel="prev" href="performance.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -210,54 +210,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-analysis-with-the-tidyverse" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Data analysis with the tidyverse</h1>
-<p>The tidyverse is an opinionated <a href="https://www.tidyverse.org/packages/">collection of R packages</a> designed for data science. All packages share an underlying design philosophy, grammar, and data structures.</p>
-<p>For learning how to do data analysis from importing data and tidying it to analyzing it and reporting results, we will use <a href="http://r4ds.had.co.nz/">book R for Data Science</a>. You can find most of the exercise solutions <a href="https://jrnold.github.io/r4ds-exercise-solutions/">there</a>.</p>
-<div id="program" class="section level2">
-<h2><span class="header-section-number">4.1</span> Program</h2>
-<ol style="list-style-type: decimal">
-<li><p><a href="http://r4ds.had.co.nz/r-markdown.html">R Markdown</a></p></li>
-<li><p><a href="http://r4ds.had.co.nz/data-visualisation.html">data visualization with {ggplot2}</a> + <a href="https://privefl.github.io/R-presentation/ggplot2.html">my {ggplot2} presentation</a> + <a href="https://gist.github.com/privefl/5a66f89b8b32e32983069d5d09d2fdff">the theme I use</a></p></li>
-<li><p><a href="http://r4ds.had.co.nz/transform.html">data transformation with {dplyr}</a></p></li>
-<li><p><a href="https://jrnold.github.io/r4ds-exercise-solutions/tibbles.html">tibbles</a></p></li>
-</ol>
-</div>
-<div id="other-chapters-from-this-book" class="section level2">
-<h2><span class="header-section-number">4.2</span> Other chapters from this book</h2>
-<p><strong>The other chapters of R for Data Science book are very interesting and you should read them.</strong> Unfortunately, we won’t have time to cover them in class. A brief introduction of what you could learn:</p>
-<ol style="list-style-type: decimal">
-<li><p><a href="http://r4ds.had.co.nz/tidy-data.html">tidy data</a> will rationalize the concept of “tidy” data that is used in the tidyverse and that is easier to work with</p></li>
-<li><p><a href="http://r4ds.had.co.nz/data-import.html">data import</a> will give you tools to import data (e.g. as a replacement of <code>read.table</code>)</p></li>
-<li><p><a href="http://r4ds.had.co.nz/relational-data.html">relational data</a> will give you tools to <em>join</em> information from several datasets</p></li>
-<li><p><a href="http://r4ds.had.co.nz/strings.html">strings</a> will help you work with strings and regular expressions</p></li>
-<li><p><a href="http://r4ds.had.co.nz/factors.html">factors</a> will help you work with factors</p></li>
-<li><p><a href="http://r4ds.had.co.nz/dates-and-times.html">dates and times</a> will help you work with dates and times</p></li>
-<li><p><a href="http://r4ds.had.co.nz/many-models.html">many models</a> will introduce the concept of <em>list-columns</em> that enable you to store complex objects in a structured way inside a data frame</p></li>
-</ol>
-</div>
-<div id="other-resources" class="section level2">
-<h2><span class="header-section-number">4.3</span> Other resources</h2>
+<div id="packages" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Packages</h1>
+<div id="resources" class="section level2">
+<h2><span class="header-section-number">6.1</span> Resources</h2>
 <ul>
-<li><p><a href="https://juba.github.io/tidyverse/index.html">[IN FRENCH] introduction à R et au tidyverse</a></p></li>
-<li><p><a href="http://www.significantdigits.org/2017/10/switching-from-base-r-to-tidyverse/">switching from base R to the tidyverse</a></p></li>
-<li><p><a href="http://dplyr.tidyverse.org/reference/summarise_all.html">summarize and mutate multiple columns</a></p></li>
-<li><p><a href="https://stackoverflow.com/q/45101045/6103040">why use purrr::map instead of lapply?</a></p></li>
-<li><p><a href="https://github.com/jtr13/codehelp/blob/master/R/reorder.md">reorder those bars</a></p></li>
-<li><p><a href="https://www.rstudio.com/resources/videos/the-lesser-known-stars-of-the-tidyverse/">the lesser known stars of the tidyverse</a></p></li>
-<li><p><a href="https://github.com/ropenscilabs/skimr">summary statistics of variables</a></p></li>
-<li><p><a href="https://youtu.be/go5Au01Jrvs">live data analysis by Hadley</a></p></li>
+<li><a href="http://r-pkgs.had.co.nz/">R Packages book</a></li>
 </ul>
 </div>
-<div id="other-tidy-packages" class="section level2">
-<h2><span class="header-section-number">4.4</span> Other “tidy” packages</h2>
-<ul>
-<li><p>analysis of text data: <a href="https://github.com/juliasilge/tidytext">package {tidytext}</a> with <a href="https://www.tidytextmining.com/">the associated book</a>,</p></li>
-<li><p>analysis of financial data: <a href="https://business-science.github.io/tidyquant/index.html">package {tidyquant}</a>,</p></li>
-<li><p>analysis of time series data: <a href="https://github.com/jayhesselberth/tidytime">package {tidytime}</a>,</p></li>
-<li><p>a tidy API for graph manipulation: <a href="https://github.com/thomasp85/tidygraph">package {tidygraph}</a>,</p></li>
-<li><p>many other packages I may not know.</p></li>
-</ul>
+<div id="quick-start" class="section level2">
+<h2><span class="header-section-number">6.2</span> Quick start</h2>
+<p>In my first package, I just put some functions I used again and again in my work.</p>
+<p>To quickly start your package, just follow these steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Create an RStudio project (not a package). Here I advise you to create a new project in GitHub and then to clone it as an RStudio project. It is a good practice to put all your (public) stuff on GitHub (as we learned in section <a href="good-practices.html#git">2.3</a>)</p></li>
+<li><p>Run the following lines of R code.</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_description</span>()</code></pre></div>
+<pre><code>#&gt; ✔ Writing &#39;DESCRIPTION&#39;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_namespace</span>()</code></pre></div>
+<pre><code>#&gt; ✔ Writing &#39;NAMESPACE&#39;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_package_doc</span>()</code></pre></div>
+<pre><code>#&gt; ✔ Writing &#39;R/advr38book-package.R&#39;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_roxygen_md</span>()</code></pre></div>
+<pre><code>#&gt; ✔ Setting Roxygen field in DESCRIPTION to &#39;list(markdown = TRUE)&#39;
+#&gt; ✔ Setting RoxygenNote field in DESCRIPTION to &#39;6.0.1&#39;
+#&gt; ● Re-document</code></pre>
 
 </div>
 </div>
@@ -266,8 +244,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="r-programming.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="performance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="performance.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -297,7 +275,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/privefl/advr38book/edit/master/tidyverse.Rmd",
+"link": "https://github.com/privefl/advr38book/edit/master/packages.Rmd",
 "text": "Edit"
 },
 "download": null,
@@ -308,19 +286,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
