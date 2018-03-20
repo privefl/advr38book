@@ -7,7 +7,7 @@ source("spelling-check.R")
 
 ## Resources
 
-- [R Packages book](http://r-pkgs.had.co.nz/)
+- [R Packages book](http://r-pkgs.had.co.nz/) (**read it!**)
 
 ## Quick start
 
@@ -15,14 +15,56 @@ In my first package, I just put some functions I used again and again in my work
 
 To quickly start your package, just follow these steps:
 
-1. Create an RStudio project (not a package). Here I advise you to create a new project in GitHub and then to clone it as an RStudio project. It is a good practice to put all your (public) stuff on GitHub (as we learned in section \@ref(git))
+1. Create an RStudio project (not a package). Here, I advise you to create a new project on GitHub and then to clone it as an RStudio project. It is a good practice to put all your (public) stuff on GitHub (as we learned in section \@ref(git)).
 
 1. Run the following lines of R code.
 
-```{r}
-usethis::use_description()
-usethis::use_namespace()
-usethis::use_package_doc()
-usethis::use_roxygen_md()
-```
+    ```{r, eval=FALSE}
+    usethis::use_description()
+    usethis::use_namespace()
+    usethis::use_package_doc()
+    usethis::use_roxygen_md()
+    ```
+
+1. **Restart RStudio** and change the following options.
+
+    ```{r, echo=FALSE}
+    knitr::include_graphics("https://privefl.github.io/R-presentation/build-doc.png")
+    ```
+
+1. Then use `Ctrl/Cmd + Shift + B` to build and reload your package.
+
+1. Create a simple function and put it in an `.R` file in the `R/` directory. Inside the function, use *Code -> Insert Roxygen Skeleton*. Build and reload your package and check the documentation of your new function and that you can use it.
+
+## Basic stuff
+
+### *DESCRIPTION* file
+
+These are metadata of your package. You need to change
+
+- the title (One Line, Title Case, No Full Stop)
+
+- the description (one paragraph)
+
+- the authors
+
+- the license (you might want to simply use `GPL-3`)
+
+### R code
+
+- Put your R code in the `R/` directory. Basically it would be mostly functions. Don't use random lines of code like in R scripts.
+
+- Never explicitly load a package with `library()` or `require()`. Use `usethis::use_package()` to add one package to your *DESCRIPTION* file. Then, refer to some function with `<package>::<function>()` in your code, or by using the `@import <package>` or `@import <package> <function>` roxygen tags.
+
+- If one R function need another function in another R file, use the `@import <basename>.R` to make sure it is built and documented before. 
+
+- If you modify global `options()` or graphics `par()`, save the old values and reset when you’re done:
+
+    ```{r, eval=FALSE}
+    old <- options(stringsAsFactors = FALSE)
+    on.exit(options(old), add = TRUE)
+    ```
+
+
+
 
