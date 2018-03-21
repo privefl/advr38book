@@ -25,7 +25,7 @@
 <meta name="author" content="Florian Privé">
 
 
-<meta name="date" content="2018-03-20">
+<meta name="date" content="2018-03-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -57,43 +57,6 @@
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 
 
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -190,6 +153,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a><ul>
 <li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#resources"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
 <li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#quick-start"><i class="fa fa-check"></i><b>6.2</b> Quick start</a></li>
+<li class="chapter" data-level="6.3" data-path="packages.html"><a href="packages.html#basic-stuff"><i class="fa fa-check"></i><b>6.3</b> Basic stuff</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="packages.html"><a href="packages.html#description-file"><i class="fa fa-check"></i><b>6.3.1</b> <em>DESCRIPTION</em> file</a></li>
+<li class="chapter" data-level="6.3.2" data-path="packages.html"><a href="packages.html#r-code"><i class="fa fa-check"></i><b>6.3.2</b> R code</a></li>
+<li class="chapter" data-level="6.3.3" data-path="packages.html"><a href="packages.html#documentation"><i class="fa fa-check"></i><b>6.3.3</b> Documentation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#advanced-stuff"><i class="fa fa-check"></i><b>6.4</b> Advanced stuff</a></li>
+<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#usethis"><i class="fa fa-check"></i><b>6.5</b> Usethis</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -219,7 +189,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ol style="list-style-type: decimal">
 <li><p><a href="http://r4ds.had.co.nz/r-markdown.html">R Markdown</a></p></li>
 <li><p><a href="http://r4ds.had.co.nz/data-visualisation.html">data visualization with {ggplot2}</a> + <a href="https://privefl.github.io/R-presentation/ggplot2.html">my {ggplot2} presentation</a> + <a href="https://gist.github.com/privefl/5a66f89b8b32e32983069d5d09d2fdff">the theme I use</a></p></li>
-<li><p><a href="http://r4ds.had.co.nz/transform.html">data transformation with {dplyr}</a></p></li>
+<li><p><a href="http://r4ds.had.co.nz/transform.html">data transformation with {dplyr}</a> {#dplyr}</p></li>
 <li><p><a href="https://jrnold.github.io/r4ds-exercise-solutions/tibbles.html">tibbles</a></p></li>
 </ol>
 </div>
@@ -308,19 +278,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

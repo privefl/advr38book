@@ -9,7 +9,34 @@ source("spelling-check.R")
 
 - [R Packages book](http://r-pkgs.had.co.nz/) (**read it!**)
 
-## Quick start
+- Look at popular R packages on GitHub
+
+## Project exercise
+
+Just to experiment with making an R package, we'll try to make a small package that implements some of the features of package {dplyr} that we learned in chapter \@ref(tidyverse). We can call this package {minidplyr}.
+
+1. After having read the following two sections (\@ref(pkg-start) and \@ref(pkg-basics)), create a first function that helps you `select` variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it.
+
+1. Check your package with `Ctrl/Cmd + Shift + E` and fix all problems. At this point, the only problem should be a WARNING that just says to you that you need to fill the *DESCRIPTION* file with proper information. Do that and run checks again. You could submit this package to CRAN in its present form; congratulations on your new R package!
+
+1. Learn how to make unit tests in section \@ref(pkg-tests) and do that for your new function `select`. Which silly cases you should test? To make your first unit tests, follow the following instructions.
+    1. use `usethis::use_testthat()`
+    2. you can use `usethis::use_package("dplyr", type = "Suggests")` to add package {dplyr} to the suggested packages (because you will use it only in tests)
+    3. use `usethis::use_test()` while having open the R file you want to test 
+    4. you can run tests of your package with `Ctrl/Cmd + Shift + T`
+    
+
+
+10. To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use `usethis::use_package("magrittr")` and put the following code somewhere in an R file of your package. Note that for this particular example, you could directly use `usethis::use_pipe()` only.
+
+    ```{r, eval=FALSE}
+    #' @importFrom magrittr %>%
+    #' @export
+    magrittr::`%>%`
+    ```
+
+
+## Quick start {#pkg-start}
 
 In my first package, I just put some functions I used again and again in my work.
 
@@ -36,19 +63,11 @@ To quickly start your package, just follow these steps:
 
 1. Create a simple function and put it in an `.R` file in the `R/` directory. Inside the function, use *Code -> Insert Roxygen Skeleton*. Build and reload your package and check the documentation of your new function and that you can use it.
 
-## Basic stuff
+## Basic stuff {#pkg-basics}
 
 ### *DESCRIPTION* file
 
-These are metadata of your package. You need to change
-
-- the title (One Line, Title Case, No Full Stop)
-
-- the description (one paragraph)
-
-- the authors
-
-- the license (you might want to simply use `GPL-3`)
+See [this chapter](http://r-pkgs.had.co.nz/description.html).
 
 ### R code
 
@@ -56,7 +75,7 @@ These are metadata of your package. You need to change
 
 - Never explicitly load a package with `library()` or `require()`. Use `usethis::use_package()` to add one package to your *DESCRIPTION* file. Then, refer to some function with `<package>::<function>()` in your code, or by using the `@import <package>` or `@import <package> <function>` roxygen tags.
 
-- If one R function need another function in another R file, use the `@import <basename>.R` to make sure it is built and documented before. 
+- If one R function need another function in another R file, use the `@import <basename>.R` to make sure it is built and documented before (it is for example useful if you define a new generic and a method in different files). 
 
 - If you modify global `options()` or graphics `par()`, save the old values and reset when you’re done:
 
@@ -65,6 +84,34 @@ These are metadata of your package. You need to change
     on.exit(options(old), add = TRUE)
     ```
 
+### Documentation
 
+Documentation is super useful for other people (including future-you, in 6 months when you won't remember what you implemented in your package). Make sure to document your code as soon as you write it, otherwise you will never do.
+
+Forget about the `man/` (manual) directory, files in this directory will be automatically generated thanks to the roxygen comments you use on top of your R functions. 
+
+Learn more with [this chapter](http://r-pkgs.had.co.nz/man.html). Note that you can now use the Markdown syntax in the documentation. For example, instead of having to use `\code{foo}`, you can use directly `` `foo` `` in the roxygen comments.
+
+Fun: [[How to] Include a dancing banana in your R package documentation](http://colinfay.me/dancing-banana-r-package-doc/).
+
+### *NAMESPACE* file
+
+You can also forget about this for now because it should be automatically generated with {roxygen}.
+
+If you want to understand what's going on, read [this chapter](http://r-pkgs.had.co.nz/namespace.html).
+
+## Other stuff
+
+### Testing {#pkg-tests}
+
+You are probably already testing your code, you're only doing it informally. The problem with this approach is that when you come back to this code in 3 months time to add a new feature, you’ve probably forgotten some of the informal tests you ran the first time around. This makes it very easy to break code that used to work. A very good practice is to use unit tests.
+
+Learn more with [this chapter](http://r-pkgs.had.co.nz/tests.html).
+
+TODO
+
+## Usethis
+
+TODO
 
 
