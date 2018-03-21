@@ -55,6 +55,15 @@
 <script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100463316-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-100463316-5');
+</script>
 
 
 <style type="text/css">
@@ -182,7 +191,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.3.1" data-path="performance.html"><a href="performance.html#exercises-3"><i class="fa fa-check"></i><b>5.3.1</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="performance.html"><a href="performance.html#algorithms-data-structures"><i class="fa fa-check"></i><b>5.4</b> Algorithms &amp; data structures</a></li>
-<li class="chapter" data-level="5.5" data-path="performance.html"><a href="performance.html#rcpp"><i class="fa fa-check"></i><b>5.5</b> Rcpp</a></li>
+<li class="chapter" data-level="5.5" data-path="performance.html"><a href="performance.html#Rcpp"><i class="fa fa-check"></i><b>5.5</b> Rcpp</a></li>
 <li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.6</b> Linear algebra</a></li>
 <li class="chapter" data-level="5.7" data-path="performance.html"><a href="performance.html#exos"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
 <li class="chapter" data-level="5.8" data-path="performance.html"><a href="performance.html#parallel"><i class="fa fa-check"></i><b>5.8</b> Parallel</a></li>
@@ -199,6 +208,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#other-stuff"><i class="fa fa-check"></i><b>6.5</b> Other stuff</a><ul>
 <li class="chapter" data-level="6.5.1" data-path="packages.html"><a href="packages.html#pkg-tests"><i class="fa fa-check"></i><b>6.5.1</b> Testing</a></li>
+<li class="chapter" data-level="6.5.2" data-path="packages.html"><a href="packages.html#rcpp"><i class="fa fa-check"></i><b>6.5.2</b> Rcpp</a></li>
+<li class="chapter" data-level="6.5.3" data-path="packages.html"><a href="packages.html#ignore-files"><i class="fa fa-check"></i><b>6.5.3</b> Ignore files</a></li>
 </ul></li>
 <li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#usethis"><i class="fa fa-check"></i><b>6.6</b> Usethis</a></li>
 </ul></li>
@@ -249,7 +260,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.153   0.005   0.158</code></pre>
+#&gt;   0.167   0.001   0.168</code></pre>
 <p>Here, at each iterating, you reallocating a vector (of increasing size). It makes your computation quadratic with the size of <code>x</code> (if you multiply the size by 2, you can expect the execution time to be multiplied by 4, for large sample sizes), whereas it should be only linear. Indeed, we will see that execution time can be composed of computation time but also allocation time.</p>
 <p>A good solution is to always pre-allocating your results (if you know the size):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
@@ -273,7 +284,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e7</span>)
 <span class="kw">system.time</span>(<span class="kw">cumsum</span>(x))</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.043   0.009   0.050</code></pre>
+#&gt;   0.047   0.005   0.052</code></pre>
 <p>As a second example, let us generate a matrix of uniform values (max changing for every column):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="fl">1e3</span>
 max &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">1000</span>
@@ -284,10 +295,10 @@ max &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">100
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.561   0.034   0.596</code></pre>
+#&gt;   0.549   0.102   0.650</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat, <span class="dv">2</span>, max)[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9998249 1.9927589 2.9978181 3.9992999 4.9968735 5.9842679 6.9971824 7.9965121 8.9811125
-#&gt; [10] 9.9949653</code></pre>
+<pre><code>#&gt;  [1] 0.9983869 1.9975061 2.9994519 3.9928156 4.9961919 5.9717554 6.9937733 7.9973148 8.9979717
+#&gt; [10] 9.9951824</code></pre>
 <p>So, we can either pre-allocate a list or a matrix:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
   l &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, <span class="kw">length</span>(max))
@@ -297,9 +308,10 @@ max &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">100
   mat2 &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;cbind&quot;</span>, l)
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.031   0.002   0.031</code></pre>
+#&gt;   0.033   0.000   0.032</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat2, <span class="dv">2</span>, max)[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.999421 1.997302 2.996318 3.995545 4.992212 5.981269 6.989587 7.998185 8.991876 9.982135</code></pre>
+<pre><code>#&gt;  [1] 0.9991029 1.9970187 2.9927751 3.9926912 4.9986378 5.9982791 6.9965686 7.9950599 8.9854366
+#&gt; [10] 9.9949377</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
   mat3 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, n, <span class="kw">length</span>(max))
   for (i in <span class="kw">seq_along</span>(max)) {
@@ -307,19 +319,19 @@ max &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">100
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.034   0.000   0.033</code></pre>
+#&gt;   0.034   0.000   0.034</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat3, <span class="dv">2</span>, max)[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9995592 1.9998402 2.9986336 3.9998486 4.9990314 5.9981325 6.9975831 7.9963897 8.9836307
-#&gt; [10] 9.9990749</code></pre>
+<pre><code>#&gt;  [1] 0.9994202 1.9975403 2.9980887 3.9972323 4.9983076 5.9955496 6.9931175 7.9950053 8.9959494
+#&gt; [10] 9.9922660</code></pre>
 <p>Instead of pre-allocating yourself, you can use <code>sapply</code> (or <code>lapply</code> and calling <code>do.call()</code> after, as previously done):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(
   mat4 &lt;-<span class="st"> </span><span class="kw">sapply</span>(max, function(m) <span class="kw">runif</span>(n, <span class="dt">max =</span> m))
 )</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.034   0.000   0.034</code></pre>
+#&gt;   0.034   0.000   0.033</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat4, <span class="dv">2</span>, max)[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9990666 1.9983839 2.9974193 3.9943904 4.9991722 5.9856329 6.9988044 7.9993103 8.9970715
-#&gt; [10] 9.9970775</code></pre>
+<pre><code>#&gt;  [1] 0.9997928 1.9993677 2.9980240 3.9970008 4.9945062 5.9932052 6.9962223 7.9750285 8.9990037
+#&gt; [10] 9.9888692</code></pre>
 </div>
 <div id="access-columns-of-a-matrix" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> Access columns of a matrix</h3>
@@ -394,7 +406,7 @@ vec</code></pre></div>
 <p><strong>Your task: Find a vectorized solution for this problem:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">monte_carlo_vec</span>(N))</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;    0.06    0.00    0.06</code></pre>
+#&gt;   0.062   0.000   0.062</code></pre>
 <hr />
 <p>You have this data and this working code (a loop) that is slow</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydf &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">system.file</span>(<span class="st">&quot;extdata/one-million.rds&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;advr38pkg&quot;</span>))
@@ -421,7 +433,7 @@ for (i in <span class="kw">seq_len</span>(<span class="kw">nrow</span>(mydf))) {
 <p>Is your algorithm doing some redundant computations making it e.g. quadratic instead of linear with respect to the dimension of your data?</p>
 <p>See exercises (section <a href="performance.html#exos">5.7</a>) for some insights.</p>
 </div>
-<div id="rcpp" class="section level2">
+<div id="Rcpp" class="section level2">
 <h2><span class="header-section-number">5.5</span> Rcpp</h2>
 <p>See <a href="https://privefl.github.io/R-presentation/Rcpp.html">this presentation</a>.</p>
 </div>
@@ -437,7 +449,7 @@ for (i in <span class="kw">seq_len</span>(<span class="kw">nrow</span>(mydf))) {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
 <span class="kw">system.time</span>(p &lt;-<span class="st"> </span>advr38pkg::<span class="kw">random_walk_neg_prop</span>(<span class="fl">1e7</span>))</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.509   0.000   0.509</code></pre>
+#&gt;   0.525   0.000   0.525</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p</code></pre></div>
 <pre><code>#&gt; [1] 0.3400444</code></pre>
 <hr />
@@ -454,7 +466,7 @@ last_row &lt;-<span class="st"> </span>mat_big[<span class="kw">nrow</span>(mat_
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.476   0.000   0.475</code></pre>
+#&gt;   0.491   0.000   0.491</code></pre>
 <hr />
 <p>Why <code>colSums()</code> on a whole matrix is faster than on only half of it?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m0 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="fl">1e6</span>), <span class="fl">1e3</span>, <span class="fl">1e3</span>)
@@ -463,9 +475,9 @@ microbenchmark::<span class="kw">microbenchmark</span>(
   <span class="kw">colSums</span>(m0)
 )</code></pre></div>
 <pre><code>#&gt; Unit: microseconds
-#&gt;                  expr      min       lq      mean   median       uq      max neval
-#&gt;  colSums(m0[, 1:500]) 2147.130 2466.200 2749.9704 2577.562 2811.076 5191.650   100
-#&gt;           colSums(m0)  787.042  806.353  836.6548  831.670  863.622  921.556   100</code></pre>
+#&gt;                  expr      min        lq     mean   median        uq      max neval
+#&gt;  colSums(m0[, 1:500]) 2284.648 2621.4570 2863.321 2691.193 2777.0275 5763.720   100
+#&gt;           colSums(m0)  830.413  840.1905  853.976  852.832  866.1015  886.495   100</code></pre>
 <hr />
 <p>Try to speed up this code by vectorizing it first. Then, recode it in Rcpp and benchmark all the solutions you came up with.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">M &lt;-<span class="st"> </span><span class="dv">50</span>
@@ -501,16 +513,16 @@ breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">
   advr38pkg::<span class="kw">count_by_breaks_fast</span>(x, breaks)
 )</code></pre></div>
 <pre><code>#&gt; Unit: microseconds
-#&gt;                                        expr      min        lq      mean    median        uq
-#&gt;                       table(cut(x, breaks)) 2086.018 2098.3795 2200.1304 2162.2150 2228.6690
-#&gt;        hist(x, breaks, plot = FALSE)$counts  323.644  342.2920  366.5014  360.8350  389.9930
-#&gt;       advr38pkg::count_by_breaks(x, breaks)  332.864  345.9230  405.2808  358.9140  502.0885
-#&gt;  advr38pkg::count_by_breaks_fast(x, breaks)  158.680  169.4695  185.3975  175.7905  207.9175
+#&gt;                                        expr      min        lq      mean   median        uq
+#&gt;                       table(cut(x, breaks)) 2223.955 2230.3105 2287.4572 2233.559 2241.3110
+#&gt;        hist(x, breaks, plot = FALSE)$counts  336.007  351.7915  369.9413  358.252  376.4450
+#&gt;       advr38pkg::count_by_breaks(x, breaks)  348.229  360.4160  401.2853  364.677  383.8135
+#&gt;  advr38pkg::count_by_breaks_fast(x, breaks)  165.036  174.9875  189.5826  180.296  214.5880
 #&gt;       max neval
-#&gt;  5228.874   100
-#&gt;   438.882   100
-#&gt;   547.834   100
-#&gt;   235.016   100</code></pre>
+#&gt;  4934.215   100
+#&gt;   442.445   100
+#&gt;   547.206   100
+#&gt;   233.131   100</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x2 &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">10</span>, <span class="dt">size =</span> <span class="fl">1e5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
 breaks2 &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dt">length.out =</span> <span class="dv">100</span>)
 microbenchmark::<span class="kw">microbenchmark</span>(
@@ -521,15 +533,15 @@ microbenchmark::<span class="kw">microbenchmark</span>(
 )</code></pre></div>
 <pre><code>#&gt; Unit: milliseconds
 #&gt;                                          expr       min         lq       mean     median         uq
-#&gt;        advr38pkg::count_by_breaks(x2, breaks)  3.032158   3.078114   3.162603   3.125361   3.185181
-#&gt;   advr38pkg::count_by_breaks_fast(x2, breaks)  1.225855   1.241010   1.297016   1.285848   1.319022
-#&gt;       advr38pkg::count_by_breaks(x2, breaks2) 72.458899 108.327758 108.634133 108.800479 109.301694
-#&gt;  advr38pkg::count_by_breaks_fast(x2, breaks2)  1.249880   1.280680   1.336984   1.313156   1.348181
+#&gt;        advr38pkg::count_by_breaks(x2, breaks)  3.099205   3.183922   3.264304   3.219786   3.243043
+#&gt;   advr38pkg::count_by_breaks_fast(x2, breaks)  1.241917   1.294612   1.355887   1.314587   1.357365
+#&gt;       advr38pkg::count_by_breaks(x2, breaks2) 74.189984 110.282719 110.413552 110.776951 111.188071
+#&gt;  advr38pkg::count_by_breaks_fast(x2, breaks2)  1.286126   1.324399   1.372274   1.345735   1.385196
 #&gt;         max neval
-#&gt;    4.132158   100
-#&gt;    2.187777   100
-#&gt;  145.239906   100
-#&gt;    2.351695   100</code></pre>
+#&gt;    4.721827   100
+#&gt;    2.271307   100
+#&gt;  148.750265   100
+#&gt;    2.340449   100</code></pre>
 <hr />
 <p>An R user wants to implement some sampling on a sparse matrix and provides this working code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Matrix)
