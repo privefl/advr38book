@@ -1,5 +1,5 @@
 rmd_files: ["index.Rmd", "intro.Rmd", "good-practices.Rmd", "rprog.Rmd", 
-            "tidyverse.Rmd", "performance.Rmd", "packages.Rmd"]
+            "tidyverse.Rmd", "performance.Rmd", "packages.Rmd", "shiny.Rmd"]
 output_dir: docs
 new_session: yes
 edit: https://github.com/privefl/advr38book/edit/master/%s
