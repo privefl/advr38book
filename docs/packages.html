@@ -244,10 +244,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">6.1</span> Resources</h2>
 <ul>
 <li><p><a href="http://r-pkgs.had.co.nz/">R Packages book</a> (<strong>read it!</strong>)</p></li>
+<li><p><a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html">Writing R extensions, the official CRAN guide</a></p></li>
 <li><p>Look at popular R packages on GitHub</p></li>
 <li><p><a href="https://support.rstudio.com/hc/en-us/articles/200486518">Customizing Package Build Options</a></p></li>
 <li><p><a href="https://bookdown.org/rdpeng/RProgDA/building-r-packages.html">Mastering Software Development in R</a></p></li>
 <li><p><a href="http://www.masalmon.eu/2017/12/11/goodrpackages/">How to develop good R packages (for open science)</a></p></li>
+<li><p><a href="https://simplystatistics.org/2015/11/06/how-i-decide-when-to-trust-an-r-package/">How to decide when to trust an R package?</a></p></li>
 </ul>
 </div>
 <div id="project-exercise" class="section level2">
@@ -353,8 +355,8 @@ usethis<span class="op">::</span><span class="kw">use_roxygen_md</span>()</code>
 <h2><span class="header-section-number">6.6</span> Good practices</h2>
 <p>TODO:</p>
 <ul>
-<li>README + CRAN badge</li>
-<li>Travis + AppVeyor</li>
+<li>README + CRAN badge + URL/BugReports</li>
+<li>Travis + AppVeyor -&gt; continuous integration</li>
 <li>covr</li>
 <li>pkgdown</li>
 <li>spelling</li>
@@ -417,19 +419,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

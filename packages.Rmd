@@ -9,6 +9,8 @@ source("spelling-check.R")
 
 - [R Packages book](http://r-pkgs.had.co.nz/) (**read it!**)
 
+- [Writing R extensions, the official CRAN guide](https://cran.r-project.org/doc/manuals/r-release/R-exts.html)
+
 - Look at popular R packages on GitHub
 
 - [Customizing Package Build Options](https://support.rstudio.com/hc/en-us/articles/200486518)
@@ -16,6 +18,8 @@ source("spelling-check.R")
 - [Mastering Software Development in R](https://bookdown.org/rdpeng/RProgDA/building-r-packages.html)
 
 - [How to develop good R packages (for open science)](http://www.masalmon.eu/2017/12/11/goodrpackages/)
+
+- [How to decide when to trust an R package?](https://simplystatistics.org/2015/11/06/how-i-decide-when-to-trust-an-r-package/)
 
 ## Project exercise
 
@@ -153,8 +157,8 @@ TODO
 
 TODO: 
 
-- README + CRAN badge
-- Travis + AppVeyor
+- README + CRAN badge + URL/BugReports
+- Travis + AppVeyor -> continuous integration
 - covr
 - pkgdown
 - spelling
