@@ -210,8 +210,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.5.1" data-path="packages.html"><a href="packages.html#pkg-tests"><i class="fa fa-check"></i><b>6.5.1</b> Testing</a></li>
 <li class="chapter" data-level="6.5.2" data-path="packages.html"><a href="packages.html#rcpp"><i class="fa fa-check"></i><b>6.5.2</b> Rcpp</a></li>
 <li class="chapter" data-level="6.5.3" data-path="packages.html"><a href="packages.html#ignore-files"><i class="fa fa-check"></i><b>6.5.3</b> Ignore files</a></li>
+<li class="chapter" data-level="6.5.4" data-path="packages.html"><a href="packages.html#the-inst-directory"><i class="fa fa-check"></i><b>6.5.4</b> The <code>inst/</code> directory</a></li>
+<li class="chapter" data-level="6.5.5" data-path="packages.html"><a href="packages.html#external-data"><i class="fa fa-check"></i><b>6.5.5</b> External data</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#usethis"><i class="fa fa-check"></i><b>6.6</b> Usethis</a></li>
+<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.6</b> Good practices</a></li>
+<li class="chapter" data-level="6.7" data-path="packages.html"><a href="packages.html#release"><i class="fa fa-check"></i><b>6.7</b> Release</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -239,25 +242,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li><p><a href="http://r-pkgs.had.co.nz/">R Packages book</a> (<strong>read it!</strong>)</p></li>
 <li><p>Look at popular R packages on GitHub</p></li>
+<li><p><a href="https://support.rstudio.com/hc/en-us/articles/200486518">Customizing Package Build Options</a></p></li>
+<li><p><a href="https://bookdown.org/rdpeng/RProgDA/building-r-packages.html">Mastering Software Development in R</a></p></li>
+<li><p><a href="http://www.masalmon.eu/2017/12/11/goodrpackages/">How to develop good R packages (for open science)</a></p></li>
 </ul>
 </div>
 <div id="project-exercise" class="section level2">
 <h2><span class="header-section-number">6.2</span> Project exercise</h2>
 <p>Just to experiment with making an R package, we’ll try to make a small package that implements some of the features of package {dplyr} that we learned in chapter <a href="tidyverse.html#tidyverse">4</a>. We can call this package {minidplyr}.</p>
 <ol style="list-style-type: decimal">
-<li><p>After having read the following two sections (<a href="packages.html#pkg-start">6.3</a> and <a href="packages.html#pkg-basics">6.4</a>), create a first function that helps you <code>select</code> variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it.</p></li>
+<li><p>After having read the following two sections (<a href="packages.html#pkg-start">6.3</a> and <a href="packages.html#pkg-basics">6.4</a>), create a first function that helps you <code>select</code> variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it. Bonus: can you use base R function <code>subset</code> to use variables names without quoting them?</p></li>
 <li><p>Check your package with <code>Ctrl/Cmd + Shift + E</code> and fix all problems. At this point, the only problem should be a WARNING that just says to you that you need to fill the <em>DESCRIPTION</em> file with proper information. Do that and run checks again. You could submit this package to CRAN in its present form; congratulations on your new R package!</p></li>
-<li>Learn how to make unit tests in section <a href="packages.html#pkg-tests">6.5.1</a> and do that for your new function <code>select</code>. Which silly cases you should test? To make your first unit tests, follow the following instructions.
-<ol style="list-style-type: decimal">
-<li>use <code>usethis::use_testthat()</code></li>
-<li>you can use <code>usethis::use_package(&quot;dplyr&quot;, type = &quot;Suggests&quot;)</code> to add package {dplyr} to the suggested packages (because you will use it only in tests)</li>
-<li>use <code>usethis::use_test()</code> while having open the R file you want to test</li>
-<li>you can run tests of your package with <code>Ctrl/Cmd + Shift + T</code></li>
-</ol></li>
+<li><p>Learn how to make unit tests in section <a href="packages.html#pkg-tests">6.5.1</a> and do that for your new function <code>select2</code>. Which silly cases you should test? Here, you can use <code>usethis::use_package(&quot;dplyr&quot;, type = &quot;Suggests&quot;)</code> to add package {dplyr} to the suggested packages (because you will use it only in tests).</p></li>
+<li><p>Make a function <code>filter2</code> that enables to filter rows of a data frame. Add some documentation and tests for this function as well.</p></li>
+<li><p>TODO: more steps</p></li>
+<li><p>Make a function <code>mutate2</code> with the help of base R function <code>transform</code> (or <code>within</code>).</p></li>
+<li><p>Bonus: make the previous functions more general by taking many arguments at once (in <code>...</code>). Make sure to keep your existing code as internal functions in order to break your code in manageable parts.</p></li>
 <li><p>To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use <code>usethis::use_package(&quot;magrittr&quot;)</code> and put the following code somewhere in an R file of your package. Note that for this particular example, you could directly use <code>usethis::use_pipe()</code> only.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; @importFrom magrittr %&gt;%</span>
 <span class="co">#&#39; @export</span>
-magrittr::<span class="st">`</span><span class="dt">%&gt;%</span><span class="st">`</span></code></pre></div></li>
+magrittr<span class="op">::</span><span class="st">`</span><span class="dt">%&gt;%</span><span class="st">`</span></code></pre></div></li>
+<li><p>Implement more functions if you find this project interesting.</p></li>
 </ol>
 </div>
 <div id="pkg-start" class="section level2">
@@ -267,10 +272,10 @@ magrittr::<span class="st">`</span><span class="dt">%&gt;%</span><span class="st
 <ol style="list-style-type: decimal">
 <li><p>Create an RStudio project (not a package). Here, I advise you to create a new project on GitHub and then to clone it as an RStudio project. It is a good practice to put all your (public) stuff on GitHub (as we learned in section <a href="good-practices.html#git">2.3</a>).</p></li>
 <li><p>Run the following lines of R code.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis::<span class="kw">use_description</span>()
-usethis::<span class="kw">use_namespace</span>()
-usethis::<span class="kw">use_package_doc</span>()
-usethis::<span class="kw">use_roxygen_md</span>()</code></pre></div></li>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_description</span>()
+usethis<span class="op">::</span><span class="kw">use_namespace</span>()
+usethis<span class="op">::</span><span class="kw">use_package_doc</span>()
+usethis<span class="op">::</span><span class="kw">use_roxygen_md</span>()</code></pre></div></li>
 <li><p><strong>Restart RStudio</strong> and change the following options.</p>
 <p><img src="https://privefl.github.io/R-presentation/build-doc.png" width="70%" style="display: block; margin: auto;" /></p></li>
 <li><p>Then use <code>Ctrl/Cmd + Shift + B</code> to build and reload your package.</p></li>
@@ -312,15 +317,16 @@ usethis::<span class="kw">use_roxygen_md</span>()</code></pre></div></li>
 <div id="pkg-tests" class="section level3">
 <h3><span class="header-section-number">6.5.1</span> Testing</h3>
 <p>You are probably already testing your code, you’re only doing it informally. The problem with this approach is that when you come back to this code in 3 months time to add a new feature, you’ve probably forgotten some of the informal tests you ran the first time around. This makes it very easy to break code that used to work. A very good practice is to use unit tests.</p>
+<p>To make your first unit tests, use <code>usethis::use_test()</code> while having open the R file you want to test. Then, you can run tests of your package with <code>Ctrl/Cmd + Shift + T</code>.</p>
 <p>Learn more with <a href="http://r-pkgs.had.co.nz/tests.html">this chapter</a>.</p>
 </div>
 <div id="rcpp" class="section level3">
 <h3><span class="header-section-number">6.5.2</span> Rcpp</h3>
 <p>We learned about Rcpp in section <a href="performance.html#Rcpp">5.5</a>. To use Rcpp code in your package, just use <code>usethis::use_rcpp()</code> and put the 2 roxygen tags e.g. in the file <em>R/<package>-package.R</em>. Then, create .cpp files with RStudio and save them the <code>src/</code> directory.</p>
-<p>I recall that the <code>// [[Rcpp::export]]</code> makes the C++ function available to R, it doesn’t export the function as part of your package (though you could access it with <code>&lt;package&gt;:::&lt;rcpp-fun&gt;()</code>). If you want to explicitly export an Rcpp function (as an R function), use roxygen comments (beginning with <code>//'</code> instead of <code>#'</code>) on top of your Rcpp function (and don’t forget the <code>//' @export</code>).</p>
+<p>I recall that the <code>// [[Rcpp::export]]</code> makes the C++ function available to R, it doesn’t export the function as part of your package (though you could access it with <code>&lt;package&gt;:::&lt;rcpp-fun&gt;()</code>). If you want your package to explicitly provides an Rcpp function (as an R function), you also need roxygen comments (beginning with <code>//'</code> instead of <code>#'</code>, including <code>//' @export</code>) on top of your Rcpp function.</p>
 <p>If you need some C++ code from another package (e.g. from package {RcppArmadillo}), normally you would use</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// [[Rcpp::depends(RcppArmadillo)]]</span>
-<span class="ot">#include &lt;RcppArmadillo.h&gt;</span></code></pre></div>
+<span class="pp">#include </span><span class="im">&lt;RcppArmadillo.h&gt;</span></code></pre></div>
 <p>In an R package, you don’t need the first line but instead to add the package to the <code>LinkingTo</code> field of the <em>DESCRIPTION</em> file (e.g. with <code>usethis::use_package(&quot;RcppArmadillo&quot;, &quot;LinkingTo&quot;)</code>).</p>
 </div>
 <div id="ignore-files" class="section level3">
@@ -330,12 +336,34 @@ usethis::<span class="kw">use_roxygen_md</span>()</code></pre></div></li>
 <li><p>Files ignored by Git, specified in the <em>.gitignore</em> file. For example, you don’t want to track changes for some large data files or some binaries often changing. You can ignore files by using <code>usethis::use_git_ignore()</code>.</p></li>
 <li><p>Files ignored during the build of your package, specified in the <em>.Rbuildignore</em> file. For example, in my packages, I generally have two directories called <code>tmp-tests</code> and <code>tmp-save</code> where I just put some random code that I used once during development. Checks will tell you if your package contains non-standard files or directories. Moreover, I generally ignore vignettes (we’ll see how to build them as part of a website for your package). Guess what? There is also a {usethis} function for this: <code>usethis::use_build_ignore()</code>.</p></li>
 </ul>
+</div>
+<div id="the-inst-directory" class="section level3">
+<h3><span class="header-section-number">6.5.4</span> The <code>inst/</code> directory</h3>
+<p>TODO</p>
+</div>
+<div id="external-data" class="section level3">
+<h3><span class="header-section-number">6.5.5</span> External data</h3>
 <p>TODO</p>
 </div>
 </div>
-<div id="usethis" class="section level2">
-<h2><span class="header-section-number">6.6</span> Usethis</h2>
-<p>TODO</p>
+<div id="good-practices-1" class="section level2">
+<h2><span class="header-section-number">6.6</span> Good practices</h2>
+<p>TODO:</p>
+<ul>
+<li>README + CRAN badge</li>
+<li>Travis + AppVeyor</li>
+<li>covr</li>
+<li>pkgdown</li>
+<li>spelling</li>
+</ul>
+</div>
+<div id="release" class="section level2">
+<h2><span class="header-section-number">6.7</span> Release</h2>
+<p>TODO:</p>
+<ul>
+<li>GitHub</li>
+<li>CRAN + <code>devtools::build_win()</code></li>
+</ul>
 
 </div>
 </div>
@@ -386,19 +414,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

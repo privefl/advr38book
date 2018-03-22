@@ -11,29 +11,39 @@ source("spelling-check.R")
 
 - Look at popular R packages on GitHub
 
+- [Customizing Package Build Options](https://support.rstudio.com/hc/en-us/articles/200486518)
+
+- [Mastering Software Development in R](https://bookdown.org/rdpeng/RProgDA/building-r-packages.html)
+
+- [How to develop good R packages (for open science)](http://www.masalmon.eu/2017/12/11/goodrpackages/)
+
 ## Project exercise
 
 Just to experiment with making an R package, we'll try to make a small package that implements some of the features of package {dplyr} that we learned in chapter \@ref(tidyverse). We can call this package {minidplyr}.
 
-1. After having read the following two sections (\@ref(pkg-start) and \@ref(pkg-basics)), create a first function that helps you `select` variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it.
+1. After having read the following two sections (\@ref(pkg-start) and \@ref(pkg-basics)), create a first function that helps you `select` variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it. Bonus: can you use base R function `subset` to use variables names without quoting them?
 
 1. Check your package with `Ctrl/Cmd + Shift + E` and fix all problems. At this point, the only problem should be a WARNING that just says to you that you need to fill the *DESCRIPTION* file with proper information. Do that and run checks again. You could submit this package to CRAN in its present form; congratulations on your new R package!
 
-1. Learn how to make unit tests in section \@ref(pkg-tests) and do that for your new function `select`. Which silly cases you should test? To make your first unit tests, follow the following instructions.
-    1. use `usethis::use_testthat()`
-    2. you can use `usethis::use_package("dplyr", type = "Suggests")` to add package {dplyr} to the suggested packages (because you will use it only in tests)
-    3. use `usethis::use_test()` while having open the R file you want to test 
-    4. you can run tests of your package with `Ctrl/Cmd + Shift + T`
-    
+1. Learn how to make unit tests in section \@ref(pkg-tests) and do that for your new function `select2`. Which silly cases you should test? Here, you can use `usethis::use_package("dplyr", type = "Suggests")` to add package {dplyr} to the suggested packages (because you will use it only in tests).
 
+1. Make a function `filter2` that enables to filter rows of a data frame. Add some documentation and tests for this function as well.
 
-10. To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use `usethis::use_package("magrittr")` and put the following code somewhere in an R file of your package. Note that for this particular example, you could directly use `usethis::use_pipe()` only.
+1. TODO: more steps
+
+1. Make a function `mutate2` with the help of base R function `transform` (or `within`).
+
+1. Bonus: make the previous functions more general by taking many arguments at once (in `...`). Make sure to keep your existing code as internal functions in order to break your code in manageable parts.
+
+1. To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use `usethis::use_package("magrittr")` and put the following code somewhere in an R file of your package. Note that for this particular example, you could directly use `usethis::use_pipe()` only.
 
     ```{r, eval=FALSE}
     #' @importFrom magrittr %>%
     #' @export
     magrittr::`%>%`
     ```
+
+1. Implement more functions if you find this project interesting.
 
 
 ## Quick start {#pkg-start}
@@ -106,13 +116,15 @@ If you want to understand what's going on, read [this chapter](http://r-pkgs.had
 
 You are probably already testing your code, you're only doing it informally. The problem with this approach is that when you come back to this code in 3 months time to add a new feature, you’ve probably forgotten some of the informal tests you ran the first time around. This makes it very easy to break code that used to work. A very good practice is to use unit tests.
 
+To make your first unit tests, use `usethis::use_test()` while having open the R file you want to test. Then, you can run tests of your package with `Ctrl/Cmd + Shift + T`.
+
 Learn more with [this chapter](http://r-pkgs.had.co.nz/tests.html).
 
 ### Rcpp
 
 We learned about Rcpp in section \@ref(Rcpp). To use Rcpp code in your package, just use `usethis::use_rcpp()` and put the 2 roxygen tags e.g. in the file *R/<package>-package.R*. Then, create .cpp files with RStudio and save them the `src/` directory.
 
-I recall that the `// [[Rcpp::export]]` makes the C++ function available to R, it doesn't export the function as part of your package (though you could access it with `<package>:::<rcpp-fun>()`). If you want to explicitly export an Rcpp function (as an R function), use roxygen comments (beginning with `//'` instead of `#'`) on top of your Rcpp function (and don't forget the `//' @export`).
+I recall that the `// [[Rcpp::export]]` makes the C++ function available to R, it doesn't export the function as part of your package (though you could access it with `<package>:::<rcpp-fun>()`). If you want your package to explicitly provides an Rcpp function (as an R function), you also need roxygen comments (beginning with `//'` instead of `#'`, including `//' @export`) on top of your Rcpp function.
 
 If you need some C++ code from another package (e.g. from package {RcppArmadillo}), normally you would use
 ```{Rcpp, eval=FALSE}
@@ -129,12 +141,30 @@ There are two types of ignore:
 
 - Files ignored during the build of your package, specified in the *.Rbuildignore* file. For example, in my packages, I generally have two directories called `tmp-tests` and `tmp-save` where I just put some random code that I used once during development. Checks will tell you if your package contains non-standard files or directories. Moreover, I generally ignore vignettes (we'll see how to build them as part of a website for your package). Guess what? There is also a {usethis} function for this: `usethis::use_build_ignore()`.
 
+### The `inst/` directory
 
+TODO
+
+### External data
 
 TODO
 
-## Usethis
+## Good practices
 
-TODO
+TODO: 
+
+- README + CRAN badge
+- Travis + AppVeyor
+- covr
+- pkgdown
+- spelling
+
+## Release
+
+TODO:
+
+- GitHub
+- CRAN + `devtools::build_win()`
+
 
 
