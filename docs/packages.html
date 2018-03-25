@@ -211,9 +211,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.5.2" data-path="packages.html"><a href="packages.html#rcpp"><i class="fa fa-check"></i><b>6.5.2</b> Rcpp</a></li>
 <li class="chapter" data-level="6.5.3" data-path="packages.html"><a href="packages.html#ignore-files"><i class="fa fa-check"></i><b>6.5.3</b> Ignore files</a></li>
 <li class="chapter" data-level="6.5.4" data-path="packages.html"><a href="packages.html#the-inst-directory"><i class="fa fa-check"></i><b>6.5.4</b> The <code>inst/</code> directory</a></li>
-<li class="chapter" data-level="6.5.5" data-path="packages.html"><a href="packages.html#external-data"><i class="fa fa-check"></i><b>6.5.5</b> External data</a></li>
+<li class="chapter" data-level="6.5.5" data-path="packages.html"><a href="packages.html#pkg-data"><i class="fa fa-check"></i><b>6.5.5</b> External data</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.6</b> Good practices</a></li>
+<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.6</b> Good practices</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="packages.html"><a href="packages.html#pkg-ci"><i class="fa fa-check"></i><b>6.6.1</b> Continuous checking</a></li>
+<li class="chapter" data-level="6.6.2" data-path="packages.html"><a href="packages.html#pkgdown"><i class="fa fa-check"></i><b>6.6.2</b> Pkgdown</a></li>
+</ul></li>
 <li class="chapter" data-level="6.7" data-path="packages.html"><a href="packages.html#release"><i class="fa fa-check"></i><b>6.7</b> Release</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>7</b> Shiny</a><ul>
@@ -254,20 +257,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="project-exercise" class="section level2">
 <h2><span class="header-section-number">6.2</span> Project exercise</h2>
-<p>Just to experiment with making an R package, we’ll try to make a small package that implements some of the features of package {dplyr} that we learned in chapter <a href="tidyverse.html#tidyverse">4</a>. We can call this package {minidplyr}.</p>
+<p>Just to experiment with making an R package, we’ll try to make a small package that implements some of the features of package {dplyr} that we learned in chapter <a href="tidyverse.html#tidyverse">4</a>. We can call this package {minidplyr}. You can see <a href="https://github.com/privefl/minidplyr">the version I ended up with</a>.</p>
 <ol style="list-style-type: decimal">
 <li><p>After having read the following two sections (<a href="packages.html#pkg-start">6.3</a> and <a href="packages.html#pkg-basics">6.4</a>), create a first function that helps you <code>select</code> variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it. Bonus: can you use base R function <code>subset</code> to use variables names without quoting them?</p></li>
 <li><p>Check your package with <code>Ctrl/Cmd + Shift + E</code> and fix all problems. At this point, the only problem should be a WARNING that just says to you that you need to fill the <em>DESCRIPTION</em> file with proper information. Do that and run checks again. You could submit this package to CRAN in its present form; congratulations on your new R package!</p></li>
 <li><p>Learn how to make unit tests in section <a href="packages.html#pkg-tests">6.5.1</a> and do that for your new function <code>select2</code>. Which silly cases you should test? Here, you can use <code>usethis::use_package(&quot;dplyr&quot;, type = &quot;Suggests&quot;)</code> to add package {dplyr} to the suggested packages (because you will use it only in tests).</p></li>
 <li><p>Make a function <code>filter2</code> that enables to filter rows of a data frame. Add some documentation and tests for this function as well.</p></li>
-<li><p>TODO: more steps</p></li>
-<li><p>Make a function <code>mutate2</code> with the help of base R function <code>transform</code> (or <code>within</code>).</p></li>
-<li><p>Bonus: make the previous functions more general by taking many arguments at once (in <code>...</code>). Make sure to keep your existing code as internal functions in order to break your code in manageable parts.</p></li>
-<li><p>To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use <code>usethis::use_package(&quot;magrittr&quot;)</code> and put the following code somewhere in an R file of your package. Note that for this particular example, you could directly use <code>usethis::use_pipe()</code> only.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; @importFrom magrittr %&gt;%</span>
-<span class="co">#&#39; @export</span>
-magrittr<span class="op">::</span><span class="st">`</span><span class="dt">%&gt;%</span><span class="st">`</span></code></pre></div></li>
-<li><p>Implement more functions if you find this project interesting.</p></li>
+<li><p>Learn about continuous checking of your package in section <a href="packages.html#pkg-ci">6.6.1</a>. Follow the instructions, commit and push your changes. Go check your new badges on GitHub!</p></li>
+<li><p>Learn how to make a website out of your package in section <a href="packages.html#pkgdown">6.6.2</a> and build one for this package (or another of your packages).</p></li>
+<li><p>Implement more functions if you find this project interesting. For example, make a function <code>mutate2</code> with the help of base R function <code>transform</code> (or <code>within</code>). All try to make the previous functions more general by taking many arguments at once (in <code>...</code>). <strong>Make sure to keep your existing code as internal functions in order to break your code in manageable parts.</strong></p></li>
 </ol>
 </div>
 <div id="pkg-start" class="section level2">
@@ -309,6 +307,10 @@ usethis<span class="op">::</span><span class="kw">use_roxygen_md</span>()</code>
 <p>Documentation is super useful for other people (including future-you, in 6 months when you won’t remember what you implemented in your package). Make sure to document your code as soon as you write it, otherwise you will never do.</p>
 <p>Forget about the <code>man/</code> (manual) directory, files in this directory will be automatically generated thanks to the roxygen comments you use on top of your R functions.</p>
 <p>Learn more with <a href="http://r-pkgs.had.co.nz/man.html">this chapter</a>. Note that you can now use the Markdown syntax in the documentation. For example, instead of having to use <code>\code{foo}</code>, you can use directly <code>`foo`</code> in the roxygen comments.</p>
+<p>To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use <code>usethis::use_package(&quot;magrittr&quot;)</code> and put the following code somewhere in an R file of your package. Note that for this particular example, you could directly use <code>usethis::use_pipe()</code> only.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; @importFrom magrittr %&gt;%</span>
+<span class="co">#&#39; @export</span>
+magrittr<span class="op">::</span><span class="st">`</span><span class="dt">%&gt;%</span><span class="st">`</span></code></pre></div>
 <p>Fun: <a href="http://colinfay.me/dancing-banana-r-package-doc/">[How to] Include a dancing banana in your R package documentation</a>.</p>
 </div>
 <div id="namespace-file" class="section level3">
@@ -344,31 +346,40 @@ usethis<span class="op">::</span><span class="kw">use_roxygen_md</span>()</code>
 </div>
 <div id="the-inst-directory" class="section level3">
 <h3><span class="header-section-number">6.5.4</span> The <code>inst/</code> directory</h3>
-<p>TODO</p>
+<p>When a package is installed, everything in <code>inst/</code> is copied into the top-level package directory.</p>
+<p>For example, you can have:</p>
+<ul>
+<li><p><code>inst/extdata/</code>: additional external data for examples and vignettes. See section <a href="packages.html#pkg-data">6.5.5</a> for more detail. You can also use <code>inst/testdata/</code> for data you need in tests. To access one file in this directory, use <code>system.file()</code>. For example, to find <code>inst/extdata/mydata.csv</code>, use <code>system.file(&quot;extdata&quot;, &quot;mydata.csv&quot;, package = &quot;mypackage&quot;)</code>.</p></li>
+<li><p><code>inst/include</code>: some C++ code usable by others. For example, when you use <code>#include &lt;Rcpp.h&gt;</code> at the top of your Rcpp code, you’re using the code in <a href="https://github.com/RcppCore/Rcpp/blob/master/inst/include/Rcpp.h">there</a>.</p></li>
+<li><p><code>inst/CITATION</code>: how to cite the package. Learn more <a href="http://r-pkgs.had.co.nz/inst.html#inst-citation">there</a>.</p></li>
+</ul>
 </div>
-<div id="external-data" class="section level3">
+<div id="pkg-data" class="section level3">
 <h3><span class="header-section-number">6.5.5</span> External data</h3>
-<p>TODO</p>
+<p>Learn more with <a href="http://r-pkgs.had.co.nz/data.html">this book chapter</a>.</p>
 </div>
 </div>
 <div id="good-practices-1" class="section level2">
 <h2><span class="header-section-number">6.6</span> Good practices</h2>
+<div id="pkg-ci" class="section level3">
+<h3><span class="header-section-number">6.6.1</span> Continuous checking</h3>
+<p>It’s good to check your package regularly and to fix problems as soon as some appear. Learn more about the different checks <a href="http://r-pkgs.had.co.nz/check.html">there</a>.</p>
+<p>An easy way to regularly check your package is to use continuous integration services like <a href="https://travis-ci.org/">Travis-CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a>. Indeed, each time you push to your (GitHub) repository, checks are run on different Operating Systems. To use these services, run <code>usethis::use_travis()</code> and <code>usethis::use_appveyor()</code>. To get the coverage of your tests, use <a href="https://codecov.io/">Codecov</a> by running <code>usethis::use_coverage()</code>. You might want to use <a href="https://raw.githubusercontent.com/privefl/mmapcharr/master/.travis.yml">this Travis-CI setup</a>.</p>
+<p>I would rarely trust a package that doesn’t use these continuous integration services.</p>
+<p>Finally, to prevent typos in your package and especially for non-native English speakers, it can be useful to check the spelling in your package. If you think that the word “programmation” exists and that “prefered” has only one ‘r’ at the end (I did!), you should definitely use package {spelling}. Just run <code>spelling::spell_check_setup()</code>; this will check spelling in your package at the end of checks. If it reports words you want to ignore, just put these words in a text file <code>inst/WORDLIST</code> (with one word by line).</p>
+</div>
+<div id="pkgdown" class="section level3">
+<h3><span class="header-section-number">6.6.2</span> Pkgdown</h3>
 <p>TODO:</p>
 <ul>
 <li>README + CRAN badge + URL/BugReports</li>
-<li>Travis + AppVeyor -&gt; continuous integration</li>
-<li>covr</li>
 <li>pkgdown</li>
-<li>spelling</li>
 </ul>
+</div>
 </div>
 <div id="release" class="section level2">
 <h2><span class="header-section-number">6.7</span> Release</h2>
-<p>TODO:</p>
-<ul>
-<li>GitHub</li>
-<li>CRAN + <code>devtools::build_win()</code></li>
-</ul>
+<p>If you want your package to be on CRAN, read <a href="http://r-pkgs.had.co.nz/release.html">this chapter</a>.</p>
 
 </div>
 </div>

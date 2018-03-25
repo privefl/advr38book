@@ -1,6 +1,7 @@
 # Packages
 
 ```{r setup, include=FALSE}
+WORDS_TO_IGNORE <- c("ci", "Codecov", "programmation", "prefered")
 source("knitr-options.R")
 source("spelling-check.R")
 ```
@@ -23,7 +24,7 @@ source("spelling-check.R")
 
 ## Project exercise
 
-Just to experiment with making an R package, we'll try to make a small package that implements some of the features of package {dplyr} that we learned in chapter \@ref(tidyverse). We can call this package {minidplyr}.
+Just to experiment with making an R package, we'll try to make a small package that implements some of the features of package {dplyr} that we learned in chapter \@ref(tidyverse). We can call this package {minidplyr}. You can see [the version I ended up with](https://github.com/privefl/minidplyr).
 
 1. After having read the following two sections (\@ref(pkg-start) and \@ref(pkg-basics)), create a first function that helps you `select` variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it. Bonus: can you use base R function `subset` to use variables names without quoting them?
 
@@ -33,21 +34,11 @@ Just to experiment with making an R package, we'll try to make a small package t
 
 1. Make a function `filter2` that enables to filter rows of a data frame. Add some documentation and tests for this function as well.
 
-1. TODO: more steps
+1. Learn about continuous checking of your package in section \@ref(pkg-ci). Follow the instructions, commit and push your changes. Go check your new badges on GitHub!
 
-1. Make a function `mutate2` with the help of base R function `transform` (or `within`).
+1. Learn how to make a website out of your package in section \@ref(pkgdown) and build one for this package (or another of your packages).
 
-1. Bonus: make the previous functions more general by taking many arguments at once (in `...`). Make sure to keep your existing code as internal functions in order to break your code in manageable parts.
-
-1. To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use `usethis::use_package("magrittr")` and put the following code somewhere in an R file of your package. Note that for this particular example, you could directly use `usethis::use_pipe()` only.
-
-    ```{r, eval=FALSE}
-    #' @importFrom magrittr %>%
-    #' @export
-    magrittr::`%>%`
-    ```
-
-1. Implement more functions if you find this project interesting.
+1. Implement more functions if you find this project interesting. For example, make a function `mutate2` with the help of base R function `transform` (or `within`). All try to make the previous functions more general by taking many arguments at once (in `...`). **Make sure to keep your existing code as internal functions in order to break your code in manageable parts.**
 
 
 ## Quick start {#pkg-start}
@@ -106,6 +97,14 @@ Forget about the `man/` (manual) directory, files in this directory will be auto
 
 Learn more with [this chapter](http://r-pkgs.had.co.nz/man.html). Note that you can now use the Markdown syntax in the documentation. For example, instead of having to use `\code{foo}`, you can use directly `` `foo` `` in the roxygen comments.
 
+To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use `usethis::use_package("magrittr")` and put the following code somewhere in an R file of your package. Note that for this particular example, you could directly use `usethis::use_pipe()` only.
+
+```{r, eval=FALSE}
+#' @importFrom magrittr %>%
+#' @export
+magrittr::`%>%`
+```
+
 Fun: [[How to] Include a dancing banana in your R package documentation](http://colinfay.me/dancing-banana-r-package-doc/).
 
 ### *NAMESPACE* file
@@ -147,28 +146,39 @@ There are two types of ignore:
 
 ### The `inst/` directory
 
-TODO
+When a package is installed, everything in `inst/` is copied into the top-level package directory.
 
-### External data
+For example, you can have:
 
-TODO
+- `inst/extdata/`: additional external data for examples and vignettes. See section \@ref(pkg-data) for more detail. You can also use `inst/testdata/` for data you need in tests. To access one file in this directory, use `system.file()`. For example, to find `inst/extdata/mydata.csv`, use `system.file("extdata", "mydata.csv", package = "mypackage")`.
+
+- `inst/include`: some C++ code usable by others. For example, when you use `#include <Rcpp.h>` at the top of your Rcpp code, you're using the code in [there](https://github.com/RcppCore/Rcpp/blob/master/inst/include/Rcpp.h).
+
+- `inst/CITATION`: how to cite the package. Learn more [there](http://r-pkgs.had.co.nz/inst.html#inst-citation).
+
+### External data {#pkg-data}
+
+Learn more with [this book chapter](http://r-pkgs.had.co.nz/data.html).
 
 ## Good practices
+
+### Continuous checking {#pkg-ci}
+
+It's good to check your package regularly and to fix problems as soon as some appear. Learn more about the different checks [there](http://r-pkgs.had.co.nz/check.html).
+
+An easy way to regularly check your package is to use continuous integration services like [Travis-CI](https://travis-ci.org/) and [AppVeyor](https://www.appveyor.com/). Indeed, each time you push to your (GitHub) repository, checks are run on different Operating Systems. To use these services, run `usethis::use_travis()` and `usethis::use_appveyor()`. To get the coverage of your tests, use [Codecov](https://codecov.io/) by running `usethis::use_coverage()`. You might want to use [this Travis-CI setup](https://raw.githubusercontent.com/privefl/mmapcharr/master/.travis.yml).
+
+I would rarely trust a package that doesn't use these continuous integration services.
+
+Finally, to prevent typos in your package and especially for non-native English speakers, it can be useful to check the spelling in your package. If you think that the word "programmation" exists and that "prefered" has only one 'r' at the end (I did!), you should definitely use package {spelling}. Just run `spelling::spell_check_setup()`; this will check spelling in your package at the end of checks. If it reports words you want to ignore, just put these words in a text file `inst/WORDLIST` (with one word by line).
+
+### Pkgdown {#pkgdown}
 
 TODO: 
 
 - README + CRAN badge + URL/BugReports
-- Travis + AppVeyor -> continuous integration
-- covr
 - pkgdown
-- spelling
 
 ## Release
 
-TODO:
-
-- GitHub
-- CRAN + `devtools::build_win()`
-
-
-
+If you want your package to be on CRAN, read [this chapter](http://r-pkgs.had.co.nz/release.html).
