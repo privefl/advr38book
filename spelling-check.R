@@ -1,14 +1,16 @@
+if (!exists("WORDS_TO_IGNORE")) WORDS_TO_IGNORE <- character(0)
+
 # Spelling check
-words <- spelling::spell_check_files(
+spelling_errors <- spelling::spell_check_files(
   path = knitr::current_input(), #list.files(pattern = "\\.Rmd$"),
   ignore = c(scan(system.file("WORDLIST", package = "advr38pkg"), ""),
-             "butitsuremakesthingseasiertoread"),
+             WORDS_TO_IGNORE),
   lang = "en-US"
 )
 
-if (nrow(words)) {
-  capture.output(print(words), file = "spelling.errors")
+if (nrow(spelling_errors)) {
+  capture.output(print(spelling_errors), file = "spelling.errors")
   stop("Check spelling! Check file 'spelling.errors'")
 }
 
-rm(words)
+rm(spelling_errors)

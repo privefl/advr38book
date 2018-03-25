@@ -1,6 +1,7 @@
 # Good practices
 
 ```{r, include=FALSE}
+WORDS_TO_IGNORE <- "butitsuremakesthingseasiertoread"
 source("knitr-options.R")
 source("spelling-check.R")
 ```
