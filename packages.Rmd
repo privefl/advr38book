@@ -38,7 +38,7 @@ Just to experiment with making an R package, we'll try to make a small package t
 
 1. Learn how to make a website out of your package in section \@ref(pkgdown) and build one for this package (or another of your packages).
 
-1. Implement more functions if you find this project interesting. For example, make a function `mutate2` with the help of base R function `transform` (or `within`). All try to make the previous functions more general by taking many arguments at once (in `...`). **Make sure to keep your existing code as internal functions in order to break your code in manageable parts.**
+1. Implement more functions if you find this project interesting. For example, make a function `mutate2` with the help of base R function `transform` (or `within`). Try to make the previous functions more general by taking many arguments at once (in `...`). **Make sure to keep your existing code as internal functions in order to break your code in manageable parts.**
 
 
 ## Quick start {#pkg-start}
@@ -134,7 +134,7 @@ If you need some C++ code from another package (e.g. from package {RcppArmadillo
 // [[Rcpp::depends(RcppArmadillo)]]
 #include <RcppArmadillo.h>
 ```
-In an R package, you don't need the first line but instead to add the package to the `LinkingTo` field of the *DESCRIPTION* file (e.g. with `usethis::use_package("RcppArmadillo", "LinkingTo")`).
+In an R package, you don't need the first line but instead you need to add the package to the `LinkingTo` field of the *DESCRIPTION* file (e.g. with `usethis::use_package("RcppArmadillo", "LinkingTo")`).
 
 ### Ignore files
 
@@ -142,7 +142,7 @@ There are two types of ignore:
 
 - Files ignored by Git, specified in the *.gitignore* file. For example, you don't want to track changes for some large data files or some binaries often changing. You can ignore files by using `usethis::use_git_ignore()`.
 
-- Files ignored during the build of your package, specified in the *.Rbuildignore* file. For example, in my packages, I generally have two directories called `tmp-tests` and `tmp-save` where I just put some random code that I used once during development. Checks will tell you if your package contains non-standard files or directories. Moreover, I generally ignore vignettes (we'll see how to build them as part of a website for your package). Guess what? There is also a {usethis} function for this: `usethis::use_build_ignore()`.
+- Files ignored during the build of your package, specified in the *.Rbuildignore* file. For example, in my packages, I generally have two directories called `tmp-tests` and `tmp-save` where I just put some random code that I used once during development. Checks will tell you if your package contains non-standard files or directories. Moreover, I generally ignore vignettes (we'll see how to build them as part of a website for your package with {pkgdown}). Guess what? There is also a {usethis} function for this: `usethis::use_build_ignore()`.
 
 ### The `inst/` directory
 
@@ -150,7 +150,7 @@ When a package is installed, everything in `inst/` is copied into the top-level 
 
 For example, you can have:
 
-- `inst/extdata/`: additional external data for examples and vignettes. See section \@ref(pkg-data) for more detail. You can also use `inst/testdata/` for data you need in tests. To access one file in this directory, use `system.file()`. For example, to find `inst/extdata/mydata.csv`, use `system.file("extdata", "mydata.csv", package = "mypackage")`.
+- `inst/extdata/`: additional external data for examples and vignettes. See section \@ref(pkg-data) for more detail. You can also use `inst/testdata/` for data you need in tests. To access one file in this directory, use `system.file()`. For example, if you have a file `inst/extdata/mydata.csv` in your package, an user can find it using `system.file("extdata", "mydata.csv", package = "mypackage")`.
 
 - `inst/include`: some C++ code usable by others. For example, when you use `#include <Rcpp.h>` at the top of your Rcpp code, you're using the code in [there](https://github.com/RcppCore/Rcpp/blob/master/inst/include/Rcpp.h).
 
@@ -174,11 +174,21 @@ Finally, to prevent typos in your package and especially for non-native English 
 
 ### Pkgdown {#pkgdown}
 
-TODO: 
+1. install package {pkgdown} with `devtools::install_github("hadley/pkgdown")` (still under development)
 
-- README + CRAN badge + URL/BugReports
-- pkgdown
+2. run `usethis::use_pkgdown()`
 
-## Release
+3. on GitHub, go to the settings of your repo, and enable GitHub Pages using the master branch /docs/ folder. This will render everything that you have in this folder as a website. 
+
+4. run `pkgdown:::build_site()`
+
+4. push your changes and see check the website (after 1-2 minutes)
+
+To get more information and especially to configure the website, see [the documentation](http://pkgdown.r-lib.org/articles/pkgdown.html), as a {pkgdown} website, of course.
+
+For an example, see [the website of my package {bigstatsr}](https://privefl.github.io/bigstatsr/) and [the corresponding YAML file](https://github.com/privefl/bigstatsr/blob/master/_pkgdown.yml). 
+
+
+## Release on CRAN
 
 If you want your package to be on CRAN, read [this chapter](http://r-pkgs.had.co.nz/release.html).
