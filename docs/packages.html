@@ -25,7 +25,7 @@
 <meta name="author" content="Florian Privé">
 
 
-<meta name="date" content="2018-03-21">
+<meta name="date" content="2018-03-22">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -275,10 +275,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ol style="list-style-type: decimal">
 <li><p>Create an RStudio project (not a package). Here, I advise you to create a new project on GitHub and then to clone it as an RStudio project. It is a good practice to put all your (public) stuff on GitHub (as we learned in section <a href="good-practices.html#git">2.3</a>).</p></li>
 <li><p>Run the following lines of R code.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis::<span class="kw">use_description</span>()
-usethis::<span class="kw">use_namespace</span>()
-usethis::<span class="kw">use_package_doc</span>()
-usethis::<span class="kw">use_roxygen_md</span>()</code></pre></div></li>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_description</span>()
+usethis<span class="op">::</span><span class="kw">use_namespace</span>()
+usethis<span class="op">::</span><span class="kw">use_package_doc</span>()
+usethis<span class="op">::</span><span class="kw">use_roxygen_md</span>()</code></pre></div></li>
 <li><p><strong>Restart RStudio</strong> and change the following options.</p>
 <p><img src="https://privefl.github.io/R-presentation/build-doc.png" width="70%" style="display: block; margin: auto;" /></p></li>
 <li><p>Then use <code>Ctrl/Cmd + Shift + B</code> to build and reload your package.</p></li>
@@ -307,10 +307,10 @@ usethis::<span class="kw">use_roxygen_md</span>()</code></pre></div></li>
 <p>Documentation is super useful for other people (including future-you, in 6 months when you won’t remember what you implemented in your package). Make sure to document your code as soon as you write it, otherwise you will never do.</p>
 <p>Forget about the <code>man/</code> (manual) directory, files in this directory will be automatically generated thanks to the roxygen comments you use on top of your R functions.</p>
 <p>Learn more with <a href="http://r-pkgs.had.co.nz/man.html">this chapter</a>. Note that you can now use the Markdown syntax in the documentation. For example, instead of having to use <code>\code{foo}</code>, you can use directly <code>`foo`</code> in the roxygen comments.</p>
-<p>To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use <code>usethis::use_package(&quot;magrittr&quot;)</code> and put the following code somewhere in an R file of your package. Note that for this particular example, you could directly use <code>usethis::use_pipe()</code> only.</p>
+<p>To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use <code>usethis::use_package(&quot;magrittr&quot;)</code> and put the following code somewhere in an R file of your package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&#39; @importFrom magrittr %&gt;%</span>
 <span class="co">#&#39; @export</span>
-magrittr::<span class="st">`</span><span class="dt">%&gt;%</span><span class="st">`</span></code></pre></div>
+magrittr<span class="op">::</span><span class="st">`</span><span class="dt">%&gt;%</span><span class="st">`</span></code></pre></div>
 <p>Fun: <a href="http://colinfay.me/dancing-banana-r-package-doc/">[How to] Include a dancing banana in your R package documentation</a>.</p>
 </div>
 <div id="namespace-file" class="section level3">
@@ -333,7 +333,7 @@ magrittr::<span class="st">`</span><span class="dt">%&gt;%</span><span class="st
 <p>I recall that the <code>// [[Rcpp::export]]</code> makes the C++ function available to R, it doesn’t export the function as part of your package (though you could access it with <code>&lt;package&gt;:::&lt;rcpp-fun&gt;()</code>). If you want your package to explicitly provides an Rcpp function (as an R function), you also need roxygen comments (beginning with <code>//'</code> instead of <code>#'</code>, including <code>//' @export</code>) on top of your Rcpp function.</p>
 <p>If you need some C++ code from another package (e.g. from package {RcppArmadillo}), normally you would use</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// [[Rcpp::depends(RcppArmadillo)]]</span>
-<span class="ot">#include &lt;RcppArmadillo.h&gt;</span></code></pre></div>
+<span class="pp">#include </span><span class="im">&lt;RcppArmadillo.h&gt;</span></code></pre></div>
 <p>In an R package, you don’t need the first line but instead you need to add the package to the <code>LinkingTo</code> field of the <em>DESCRIPTION</em> file (e.g. with <code>usethis::use_package(&quot;RcppArmadillo&quot;, &quot;LinkingTo&quot;)</code>).</p>
 </div>
 <div id="ignore-files" class="section level3">

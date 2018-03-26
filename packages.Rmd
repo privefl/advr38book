@@ -97,7 +97,7 @@ Forget about the `man/` (manual) directory, files in this directory will be auto
 
 Learn more with [this chapter](http://r-pkgs.had.co.nz/man.html). Note that you can now use the Markdown syntax in the documentation. For example, instead of having to use `\code{foo}`, you can use directly `` `foo` `` in the roxygen comments.
 
-To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use `usethis::use_package("magrittr")` and put the following code somewhere in an R file of your package. Note that for this particular example, you could directly use `usethis::use_pipe()` only.
+To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use `usethis::use_package("magrittr")` and put the following code somewhere in an R file of your package.
 
 ```{r, eval=FALSE}
 #' @importFrom magrittr %>%
