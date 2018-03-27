@@ -178,11 +178,9 @@ Finally, to prevent typos in your package and especially for non-native English 
 
 2. run `usethis::use_pkgdown()`
 
-3. on GitHub, go to the settings of your repo, and enable GitHub Pages using the master branch /docs/ folder. This will render everything that you have in this folder as a website. 
+4. run `pkgdown:::build_site()` and push the new files
 
-4. run `pkgdown:::build_site()`
-
-4. push your changes and see check the website (after 1-2 minutes)
+4. on GitHub, go to the settings of your repo, and enable GitHub Pages using the master branch `/docs/` folder. This will render everything that you have in this folder as a website (after 0-2 minutes). 
 
 To get more information and especially to configure the website, see [the documentation](http://pkgdown.r-lib.org/articles/pkgdown.html), as a {pkgdown} website, of course.
 
