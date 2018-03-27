@@ -186,6 +186,7 @@ To get more information and especially to configure the website, see [the docume
 
 For an example, see [the website of my package {bigstatsr}](https://privefl.github.io/bigstatsr/) and [the corresponding YAML file](https://github.com/privefl/bigstatsr/blob/master/_pkgdown.yml). 
 
+If you want to make a personal website, check [this quick tutorial](https://github.com/privefl/rmarkdown-website-template#make-your-website-with-r-markdown-in-minutes).
 
 ## Release on CRAN
 
