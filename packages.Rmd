@@ -125,7 +125,7 @@ Learn more with [this chapter](http://r-pkgs.had.co.nz/tests.html).
 
 ### Rcpp
 
-We learned about Rcpp in section \@ref(Rcpp). To use Rcpp code in your package, just use `usethis::use_rcpp()` and put the 2 roxygen tags e.g. in the file *R/<package>-package.R*. Then, create .cpp files with RStudio and save them the `src/` directory.
+We learned about Rcpp in section \@ref(Rcpp). To use Rcpp code in your package, just use `usethis::use_rcpp()` and put the 2 roxygen tags e.g. in the file `R/<package>-package.R`. Then, create .cpp files with RStudio and save them the `src/` directory.
 
 I recall that the `// [[Rcpp::export]]` makes the C++ function available to R, it doesn't export the function as part of your package (though you could access it with `<package>:::<rcpp-fun>()`). If you want your package to explicitly provides an Rcpp function (as an R function), you also need roxygen comments (beginning with `//'` instead of `#'`, including `//' @export`) on top of your Rcpp function.
 

@@ -329,7 +329,7 @@ magrittr<span class="op">::</span><span class="st">`</span><span class="dt">%&gt
 </div>
 <div id="rcpp" class="section level3">
 <h3><span class="header-section-number">6.5.2</span> Rcpp</h3>
-<p>We learned about Rcpp in section <a href="performance.html#Rcpp">5.5</a>. To use Rcpp code in your package, just use <code>usethis::use_rcpp()</code> and put the 2 roxygen tags e.g. in the file <em>R/<package>-package.R</em>. Then, create .cpp files with RStudio and save them the <code>src/</code> directory.</p>
+<p>We learned about Rcpp in section <a href="performance.html#Rcpp">5.5</a>. To use Rcpp code in your package, just use <code>usethis::use_rcpp()</code> and put the 2 roxygen tags e.g. in the file <code>R/&lt;package&gt;-package.R</code>. Then, create .cpp files with RStudio and save them the <code>src/</code> directory.</p>
 <p>I recall that the <code>// [[Rcpp::export]]</code> makes the C++ function available to R, it doesn’t export the function as part of your package (though you could access it with <code>&lt;package&gt;:::&lt;rcpp-fun&gt;()</code>). If you want your package to explicitly provides an Rcpp function (as an R function), you also need roxygen comments (beginning with <code>//'</code> instead of <code>#'</code>, including <code>//' @export</code>) on top of your Rcpp function.</p>
 <p>If you need some C++ code from another package (e.g. from package {RcppArmadillo}), normally you would use</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// [[Rcpp::depends(RcppArmadillo)]]</span>
