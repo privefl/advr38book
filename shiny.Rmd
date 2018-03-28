@@ -1,10 +1,41 @@
 # Shiny
 
 ```{r setup, include=FALSE}
+WORDS_TO_IGNORE <- c("DataCamp")
 source("knitr-options.R")
 source("spelling-check.R")
 ```
 
-## Resources
+## Example
 
-TODO
+You see my Shiny App for creating pixel art models.
+
+```{r, eval=FALSE}
+# Installation
+devtools::install_github("privefl/pixelart")
+
+# Run Shiny App
+pixelart::run_app()
+```
+
+## DataCamp course
+
+We'll use [this free DataCamp course](https://www.datacamp.com/courses/building-web-applications-in-r-with-shiny) to learn the basics of Shiny.
+
+## Other resources
+
+- [Shiny website](http://shiny.rstudio.com/)
+
+- [Shiny gallery](https://shiny.rstudio.com/gallery/)
+
+- [Shiny themes](http://rstudio.github.io/shinythemes/)
+
+- [Shiny tutorials](http://shiny.rstudio.com/tutorial/)
+
+- [Shiny dashboards](http://rstudio.github.io/shinydashboard/)
+
+- [Shiny widgets](https://dreamrs.github.io/shinyWidgets/index.html)
+
+- [Advanced Shiny tips](https://deanattali.com/blog/advanced-shiny-tips/)
+
+- [JavaScript operations in Shiny](https://deanattali.com/shinyjs/)
