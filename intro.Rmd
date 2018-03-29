@@ -19,11 +19,11 @@ It is impossible to become expert in R in only one training course. Yet, this co
 
 This course is originally composed of 10 sessions (3 hours each):
 
-1. R programming (2 sessions)
+1. R programming and good practices (2 sessions)
 2. Data analysis with the tidyverse (3 sessions)
 3. R code performance (2 sessions)
 4. R packages (2 sessions)
-5. Bonus: Shiny? (1 session)
+5. Bonus: Shiny (1 session)
 
 ## Useful resources
 
