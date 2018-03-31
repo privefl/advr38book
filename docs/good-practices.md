@@ -196,7 +196,7 @@ Read more at https://www.tidyverse.org/articles/2017/12/workflow-vs-script/ and 
 ### Why use Git?
 
 <div class="figure" style="text-align: center">
-<img src="https://www.tacomaworld.com/attachments/i-also-like-to-live-dangerously-jpg.760853/" alt="You don't use Version Control?" width="50%" />
+<img src="images/i-also-like-to-live-dangerously.jpg" alt="You don't use Version Control?" width="50%" />
 <p class="caption">(\#fig:unnamed-chunk-12)You don't use Version Control?</p>
 </div>
 

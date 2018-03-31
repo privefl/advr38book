@@ -202,7 +202,7 @@ Read more at https://www.tidyverse.org/articles/2017/12/workflow-vs-script/ and 
 ### Why use Git?
 
 ```{r, echo=FALSE, fig.cap="You don't use Version Control?", out.width="50%"}
-knitr::include_graphics("https://www.tacomaworld.com/attachments/i-also-like-to-live-dangerously-jpg.760853/")
+knitr::include_graphics("images/i-also-like-to-live-dangerously.jpg")
 ```
 
 Have you ever:
