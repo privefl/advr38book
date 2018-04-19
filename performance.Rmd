@@ -241,6 +241,8 @@ Is your algorithm doing some redundant computations making it e.g. quadratic ins
 
 See exercises (section \@ref(exos)) for some insights.
 
+You can also find a detailed example in [this blog post](https://privefl.github.io/blog/performance-when-algorithmics-meets-mathematics/).
+
 ## Rcpp {#Rcpp}
 
 See [this presentation](https://privefl.github.io/R-presentation/Rcpp.html).
