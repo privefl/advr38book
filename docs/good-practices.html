@@ -25,7 +25,7 @@
 <meta name="author" content="Florian Privé">
 
 
-<meta name="date" content="2018-03-22">
+<meta name="date" content="2018-06-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,7 +47,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.0/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.4/datatables.js"></script>
 <link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -219,7 +219,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.7" data-path="packages.html"><a href="packages.html#release-on-cran"><i class="fa fa-check"></i><b>6.7</b> Release on CRAN</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>7</b> Shiny</a><ul>
-<li class="chapter" data-level="7.1" data-path="shiny.html"><a href="shiny.html#resources-1"><i class="fa fa-check"></i><b>7.1</b> Resources</a></li>
+<li class="chapter" data-level="7.1" data-path="shiny.html"><a href="shiny.html#example"><i class="fa fa-check"></i><b>7.1</b> Example</a></li>
+<li class="chapter" data-level="7.2" data-path="shiny.html"><a href="shiny.html#datacamp-course"><i class="fa fa-check"></i><b>7.2</b> DataCamp course</a></li>
+<li class="chapter" data-level="7.3" data-path="shiny.html"><a href="shiny.html#other-resources-1"><i class="fa fa-check"></i><b>7.3</b> Other resources</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -244,7 +246,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 2</span> Good practices</h1>
 <div id="coding-style" class="section level2">
 <h2><span class="header-section-number">2.1</span> Coding style</h2>
-<p>Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. I answer questions on Stack Overflow; first, I read the title of the question to see if I can answer the question, secondly, I check the coding style of the question and if the code is too difficult to read, I just move on. Please make your code readable by following e.g. <a href="http://style.tidyverse.org/">this coding style</a> (examples below come from this guide).</p>
+<blockquote>
+<p>Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread.</p>
+<p>– Hadley Wickham</p>
+</blockquote>
+<p>Please make your code readable by following e.g. <a href="http://style.tidyverse.org/">this coding style</a> (examples below come from this guide).</p>
 <p>You can use <a href="https://github.com/r-lib/styler">package <strong>styler</strong></a> (that provides RStudio addins) to correct your style:</p>
 <p><img src="https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif" width="70%" style="display: block; margin: auto;" /></p>
 <div id="naming" class="section level3">
@@ -268,7 +274,7 @@ base <span class="op">::</span><span class="st"> </span>sum</code></pre></div>
 </div>
 <div id="indenting" class="section level3">
 <h3><span class="header-section-number">2.1.3</span> Indenting</h3>
-<p>Curly braces, <code>{}</code>, define the the most important hierarchy of R code. To make this hierarchy easy to see, always indent the code inside <code>{}</code> by two spaces.</p>
+<p>Curly braces, <code>{}</code>, define the most important hierarchy of R code. To make this hierarchy easy to see, always indent the code inside <code>{}</code> by two spaces. This should be automatic in RStudio.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
 <span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span>debug) {
   <span class="kw">message</span>(<span class="st">&quot;y is negative&quot;</span>)
@@ -301,7 +307,7 @@ base <span class="op">::</span><span class="st"> </span>sum</code></pre></div>
 <h3><span class="header-section-number">2.1.4</span> Long lines</h3>
 <p>Strive to limit your code to 80 characters per line. This fits comfortably on a printed page with a reasonably sized font. If you find yourself running out of room, this is a good indication that you should encapsulate some of the work in a separate function.</p>
 <p><img src="images/margin80.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>If a function call is too long to fit on a single line, use one line each for the function name, each argument, and the closing <code>)</code>. This makes the code easier to read and to change later.</p>
+<p>If a function call is too long to fit on a single line, use one line for the function name, for each argument, and for the closing <code>)</code>. This makes the code easier to read and to modify later.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
 <span class="kw">do_something_very_complicated</span>(
   <span class="dt">something =</span> <span class="st">&quot;that&quot;</span>,
@@ -330,7 +336,7 @@ x =<span class="st"> </span><span class="dv">5</span>
   <span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="fl">1e6</span>)
 )</code></pre></div>
 <ul>
-<li><p>Don’t put <code>;</code> at the end of a line, and don’t use <code>;</code> to put multiple commands on one line.</p></li>
+<li><p>Don’t put <code>;</code> at the end of a line, and avoid multiple commands on the same line.</p></li>
 <li><p>Only use <code>return()</code> for early returns. Otherwise rely on R to return the result of the last evaluated expression.</p></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
@@ -388,9 +394,9 @@ add_two &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {
 <ul>
 <li><strong>Meaningful structure</strong> in one folder</li>
 <li>The working directory automatically switches to the project’s folder</li>
-<li>File tab displays the associated files and folders in the project</li>
+<li>The <em>File</em> tab displays the associated files and folders in the project</li>
 <li>History of R commands and open files</li>
-<li>Any settings associated with the project, such as Git settings, are loaded. Note that a <em>set-up.R</em> or even a <em>.Rprofile</em> file in the project’s root directory enable project-specific settings to be loaded each time people work on the project.</li>
+<li>Any settings associated with the project, such as Git settings, are loaded. Note that you can have a file <em>set-up.R</em> or <em>.Rprofile</em> in the project’s root directory to enable project-specific settings to be loaded each time people open the project.</li>
 </ul></li>
 </ul>
 <blockquote class="twitter-tweet" data-lang="en" align="center">
@@ -452,9 +458,9 @@ Figure 2.1: You don’t use Version Control?
 <ul>
 <li>Main Git platforms (share your code, collaborate):
 <ul>
-<li><a href="https://github.com/magrichard">GitHub</a>, <a href="https://guides.github.com/activities/hello-world/">documentation</a> (only free for public repositories)</li>
-<li><a href="https://gricad-gitlab.univ-grenoble-alpes.fr/">GitLab UGA</a>, <a href="https://docs.gricad-pages.univ-grenoble-alpes.fr/help/">documentation</a> or just <a href="https://about.gitlab.com/">GitLab</a> (open source &amp; free)</li>
-<li><a href="https://bitbucket.org/">Bitbucket</a> (free with less than 5 collaborators)</li>
+<li><a href="https://github.com/magrichard">GitHub</a>, <a href="https://guides.github.com/activities/hello-world/">documentation</a> (only free for public repositories, now owned by Microsoft)</li>
+<li><a href="https://gricad-gitlab.univ-grenoble-alpes.fr/">GitLab UGA</a> (<a href="https://docs.gricad-pages.univ-grenoble-alpes.fr/help/">documentation</a>) or just <a href="https://about.gitlab.com/">GitLab</a> (open source &amp; free)</li>
+<li><a href="https://bitbucket.org/">Bitbucket</a> (free when you have less than 5 collaborators)</li>
 <li>any server..</li>
 </ul></li>
 <li>3 main commands:
@@ -475,14 +481,14 @@ Figure 2.1: You don’t use Version Control?
 </iframe>
 </center>
 <ul>
-<li>Help with Git: <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdltx925phiPYsw72GpjM30TBMn30YLTi8kAlf-N2sC_kTQNTiFQ" width="30%" style="display: block; margin: auto;" />
+<li>Help with Git:
 <ul>
-<li><p><a href="http://r-pkgs.had.co.nz/git.html">H. Wickham’s book</a></p></li>
-<li><p><a href="http://happygitwithr.com/">Happy Git and GitHub for the useR</a></p></li>
-<li><p><a href="https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf">Git cheat sheet</a></p></li>
-<li><p><a href="https://github.com/k88hudson/git-flight-rules">When things go wrong</a></p></li>
-<li><p><a href="http://ohshitgit.com/">To fix a mistake</a></p></li>
-<li><p><a href="https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches">Create a new branch with git and manage branches</a></p></li>
+<li><a href="http://r-pkgs.had.co.nz/git.html">H. Wickham’s book</a></li>
+<li><a href="http://happygitwithr.com/">Happy Git and GitHub for the useR</a></li>
+<li><a href="https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf">Git cheat sheet</a></li>
+<li><a href="https://github.com/k88hudson/git-flight-rules">When things go wrong</a></li>
+<li><a href="http://ohshitgit.com/">To fix a mistake</a></li>
+<li><a href="https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches">Create a new branch with git and manage branches</a></li>
 </ul></li>
 </ul>
 </div>
@@ -491,7 +497,7 @@ Figure 2.1: You don’t use Version Control?
 <h2><span class="header-section-number">2.4</span> Getting help</h2>
 <div id="help-yourself-learn-how-to-debug" class="section level3">
 <h3><span class="header-section-number">2.4.1</span> Help yourself, learn how to debug</h3>
-<p>A basic solution is to print everything, but it’s usually not working well on complex problems. A convenient solution to see all the variables’ states in your code is to place some <code>browser()</code> anywhere you want to check the variables’ states.</p>
+<p>A basic solution is to print everything, but it’s usually not working well on complex problems. A convenient solution to see all the variables’ states in your code is to place some <code>browser()</code> from where you want to check the variables’ states.</p>
 <p>Learn more with <a href="https://bookdown.org/rdpeng/rprogdatascience/debugging.html">this book chapter</a>, <a href="http://adv-r.had.co.nz/Exceptions-Debugging.html">this other book chapter</a>, <a href="https://www.rstudio.com/resources/videos/debugging-techniques-in-rstudio/">this webinar</a> and <a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio">this RStudio article</a>.</p>
 </div>
 <div id="external-help" class="section level3">
@@ -500,8 +506,8 @@ Figure 2.1: You don’t use Version Control?
 <p>You can search for specific R stuff on <a href="https://rseek.org/" class="uri">https://rseek.org/</a>. You should also read documentations carefully. If you’re using a package, search for vignettes and a GitHub repository.</p>
 <p>You can also use <a href="https://stackoverflow.com/">Stack Overflow</a>. The most common use of Stack Overflow is when you have an error or a question, you google it, and most of the times the first links are Q/A on Stack Overflow.</p>
 <p><img src="images/meme-SO.jpg" width="25%" style="display: block; margin: auto;" /></p>
-<p>You can ask questions on Stack Overflow (using the tag <code>r</code>). You need to <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example">make a great R reproducible example</a> if you want your question to be answered. Most of the times, while making this reproducible example, you will find the answer to your problem.</p>
-<p>If you’re confident enough in your R skills, you can go to the next step and <a href="https://stackoverflow.com/unanswered/tagged/r?tab=newest">answer questions on Stack Overflow</a>. It’s a good way to increase your skills, or just to <a href="https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/">procrastinate while writing a scientific manuscript</a>.</p>
+<p>You can ask questions on Stack Overflow (using the tag <code>r</code>). You need to <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example">make a great R reproducible example</a> if you want your question to be answered. Sometimes, while making this reproducible example, you find the answer to your problem.</p>
+<p>If you’re confident enough with your R skills, you can take the next step and <a href="https://stackoverflow.com/unanswered/tagged/r?tab=newest">answer questions on Stack Overflow</a>. It’s a good way to increase your skills, or just to <a href="https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/">procrastinate while writing a scientific manuscript</a>.</p>
 
 </div>
 </div>
@@ -553,6 +559,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -1,5 +1,7 @@
 # R programming
 
+This chapter is about base R stuff that I find important and that are often overlooked or unknown to most R users.
+
 Learn more with the [Advanced R book](https://adv-r.hadley.nz/).
 
 ```{r, include=FALSE}
@@ -16,13 +18,10 @@ source("spelling-check.R")
 ### Equality
 
 ```{r}
-x <- sqrt(2)
-(y <- x^2)
-y == 2
-print(y, digits = 20)
-all.equal(y, 2)  ## equality with some tolerance
-all.equal(y, 3)
-isTRUE(all.equal(y, 3))  ## if you want a boolean, use isTRUE()
+(0.1 + 0.2) == 0.3
+print(c(0.1, 0.2, 0.3), digits = 20)
+all.equal(0.1 + 0.2, 0.3)  ## equality with some tolerance
+isTRUE(all.equal(0.1 + 0.2, 0.4))  ## if you want a boolean, use isTRUE()
 ```
 
 ### Arguments
@@ -88,7 +87,7 @@ c(d, "a")  ## coerced to character
 
 c(list(1), "a")
 
-50 < "7"
+50 < "7"  ## "50" < "7"
 ```
 
 ### Exercise
@@ -103,11 +102,11 @@ Use the automatic type coercion to convert this boolean matrix to a numeric one 
 
 ### Objects
 
-- "atomic" vector: vector of same type (see above).
+- "atomic" vector: vector of one base type (see above).
 
-- scalar: this doesn't exist, there are only vector of length 1.
+- scalar: this doesn't exist, this is a vector of length 1.
 
-- matrices/arrays: just an atomic vector with some dimensions (attribute).
+- matrices / arrays: **a vector** with some dimensions (attribute).
 
 ```{r}
 (vec <- 1:12)
@@ -119,9 +118,9 @@ vec
 class(vec)
 ```
 
-- list: vector of elements with possible different types in it. 
+- list: vector of elements with possibly different types in it. 
 
-- data.frame: a list whose elements have the same lengths, and formatted somewhat as a matrix.
+- data.frame: **a list** whose elements have the same lengths, and formatted somewhat as a matrix.
 
 ### Accessors
 
@@ -145,7 +144,7 @@ You can also use a logical and character vectors to index these objects.
 ```{r}
 (x <- runif(4))
 x[c(FALSE, TRUE, FALSE, TRUE)]
-x[c(FALSE, TRUE)]  ## the logical vector is recycled
+x[c(FALSE, TRUE)]  ## logical vectors are recycled
 head(iris[c("Petal.Length", "Species")])
 ```
 
@@ -202,7 +201,7 @@ advr38pkg::sum_every(1:10, 2)
 colMeans(iris[sapply(iris, is.numeric)])
 ```
 
-3. Convert this matrix to a vector by replacing `c(1,0,0) <-> 0; c(0,1,0) <-> 1; c(0,0,1) <-> 2; other <-> NA`
+3. Convert this matrix to a vector by replacing `c(1,0,0) -> 0; c(0,1,0) -> 1; c(0,0,1) -> 2; other -> NA`
 
 ```{r}
 mat <- matrix(0, 10, 3); mat[c(1, 5, 8, 12, 16, 17, 19, 23, 24, 29)] <- 1; mat
@@ -254,7 +253,7 @@ a <- 1:4; b <- list()
 ls()
 
 # Remove objects from the environment
-rm(list = ls())  ## remove everything
+rm(list = ls())  ## remove all objects in the environment
 ```
 
 ```{r}
@@ -265,23 +264,23 @@ methods(class = "lm")
 
 ```{r}
 # Call a function with arguments as a list
-(l <- lapply(1:5, function(i) i))
-do.call('c', l)
+(list_of_int <- lapply(1:5, function(i) i))
+do.call('c', list_of_int)
 ```
 
 
 ### Sequence and vector operations
 
 ```{r}
-1:10  ## integers
-seq(1, 10, by = 2)
+1:10  ## of type integer
+seq(1, 10, by = 2)  ## of type double
 seq(1, 100, length.out = 10)
 seq_len(5)
-seq_along(5:8)
+seq_along(21:24)
 rep(1:4, 2)
 rep(1:4, each = 2)
 rep(1:4, 4:1)
-rep_len(1:3, 7)
+rep_len(1:3, 8)
 replicate(5, rnorm(10))  ## How to use a multiline expression?
 ```
 
@@ -291,15 +290,15 @@ order(c(1, 6, 8, 2, 2), c(0, 0, 0, 2, 1))
 rank(c(1, 6, 8, 2, 2))
 rank(c(1, 6, 8, 2, 2), ties.method = "first")
 sort(c("a1", "a2", "a10"))
-gtools::mixedsort(c("a1", "a2", "a10"))  # not in base, obviously
+gtools::mixedsort(c("a1", "a2", "a10"))  ## not in base, obviously
 which.max(c(1, 5, 3, 6, 2, 0))
 which.min(c(1, 5, 3, 6, 2, 0))
 unique(c(1, NA, 2, 3, 2, NA, 3))
 table(rep(1:4, 4:1))
 table(A = c(1, 1, 1, 2, 2), B = c(1, 2, 1, 2, 1))
 sample(10)
-sample(1:10, 5)
-sample(1:10, 50, replace = TRUE)
+sample(3:10, 5)
+sample(3:10, 50, replace = TRUE)
 ```
 
 ```{r}
@@ -338,7 +337,7 @@ setdiff(letters[1:4], letters[3:5])
 
 ```{r}
 tryCatch(TRUE | stop("will go there"), error = function(e) print(e))
-TRUE || stop("won't go there")
+TRUE || stop("won't go there")  ## won't evaluate second condition if first one is TRUE
 c(TRUE, FALSE, TRUE, TRUE) & c(FALSE, TRUE, TRUE, TRUE) 
 c(TRUE, FALSE, TRUE, TRUE) && c(FALSE, TRUE, TRUE, TRUE)  ## no warning!!
 ```
@@ -367,20 +366,20 @@ advr38pkg::split_ind(1:40, 3)
 
 ```{r}
 my_mtcars <- mtcars[c("mpg", "hp")]
-my_mtcars$my_col <- sample(c("mpg", "hp"), size = nrow(my_mtcars), 
-                           replace = TRUE)
+my_mtcars$my_col <- sample(c("mpg", "hp"), size = nrow(my_mtcars), replace = TRUE)
+head(my_mtcars)
 ```
 
-Expected result:
+Expected result (head):
 
 ```{r, echo=FALSE}
 ind <- cbind(seq_len(nrow(my_mtcars)), 
              match(my_mtcars[["my_col"]], names(my_mtcars)))
 my_mtcars$my_val <- my_mtcars[ind]
-head(my_mtcars, n = 10)
+head(my_mtcars)
 ```
 
-3. In the following data frame, for the first 3 columns, replace letters by corresponding numbers based on the `code`:
+3. In the following data frame (recall that it is also a list), for the first 3 columns, replace letters by corresponding numbers based on the `code`:
 
 ```{r}
 df <- data.frame(
@@ -429,7 +428,7 @@ h()
 
 Variable `x` is not defined inside `f` so R will look at the environment of `f` (where `f` was defined) and then at the parent environment, and so on. Here, the first `x` that is found has value `10`.
 
-Be aware that for functions, packages environments are checked last so that you can redefine them without noticing.
+Be aware that for functions, packages environments are checked last so that you can redefine functions without noticing.
 
 ```{r}
 c <- function(...) paste0(...)
@@ -482,7 +481,7 @@ You can use `structure()` to create an object and add some arbitrary attributes.
 structure(1:10, my_fancy_attribute = "blabla")
 ```
 
-There are also some attributes with some specific accessor functions to get and set values. For example, use `names(x)`, `dim(x)` and `class(x)` instead of `attr(x, "names")`, `attr(x, "dim")` and `attr(x, "class")`. You can also put comments in an object with `comment()`.
+There are also some attributes with specific accessor functions to get and set values. For example, use `names(x)`, `dim(x)` and `class(x)` instead of `attr(x, "names")`, `attr(x, "dim")` and `attr(x, "class")`.
 
 ***
 
@@ -500,7 +499,7 @@ plot(mylm)
 
 ***
 
-R has the easiest way to create a class and to use methods on them and it's called S3. If you want to know more about the other types of classes, see the [Advanced R book](https://adv-r.hadley.nz/).
+R has the easiest way to create a class and to use methods on objects of this class; it is called S3. If you want to know more about the other types of classes, see the [Advanced R book](https://adv-r.hadley.nz/).
 
 ```{r}
 agent007 <- list(first = "James", last = "Bond")
@@ -508,17 +507,18 @@ agent007
 ```
 
 ```{r}
-class(agent007) <- "Person"
+class(agent007) <- "Person"  ## "agent007" is now an object of class "Person"
 # Just make a function called <method_name>.<class_name>()
 print.Person <- function(x) {
   print(glue::glue("My name is {x$last}, {x$first} {x$last}."))
+  invisible(x)
 }
 
 agent007
 ```
 
 ```{r}
-# Constructor as simple function
+# Constructor of class as simple function
 Person <- function(first, last) {
   structure(list(first = first, last = last), class = "Person")
 }
@@ -529,14 +529,15 @@ An object can have many classes:
 
 ```{r}
 Worker <- function(first, last, job) {
-    obj <- Person(first, last)
-    obj$job <- job
-    class(obj) <- c("Worker", class(obj))
-    obj
+  obj <- Person(first, last)
+  obj$job <- job
+  class(obj) <- c("Worker", class(obj))
+  obj
 }
 print.Worker <- function(x) {
-    print.Person(x) 
-    print(glue::glue("I am a {x$job}."))
+  print.Person(x) 
+  print(glue::glue("I am a {x$job}."))
+  invisible(x)
 }
 
 (worker_007 <- Worker("James", "Bond", "secret agent"))

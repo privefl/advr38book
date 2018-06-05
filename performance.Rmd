@@ -10,7 +10,7 @@ Some resources used here or for further reading:
 - [Advanced R](https://adv-r.hadley.nz/performance.html)
 - [Efficient R programming](https://bookdown.org/csgillespie/efficientR/)
 
-The people who say that R is *just always slow* are usually not great R programmers. It is true that writing inefficient R code is easy, yet writing efficient R code is also possible when you know what you're doing. 
+The people who say that "R is just always slow" are usually not great R programmers. It is true that writing inefficient R code is easy, yet writing efficient R code is also possible when you know what you're doing. 
 In this chapter, you will learn how to write R(cpp) code that is fast.
 
 <!-- Some years ago, when introducing the Julia language, some really unfair benchmark comparisons were released (e.g. with loops where obvious and simpler vectorized code would have been much faster). I'm still mad at Julia for this and [I am not the only one](https://matloff.wordpress.com/2014/05/21/r-beats-python-r-beats-julia-anyone-else-wanna-challenge-r/). -->
@@ -37,9 +37,9 @@ system.time({
 })
 ```
 
-Here, at each iterating, you reallocating a vector (of increasing size). It makes your computation quadratic with the size of `x` (if you multiply the size by 2, you can expect the execution time to be multiplied by 4, for large sample sizes), whereas it should be only linear. Indeed, we will see that execution time can be composed of computation time but also allocation time.
+Here, at each iteration, you reallocating a vector (of increasing size). Allocation of memory takes time as well as computations. This makes your code quadratic with the size of `x` (if you multiply the size of `x` by 2, you can expect the execution time to be multiplied by 4, for large sample sizes), whereas it should be only linear. 
 
-A good solution is to always pre-allocating your results (if you know the size):
+A good solution is to always pre-allocate your results (if you know the size):
 
 ```{r}
 system.time({
@@ -99,6 +99,19 @@ system.time({
 apply(mat3, 2, max)[1:10]
 ```
 
+What is nice with using a list is that you don't need to pre-allocate. Indeed, as opposed to atomic vectors, each element of a list is in different places in memory so that you don't have to reallocate all the data when you add an element to a list.
+
+```{r}
+system.time({
+  l <- list()
+  for (i in seq_along(max)) {
+    l[[i]] <- runif(n, max = max[i])
+  }
+  mat4 <- do.call("cbind", l)
+})
+apply(mat4, 2, max)[1:10]
+```
+
 Instead of pre-allocating yourself, you can use `sapply` (or `lapply` and calling `do.call()` after, as previously done):
 
 ```{r}
@@ -107,6 +120,8 @@ system.time(
 )
 apply(mat4, 2, max)[1:10]
 ```
+
+Don't listen to people telling you that `sapply()` is a vectorized operation that is so much faster than loops.
 
 ### Access columns of a matrix
 
@@ -123,16 +138,15 @@ So, as you can see in this example, R matrices are column-oriented, which means 
 
 ### Use the right function
 
-Often, to optimize your code, you can simply find the right function in the right package to do what you need to do. 
+Often, in order to optimize your code, you can simply find the right function to do what you need to do. 
 
-For example, using `rowMeans(x)` instead of `apply(x, 1, mean)` can save you a lot of time. If you want more efficient functions that apply to rows and columns of matrices, you can check [package {matrixStats}](https://github.com/HenrikBengtsson/matrixStats). 
+For example, using `rowMeans(x)` instead of `apply(x, 1, mean)` can save you a lot of time. For example, if you want more efficient functions that apply to rows and columns of matrices, you can check [package {matrixStats}](https://github.com/HenrikBengtsson/matrixStats). 
 
-Another example is when reading large text files. In such cases, prefer using `data.table::fread()` rather than `read.table()`.
+Another example is when reading large text files; in such cases, prefer using `data.table::fread()` rather than `read.table()`.
 
 Generally, packages that uses C/Rcpp are efficient.
 
 ### Do not try to optimize everything
-
 
 > "Programmers waste enormous amounts of time thinking about, or worrying
 > about, the speed of noncritical parts of their programs, and these attempts 
@@ -147,9 +161,6 @@ R is great at prototyping quickly because you can write code in a concise and ea
 
 Learn more on how to profile your code in RStudio in [this article](https://support.rstudio.com/hc/en-us/articles/218221837-Profiling-with-RStudio).
 
-<!-- ```{r, echo=FALSE} -->
-<!-- knitr::include_graphics("https://twitter.com/twitter/statuses/874522268331671557") -->
-<!-- ``` -->
 
 ## Vectorization
 
@@ -209,29 +220,6 @@ monte_carlo_vec <- function(N) mean(runif(N)^2 > runif(N))
 system.time(monte_carlo_vec(N))
 ```
 
-***
-
-You have this data and this working code (a loop) that is slow 
-```{r, eval=FALSE}
-mydf <- readRDS(system.file("extdata/one-million.rds", package = "advr38pkg"))
-
-QRA_3Dmatrix <- array(0, dim = c(max(mydf$ID), max(mydf$Volume), 2))  
-
-for (i in seq_len(nrow(mydf))) {
-  # Row corresponds to IDcell 
-  row    <- mydf[[i, 1]]    
-  # Column corresponds to the volume class
-  column <- mydf[[i, 3]]      
-  # Number of events, initially zero, then +1
-  QRA_3Dmatrix[row, column, 1] <- QRA_3Dmatrix[row, column, 1] + 1  
-  # Sum energy 
-  QRA_3Dmatrix[row, column, 2] <- QRA_3Dmatrix[row, column, 2] + 
-    1 - 1.358 / (1 + exp( (1000 * mydf[[i, 2]] - 129000) / 120300 ))
-}
-```
-
-Rewrite this code in a vectorized way (avoiding the loop). For example, can you make use of package {dplyr} here? Remember to test on a smaller set at the beginning.
-
 
 ## Algorithms & data structures
 
@@ -246,6 +234,29 @@ You can also find a detailed example in [this blog post](https://privefl.github.
 ## Rcpp {#Rcpp}
 
 See [this presentation](https://privefl.github.io/R-presentation/Rcpp.html).
+
+You have this data and this working code (a loop) that is slow 
+
+```{r, eval=FALSE}
+mydf <- readRDS(system.file("extdata/one-million.rds", package = "advr38pkg"))
+
+QRA_3Dmatrix <- array(0, dim = c(max(mydf$ID), max(mydf$Volume), 2))
+
+for (i in seq_len(nrow(mydf))) {
+  # Row corresponds to IDcell 
+  row    <- mydf[[i, 1]]    
+  # Column corresponds to the volume class
+  column <- mydf[[i, 3]]      
+  # Number of events, initially zero, then +1
+  QRA_3Dmatrix[row, column, 1] <- QRA_3Dmatrix[row, column, 1] + 1  
+  # Sum energy 
+  QRA_3Dmatrix[row, column, 2] <- QRA_3Dmatrix[row, column, 2] + 
+    1 - 1.358 / (1 + exp( (1000 * mydf[[i, 2]] - 129000) / 120300 ))
+}
+```
+
+Rewrite this for-loop with Rcpp.
+
 
 ## Linear algebra
 

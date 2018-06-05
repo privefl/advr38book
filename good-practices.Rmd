@@ -8,7 +8,11 @@ source("spelling-check.R")
 
 ## Coding style
 
-Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. I answer questions on Stack Overflow; first, I read the title of the question to see if I can answer the question, secondly, I check the coding style of the question and if the code is too difficult to read, I just move on. Please make your code readable by following e.g. [this coding style](http://style.tidyverse.org/) (examples below come from this guide).
+> Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. 
+>
+> -- Hadley Wickham
+
+Please make your code readable by following e.g. [this coding style](http://style.tidyverse.org/) (examples below come from this guide).
 
 You can use [package **styler**](https://github.com/r-lib/styler) (that provides RStudio addins) to correct your style:
 
@@ -42,7 +46,7 @@ base :: sum
 
 ### Indenting
 
-Curly braces, `{}`, define the the most important hierarchy of R code. To make this hierarchy easy to see, always indent the code inside `{}` by two spaces.
+Curly braces, `{}`, define the most important hierarchy of R code. To make this hierarchy easy to see, always indent the code inside `{}` by two spaces. This should be automatic in RStudio.
 
 ```{r, eval=FALSE}
 # Good
@@ -86,9 +90,9 @@ knitr::include_graphics("images/margin80.png")
 ```
 
 
-If a function call is too long to fit on a single line, use one line each for 
-the function name, each argument, and the closing `)`. 
-This makes the code easier to read and to change later. 
+If a function call is too long to fit on a single line, use one line for 
+the function name, for each argument, and for the closing `)`. 
+This makes the code easier to read and to modify later. 
 
 ```{r, eval=FALSE}
 # Good
@@ -121,8 +125,8 @@ system.time(
 )
 ```
 
-- Don't put `;` at the end of a line, and don't use `;` to put multiple commands 
-on one line.
+- Don't put `;` at the end of a line, and avoid multiple commands 
+on the same line.
 
 - Only use `return()` for early returns. Otherwise rely on R to return the result of the last evaluated expression.
 
@@ -188,9 +192,9 @@ knitr::include_graphics("images/diagnostics.png")
 - **R Projects**: 
     - **Meaningful structure** in one folder
     - The working directory automatically switches to the project's folder
-    - File tab displays the associated files and folders in the project
+    - The *File* tab displays the associated files and folders in the project
     - History of R commands and open files
-    - Any settings associated with the project, such as Git settings, are loaded. Note that a *set-up.R* or even a *.Rprofile* file in the project's root directory enable project-specific settings to be loaded each time people work on the project.
+    - Any settings associated with the project, such as Git settings, are loaded. Note that you can have a file *set-up.R* or *.Rprofile* in the project's root directory to enable project-specific settings to be loaded each time people open the project.
 
 <blockquote class="twitter-tweet" data-lang="en" align="center"><p lang="en" dir="ltr">The only two things that make <a href="https://twitter.com/JennyBryan?ref_src=twsrc%5Etfw">\@JennyBryan</a> 😤😠🤯. Instead use projects + here::here() <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/GwxnHePL4n">pic.twitter.com/GwxnHePL4n</a></p>&mdash; Hadley Wickham (\@hadleywickham) <a href="https://twitter.com/hadleywickham/status/940021008764846080?ref_src=twsrc%5Etfw">11 décembre 2017</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -247,9 +251,9 @@ knitr::include_graphics("images/git.svg")
 ### Git
 
 - Main Git platforms (share your code, collaborate):
-    - [GitHub](https://github.com/magrichard), [documentation](https://guides.github.com/activities/hello-world/) (only free for public repositories)
-    - [GitLab UGA](https://gricad-gitlab.univ-grenoble-alpes.fr/), [documentation](https://docs.gricad-pages.univ-grenoble-alpes.fr/help/) or just [GitLab](https://about.gitlab.com/) (open source & free)
-    - [Bitbucket](https://bitbucket.org/) (free with less than 5 collaborators)
+    - [GitHub](https://github.com/magrichard), [documentation](https://guides.github.com/activities/hello-world/) (only free for public repositories, now owned by Microsoft)
+    - [GitLab UGA](https://gricad-gitlab.univ-grenoble-alpes.fr/) ([documentation](https://docs.gricad-pages.univ-grenoble-alpes.fr/help/)) or just [GitLab](https://about.gitlab.com/) (open source & free)
+    - [Bitbucket](https://bitbucket.org/) (free when you have less than 5 collaborators)
     - any server..
 
 - 3 main commands: 
@@ -269,19 +273,11 @@ knitr::include_graphics("images/git.svg")
 </center>
 
 - Help with Git:
-```{r, out.width="30%", echo=FALSE}
-knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdltx925phiPYsw72GpjM30TBMn30YLTi8kAlf-N2sC_kTQNTiFQ")
-```
     - [H. Wickham's book](http://r-pkgs.had.co.nz/git.html)
-    
     - [Happy Git and GitHub for the useR](http://happygitwithr.com/)
-    
     - [Git cheat sheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
-    
     - [When things go wrong](https://github.com/k88hudson/git-flight-rules)
-    
     - [To fix a mistake](http://ohshitgit.com/)
-    
     - [Create a new branch with git and manage branches](https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches)
 
 
@@ -289,7 +285,7 @@ knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ
 
 ### Help yourself, learn how to debug
 
-A basic solution is to print everything, but it's usually not working well on complex problems. A convenient solution to see all the variables' states in your code is to place some `browser()` anywhere you want to check the variables' states.
+A basic solution is to print everything, but it's usually not working well on complex problems. A convenient solution to see all the variables' states in your code is to place some `browser()` from where you want to check the variables' states.
 
 Learn more with [this book chapter](https://bookdown.org/rdpeng/rprogdatascience/debugging.html), [this other book chapter](http://adv-r.had.co.nz/Exceptions-Debugging.html), [this webinar](https://www.rstudio.com/resources/videos/debugging-techniques-in-rstudio/) and [this RStudio article](https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio).
 
@@ -306,6 +302,6 @@ You can also use [Stack Overflow](https://stackoverflow.com/). The most common u
 knitr::include_graphics("images/meme-SO.jpg")
 ```
 
-You can ask questions on Stack Overflow (using the tag `r`). You need to [make a great R reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) if you want your question to be answered. Most of the times, while making this reproducible example, you will find the answer to your problem.
+You can ask questions on Stack Overflow (using the tag `r`). You need to [make a great R reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) if you want your question to be answered. Sometimes, while making this reproducible example, you find the answer to your problem.
 
-If you're confident enough in your R skills, you can go to the next step and [answer questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). It's a good way to increase your skills, or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).
+If you're confident enough with your R skills, you can take the next step and [answer questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). It's a good way to increase your skills, or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).

@@ -5,6 +5,7 @@ knitr::opts_chunk$set(
   dev = "svg"
 )
 
-options(width = 100)
+options(width = 90)
 
 Sys.setenv(LANGUAGE = "en")
+Sys.setlocale("LC_TIME", "C")

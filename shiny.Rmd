@@ -20,7 +20,7 @@ pixelart::run_app()
 
 ## DataCamp course
 
-We'll use [this free DataCamp course](https://www.datacamp.com/courses/building-web-applications-in-r-with-shiny) to learn the basics of Shiny.
+Let us use [this free DataCamp course](https://www.datacamp.com/courses/building-web-applications-in-r-with-shiny) to learn the basics of Shiny.
 
 ## Other resources
 

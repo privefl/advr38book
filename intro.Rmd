@@ -9,13 +9,13 @@ source("spelling-check.R")
 
 - Have at least a basic knowledge of R,
 
-- Download the latest versions of [R](https://www.r-project.org/) (> 3.4) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (> 1.1),
+- Download the latest versions of [R](https://www.r-project.org/) (>= 3.4) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (>= 1.1),
 
 - Install associated package **advr38pkg** with `devtools::install_github("privefl/advr38pkg")`. This will install other dependencies that are needed in this book.
 
 ## Content
 
-It is impossible to become expert in R in only one training course. Yet, this course aims at giving a wide understanding on many aspects of R. Some external resources will be referred to in this book for you to be able to deepen what you would have learned in this course.
+It is impossible to become expert in R in only one training course. Yet, this course aims at giving a wide understanding of many aspects of R. Some external resources will be referred to in this book for you to be able to deepen what you would have learned in this course.
 
 This course is originally composed of 10 sessions (3 hours each):
 
@@ -43,6 +43,6 @@ This course is originally composed of 10 sessions (3 hours each):
 
 - [Mastering Software Development in R](https://bookdown.org/rdpeng/RProgDA/) by Roger D. Peng, Sean Kross and Brooke Anderson,
 
-- other resources linked from this material.
+- other resources linked from these materials.
 
 
