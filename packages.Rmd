@@ -54,6 +54,7 @@ To quickly start your package, just follow these steps:
     ```{r, eval=FALSE}
     usethis::use_description()
     usethis::use_namespace()
+    dir.create("R")
     usethis::use_package_doc()
     usethis::use_roxygen_md()
     ```
