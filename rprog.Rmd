@@ -193,43 +193,43 @@ Just add a comma for every new dimension.
 
 1. Use the dimension attribute to make a function that computes the sums every n elements of a vector. In which order are matrix elements stored? [Which are the special cases that you should consider?]
 
-```{r}
-advr38pkg::sum_every(1:10, 2)
-```
+    ```{r}
+    advr38pkg::sum_every(1:10, 2)
+    ```
 
 2. Compute the means of every numeric columns of the `iris` dataset. Expected result:
 
-```{r, echo=FALSE}
-colMeans(iris[sapply(iris, is.numeric)])
-```
+    ```{r, echo=FALSE}
+    colMeans(iris[sapply(iris, is.numeric)])
+    ```
 
 3. Convert this matrix to a vector by replacing `c(1,0,0) -> 0; c(0,1,0) -> 1; c(0,0,1) -> 2; other -> NA`
 
-```{r}
-mat <- matrix(0, 10, 3); mat[c(1, 5, 8, 12, 16, 17, 19, 23, 24, 29)] <- 1; mat
-```
+    ```{r}
+    mat <- matrix(0, 10, 3); mat[c(1, 5, 8, 12, 16, 17, 19, 23, 24, 29)] <- 1; mat
+    ```
 
-by using this array:
-
-```{r}
-myarray <- array(dim = c(2, 2, 2))
-myarray[2, 1, 1] <- 0
-myarray[1, 2, 1] <- 1
-myarray[1, 1, 2] <- 2
-myarray
-```
-
-Begin by using `apply()` and then replace it by a special accessor; what is the advantage?
-
-Expected result:
-
-```{r, echo=FALSE}
-decode <- array(dim = c(3, 3, 3))
-decode[2, 1, 1] <- 0
-decode[1, 2, 1] <- 1
-decode[1, 1, 2] <- 2
-decode[mat + 1]
-```
+    by using this array:
+    
+    ```{r}
+    myarray <- array(dim = c(2, 2, 2))
+    myarray[2, 1, 1] <- 0
+    myarray[1, 2, 1] <- 1
+    myarray[1, 1, 2] <- 2
+    myarray
+    ```
+    
+    Begin by using `apply()` and then replace it by a special accessor; what is the advantage?
+    
+    Expected result:
+    
+    ```{r, echo=FALSE}
+    decode <- array(dim = c(3, 3, 3))
+    decode[2, 1, 1] <- 0
+    decode[1, 2, 1] <- 1
+    decode[1, 1, 2] <- 2
+    decode[mat + 1]
+    ```
 
 
 ## Useful R base functions
@@ -360,59 +360,59 @@ ifelse(FALSE, 0, 1:5)
 
 1. Use `sample()`, `rep_len()` and `split()` to make a function that randomly splits some indices in a list of `K` groups of indices. [Which are the special cases that you should consider?]
 
-```{r}
-advr38pkg::split_ind(1:40, 3)
-```
+    ```{r}
+    advr38pkg::split_ind(1:40, 3)
+    ```
 
 1. Use `replicate()` and `sample()` to get a 95% confidence interval for the mean of the following vector:
 
-```{r}
-set.seed(1)
-(x <- rnorm(10))
-mean(x)
-```
+    ```{r}
+    set.seed(1)
+    (x <- rnorm(10))
+    mean(x)
+    ```
+    
+    ```{r, echo=FALSE}
+    quantile(replicate(1e6, mean(sample(x, replace = TRUE))), probs = c(0.025, 0.975))
+    ```
 
-```{r, echo=FALSE}
-quantile(replicate(1e6, mean(sample(x, replace = TRUE))), probs = c(0.025, 0.975))
-```
+1. Use `match()` and some accessor to add a column "my_val" to this data `my_mtcars` by putting the corresponding value of the column specified in "my_col". [Can your solution be used for any number of column names?]
 
-2. Use `match()` and some accessor to add a column "my_val" to this data `my_mtcars` by putting the corresponding value of the column specified in "my_col". [Can your solution be used for any number of column names?]
+    ```{r}
+    my_mtcars <- mtcars[c("mpg", "hp")]
+    my_mtcars$my_col <- sample(c("mpg", "hp"), size = nrow(my_mtcars), replace = TRUE)
+    head(my_mtcars)
+    ```
 
-```{r}
-my_mtcars <- mtcars[c("mpg", "hp")]
-my_mtcars$my_col <- sample(c("mpg", "hp"), size = nrow(my_mtcars), replace = TRUE)
-head(my_mtcars)
-```
+    Expected result (head):
+    
+    ```{r, echo=FALSE}
+    ind <- cbind(seq_len(nrow(my_mtcars)), 
+                 match(my_mtcars[["my_col"]], names(my_mtcars)))
+    my_mtcars$my_val <- my_mtcars[ind]
+    head(my_mtcars)
+    ```
 
-Expected result (head):
+1. In the following data frame (recall that it is also a list), for the first 3 columns, replace letters by corresponding numbers based on the `code`:
 
-```{r, echo=FALSE}
-ind <- cbind(seq_len(nrow(my_mtcars)), 
-             match(my_mtcars[["my_col"]], names(my_mtcars)))
-my_mtcars$my_val <- my_mtcars[ind]
-head(my_mtcars)
-```
-
-3. In the following data frame (recall that it is also a list), for the first 3 columns, replace letters by corresponding numbers based on the `code`:
-
-```{r}
-df <- data.frame(
-  id1 = c("a", "f", "a"),
-  id2 = c("b", "e", "e"), 
-  id3 = c("c", "d", "f"),
-  inter = c(7.343, 2.454, 3.234),
-  stringsAsFactors = FALSE
-)
-df
-(code <- setNames(1:6, letters[1:6]))
-```
-
-Expected result:
-
-```{r, echo=FALSE}
-df[-4] <- lapply(df[-4], function(col) code[col])
-df
-```
+    ```{r}
+    df <- data.frame(
+      id1 = c("a", "f", "a"),
+      id2 = c("b", "e", "e"), 
+      id3 = c("c", "d", "f"),
+      inter = c(7.343, 2.454, 3.234),
+      stringsAsFactors = FALSE
+    )
+    df
+    (code <- setNames(1:6, letters[1:6]))
+    ```
+    
+    Expected result:
+    
+    ```{r, echo=FALSE}
+    df[-4] <- lapply(df[-4], function(col) code[col])
+    df
+    ```
 
 
 ## Environments and scoping
