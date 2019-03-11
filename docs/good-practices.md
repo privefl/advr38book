@@ -195,7 +195,7 @@ Read more at https://www.tidyverse.org/articles/2017/12/workflow-vs-script/ and 
 
 ## Version control (Git) {#git}
 
-### Why use Git?
+### Why use Git? You don't use Git?
 
 <div class="figure" style="text-align: center">
 <img src="images/i-also-like-to-live-dangerously.jpg" alt="You don't use Version Control?" width="50%" />
@@ -293,4 +293,4 @@ You can ask questions on Stack Overflow (using the tag `r`). You need to [make a
 
 If you're confident enough with your R skills, you can take the next step and [answer questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). It's a good way to increase your skills, or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).
 
-You can also join communities, e.g. [join the French-speaking R community](https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM) or [join the R-Ladies community](https://rladies-community-slack.herokuapp.com/). There are generally much friendlier and welcoming spaces as compared to Stack Overflow.
+You can also join communities, e.g. [join the French-speaking R community](https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM) or [join the R-Ladies community](https://rladies-community-slack.herokuapp.com/). These are generally much friendlier and welcoming spaces as compared to Stack Overflow.
