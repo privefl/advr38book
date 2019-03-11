@@ -9,6 +9,7 @@ source("knitr-options.R")
 source("spelling-check.R")
 ```
 
+
 ## Common mistakes
 
 > If you are using R and you think you're in hell, [this is a map](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf) for you. 
@@ -97,6 +98,7 @@ Use the automatic type coercion to convert this boolean matrix to a numeric one 
 ```{r}
 (mat <- matrix(sample(c(TRUE, FALSE), 12, replace = TRUE), 3))
 ```
+
 
 ## Base objects and accessors
 
@@ -362,6 +364,18 @@ ifelse(FALSE, 0, 1:5)
 advr38pkg::split_ind(1:40, 3)
 ```
 
+1. Use `replicate()` and `sample()` to get a 95% confidence interval for the mean of the following vector:
+
+```{r}
+set.seed(1)
+(x <- rnorm(10))
+mean(x)
+```
+
+```{r, echo=FALSE}
+quantile(replicate(1e6, mean(sample(x, replace = TRUE))), probs = c(0.025, 0.975))
+```
+
 2. Use `match()` and some accessor to add a column "my_val" to this data `my_mtcars` by putting the corresponding value of the column specified in "my_col". [Can your solution be used for any number of column names?]
 
 ```{r}
@@ -464,6 +478,7 @@ list(a = 2, b = 3)
 ```
 
 Learn more about [functions](https://bookdown.org/rdpeng/rprogdatascience/functions.html) and [scoping rules of R](https://bookdown.org/rdpeng/rprogdatascience/scoping-rules-of-r.html) with the [R Programming for Data Science book](https://bookdown.org/rdpeng/rprogdatascience/).
+
 
 ## Attributes and classes
 
