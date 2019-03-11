@@ -28,13 +28,11 @@ spaces, except those with relatively high precedence: `^`, `:`, `::`, and `:::`.
 ```r
 # Good
 average <- mean((feet / 12) + inches, na.rm = TRUE)
-sqrt(x^2 + y^2)
 x <- 1:10
 base::sum
 
 # Bad
 average<-mean(feet/12+inches,na.rm=TRUE)
-sqrt(x ^ 2 + y ^ 2)
 x <- 1 : 10
 base :: sum
 ```
@@ -294,3 +292,5 @@ You can also use [Stack Overflow](https://stackoverflow.com/). The most common u
 You can ask questions on Stack Overflow (using the tag `r`). You need to [make a great R reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) if you want your question to be answered. Sometimes, while making this reproducible example, you find the answer to your problem.
 
 If you're confident enough with your R skills, you can take the next step and [answer questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). It's a good way to increase your skills, or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).
+
+You can also join communities, e.g. [join the French-speaking R community](https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM) or [join the R-Ladies community](https://rladies-community-slack.herokuapp.com/). There are generally much friendlier and welcoming spaces as compared to Stack Overflow.

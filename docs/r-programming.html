@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Advanced R Course</title>
+  <title>Chapter 3 R programming | Advanced R Course</title>
   <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France (2018).">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Advanced R Course" />
+  <meta property="og:title" content="Chapter 3 R programming | Advanced R Course" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://privefl.github.io/advr38book/" />
   <meta property="og:image" content="https://privefl.github.io/advr38book/images/hexsticker.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="privefl/advr38book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Advanced R Course" />
+  <meta name="twitter:title" content="Chapter 3 R programming | Advanced R Course" />
   <meta name="twitter:site" content="@privefl" />
   <meta name="twitter:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France (2018)." />
   <meta name="twitter:image" content="https://privefl.github.io/advr38book/images/hexsticker.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Florian Privé">
 
 
-<meta name="date" content="2018-06-05">
+<meta name="date" content="2019-03-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,6 +36,7 @@
 <link rel="next" href="tidyverse.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -47,7 +48,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.4/datatables.js"></script>
 <link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -295,11 +296,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="others" class="section level3">
 <h3><span class="header-section-number">3.1.3</span> Others</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  2  4  9  3 10  7  6  5  1  8</code></pre>
+<pre><code>#&gt;  [1]  5  6 10  8  4  9  2  3  1  7</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">10</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  5 10  1  2  3  6  9  4  8  7</code></pre>
+<pre><code>#&gt;  [1]  8  6  3  1  9  7  2  5 10  4</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="fl">10.1</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  2  4  5  3  7  8  6 10  1  9</code></pre>
+<pre><code>#&gt;  [1]  3  8  9  6  4  1  2  7  5 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">:</span><span class="dv">0</span></code></pre></div>
 <pre><code>#&gt; [1] 1 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq_len</span>(<span class="dv">0</span>)  ## prefer using seq_len (e.g. in for-loops)</code></pre></div>
@@ -351,9 +352,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Use the automatic type coercion to convert this boolean matrix to a numeric one (with 0s and 1s). [What do you need to change to get an integer matrix instead?]</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>), <span class="dv">12</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>), <span class="dv">3</span>))</code></pre></div>
 <pre><code>#&gt;       [,1]  [,2]  [,3]  [,4]
-#&gt; [1,]  TRUE FALSE FALSE  TRUE
-#&gt; [2,] FALSE FALSE FALSE FALSE
-#&gt; [3,] FALSE FALSE FALSE  TRUE</code></pre>
+#&gt; [1,] FALSE  TRUE  TRUE  TRUE
+#&gt; [2,] FALSE  TRUE  TRUE  TRUE
+#&gt; [3,]  TRUE FALSE FALSE FALSE</code></pre>
 </div>
 </div>
 <div id="base-objects-and-accessors" class="section level2">
@@ -403,18 +404,18 @@ vec</code></pre></div>
 <li>The <code>[</code> accessor is used to access a subset of the data <strong>with the same class</strong>.</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">5</span>))</code></pre></div>
-<pre><code>#&gt; [1] 0.5692826 0.8839934 0.4243401 0.8835626 0.7940048</code></pre>
+<pre><code>#&gt; [1] 0.44179827 0.50931498 0.06740027 0.55862950 0.71326102</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
-<pre><code>#&gt; [1] 0.8839934 0.4243401</code></pre>
+<pre><code>#&gt; [1] 0.50931498 0.06740027</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">2</span><span class="op">:</span><span class="dv">8</span>]</code></pre></div>
-<pre><code>#&gt; [1] 0.8839934 0.4243401 0.8835626 0.7940048        NA        NA        NA</code></pre>
+<pre><code>#&gt; [1] 0.50931498 0.06740027 0.55862950 0.71326102         NA         NA         NA</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(y &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">runif</span>(<span class="dv">12</span>), <span class="dv">3</span>))</code></pre></div>
-<pre><code>#&gt;           [,1]       [,2]       [,3]      [,4]
-#&gt; [1,] 0.6808522 0.94368277 0.08165596 0.4724498
-#&gt; [2,] 0.4917331 0.03183972 0.20744378 0.4829714
-#&gt; [3,] 0.3285540 0.48119907 0.31552157 0.2537888</code></pre>
+<pre><code>#&gt;           [,1]      [,2]      [,3]      [,4]
+#&gt; [1,] 0.1582902 0.2918463 0.5025517 0.2231392
+#&gt; [2,] 0.4042220 0.9416940 0.6180482 0.8614849
+#&gt; [3,] 0.6964713 0.7807137 0.4161101 0.5921196</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y[<span class="dv">4</span><span class="op">:</span><span class="dv">9</span>]  ## a matrix is a vector</code></pre></div>
-<pre><code>#&gt; [1] 0.94368277 0.03183972 0.48119907 0.08165596 0.20744378 0.31552157</code></pre>
+<pre><code>#&gt; [1] 0.2918463 0.9416940 0.7807137 0.5025517 0.6180482 0.4161101</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(l &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">b =</span> <span class="st">&quot;toto&quot;</span>, <span class="dt">c =</span> <span class="kw">runif</span>(<span class="dv">10</span>)))</code></pre></div>
 <pre><code>#&gt; $a
 #&gt; [1] 2 3
@@ -423,15 +424,15 @@ vec</code></pre></div>
 #&gt; [1] &quot;toto&quot;
 #&gt; 
 #&gt; $c
-#&gt;  [1] 0.118515325 0.008069762 0.148927921 0.515026996 0.950634794 0.378853183 0.969230287
-#&gt;  [8] 0.863494066 0.408006724 0.792467508</code></pre>
+#&gt;  [1] 0.87155745 0.98493341 0.04316778 0.09668163 0.02835692 0.03248378 0.97557054
+#&gt;  [8] 0.01300156 0.20833175 0.10966273</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
 <pre><code>#&gt; $b
 #&gt; [1] &quot;toto&quot;
 #&gt; 
 #&gt; $c
-#&gt;  [1] 0.118515325 0.008069762 0.148927921 0.515026996 0.950634794 0.378853183 0.969230287
-#&gt;  [8] 0.863494066 0.408006724 0.792467508</code></pre>
+#&gt;  [1] 0.87155745 0.98493341 0.04316778 0.09668163 0.02835692 0.03248378 0.97557054
+#&gt;  [8] 0.01300156 0.20833175 0.10966273</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iris)</code></pre></div>
 <pre><code>#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 #&gt; 1          5.1         3.5          1.4         0.2  setosa
@@ -452,11 +453,11 @@ vec</code></pre></div>
 <pre><code>#&gt; [1] &quot;data.frame&quot;</code></pre>
 <p>You can also use a logical and character vectors to index these objects.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">4</span>))</code></pre></div>
-<pre><code>#&gt; [1] 0.55860950 0.06749194 0.82201886 0.13314476</code></pre>
+<pre><code>#&gt; [1] 0.9434762 0.1093819 0.2814693 0.7559496</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)]</code></pre></div>
-<pre><code>#&gt; [1] 0.06749194 0.13314476</code></pre>
+<pre><code>#&gt; [1] 0.1093819 0.7559496</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>)]  ## logical vectors are recycled</code></pre></div>
-<pre><code>#&gt; [1] 0.06749194 0.13314476</code></pre>
+<pre><code>#&gt; [1] 0.1093819 0.7559496</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iris[<span class="kw">c</span>(<span class="st">&quot;Petal.Length&quot;</span>, <span class="st">&quot;Species&quot;</span>)])</code></pre></div>
 <pre><code>#&gt;   Petal.Length Species
 #&gt; 1          1.4  setosa
@@ -672,13 +673,14 @@ a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</spa
 #&gt; [33] summary.tukeysmooth*          
 #&gt; see &#39;?methods&#39; for accessing help and source code</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">methods</span>(<span class="dt">class =</span> <span class="st">&quot;lm&quot;</span>)</code></pre></div>
-<pre><code>#&gt;  [1] add1           alias          anova          case.names     confint       
-#&gt;  [6] cooks.distance deviance       dfbeta         dfbetas        drop1         
-#&gt; [11] dummy.coef     effects        extractAIC     family         formula       
-#&gt; [16] hatvalues      influence      kappa          labels         logLik        
-#&gt; [21] model.frame    model.matrix   nobs           plot           predict       
-#&gt; [26] print          proj           qr             residuals      rstandard     
-#&gt; [31] rstudent       simulate       summary        variable.names vcov          
+<pre><code>#&gt;  [1] add1           alias          anova          case.names     coerce        
+#&gt;  [6] confint        cooks.distance deviance       dfbeta         dfbetas       
+#&gt; [11] drop1          dummy.coef     effects        extractAIC     family        
+#&gt; [16] formula        hatvalues      influence      initialize     kappa         
+#&gt; [21] labels         logLik         model.frame    model.matrix   nobs          
+#&gt; [26] plot           predict        print          proj           qr            
+#&gt; [31] residuals      rstandard      rstudent       show           simulate      
+#&gt; [36] slotsFromS3    summary        variable.names vcov          
 #&gt; see &#39;?methods&#39; for accessing help and source code</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Call a function with arguments as a list</span>
 (list_of_int &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="cf">function</span>(i) i))</code></pre></div>
@@ -720,17 +722,17 @@ a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep_len</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">8</span>)</code></pre></div>
 <pre><code>#&gt; [1] 1 2 3 1 2 3 1 2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">replicate</span>(<span class="dv">5</span>, <span class="kw">rnorm</span>(<span class="dv">10</span>))  ## How to use a multiline expression?</code></pre></div>
-<pre><code>#&gt;             [,1]       [,2]       [,3]       [,4]       [,5]
-#&gt;  [1,] -0.4717247  1.6158656  0.5067905  0.1324516  0.3098747
-#&gt;  [2,]  1.3076240 -1.9277146  1.4915039  0.1483365  0.4118639
-#&gt;  [3,]  0.2240326  0.4904158 -0.6108652  1.6641247  0.2599999
-#&gt;  [4,]  0.4787863  1.0088749  1.1299834  0.7144196 -1.2647137
-#&gt;  [5,] -2.4359825  0.7585647  0.9226047 -1.7038946  0.2878352
-#&gt;  [6,] -1.5399561 -1.0067147 -1.1438351 -0.2135063  1.6245647
-#&gt;  [7,]  1.1568399 -0.6803887  0.7790309  0.4231606  0.3801244
-#&gt;  [8,]  2.1487959  1.1054615  0.2867914  0.6733060 -0.7540443
-#&gt;  [9,] -0.6351308 -0.7376222  0.5507054 -0.8986416 -0.5627344
-#&gt; [10,] -0.5787920  2.1647502 -0.2577951  0.2364002 -0.1399787</code></pre>
+<pre><code>#&gt;              [,1]        [,2]       [,3]        [,4]       [,5]
+#&gt;  [1,]  1.97447526  0.59994162 -0.7022805 -0.65805946  0.3303105
+#&gt;  [2,] -1.44594069 -0.03635293  1.3853076 -1.32994811 -0.4957729
+#&gt;  [3,]  0.01552075  0.71119085  1.6945496  0.40666521 -0.8939408
+#&gt;  [4,]  1.28229689  0.49000811  1.0691847  0.20756873  0.6769922
+#&gt;  [5,]  0.01820870  0.07540017  0.2942520 -0.97607490 -1.1573405
+#&gt;  [6,] -0.22636025 -1.77152708 -2.1220895 -1.60428718 -0.9493753
+#&gt;  [7,] -1.11173481  0.90653494 -0.2693396 -0.56851593  0.2648289
+#&gt;  [8,] -1.21470152 -0.49713891  1.7473514  0.05979098 -1.4221747
+#&gt;  [9,] -0.37314580  1.21434536  0.2340554  1.26142945  0.4175311
+#&gt; [10,]  1.93515598 -0.81816809 -0.9301386 -0.40988609 -0.4043733</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">2</span>))</code></pre></div>
 <pre><code>#&gt; [1] 1 2 2 6 8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">order</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</code></pre></div>
@@ -759,18 +761,18 @@ a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</spa
 #&gt;   1 2 1
 #&gt;   2 1 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">10</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  6  4  3  9  8 10  5  1  7  2</code></pre>
+<pre><code>#&gt;  [1]  2  7  5 10  8  3  6  4  1  9</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">5</span>)</code></pre></div>
-<pre><code>#&gt; [1] 3 8 6 7 4</code></pre>
+<pre><code>#&gt; [1] 3 8 6 7 9</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  6  6  4 10  8  7  8  4  6  9  3  5  8  9  9  6  8 10  9  7  7  9  4  7  4  8  3  8
-#&gt; [29] 10  5  5  4  8  3 10  4  4 10  8  7 10  6  4  6  4  8  6  8  9  4</code></pre>
+<pre><code>#&gt;  [1] 10  4 10  3  4  3 10  9  9  8  9  5  5  4  5 10  6 10  8  9  7  9 10  4  5  8  3  4
+#&gt; [29]  3  6  5  7  8  4  7  6  8  3  3  4  3  8  6  6  9  7  8  6  9 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">10</span>, <span class="dt">max =</span> <span class="dv">100</span>))</code></pre></div>
-<pre><code>#&gt;  [1] 26 95 27 86 26 72 84 12 79 11</code></pre>
+<pre><code>#&gt;  [1]  8 71 19 71 22 95 38 45 90 41</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(x, <span class="dt">digits =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>#&gt;  [1] 25.88 94.98 27.26 86.29 25.59 72.44 84.23 11.59 78.74 10.59</code></pre>
+<pre><code>#&gt;  [1]  8.04 71.38 18.95 71.37 22.21 95.37 37.66 45.02 89.94 41.35</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(x, <span class="op">-</span><span class="dv">1</span>)</code></pre></div>
-<pre><code>#&gt;  [1] 30 90 30 90 30 70 80 10 80 10</code></pre>
+<pre><code>#&gt;  [1]  10  70  20  70  20 100  40  50  90  40</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pmin</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">4</span><span class="op">:</span><span class="dv">1</span>)</code></pre></div>
 <pre><code>#&gt; [1] 1 2 2 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pmax</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">4</span><span class="op">:</span><span class="dv">1</span>)</code></pre></div>
@@ -811,11 +813,11 @@ glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quo
 #&gt; [4] &quot;./packages.pdf&quot;       &quot;./performance.pdf&quot;    &quot;./rprog.pdf&quot;         
 #&gt; [7] &quot;./shiny.pdf&quot;          &quot;./tidyverse.pdf&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(y &lt;-<span class="st"> </span><span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</code></pre></div>
-<pre><code>#&gt;  [1] &quot;c&quot; &quot;a&quot; &quot;c&quot; &quot;a&quot; &quot;c&quot; &quot;b&quot; &quot;b&quot; &quot;c&quot; &quot;a&quot; &quot;a&quot;</code></pre>
+<pre><code>#&gt;  [1] &quot;b&quot; &quot;c&quot; &quot;a&quot; &quot;d&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;a&quot; &quot;b&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">match</span>(y, letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</code></pre></div>
-<pre><code>#&gt;  [1] 3 1 3 1 3 2 2 3 1 1</code></pre>
+<pre><code>#&gt;  [1] 2 3 1 4 3 3 3 3 1 2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y <span class="op">%in%</span><span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</code></pre></div>
-<pre><code>#&gt;  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE</code></pre>
+<pre><code>#&gt;  [1]  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rle</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">4</span><span class="op">:</span><span class="dv">1</span>))</code></pre></div>
 <pre><code>#&gt; Run Length Encoding
 #&gt;   lengths: int [1:4] 4 3 2 1
@@ -847,11 +849,11 @@ glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quo
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>)  ## no warning!!</code></pre></div>
 <pre><code>#&gt; [1] FALSE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>))</code></pre></div>
-<pre><code>#&gt;  [1] -0.5562712 -1.8768046  1.5359741 -1.2452820 -0.8543855  1.0534865  0.6697873
-#&gt;  [8]  1.5332380  0.8276275  0.3635153</code></pre>
+<pre><code>#&gt;  [1]  1.2126475 -2.0132419 -1.0093584 -0.1593004  1.2438920  0.2563172  1.1886293
+#&gt;  [8]  0.6452280  1.1543032  0.2555419</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, x, <span class="op">-</span>x)</code></pre></div>
-<pre><code>#&gt;  [1] 0.5562712 1.8768046 1.5359741 1.2452820 0.8543855 1.0534865 0.6697873 1.5332380
-#&gt;  [9] 0.8276275 0.3635153</code></pre>
+<pre><code>#&gt;  [1] 1.2126475 2.0132419 1.0093584 0.1593004 1.2438920 0.2563172 1.1886293 0.6452280
+#&gt;  [9] 1.1543032 0.2555419</code></pre>
 <p>Beware with <code>ifelse()</code> (learn more <a href="https://privefl.github.io/blog/On-the-ifelse-function/">there</a>), for example</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(<span class="ot">FALSE</span>, <span class="dv">0</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</code></pre></div>
 <pre><code>#&gt; [1] 1</code></pre>
@@ -865,13 +867,13 @@ glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quo
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">advr38pkg<span class="op">::</span><span class="kw">split_ind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>, <span class="dv">3</span>)</code></pre></div>
 <pre><code>#&gt; $`1`
-#&gt;  [1]  1  3  6 11 12 16 19 20 27 28 29 34 37 40
+#&gt;  [1]  6 13 17 19 23 25 28 31 33 34 37 38 39 40
 #&gt; 
 #&gt; $`2`
-#&gt;  [1]  2  4  9 10 14 21 22 23 25 26 30 32 33
+#&gt;  [1]  2  3  4  5 11 14 15 18 20 21 24 29 36
 #&gt; 
 #&gt; $`3`
-#&gt;  [1]  5  7  8 13 15 17 18 24 31 35 36 38 39</code></pre>
+#&gt;  [1]  1  7  8  9 10 12 16 22 26 27 30 32 35</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Use <code>match()</code> and some accessor to add a column “my_val” to this data <code>my_mtcars</code> by putting the corresponding value of the column specified in “my_col”. [Can your solution be used for any number of column names?]</li>
 </ol>
@@ -879,20 +881,20 @@ glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quo
 my_mtcars<span class="op">$</span>my_col &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;hp&quot;</span>), <span class="dt">size =</span> <span class="kw">nrow</span>(my_mtcars), <span class="dt">replace =</span> <span class="ot">TRUE</span>)
 <span class="kw">head</span>(my_mtcars)</code></pre></div>
 <pre><code>#&gt;                    mpg  hp my_col
-#&gt; Mazda RX4         21.0 110     hp
+#&gt; Mazda RX4         21.0 110    mpg
 #&gt; Mazda RX4 Wag     21.0 110    mpg
-#&gt; Datsun 710        22.8  93     hp
-#&gt; Hornet 4 Drive    21.4 110     hp
-#&gt; Hornet Sportabout 18.7 175    mpg
-#&gt; Valiant           18.1 105    mpg</code></pre>
+#&gt; Datsun 710        22.8  93    mpg
+#&gt; Hornet 4 Drive    21.4 110    mpg
+#&gt; Hornet Sportabout 18.7 175     hp
+#&gt; Valiant           18.1 105     hp</code></pre>
 <p>Expected result (head):</p>
 <pre><code>#&gt;                    mpg  hp my_col my_val
-#&gt; Mazda RX4         21.0 110     hp    110
+#&gt; Mazda RX4         21.0 110    mpg   21.0
 #&gt; Mazda RX4 Wag     21.0 110    mpg   21.0
-#&gt; Datsun 710        22.8  93     hp     93
-#&gt; Hornet 4 Drive    21.4 110     hp    110
-#&gt; Hornet Sportabout 18.7 175    mpg   18.7
-#&gt; Valiant           18.1 105    mpg   18.1</code></pre>
+#&gt; Datsun 710        22.8  93    mpg   22.8
+#&gt; Hornet 4 Drive    21.4 110    mpg   21.4
+#&gt; Hornet Sportabout 18.7 175     hp    175
+#&gt; Valiant           18.1 105     hp    105</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>In the following data frame (recall that it is also a list), for the first 3 columns, replace letters by corresponding numbers based on the <code>code</code>:</li>
 </ol>
@@ -939,12 +941,12 @@ df</code></pre></div>
 }
 x &lt;-<span class="st"> </span><span class="dv">100</span>
 <span class="kw">h</span>()</code></pre></div>
-<pre><code>#&gt; &lt;environment: 0x383fc78&gt;
+<pre><code>#&gt; &lt;environment: 0x64ffe50&gt;
 #&gt; [1] &quot;g&quot; &quot;x&quot;
 #&gt; &lt;environment: R_GlobalEnv&gt;
-#&gt; &lt;environment: 0x380d2c0&gt;
+#&gt; &lt;environment: 0x6504cb8&gt;
 #&gt; [1] &quot;f&quot;
-#&gt; &lt;environment: 0x383fc78&gt;</code></pre>
+#&gt; &lt;environment: 0x64ffe50&gt;</code></pre>
 <pre><code>#&gt; [1] 11</code></pre>
 <p>Variable <code>x</code> is not defined inside <code>f</code> so R will look at the environment of <code>f</code> (where <code>f</code> was defined) and then at the parent environment, and so on. Here, the first <code>x</code> that is found has value <code>10</code>.</p>
 <p>Be aware that for functions, packages environments are checked last so that you can redefine functions without noticing.</p>
@@ -1029,13 +1031,14 @@ f &lt;-<span class="st"> </span><span class="cf">function</span>(i) {
 <pre><code>#&gt; [1] &quot;lm&quot;</code></pre>
 <p>I’ve just fitted a linear model in order to predict the sepal length variable of the <code>iris</code> dataset based on the other variables. Using <code>lm()</code> gets me an object of class <code>lm</code>. What are the methods I can use for this object?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">methods</span>(<span class="dt">class =</span> <span class="kw">class</span>(mylm))</code></pre></div>
-<pre><code>#&gt;  [1] add1           alias          anova          case.names     confint       
-#&gt;  [6] cooks.distance deviance       dfbeta         dfbetas        drop1         
-#&gt; [11] dummy.coef     effects        extractAIC     family         formula       
-#&gt; [16] hatvalues      influence      kappa          labels         logLik        
-#&gt; [21] model.frame    model.matrix   nobs           plot           predict       
-#&gt; [26] print          proj           qr             residuals      rstandard     
-#&gt; [31] rstudent       simulate       summary        variable.names vcov          
+<pre><code>#&gt;  [1] add1           alias          anova          case.names     coerce        
+#&gt;  [6] confint        cooks.distance deviance       dfbeta         dfbetas       
+#&gt; [11] drop1          dummy.coef     effects        extractAIC     family        
+#&gt; [16] formula        hatvalues      influence      initialize     kappa         
+#&gt; [21] labels         logLik         model.frame    model.matrix   nobs          
+#&gt; [26] plot           predict        print          proj           qr            
+#&gt; [31] residuals      rstandard      rstudent       show           simulate      
+#&gt; [36] slotsFromS3    summary        variable.names vcov          
 #&gt; see &#39;?methods&#39; for accessing help and source code</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mylm)</code></pre></div>
 <pre><code>#&gt; 
@@ -1134,7 +1137,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -1144,8 +1147,12 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/privefl/advr38book/edit/master/rprog.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {
@@ -1155,6 +1162,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

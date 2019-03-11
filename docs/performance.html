@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Advanced R Course</title>
+  <title>Chapter 5 Performance | Advanced R Course</title>
   <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France (2018).">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Advanced R Course" />
+  <meta property="og:title" content="Chapter 5 Performance | Advanced R Course" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://privefl.github.io/advr38book/" />
   <meta property="og:image" content="https://privefl.github.io/advr38book/images/hexsticker.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="privefl/advr38book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Advanced R Course" />
+  <meta name="twitter:title" content="Chapter 5 Performance | Advanced R Course" />
   <meta name="twitter:site" content="@privefl" />
   <meta name="twitter:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France (2018)." />
   <meta name="twitter:image" content="https://privefl.github.io/advr38book/images/hexsticker.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Florian Privé">
 
 
-<meta name="date" content="2018-06-05">
+<meta name="date" content="2019-03-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,6 +36,7 @@
 <link rel="next" href="packages.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -47,7 +48,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.4/datatables.js"></script>
 <link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -270,7 +271,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.251   0.000   0.251</code></pre>
+#&gt;   0.168   0.004   0.169</code></pre>
 <p>Here, at each iteration, you reallocating a vector (of increasing size). Allocation of memory takes time as well as computations. This makes your code quadratic with the size of <code>x</code> (if you multiply the size of <code>x</code> by 2, you can expect the execution time to be multiplied by 4, for large sample sizes), whereas it should be only linear.</p>
 <p>A good solution is to always pre-allocate your results (if you know the size):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
@@ -282,7 +283,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.004   0.000   0.004</code></pre>
+#&gt;   0.004   0.000   0.003</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all.equal</span>(res2, res)</code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
 <p>An even better solution would be to avoid the loop by using a vectorized function:</p>
@@ -294,7 +295,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e7</span>)
 <span class="kw">system.time</span>(<span class="kw">cumsum</span>(x))</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.070   0.027   0.097</code></pre>
+#&gt;   0.040   0.012   0.049</code></pre>
 <p>As a second example, let us generate a matrix of uniform values (max changing for every column):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="fl">1e3</span>
 max &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>
@@ -305,10 +306,10 @@ max &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</s
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.867   0.486   1.354</code></pre>
+#&gt;   0.544   0.040   0.583</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9972832 1.9976435 2.9960060 3.9946500 4.9906238 5.9891145 6.9948993 7.9949719
-#&gt;  [9] 8.9775907 9.9872069</code></pre>
+<pre><code>#&gt;  [1] 0.9984764 1.9998468 2.9929190 3.9994020 4.9968408 5.9891709 6.9996421 7.9906220
+#&gt;  [9] 8.9835587 9.9979566</code></pre>
 <p>So, we can either pre-allocate a list or a matrix:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
   l &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, <span class="kw">length</span>(max))
@@ -318,10 +319,10 @@ max &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</s
   mat2 &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;cbind&quot;</span>, l)
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.055   0.002   0.057</code></pre>
+#&gt;   0.028   0.000   0.029</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat2, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9989977 1.9953441 2.9972480 3.9998393 4.9946722 5.9931803 6.9992625 7.9912290
-#&gt;  [9] 8.9987138 9.9944634</code></pre>
+<pre><code>#&gt;  [1] 0.9998091 1.9987601 2.9995825 3.9973094 4.9919560 5.9843093 6.9973723 7.9993965
+#&gt;  [9] 8.9936630 9.9968806</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
   mat3 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, n, <span class="kw">length</span>(max))
   <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(max)) {
@@ -329,10 +330,10 @@ max &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</s
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.058   0.000   0.058</code></pre>
+#&gt;   0.032   0.000   0.030</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat3, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9993851 1.9983726 2.9987728 3.9964647 4.9921170 5.9831668 6.9860076 7.9918131
-#&gt;  [9] 8.9965444 9.9977064</code></pre>
+<pre><code>#&gt;  [1] 0.9990587 1.9999633 2.9995248 3.9998210 4.9989193 5.9953306 6.9962491 7.9972371
+#&gt;  [9] 8.9971426 9.9951757</code></pre>
 <p>What is nice with using a list is that you don’t need to pre-allocate. Indeed, as opposed to atomic vectors, each element of a list is in different places in memory so that you don’t have to reallocate all the data when you add an element to a list.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
   l &lt;-<span class="st"> </span><span class="kw">list</span>()
@@ -342,19 +343,19 @@ max &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</s
   mat4 &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;cbind&quot;</span>, l)
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.055   0.000   0.055</code></pre>
+#&gt;   0.032   0.000   0.028</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat4, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9997197 1.9980634 2.9961579 3.9960694 4.9946669 5.9615279 6.9979177 7.9990794
-#&gt;  [9] 8.9963414 9.9931267</code></pre>
+<pre><code>#&gt;  [1] 0.9994746 1.9995600 2.9992922 3.9993792 4.9970213 5.9971701 6.9887317 7.9895309
+#&gt;  [9] 8.9986549 9.9918666</code></pre>
 <p>Instead of pre-allocating yourself, you can use <code>sapply</code> (or <code>lapply</code> and calling <code>do.call()</code> after, as previously done):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(
   mat4 &lt;-<span class="st"> </span><span class="kw">sapply</span>(max, <span class="cf">function</span>(m) <span class="kw">runif</span>(n, <span class="dt">max =</span> m))
 )</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.056   0.000   0.055</code></pre>
+#&gt;   0.028   0.000   0.029</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat4, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.998696 1.998625 2.999570 3.999739 4.987115 5.999282 6.987494 7.995048 8.995767
-#&gt; [10] 9.992420</code></pre>
+<pre><code>#&gt;  [1] 0.9989493 1.9993657 2.9963709 3.9889770 4.9980205 5.9922272 6.9840492 7.9905184
+#&gt;  [9] 8.9847055 9.9997087</code></pre>
 <p>Don’t listen to people telling you that <code>sapply()</code> is a vectorized operation that is so much faster than loops.</p>
 </div>
 <div id="access-columns-of-a-matrix" class="section level3">
@@ -427,7 +428,7 @@ vec</code></pre></div>
 <p><strong>Your task: Find a vectorized solution for this problem:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">monte_carlo_vec</span>(N))</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.064   0.000   0.064</code></pre>
+#&gt;   0.048   0.000   0.050</code></pre>
 </div>
 </div>
 <div id="algorithms-data-structures" class="section level2">
@@ -470,7 +471,7 @@ QRA_3Dmatrix &lt;-<span class="st"> </span><span class="kw">array</span>(<span c
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
 <span class="kw">system.time</span>(p &lt;-<span class="st"> </span>advr38pkg<span class="op">::</span><span class="kw">random_walk_neg_prop</span>(<span class="fl">1e7</span>))</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.593   0.000   0.593</code></pre>
+#&gt;   0.380   0.000   0.382</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p</code></pre></div>
 <pre><code>#&gt; [1] 0.3400444</code></pre>
 <hr />
@@ -487,7 +488,7 @@ last_row &lt;-<span class="st"> </span>mat_big[<span class="kw">nrow</span>(mat_
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.554   0.000   0.555</code></pre>
+#&gt;   0.428   0.000   0.430</code></pre>
 <hr />
 <p>Why <code>colSums()</code> on a whole matrix is faster than on only half of it?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m0 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="fl">1e6</span>), <span class="fl">1e3</span>, <span class="fl">1e3</span>)
@@ -496,9 +497,9 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(
   <span class="kw">colSums</span>(m0)
 )</code></pre></div>
 <pre><code>#&gt; Unit: microseconds
-#&gt;                  expr      min        lq     mean   median       uq      max neval
-#&gt;  colSums(m0[, 1:500]) 3472.945 4939.6665 5955.561 5527.592 7300.435 12780.12   100
-#&gt;           colSums(m0)  951.538  985.5265 1024.365 1026.776 1046.217  1368.55   100</code></pre>
+#&gt;                  expr      min        lq      mean   median       uq      max neval
+#&gt;  colSums(m0[, 1:500]) 2115.455 2448.1625 2809.5166 2565.716 2874.127 5452.123   100
+#&gt;           colSums(m0)  787.303  800.4875  834.6667  822.302  862.088  959.611   100</code></pre>
 <hr />
 <p>Try to speed up this code by vectorizing it first. Then, recode it in Rcpp and benchmark all the solutions you came up with.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">M &lt;-<span class="st"> </span><span class="dv">50</span>
@@ -535,15 +536,15 @@ breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">
 )</code></pre></div>
 <pre><code>#&gt; Unit: microseconds
 #&gt;                                        expr      min        lq      mean    median
-#&gt;                       table(cut(x, breaks)) 2373.946 2397.7975 2513.6879 2418.7680
-#&gt;        hist(x, breaks, plot = FALSE)$counts  354.706  398.8560  468.0426  469.0855
-#&gt;       advr38pkg::count_by_breaks(x, breaks)  345.718  364.3105  429.2807  387.7105
-#&gt;  advr38pkg::count_by_breaks_fast(x, breaks)  165.896  188.3375  223.1782  212.1325
+#&gt;                       table(cut(x, breaks)) 1915.744 1926.7005 1999.3612 1944.5345
+#&gt;        hist(x, breaks, plot = FALSE)$counts  289.300  304.0205  321.3095  312.0875
+#&gt;       advr38pkg::count_by_breaks(x, breaks)  250.994  262.8725  304.7723  265.4380
+#&gt;  advr38pkg::count_by_breaks_fast(x, breaks)  151.436  161.8260  175.7807  166.7385
 #&gt;         uq      max neval
-#&gt;  2457.7780 3938.869   100
-#&gt;   516.0080  758.312   100
-#&gt;   412.2415 2394.831   100
-#&gt;   249.3095  362.000   100</code></pre>
+#&gt;  2026.5910 4281.442   100
+#&gt;   331.4040  395.533   100
+#&gt;   341.5390  473.109   100
+#&gt;   196.7855  241.608   100</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x2 &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">10</span>, <span class="dt">size =</span> <span class="fl">1e5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
 breaks2 &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dt">length.out =</span> <span class="dv">100</span>)
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(
@@ -553,16 +554,16 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(
   advr38pkg<span class="op">::</span><span class="kw">count_by_breaks_fast</span>(x2, breaks2)
 )</code></pre></div>
 <pre><code>#&gt; Unit: milliseconds
-#&gt;                                          expr        min         lq       mean     median
-#&gt;        advr38pkg::count_by_breaks(x2, breaks)   3.233394   3.284809   4.114446   3.825236
-#&gt;   advr38pkg::count_by_breaks_fast(x2, breaks)   1.351927   1.387000   1.749117   1.415532
-#&gt;       advr38pkg::count_by_breaks(x2, breaks2) 115.637507 162.827521 182.704709 170.508551
-#&gt;  advr38pkg::count_by_breaks_fast(x2, breaks2)   1.377287   1.428339   1.834656   1.487100
-#&gt;          uq        max neval
-#&gt;    5.219041   5.902081   100
-#&gt;    2.370578   3.932924   100
-#&gt;  219.845702 227.056946   100
-#&gt;    2.410378   2.578551   100</code></pre>
+#&gt;                                          expr       min        lq      mean    median
+#&gt;        advr38pkg::count_by_breaks(x2, breaks)  2.207989  2.243413  2.315498  2.274782
+#&gt;   advr38pkg::count_by_breaks_fast(x2, breaks)  1.201809  1.217513  1.268064  1.247863
+#&gt;       advr38pkg::count_by_breaks(x2, breaks2) 55.944564 91.300511 91.667772 91.734875
+#&gt;  advr38pkg::count_by_breaks_fast(x2, breaks2)  1.230091  1.251898  1.311882  1.292204
+#&gt;         uq        max neval
+#&gt;   2.340802   3.233547   100
+#&gt;   1.287852   2.205675   100
+#&gt;  92.409167 128.077537   100
+#&gt;   1.317935   2.215652   100</code></pre>
 <hr />
 <p>An R user wants to implement some sampling on a sparse matrix and provides this working code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Matrix)
@@ -584,7 +585,7 @@ m &lt;-<span class="st"> </span><span class="kw">Matrix</span>(<span class="dv">
   primes &lt;-<span class="st"> </span>advr38pkg<span class="op">::</span><span class="kw">AllPrimesUpTo</span>(N)
 )</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.086   0.000   0.086</code></pre>
+#&gt;   0.032   0.000   0.032</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(primes, <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>)</code></pre></div>
 <p><img src="performance_files/figure-html/unnamed-chunk-23-1.svg" width="70%" style="display: block; margin: auto;" /></p>
 <hr />
@@ -669,7 +670,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -679,8 +680,12 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/privefl/advr38book/edit/master/performance.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {
@@ -696,7 +701,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
     script.src = src;
