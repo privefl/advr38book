@@ -17,12 +17,12 @@ source("spelling-check.R")
 
 It is impossible to become expert in R in only one training course. Yet, this course aims at giving a wide understanding of many aspects of R. Some external resources will be referred to in this book for you to be able to deepen what you would have learned in this course.
 
-This course is originally composed of 10 sessions (3 hours each):
+This course is originally composed of 9 sessions (3 hours each):
 
-1. R programming and good practices (2 sessions)
-2. Data analysis with the tidyverse (3 sessions)
+1. R programming and good practices (1.5 sessions)
+2. Data analysis with the tidyverse (3.5 sessions)
 3. R code performance (2 sessions)
-4. R packages (2 sessions)
+4. R packages (1 session)
 5. Bonus: Shiny (1 session)
 
 ## Useful resources
