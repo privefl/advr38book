@@ -296,11 +296,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="others" class="section level3">
 <h3><span class="header-section-number">3.1.3</span> Others</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  2  8  9  3  4 10  5  7  6  1</code></pre>
+<pre><code>#&gt;  [1]  9 10  8  4  3  2  6  7  1  5</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">10</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  1  9  2  6  3  4  5 10  7  8</code></pre>
+<pre><code>#&gt;  [1]  6  2  9  5  8  7  4  1  3 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="fl">10.1</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  1  8  6  4  5  3  9  2  7 10</code></pre>
+<pre><code>#&gt;  [1]  2  4  9  3  1  5 10  8  7  6</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">:</span><span class="dv">0</span></code></pre></div>
 <pre><code>#&gt; [1] 1 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq_len</span>(<span class="dv">0</span>)  ## prefer using seq_len (e.g. in for-loops)</code></pre></div>
@@ -351,10 +351,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">3.2.2</span> Exercise</h3>
 <p>Use the automatic type coercion to convert this boolean matrix to a numeric one (with 0s and 1s). [What do you need to change to get an integer matrix instead?]</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>), <span class="dv">12</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>), <span class="dv">3</span>))</code></pre></div>
-<pre><code>#&gt;       [,1] [,2] [,3]  [,4]
-#&gt; [1,] FALSE TRUE TRUE FALSE
-#&gt; [2,]  TRUE TRUE TRUE  TRUE
-#&gt; [3,]  TRUE TRUE TRUE  TRUE</code></pre>
+<pre><code>#&gt;       [,1]  [,2]  [,3] [,4]
+#&gt; [1,]  TRUE FALSE  TRUE TRUE
+#&gt; [2,]  TRUE  TRUE  TRUE TRUE
+#&gt; [3,] FALSE FALSE FALSE TRUE</code></pre>
 </div>
 </div>
 <div id="base-objects-and-accessors" class="section level2">
@@ -404,18 +404,18 @@ vec</code></pre></div>
 <li>The <code>[</code> accessor is used to access a subset of the data <strong>with the same class</strong>.</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">5</span>))</code></pre></div>
-<pre><code>#&gt; [1] 0.1845880 0.6312931 0.1225263 0.9916804 0.7950700</code></pre>
+<pre><code>#&gt; [1] 0.3742428 0.1967849 0.9906526 0.3354000 0.7317043</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
-<pre><code>#&gt; [1] 0.6312931 0.1225263</code></pre>
+<pre><code>#&gt; [1] 0.1967849 0.9906526</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">2</span><span class="op">:</span><span class="dv">8</span>]</code></pre></div>
-<pre><code>#&gt; [1] 0.6312931 0.1225263 0.9916804 0.7950700        NA        NA        NA</code></pre>
+<pre><code>#&gt; [1] 0.1967849 0.9906526 0.3354000 0.7317043        NA        NA        NA</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(y &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">runif</span>(<span class="dv">12</span>), <span class="dv">3</span>))</code></pre></div>
-<pre><code>#&gt;           [,1]      [,2]      [,3]       [,4]
-#&gt; [1,] 0.1793090 0.1952023 0.9895665 0.75005305
-#&gt; [2,] 0.6846180 0.4636194 0.4001973 0.02545349
-#&gt; [3,] 0.8011817 0.3763526 0.3514816 0.88800160</code></pre>
+<pre><code>#&gt;           [,1]      [,2]       [,3]      [,4]
+#&gt; [1,] 0.7640510 0.9464476 0.02809067 0.8516801
+#&gt; [2,] 0.5257313 0.4339700 0.10169373 0.5641369
+#&gt; [3,] 0.9711716 0.7862585 0.99179505 0.5386078</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y[<span class="dv">4</span><span class="op">:</span><span class="dv">9</span>]  ## a matrix is a vector</code></pre></div>
-<pre><code>#&gt; [1] 0.1952023 0.4636194 0.3763526 0.9895665 0.4001973 0.3514816</code></pre>
+<pre><code>#&gt; [1] 0.94644762 0.43397003 0.78625854 0.02809067 0.10169373 0.99179505</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(l &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">b =</span> <span class="st">&quot;toto&quot;</span>, <span class="dt">c =</span> <span class="kw">runif</span>(<span class="dv">10</span>)))</code></pre></div>
 <pre><code>#&gt; $a
 #&gt; [1] 2 3
@@ -424,15 +424,15 @@ vec</code></pre></div>
 #&gt; [1] &quot;toto&quot;
 #&gt; 
 #&gt; $c
-#&gt;  [1] 0.0877633 0.0648394 0.1651147 0.8716851 0.1834045 0.3309485 0.8507586 0.8932269
-#&gt;  [9] 0.1396557 0.6493311</code></pre>
+#&gt;  [1] 0.7729944 0.2658974 0.9983454 0.9055118 0.1364265 0.5631251 0.1666813 0.4986730
+#&gt;  [9] 0.3231522 0.6208681</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
 <pre><code>#&gt; $b
 #&gt; [1] &quot;toto&quot;
 #&gt; 
 #&gt; $c
-#&gt;  [1] 0.0877633 0.0648394 0.1651147 0.8716851 0.1834045 0.3309485 0.8507586 0.8932269
-#&gt;  [9] 0.1396557 0.6493311</code></pre>
+#&gt;  [1] 0.7729944 0.2658974 0.9983454 0.9055118 0.1364265 0.5631251 0.1666813 0.4986730
+#&gt;  [9] 0.3231522 0.6208681</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iris)</code></pre></div>
 <pre><code>#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 #&gt; 1          5.1         3.5          1.4         0.2  setosa
@@ -453,11 +453,11 @@ vec</code></pre></div>
 <pre><code>#&gt; [1] &quot;data.frame&quot;</code></pre>
 <p>You can also use a logical and character vectors to index these objects.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">4</span>))</code></pre></div>
-<pre><code>#&gt; [1] 0.73063363 0.40656986 0.09702324 0.05769641</code></pre>
+<pre><code>#&gt; [1] 0.4454293 0.4200315 0.4739141 0.5814565</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)]</code></pre></div>
-<pre><code>#&gt; [1] 0.40656986 0.05769641</code></pre>
+<pre><code>#&gt; [1] 0.4200315 0.5814565</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>)]  ## logical vectors are recycled</code></pre></div>
-<pre><code>#&gt; [1] 0.40656986 0.05769641</code></pre>
+<pre><code>#&gt; [1] 0.4200315 0.5814565</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iris[<span class="kw">c</span>(<span class="st">&quot;Petal.Length&quot;</span>, <span class="st">&quot;Species&quot;</span>)])</code></pre></div>
 <pre><code>#&gt;   Petal.Length Species
 #&gt; 1          1.4  setosa
@@ -564,39 +564,27 @@ mat</code></pre></div>
 <li><p>Compute the means of every numeric columns of the <code>iris</code> dataset. Expected result:</p>
 <pre><code>#&gt; Sepal.Length  Sepal.Width Petal.Length  Petal.Width 
 #&gt;     5.843333     3.057333     3.758000     1.199333</code></pre></li>
-<li><p>Convert this matrix to a vector by replacing <code>c(1,0,0) -&gt; 0; c(0,1,0) -&gt; 1; c(0,0,1) -&gt; 2; other -&gt; NA</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">3</span>); mat[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">12</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">24</span>, <span class="dv">29</span>)] &lt;-<span class="st"> </span><span class="dv">1</span>; mat</code></pre></div>
-<pre><code>#&gt;       [,1] [,2] [,3]
-#&gt;  [1,]    1    0    0
-#&gt;  [2,]    0    1    0
-#&gt;  [3,]    0    0    1
-#&gt;  [4,]    0    0    1
-#&gt;  [5,]    1    0    0
-#&gt;  [6,]    0    1    0
-#&gt;  [7,]    0    1    0
-#&gt;  [8,]    1    0    0
-#&gt;  [9,]    0    1    1
-#&gt; [10,]    0    0    0</code></pre>
-<p>by using this array:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myarray &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))
-myarray[<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">0</span>
-myarray[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span>
-myarray[<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">2</span>
-myarray</code></pre></div>
-<pre><code>#&gt; , , 1
-#&gt; 
-#&gt;      [,1] [,2]
-#&gt; [1,]   NA    1
-#&gt; [2,]    0   NA
-#&gt; 
-#&gt; , , 2
-#&gt; 
-#&gt;      [,1] [,2]
-#&gt; [1,]    2   NA
-#&gt; [2,]   NA   NA</code></pre>
+<li><p>Convert this matrix to a vector by replacing <code>c(0,0) -&gt; 0; c(0,1) -&gt; 1; c(1,1) -&gt; 2; c(1,0) -&gt; NA</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>); mat[<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">19</span>)] &lt;-<span class="st"> </span><span class="dv">1</span>; mat</code></pre></div>
+<pre><code>#&gt;       [,1] [,2]
+#&gt;  [1,]    0    0
+#&gt;  [2,]    0    1
+#&gt;  [3,]    0    0
+#&gt;  [4,]    0    0
+#&gt;  [5,]    1    1
+#&gt;  [6,]    0    1
+#&gt;  [7,]    0    1
+#&gt;  [8,]    1    0
+#&gt;  [9,]    1    1
+#&gt; [10,]    0    0</code></pre>
+<p>by using this matrix:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(decode &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="ot">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>))</code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]    0    1
+#&gt; [2,]   NA    2</code></pre>
 <p>Begin by using <code>apply()</code> and then replace it by a special accessor; what is the advantage?</p>
 <p>Expected result:</p>
-<pre><code>#&gt;  [1]  0  1  2  2  0  1  1  0 NA NA</code></pre></li>
+<pre><code>#&gt;  [1]  0  1  0  0  2  1  1 NA  2  0</code></pre></li>
 </ol>
 </div>
 </div>
@@ -643,9 +631,8 @@ myarray</code></pre></div>
 a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>; b &lt;-<span class="st"> </span><span class="kw">list</span>()
 <span class="kw">ls</span>()</code></pre></div>
 <pre><code>#&gt;  [1] &quot;a&quot;               &quot;b&quot;               &quot;c&quot;               &quot;d&quot;              
-#&gt;  [5] &quot;decode&quot;          &quot;l&quot;               &quot;mat&quot;             &quot;myarray&quot;        
-#&gt;  [9] &quot;n&quot;               &quot;vec&quot;             &quot;WORDS_TO_IGNORE&quot; &quot;x&quot;              
-#&gt; [13] &quot;y&quot;</code></pre>
+#&gt;  [5] &quot;decode&quot;          &quot;l&quot;               &quot;mat&quot;             &quot;n&quot;              
+#&gt;  [9] &quot;vec&quot;             &quot;WORDS_TO_IGNORE&quot; &quot;x&quot;               &quot;y&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Remove objects from the environment</span>
 <span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())  ## remove all objects in the environment</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># list of available S3 methods</span>
@@ -718,17 +705,17 @@ a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep_len</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">8</span>)</code></pre></div>
 <pre><code>#&gt; [1] 1 2 3 1 2 3 1 2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">replicate</span>(<span class="dv">5</span>, <span class="kw">rnorm</span>(<span class="dv">10</span>))  ## How to use a multiline expression?</code></pre></div>
-<pre><code>#&gt;             [,1]       [,2]       [,3]       [,4]        [,5]
-#&gt;  [1,] -0.2263514 -0.7934527  1.1169347 -1.0537060 -1.07593920
-#&gt;  [2,]  0.1434059 -0.4986134  0.7523742 -0.7234240 -0.97859919
-#&gt;  [3,]  0.5154918 -1.6356814 -0.4312170 -0.2908320 -0.14827097
-#&gt;  [4,] -1.3555874 -0.4072412  0.6013060  0.3261034  0.33899756
-#&gt;  [5,] -0.7147992  1.1605287  0.3083779  1.1155084  0.11690490
-#&gt;  [6,] -0.8235780 -0.6423532 -1.3311534  0.2410259 -1.02752630
-#&gt;  [7,] -0.4106202 -1.1888984  0.8414260  0.3741649 -1.37790815
-#&gt;  [8,] -1.7497988  1.9567068 -1.8134359  0.4695864  0.83000850
-#&gt;  [9,] -0.3557451 -0.1926410  0.2606655 -1.1470540  0.78131735
-#&gt; [10,] -1.6445497  0.2538738 -0.6588541 -1.7966360 -0.09066726</code></pre>
+<pre><code>#&gt;             [,1]        [,2]        [,3]         [,4]       [,5]
+#&gt;  [1,] -0.5088130  1.49534876 -1.57672742  1.209146592 -0.2330422
+#&gt;  [2,]  1.8018798  0.20847523 -1.19125327  1.781712985  1.7505097
+#&gt;  [3,]  1.7394319 -0.86809087  1.04378069  0.006355165 -1.0317443
+#&gt;  [4,] -0.5260837  0.89470546  2.22787831 -0.781838677  0.2569092
+#&gt;  [5,] -1.2306774 -1.36646753  0.85436122  0.357834120 -0.4859491
+#&gt;  [6,]  0.8516872  1.16793210 -0.04125081 -0.724865082 -1.0674001
+#&gt;  [7,]  1.8707400  2.18597997 -0.73642035 -0.373385460 -0.1700187
+#&gt;  [8,]  1.8103187  1.41278136  1.61459563  0.621432210  0.2580942
+#&gt;  [9,]  0.5264246  0.05163903  1.41141023  0.633884566  0.8802899
+#&gt; [10,] -0.6339748  1.97101677  0.67260521 -0.391832393 -0.9342480</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">2</span>))</code></pre></div>
 <pre><code>#&gt; [1] 1 2 2 6 8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">order</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</code></pre></div>
@@ -757,18 +744,18 @@ a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</spa
 #&gt;   1 2 1
 #&gt;   2 1 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">10</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  1  7  3  9 10  8  2  6  5  4</code></pre>
+<pre><code>#&gt;  [1] 10  2  1  9  3  6  5  8  7  4</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">5</span>)</code></pre></div>
-<pre><code>#&gt; [1]  7 10  9  6  8</code></pre>
+<pre><code>#&gt; [1]  9  6 10  7  4</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  3  3  5  4  6  6  3 10  6  3  9  3  7 10  8 10  9  9  8 10 10  4  3  5  6  4  6  4
-#&gt; [29]  6  8  9  4  5  9  8  6 10  3  4  8  7  4  7  3  6 10  3  7  3 10</code></pre>
+<pre><code>#&gt;  [1] 10  9 10  7  9  3  4  6  9  3  8  5  8  4 10 10  9  8  8  3  6  8  7  9  6  7  3  3
+#&gt; [29]  4  9  5  6  3  4  4  7  5  3 10 10  5  5  8  8  7  5  3 10 10  4</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">10</span>, <span class="dt">max =</span> <span class="dv">100</span>))</code></pre></div>
-<pre><code>#&gt;  [1]  4 90 60 19 47 90  5 26 59 65</code></pre>
+<pre><code>#&gt;  [1] 86 79 41 61 86 91 81 44 17 95</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(x, <span class="dt">digits =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  4.33 90.29 59.93 18.56 46.82 89.66  4.51 26.40 59.03 64.82</code></pre>
+<pre><code>#&gt;  [1] 86.13 79.26 41.10 60.97 86.07 91.39 81.11 43.85 17.21 95.41</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(x, <span class="op">-</span><span class="dv">1</span>)</code></pre></div>
-<pre><code>#&gt;  [1]  0 90 60 20 50 90  0 30 60 60</code></pre>
+<pre><code>#&gt;  [1]  90  80  40  60  90  90  80  40  20 100</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pmin</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">4</span><span class="op">:</span><span class="dv">1</span>)</code></pre></div>
 <pre><code>#&gt; [1] 1 2 2 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pmax</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">4</span><span class="op">:</span><span class="dv">1</span>)</code></pre></div>
@@ -809,11 +796,11 @@ glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quo
 #&gt; [4] &quot;./packages.pdf&quot;       &quot;./performance.pdf&quot;    &quot;./rprog.pdf&quot;         
 #&gt; [7] &quot;./shiny.pdf&quot;          &quot;./tidyverse.pdf&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(y &lt;-<span class="st"> </span><span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</code></pre></div>
-<pre><code>#&gt;  [1] &quot;d&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;c&quot; &quot;d&quot; &quot;d&quot; &quot;b&quot; &quot;a&quot; &quot;a&quot;</code></pre>
+<pre><code>#&gt;  [1] &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;c&quot; &quot;b&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">match</span>(y, letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</code></pre></div>
-<pre><code>#&gt;  [1] 4 2 3 4 3 4 4 2 1 1</code></pre>
+<pre><code>#&gt;  [1] 1 1 1 1 3 2 1 1 1 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y <span class="op">%in%</span><span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</code></pre></div>
-<pre><code>#&gt;  [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
+<pre><code>#&gt;  [1]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rle</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">4</span><span class="op">:</span><span class="dv">1</span>))</code></pre></div>
 <pre><code>#&gt; Run Length Encoding
 #&gt;   lengths: int [1:4] 4 3 2 1
@@ -845,11 +832,11 @@ glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quo
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>)  ## no warning!!</code></pre></div>
 <pre><code>#&gt; [1] FALSE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>))</code></pre></div>
-<pre><code>#&gt;  [1] -1.3184369 -1.6863089 -0.6386805  1.1585136 -0.3514424  0.4315104 -0.7296177
-#&gt;  [8] -0.3849950 -1.4912184 -0.8545261</code></pre>
+<pre><code>#&gt;  [1]  0.36627318 -0.94538659 -0.37411320 -0.49420286 -0.46650356 -0.12747210  0.04273725
+#&gt;  [8] -0.07248727 -0.20516713  1.65278545</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, x, <span class="op">-</span>x)</code></pre></div>
-<pre><code>#&gt;  [1] 1.3184369 1.6863089 0.6386805 1.1585136 0.3514424 0.4315104 0.7296177 0.3849950
-#&gt;  [9] 1.4912184 0.8545261</code></pre>
+<pre><code>#&gt;  [1] 0.36627318 0.94538659 0.37411320 0.49420286 0.46650356 0.12747210 0.04273725
+#&gt;  [8] 0.07248727 0.20516713 1.65278545</code></pre>
 <p>Beware with <code>ifelse()</code> (learn more <a href="https://privefl.github.io/blog/On-the-ifelse-function/">there</a>), for example</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(<span class="ot">FALSE</span>, <span class="dv">0</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</code></pre></div>
 <pre><code>#&gt; [1] 1</code></pre>
@@ -862,13 +849,13 @@ glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quo
 <li><p>Use <code>sample()</code>, <code>rep_len()</code> and <code>split()</code> to make a function that randomly splits some indices in a list of <code>K</code> groups of indices. [Which are the special cases that you should consider?]</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">advr38pkg<span class="op">::</span><span class="kw">split_ind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>, <span class="dv">3</span>)</code></pre></div>
 <pre><code>#&gt; $`1`
-#&gt;  [1]  3  4  9 10 13 18 20 21 23 24 26 27 35 40
+#&gt;  [1]  1  6  9 18 19 20 24 25 28 31 32 35 36 38
 #&gt; 
 #&gt; $`2`
-#&gt;  [1]  2  5  8 12 14 28 29 30 31 33 34 37 39
+#&gt;  [1]  7 10 13 14 16 17 21 30 33 34 37 39 40
 #&gt; 
 #&gt; $`3`
-#&gt;  [1]  1  6  7 11 15 16 17 19 22 25 32 36 38</code></pre></li>
+#&gt;  [1]  2  3  4  5  8 11 12 15 22 23 26 27 29</code></pre></li>
 <li><p>Use <code>replicate()</code> and <code>sample()</code> to get a 95% confidence interval for the mean of the following vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
 (x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>))</code></pre></div>
@@ -942,12 +929,12 @@ df</code></pre></div>
 }
 x &lt;-<span class="st"> </span><span class="dv">100</span>
 <span class="kw">h</span>()</code></pre></div>
-<pre><code>#&gt; &lt;environment: 0x6c33908&gt;
+<pre><code>#&gt; &lt;environment: 0x62ef478&gt;
 #&gt; [1] &quot;g&quot; &quot;x&quot;
 #&gt; &lt;environment: R_GlobalEnv&gt;
-#&gt; &lt;environment: 0x6432d70&gt;
+#&gt; &lt;environment: 0x67fc630&gt;
 #&gt; [1] &quot;f&quot;
-#&gt; &lt;environment: 0x6c33908&gt;</code></pre>
+#&gt; &lt;environment: 0x62ef478&gt;</code></pre>
 <pre><code>#&gt; [1] 11</code></pre>
 <p>Variable <code>x</code> is not defined inside <code>f</code> so R will look at the environment of <code>f</code> (where <code>f</code> was defined) and then at the parent environment, and so on. Here, the first <code>x</code> that is found has value <code>10</code>.</p>
 <p>Be aware that for functions, packages environments are checked last so that you can redefine functions without noticing.</p>

@@ -203,20 +203,16 @@ Just add a comma for every new dimension.
     colMeans(iris[sapply(iris, is.numeric)])
     ```
 
-3. Convert this matrix to a vector by replacing `c(1,0,0) -> 0; c(0,1,0) -> 1; c(0,0,1) -> 2; other -> NA`
+3. Convert this matrix to a vector by replacing `c(0,0) -> 0; c(0,1) -> 1; c(1,1) -> 2; c(1,0) -> NA`
 
     ```{r}
-    mat <- matrix(0, 10, 3); mat[c(1, 5, 8, 12, 16, 17, 19, 23, 24, 29)] <- 1; mat
+    mat <- matrix(0, 10, 2); mat[c(5, 8, 9, 12, 15, 16, 17, 19)] <- 1; mat
     ```
 
-    by using this array:
+    by using this matrix:
     
     ```{r}
-    myarray <- array(dim = c(2, 2, 2))
-    myarray[2, 1, 1] <- 0
-    myarray[1, 2, 1] <- 1
-    myarray[1, 1, 2] <- 2
-    myarray
+    (decode <- matrix(c(0, NA, 1, 2), 2))
     ```
     
     Begin by using `apply()` and then replace it by a special accessor; what is the advantage?
@@ -224,10 +220,6 @@ Just add a comma for every new dimension.
     Expected result:
     
     ```{r, echo=FALSE}
-    decode <- array(dim = c(3, 3, 3))
-    decode[2, 1, 1] <- 0
-    decode[1, 2, 1] <- 1
-    decode[1, 1, 2] <- 2
     decode[mat + 1]
     ```
 
