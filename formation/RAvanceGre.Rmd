@@ -1,0 +1,53 @@
+---
+title: "R avancé (2019)"
+output:
+  pdf_document: default
+---
+
+## Objectif
+
+Il est impossible de devenir expert en R avec une seule formation.
+Cependant, ce cours a pour objectif de vous donner un bon niveau en R.
+Un bon niveau R commence par l'utilisation de bons outils et de bonnes pratiques.
+Il passe aussi par la connaissance des derniers packages tels que ceux du tidyverse pour l'analyse de données. Enfin, vous apprendrez comment écrire du code qui est rapide, et comment packager ce code.
+
+Des ressources supplémentaires seront données pour vous laisser approfondir les connaissances acquises pendant ce cours.
+
+
+## Public visé
+
+La formation est proposée sous une double étiquette collège doctoral/MaiMoSiNE (Maison de la Modélisation et de la Simulation) avec une priorité d'accès aux étudiants du collège doctoral de Grenoble. 
+
+**Une connaissance de base de R est requise.** Un module "Introduction à R" devrait être proposé avant celui-ci. 
+
+Le choix des participants se fait sur la base de la description des motivations des inscrits, elles nous permettent d'évaluer la cohérence entre ces motivations et les objectifs de la formation. Il est donc conseillé de lire soigneusement ces objectifs et de décrire vos motivations de façon précise.
+
+## Contenu de la formation
+
+Ce cours se composera de **9 séances de 3h** les lundis, mercredis et jeudis après-midis de 15h à 18h du 11 au 28 mars 2019 inclus. 
+
+Il consistera en un enchainement de cours et d'exercices dirigés (let's code!). 
+L'utilisation de RStudio sera plus que recommandée.
+
+**Ce cours n'est pas un cours de statistique** (il y a une autre formation pour ça).
+
+### Programme prévisionnel
+
+1. Bonne pratiques de programmation avec R (1 séance)
+
+1. Programmation avec R (à lire chez vous + 0,5 séance)
+
+2. Analyse de données avec le tidyverse (3,5 séances)
+
+3. Optimisation de code R (2 séances)
+    - Vectorisation
+    - Rcpp (C++ dans R)
+    - Calcul matriciel
+    - Parallelisation
+
+4. Développer un package R (1 séance)
+    - Commencer un package
+    - Documenter un package
+    - Tester un package et le déployer (sur GitHub et CRAN)
+
+5. Partie bonus: Shiny? (1 séance)
