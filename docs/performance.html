@@ -188,11 +188,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.2.4" data-path="performance.html"><a href="performance.html#do-not-try-to-optimize-everything"><i class="fa fa-check"></i><b>5.2.4</b> Do not try to optimize everything</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="performance.html"><a href="performance.html#vectorization"><i class="fa fa-check"></i><b>5.3</b> Vectorization</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="performance.html"><a href="performance.html#exercises-2"><i class="fa fa-check"></i><b>5.3.1</b> Exercises</a></li>
+<li class="chapter" data-level="5.3.1" data-path="performance.html"><a href="performance.html#exercise-1"><i class="fa fa-check"></i><b>5.3.1</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="performance.html"><a href="performance.html#algorithms-data-structures"><i class="fa fa-check"></i><b>5.4</b> Algorithms &amp; data structures</a></li>
 <li class="chapter" data-level="5.5" data-path="performance.html"><a href="performance.html#Rcpp"><i class="fa fa-check"></i><b>5.5</b> Rcpp</a></li>
-<li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.6</b> Linear algebra</a></li>
+<li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.6</b> Linear algebra</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="performance.html"><a href="performance.html#exercise-2"><i class="fa fa-check"></i><b>5.6.1</b> Exercise</a></li>
+</ul></li>
 <li class="chapter" data-level="5.7" data-path="performance.html"><a href="performance.html#exos"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
 <li class="chapter" data-level="5.8" data-path="performance.html"><a href="performance.html#parallel"><i class="fa fa-check"></i><b>5.8</b> Parallel</a></li>
 </ul></li>
@@ -271,7 +273,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.160   0.004   0.162</code></pre>
+#&gt;   0.160   0.000   0.162</code></pre>
 <p>Here, at each iteration, you reallocating a vector (of increasing size). Allocation of memory takes time as well as computations. This makes your code quadratic with the size of <code>x</code> (if you multiply the size of <code>x</code> by 2, you can expect the execution time to be multiplied by 4, for large sample sizes), whereas it should be only linear.</p>
 <p>A good solution is to always pre-allocate your results (if you know the size):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
@@ -283,7 +285,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.000   0.000   0.003</code></pre>
+#&gt;   0.004   0.000   0.002</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all.equal</span>(res2, res)</code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
 <p>If you don’t know the size of the results, you can store them in a list and merge them afterwards:</p>
@@ -309,7 +311,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.008   0.000   0.005</code></pre>
+#&gt;   0.004   0.000   0.005</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all.equal</span>(res4, res)</code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
 <blockquote>
@@ -324,7 +326,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e7</span>)
 <span class="kw">system.time</span>(<span class="kw">cumsum</span>(x))</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.052   0.000   0.052</code></pre>
+#&gt;   0.040   0.008   0.050</code></pre>
+<hr />
 <p>As a second example, let us generate a matrix of uniform values (max changing for every column):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="fl">1e3</span>
 max &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>
@@ -335,10 +338,10 @@ max &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</s
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.568   0.024   0.594</code></pre>
+#&gt;   0.540   0.040   0.582</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.999350 1.999424 2.999995 3.997716 4.999833 5.993304 6.993449 7.991163 8.973890
-#&gt; [10] 9.998600</code></pre>
+<pre><code>#&gt;  [1] 0.9992733 1.9975855 2.9943939 3.9985295 4.9853001 5.9989464 6.9827442 7.9856026
+#&gt;  [9] 8.9811166 9.9901440</code></pre>
 <p>So, we can either pre-allocate a list or a matrix:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
   l &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, <span class="kw">length</span>(max))
@@ -350,8 +353,8 @@ max &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</s
 <pre><code>#&gt;    user  system elapsed 
 #&gt;   0.028   0.000   0.029</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat2, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9983908 1.9955546 2.9903319 3.9999143 4.9957782 5.9979127 6.9865717 7.9954859
-#&gt;  [9] 8.9779266 9.9863695</code></pre>
+<pre><code>#&gt;  [1] 0.9994997 1.9945268 2.9996468 3.9993043 4.9989702 5.9959175 6.9989815 7.9860012
+#&gt;  [9] 8.9951936 9.9894661</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
   mat3 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, n, <span class="kw">length</span>(max))
   <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(max)) {
@@ -359,10 +362,10 @@ max &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</s
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.028   0.000   0.030</code></pre>
+#&gt;   0.028   0.000   0.029</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat3, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9996334 1.9995662 2.9939714 3.9991570 4.9993893 5.9802167 6.9976649 7.9964826
-#&gt;  [9] 8.9874072 9.9999304</code></pre>
+<pre><code>#&gt;  [1] 0.9991321 1.9996290 2.9998566 3.9933106 4.9990299 5.9648767 6.9962876 7.9891011
+#&gt;  [9] 8.9913810 9.9998873</code></pre>
 <p>What is nice with using a list is that you don’t need to pre-allocate. Indeed, as opposed to atomic vectors, each element of a list is in different places in memory so that you don’t have to reallocate all the data when you add an element to a list.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
   l &lt;-<span class="st"> </span><span class="kw">list</span>()
@@ -372,19 +375,19 @@ max &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</s
   mat4 &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;cbind&quot;</span>, l)
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.028   0.000   0.029</code></pre>
+#&gt;   0.028   0.000   0.028</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat4, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9982794 1.9958738 2.9949206 3.9976202 4.9993334 5.9948538 6.9797649 7.9996922
-#&gt;  [9] 8.9988009 9.9982137</code></pre>
+<pre><code>#&gt;  [1] 0.9994213 1.9986288 2.9989776 3.9971426 4.9944155 5.9791485 6.9937155 7.9907919
+#&gt;  [9] 8.9973582 9.9760254</code></pre>
 <p>Instead of pre-allocating yourself, you can use <code>sapply</code> (or <code>lapply</code> and calling <code>do.call()</code> after, as previously done):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(
   mat4 &lt;-<span class="st"> </span><span class="kw">sapply</span>(max, <span class="cf">function</span>(m) <span class="kw">runif</span>(n, <span class="dt">max =</span> m))
 )</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.028   0.000   0.030</code></pre>
+#&gt;   0.028   0.000   0.029</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat4, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
-<pre><code>#&gt;  [1] 0.9994402 1.9969827 2.9971631 3.9992301 4.9932351 5.9888624 6.9905214 7.9915977
-#&gt;  [9] 8.9765715 9.9994111</code></pre>
+<pre><code>#&gt;  [1] 0.9980504 1.9971051 2.9940374 3.9984231 4.9893505 5.9992387 6.9958400 7.9978336
+#&gt;  [9] 8.9902405 9.9976314</code></pre>
 <p>Don’t listen to people telling you that <code>sapply()</code> is a vectorized operation that is so much faster than loops.</p>
 </div>
 <div id="access-columns-of-a-matrix" class="section level3">
@@ -421,8 +424,8 @@ vec</code></pre></div>
 <div id="vectorization" class="section level2">
 <h2><span class="header-section-number">5.3</span> Vectorization</h2>
 <p>See <a href="http://www.noamross.net/blog/2014/4/16/vectorization-in-r--why.html">this great blog post by Noam Ross</a> to understand vectorization.</p>
-<div id="exercises-2" class="section level3">
-<h3><span class="header-section-number">5.3.1</span> Exercises</h3>
+<div id="exercise-1" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> Exercise</h3>
 <p>Monte-Carlo integration (example from <a href="https://bookdown.org/csgillespie/efficientR/programming.html#vectorised-code">book Efficient R programming</a>)</p>
 <p>Suppose we wish to estimate the integral <span class="math inline">\(\int_0^1 x^2 dx\)</span> using a Monte-Carlo method. Essentially, we throw darts at the curve and count the number of darts that fall below the curve (as in the following figure).</p>
 <p><img src="https://bookdown.org/csgillespie/efficientR/_main_files/figure-html/3-1-1.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -457,7 +460,7 @@ vec</code></pre></div>
 <p><strong>Your task: Find a vectorized solution for this problem:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">monte_carlo_vec</span>(N))</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.052   0.000   0.051</code></pre>
+#&gt;   0.048   0.000   0.049</code></pre>
 </div>
 </div>
 <div id="algorithms-data-structures" class="section level2">
@@ -487,12 +490,32 @@ QRA_3Dmatrix &lt;-<span class="st"> </span><span class="kw">array</span>(<span c
 <span class="st">    </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">1.358</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>( (<span class="dv">1000</span> <span class="op">*</span><span class="st"> </span>mydf[[i, <span class="dv">2</span>]] <span class="op">-</span><span class="st"> </span><span class="dv">129000</span>) <span class="op">/</span><span class="st"> </span><span class="dv">120300</span> ))
 }</code></pre></div>
 <p>Rewrite this for-loop with Rcpp.</p>
+<p>You can also try to use {dplyr} for this problem.</p>
 </div>
 <div id="linear-algebra" class="section level2">
 <h2><span class="header-section-number">5.6</span> Linear algebra</h2>
 <p>In R, prefer using <code>crossprod(X)</code> and <code>tcrossprod(X)</code> instead of <code>t(X) %*% X</code> and <code>X %*% t(X)</code>. Also using <code>A %*% (B %*% y)</code> and <code>solve(A, y)</code> will be faster than <code>A %*% B %*% y</code> and <code>solve(A) %*% y</code>.</p>
 <p>Don’t re-implement linear algebra operations (such as matrix products) yourself. There exist some highly optimized libraries for this. If you want to use linear algebra in Rcpp, try <a href="http://dirk.eddelbuettel.com/code/rcpp.armadillo.html">RcppArmadillo</a> or <a href="http://dirk.eddelbuettel.com/code/rcpp.eigen.html">RcppEigen</a>.</p>
 <p>If you want to use some optimized multi-threaded linear library, you can try <a href="https://mran.revolutionanalytics.com/documents/rro/multithread">Microsoft R Open</a>.</p>
+<div id="exercise-2" class="section level3">
+<h3><span class="header-section-number">5.6.1</span> Exercise</h3>
+<p>Rewrite this problem to use linear algebra instead of a loop:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="fl">1e5</span>
+x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(N<span class="op">*</span><span class="dv">3</span><span class="op">*</span><span class="dv">3</span>);   <span class="kw">dim</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(N,<span class="dv">3</span>,<span class="dv">3</span>)
+y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(N<span class="op">*</span><span class="dv">3</span><span class="op">*</span><span class="dv">3</span>);   <span class="kw">dim</span>(y) &lt;-<span class="st"> </span><span class="kw">c</span>(N,<span class="dv">3</span>,<span class="dv">3</span>)
+
+<span class="kw">system.time</span>({
+  gg &lt;-<span class="st"> </span><span class="dv">0</span>
+  <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">dim</span>(x)[<span class="dv">1</span>]){
+    gg &lt;-<span class="st"> </span>gg <span class="op">+</span><span class="st"> </span><span class="kw">t</span>(x[n,,]) <span class="op">%*%</span><span class="st"> </span>y[n,,]
+  }
+})</code></pre></div>
+<pre><code>#&gt;    user  system elapsed 
+#&gt;   0.448   0.000   0.448</code></pre>
+<p>A possible faster solution takes</p>
+<pre><code>#&gt;    user  system elapsed 
+#&gt;   0.004   0.000   0.004</code></pre>
+</div>
 </div>
 <div id="exos" class="section level2">
 <h2><span class="header-section-number">5.7</span> Exercises</h2>
@@ -500,7 +523,7 @@ QRA_3Dmatrix &lt;-<span class="st"> </span><span class="kw">array</span>(<span c
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
 <span class="kw">system.time</span>(p &lt;-<span class="st"> </span>advr38pkg<span class="op">::</span><span class="kw">random_walk_neg_prop</span>(<span class="fl">1e7</span>))</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.388   0.000   0.389</code></pre>
+#&gt;   0.384   0.000   0.383</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p</code></pre></div>
 <pre><code>#&gt; [1] 0.3400444</code></pre>
 <hr />
@@ -517,7 +540,7 @@ last_row &lt;-<span class="st"> </span>mat_big[<span class="kw">nrow</span>(mat_
   }
 })</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.428   0.000   0.430</code></pre>
+#&gt;   0.404   0.000   0.404</code></pre>
 <hr />
 <p>Why <code>colSums()</code> on a whole matrix is faster than on only half of it?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m0 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="fl">1e6</span>), <span class="fl">1e3</span>, <span class="fl">1e3</span>)
@@ -526,9 +549,9 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(
   <span class="kw">colSums</span>(m0)
 )</code></pre></div>
 <pre><code>#&gt; Unit: microseconds
-#&gt;                  expr      min        lq     mean    median        uq      max neval
-#&gt;  colSums(m0[, 1:500]) 2409.486 2479.2155 2883.284 2556.5375 2936.8965 6197.601   100
-#&gt;           colSums(m0)  787.574  801.0905  827.652  819.8905  844.9055  930.896   100</code></pre>
+#&gt;                  expr      min       lq      mean   median        uq      max neval
+#&gt;  colSums(m0[, 1:500]) 2352.925 2460.486 2740.3984 2544.067 2729.5235 5827.981   100
+#&gt;           colSums(m0)  787.114  797.581  830.4224  825.338  860.1075  925.877   100</code></pre>
 <hr />
 <p>Try to speed up this code by vectorizing it first. Then, recode it in Rcpp and benchmark all the solutions you came up with.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">M &lt;-<span class="st"> </span><span class="dv">50</span>
@@ -564,16 +587,16 @@ breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">
   advr38pkg<span class="op">::</span><span class="kw">count_by_breaks_fast</span>(x, breaks)
 )</code></pre></div>
 <pre><code>#&gt; Unit: microseconds
-#&gt;                                        expr      min        lq      mean    median
-#&gt;                       table(cut(x, breaks)) 2002.117 2013.8800 2086.5852 2031.0245
-#&gt;        hist(x, breaks, plot = FALSE)$counts  293.715  305.5285  325.5650  314.1140
-#&gt;       advr38pkg::count_by_breaks(x, breaks)  250.116  263.4090  313.3110  267.1300
-#&gt;  advr38pkg::count_by_breaks_fast(x, breaks)  151.677  162.5250  175.9563  167.0915
+#&gt;                                        expr      min        lq      mean   median
+#&gt;                       table(cut(x, breaks)) 1939.305 1992.8890 2056.5053 2052.708
+#&gt;        hist(x, breaks, plot = FALSE)$counts  296.459  307.2925  328.2214  316.400
+#&gt;       advr38pkg::count_by_breaks(x, breaks)  250.942  263.3065  319.8725  277.352
+#&gt;  advr38pkg::count_by_breaks_fast(x, breaks)  151.577  163.8285  177.7793  168.628
 #&gt;         uq      max neval
-#&gt;  2112.8155 4689.983   100
-#&gt;   352.6225  379.926   100
-#&gt;   405.7635  437.691   100
-#&gt;   195.9355  230.575   100</code></pre>
+#&gt;  2092.5025 3218.879   100
+#&gt;   354.5790  397.192   100
+#&gt;   409.4430  451.420   100
+#&gt;   196.7695  222.926   100</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x2 &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">10</span>, <span class="dt">size =</span> <span class="fl">1e5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
 breaks2 &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dt">length.out =</span> <span class="dv">100</span>)
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(
@@ -584,15 +607,15 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(
 )</code></pre></div>
 <pre><code>#&gt; Unit: milliseconds
 #&gt;                                          expr       min        lq      mean    median
-#&gt;        advr38pkg::count_by_breaks(x2, breaks)  2.213228  2.259187  2.343899  2.314982
-#&gt;   advr38pkg::count_by_breaks_fast(x2, breaks)  1.200758  1.224035  1.273825  1.261525
-#&gt;       advr38pkg::count_by_breaks(x2, breaks2) 56.702865 91.755561 92.684691 92.618522
-#&gt;  advr38pkg::count_by_breaks_fast(x2, breaks2)  1.229330  1.264461  1.318999  1.303255
+#&gt;        advr38pkg::count_by_breaks(x2, breaks)  2.206192  2.240911  2.294838  2.264220
+#&gt;   advr38pkg::count_by_breaks_fast(x2, breaks)  1.200073  1.215027  1.256914  1.241628
+#&gt;       advr38pkg::count_by_breaks(x2, breaks2) 52.479036 88.253144 88.883374 88.553685
+#&gt;  advr38pkg::count_by_breaks_fast(x2, breaks2)  1.227186  1.256834  1.299580  1.290217
 #&gt;         uq        max neval
-#&gt;   2.368832   3.266145   100
-#&gt;   1.292407   2.099432   100
-#&gt;  94.128273 128.202129   100
-#&gt;   1.332419   2.253346   100</code></pre>
+#&gt;   2.301622   3.197627   100
+#&gt;   1.288435   1.608792   100
+#&gt;  89.086285 126.321388   100
+#&gt;   1.315935   2.201534   100</code></pre>
 <hr />
 <p>An R user wants to implement some sampling on a sparse matrix and provides this working code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Matrix)
@@ -614,9 +637,9 @@ m &lt;-<span class="st"> </span><span class="kw">Matrix</span>(<span class="dv">
   primes &lt;-<span class="st"> </span>advr38pkg<span class="op">::</span><span class="kw">AllPrimesUpTo</span>(N)
 )</code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;   0.032   0.000   0.033</code></pre>
+#&gt;   0.032   0.000   0.032</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(primes, <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>)</code></pre></div>
-<p><img src="performance_files/figure-html/unnamed-chunk-25-1.svg" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="performance_files/figure-html/unnamed-chunk-27-1.svg" width="70%" style="display: block; margin: auto;" /></p>
 <hr />
 <p>Imagine you have a list of animals, which are infected by other individuals:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make some data</span>

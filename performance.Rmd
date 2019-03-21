@@ -93,6 +93,8 @@ x <- rnorm(1e7)
 system.time(cumsum(x))
 ```
 
+***
+
 As a second example, let us generate a matrix of uniform values (max changing for every column):
 
 ```{r}
@@ -197,7 +199,7 @@ Learn more on how to profile your code in RStudio in [this article](https://supp
 
 See [this great blog post by Noam Ross](http://www.noamross.net/blog/2014/4/16/vectorization-in-r--why.html) to understand vectorization. 
 
-### Exercises
+### Exercise
 
 Monte-Carlo integration (example from [book Efficient R programming](https://bookdown.org/csgillespie/efficientR/programming.html#vectorised-code))
 
@@ -286,7 +288,9 @@ for (i in seq_len(nrow(mydf))) {
 }
 ```
 
-Rewrite this for-loop with Rcpp.
+Rewrite this for-loop with Rcpp. 
+
+You can also try to use {dplyr} for this problem.
 
 
 ## Linear algebra
@@ -296,6 +300,33 @@ In R, prefer using `crossprod(X)` and `tcrossprod(X)` instead of `t(X) %*% X` an
 Don't re-implement linear algebra operations (such as matrix products) yourself. There exist some highly optimized libraries for this. If you want to use linear algebra in Rcpp, try [RcppArmadillo](http://dirk.eddelbuettel.com/code/rcpp.armadillo.html) or [RcppEigen](http://dirk.eddelbuettel.com/code/rcpp.eigen.html).
 
 If you want to use some optimized multi-threaded linear library, you can try [Microsoft R Open](https://mran.revolutionanalytics.com/documents/rro/multithread). 
+
+### Exercise
+
+Rewrite this problem to use linear algebra instead of a loop:
+
+```{r}
+N <- 1e5
+x <- rnorm(N*3*3);   dim(x) <- c(N,3,3)
+y <- rnorm(N*3*3);   dim(y) <- c(N,3,3)
+
+system.time({
+  gg <- 0
+  for (n in 1:dim(x)[1]){
+    gg <- gg + t(x[n,,]) %*% y[n,,]
+  }
+})
+```
+
+A possible faster solution takes
+
+```{r, echo=FALSE}
+system.time({
+  dim(x) <- c(3 * N, 3)
+  dim(y) <- c(3 * N, 3)
+  gg2 <- crossprod(x, y)
+})
+```
 
 
 ## Exercises {#exos}
