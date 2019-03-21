@@ -2,6 +2,7 @@
 
 ```{r, include=FALSE}
 source("knitr-options.R")
+WORDS_TO_IGNORE <- c("truelength", "growable")
 source("spelling-check.R")
 ```
 
@@ -53,11 +54,41 @@ system.time({
 all.equal(res2, res)
 ```
 
+If you don't know the size of the results, you can store them in a list and merge them afterwards:
+
+```{r}
+system.time({
+  current_sum <- 0
+  res3 <- list()
+  for (i in seq_along(x)) {
+    current_sum <- current_sum + x[i]
+    res3[[i]] <- current_sum
+  }
+})
+all.equal(unlist(res3), res)
+```
+
+With recent versions of R (>= 3.4), you can efficiently grow a vector using
+
+```{r}
+system.time({
+  current_sum <- 0
+  res4 <- c()
+  for (i in seq_along(x)) {
+    current_sum <- current_sum + x[i]
+    res4[i] <- current_sum
+  }
+})
+all.equal(res4, res)
+```
+
+> Assigning to an element of a vector beyond the current length now over-allocates by a small fraction. The new vector is marked internally as growable, and the true length of the new vector is stored in the truelength field. This makes building up a vector result by assigning to the next element beyond the current length more efficient, though pre-allocating is still preferred. The implementation is subject to change and not intended to be used in packages at this time. ([NEWS](https://cran.r-project.org/doc/manuals/r-release/NEWS.html))
+
 An even better solution would be to avoid the loop by using a vectorized function:
 
 ```{r}
-system.time(res3 <- cumsum(x))
-all.equal(res3, res)
+system.time(res5 <- cumsum(x))
+all.equal(res5, res)
 x <- rnorm(1e7)
 system.time(cumsum(x))
 ```
