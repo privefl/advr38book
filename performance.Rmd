@@ -458,56 +458,56 @@ plot(primes, pch = 20, cex = 0.5)
 
 ***
 
-Imagine you have a list of animals, which are infected by other individuals:
+<!-- Imagine you have a list of animals, which are infected by other individuals: -->
 
-```{r}
-# Make some data
-allanimals <- data.frame(
-  AnimalID = c("a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "b1", "b2", "b3",
-               "b4", "b5", "c1", "c2", "c3", "c4", "d1", "d2", "e1", "e2", "e3",
-               "e4", "e5", "e6", "f1", "f2", "f3", "f4", "f5", "f6", "f7"),
-  InfectingAnimal = c(NA, "a1", "a2", "a3", "a4", "a5", "a6", "a7", "a2", "b1",
-                      "b2", "b3", "b4", "b3", "c1", "c2", "c3", "c3", "d1",
-                      "b1", "e1", "e2", "e3", "e4", "e5", "e1", "f1", "f2", 
-                      "f3", "f4", "f5", "f6"), 
-  habitat = c(1L, 2L, 1L, 2L, 2L, 1L, 3L, 2L, 4L, 5L, 6L, 1L, 2L, 3L, 2L, 3L, 
-              2L, 1L, 1L, 2L, 5L, 4L, 1L, 1L, 1L, 1L, 4L, 5L, 4L, 5L, 4L, 3L),
-  stringsAsFactors = FALSE
-)
-# Check it out
-DT::datatable(allanimals)
-```
+<!-- ```{r} -->
+<!-- # Make some data -->
+<!-- allanimals <- data.frame( -->
+<!--   AnimalID = c("a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "b1", "b2", "b3", -->
+<!--                "b4", "b5", "c1", "c2", "c3", "c4", "d1", "d2", "e1", "e2", "e3", -->
+<!--                "e4", "e5", "e6", "f1", "f2", "f3", "f4", "f5", "f6", "f7"), -->
+<!--   InfectingAnimal = c(NA, "a1", "a2", "a3", "a4", "a5", "a6", "a7", "a2", "b1", -->
+<!--                       "b2", "b3", "b4", "b3", "c1", "c2", "c3", "c3", "d1", -->
+<!--                       "b1", "e1", "e2", "e3", "e4", "e5", "e1", "f1", "f2",  -->
+<!--                       "f3", "f4", "f5", "f6"),  -->
+<!--   habitat = c(1L, 2L, 1L, 2L, 2L, 1L, 3L, 2L, 4L, 5L, 6L, 1L, 2L, 3L, 2L, 3L,  -->
+<!--               2L, 1L, 1L, 2L, 5L, 4L, 1L, 1L, 1L, 1L, 4L, 5L, 4L, 5L, 4L, 3L), -->
+<!--   stringsAsFactors = FALSE -->
+<!-- ) -->
+<!-- # Check it out -->
+<!-- DT::datatable(allanimals) -->
+<!-- ``` -->
 
-For a given animal (1), you want to get which animal (2) infected (1), and then which animal infected (2), and so on you want to get the whole path of infection. 
+<!-- For a given animal (1), you want to get which animal (2) infected (1), and then which animal infected (2), and so on you want to get the whole path of infection.  -->
 
-```{r, echo=FALSE, out.width="20%"}
-knitr::include_graphics("https://i.stack.imgur.com/oWoOc.jpg")
-```
+<!-- ```{r, echo=FALSE, out.width="20%"} -->
+<!-- knitr::include_graphics("https://i.stack.imgur.com/oWoOc.jpg") -->
+<!-- ``` -->
 
-For example for animal `d2`, you want to return: 
+<!-- For example for animal `d2`, you want to return:  -->
 
-```{r, echo=FALSE}
-allanimals_ID <- unique(c(allanimals$AnimalID, allanimals$InfectingAnimal))
+<!-- ```{r, echo=FALSE} -->
+<!-- allanimals_ID <- unique(c(allanimals$AnimalID, allanimals$InfectingAnimal)) -->
 
-infected <- rep(NA_integer_, length(allanimals_ID))
-infected[match(allanimals$AnimalID, allanimals_ID)] <-
-  match(allanimals$InfectingAnimal, allanimals_ID)
+<!-- infected <- rep(NA_integer_, length(allanimals_ID)) -->
+<!-- infected[match(allanimals$AnimalID, allanimals_ID)] <- -->
+<!--   match(allanimals$InfectingAnimal, allanimals_ID) -->
 
-curOne <- match("d2", allanimals_ID)
-path <- list()
-i <- 1
-while (!is.na(nextOne <- infected[curOne])) {
-  path[[i]] <- curOne
-  i <- i + 1
-  curOne <- nextOne
-}
+<!-- curOne <- match("d2", allanimals_ID) -->
+<!-- path <- list() -->
+<!-- i <- 1 -->
+<!-- while (!is.na(nextOne <- infected[curOne])) { -->
+<!--   path[[i]] <- curOne -->
+<!--   i <- i + 1 -->
+<!--   curOne <- nextOne -->
+<!-- } -->
 
-allanimals[unlist(path), ]
-```
+<!-- allanimals[unlist(path), ] -->
+<!-- ``` -->
 
-Find an efficient solution to this problem so that your solution could be used for a large dataset.
+<!-- Find an efficient solution to this problem so that your solution could be used for a large dataset. -->
 
-***
+<!-- *** -->
 
 Find a fast method to compute pairwise distances between 2 matrices. A naive R function would be:
 
