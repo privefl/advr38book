@@ -48,14 +48,6 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.4/datatables.js"></script>
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-100463316-5"></script>
 <script>
@@ -140,7 +132,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a></li>
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#git"><i class="fa fa-check"></i><b>2.3</b> Version control (Git)</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git?</a></li>
+<li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git-you-dont-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git? You don’t use Git?</a></li>
 <li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#git"><i class="fa fa-check"></i><b>2.3.2</b> Git</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#getting-help"><i class="fa fa-check"></i><b>2.4</b> Getting help</a><ul>
@@ -188,11 +180,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.2.4" data-path="performance.html"><a href="performance.html#do-not-try-to-optimize-everything"><i class="fa fa-check"></i><b>5.2.4</b> Do not try to optimize everything</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="performance.html"><a href="performance.html#vectorization"><i class="fa fa-check"></i><b>5.3</b> Vectorization</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="performance.html"><a href="performance.html#exercises-2"><i class="fa fa-check"></i><b>5.3.1</b> Exercises</a></li>
+<li class="chapter" data-level="5.3.1" data-path="performance.html"><a href="performance.html#exercise-1"><i class="fa fa-check"></i><b>5.3.1</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="performance.html"><a href="performance.html#algorithms-data-structures"><i class="fa fa-check"></i><b>5.4</b> Algorithms &amp; data structures</a></li>
 <li class="chapter" data-level="5.5" data-path="performance.html"><a href="performance.html#Rcpp"><i class="fa fa-check"></i><b>5.5</b> Rcpp</a></li>
-<li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.6</b> Linear algebra</a></li>
+<li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.6</b> Linear algebra</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="performance.html"><a href="performance.html#exercise-2"><i class="fa fa-check"></i><b>5.6.1</b> Exercise</a></li>
+</ul></li>
 <li class="chapter" data-level="5.7" data-path="performance.html"><a href="performance.html#exos"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
 <li class="chapter" data-level="5.8" data-path="performance.html"><a href="performance.html#parallel"><i class="fa fa-check"></i><b>5.8</b> Parallel</a></li>
 </ul></li>
@@ -263,7 +257,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ol style="list-style-type: decimal">
 <li><p>After having read the following two sections (<a href="packages.html#pkg-start">6.3</a> and <a href="packages.html#pkg-basics">6.4</a>), create a first function that helps you <code>select</code> variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it. Bonus: can you use base R function <code>subset</code> to use variables names without quoting them?</p></li>
 <li><p>Check your package with <code>Ctrl/Cmd + Shift + E</code> and fix all problems. At this point, the only problem should be a WARNING that just says to you that you need to fill the <em>DESCRIPTION</em> file with proper information. Do that and run checks again. You could submit this package to CRAN in its present form; congratulations on your new R package!</p></li>
-<li><p>Learn how to make unit tests in section <a href="packages.html#pkg-tests">6.5.1</a> and do that for your new function <code>select2</code>. Which silly cases you should test? Here, you can use <code>usethis::use_package(&quot;dplyr&quot;, type = &quot;Suggests&quot;)</code> to add package {dplyr} to the suggested packages (because you will use it only in tests).</p></li>
+<li><p>Learn how to make unit tests in section <a href="packages.html#pkg-tests">6.5.1</a> and do that for your new function <code>select2</code>. Which silly cases you should test? Here, you can use <code>usethis::use_package(&quot;dplyr&quot;, type = &quot;Suggests&quot;)</code> to add package {dplyr} to the suggested packages (because you will use this package in tests only).</p></li>
 <li><p>Make a function <code>filter2</code> that enables to filter rows of a data frame. Add some documentation and tests for this function as well.</p></li>
 <li><p>Learn about continuous checking of your package in section <a href="packages.html#pkg-ci">6.6.1</a>. Follow the instructions, commit and push your changes. Go check your new badges on GitHub!</p></li>
 <li><p>Learn how to make a website out of your package in section <a href="packages.html#pkgdown">6.6.2</a> and build one for this package (or another of your packages).</p></li>
@@ -299,7 +293,7 @@ usethis<span class="op">::</span><span class="kw">use_roxygen_md</span>()</code>
 <ul>
 <li><p>Put your R code in the <code>R/</code> directory. Basically it would be mostly functions. Don’t use random lines of code like in R scripts.</p></li>
 <li><p>Never explicitly load a package with <code>library()</code> or <code>require()</code>. Use <code>usethis::use_package()</code> to add one package to your <em>DESCRIPTION</em> file. Then, refer to some function with <code>&lt;package&gt;::&lt;function&gt;()</code> in your code, or by using the <code>@import &lt;package&gt;</code> or <code>@import &lt;package&gt; &lt;function&gt;</code> roxygen tags.</p></li>
-<li><p>If one R function need another function in another R file, use the <code>@import &lt;basename&gt;.R</code> to make sure it is built and documented before (it is for example useful if you define a new generic and a method in different files).</p></li>
+<li><p>If one R function need another function in another R file, use the <code>@import &lt;basename&gt;.R</code> to make sure it is built and documented before (it is for example useful if you define new generics and methods in different files).</p></li>
 <li><p>If you modify global <code>options()</code> or graphics <code>par()</code>, save the old values and reset when you’re done:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">old &lt;-<span class="st"> </span><span class="kw">options</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
 <span class="kw">on.exit</span>(<span class="kw">options</span>(old), <span class="dt">add =</span> <span class="ot">TRUE</span>)</code></pre></div></li>
@@ -307,7 +301,7 @@ usethis<span class="op">::</span><span class="kw">use_roxygen_md</span>()</code>
 </div>
 <div id="documentation" class="section level3">
 <h3><span class="header-section-number">6.4.3</span> Documentation</h3>
-<p>Documentation is super useful for other people (including future-you, in 6 months when you won’t remember what you implemented in your package). Make sure to document your code as soon as you write it, otherwise you will never do.</p>
+<p>Documentation is super useful for other people (including future-you, in 6 months when you won’t remember what you implemented in your package). Make sure to document your code as soon as you write it, otherwise you will never do it.</p>
 <p>Forget about the <code>man/</code> (manual) directory, files in this directory will be automatically generated thanks to the roxygen comments you use on top of your R functions.</p>
 <p>Learn more with <a href="http://r-pkgs.had.co.nz/man.html">this chapter</a>. Note that you can now use the Markdown syntax in the documentation. For example, instead of having to use <code>\code{foo}</code>, you can use directly <code>`foo`</code> in the roxygen comments.</p>
 <p>To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use <code>usethis::use_package(&quot;magrittr&quot;)</code> and put the following code somewhere in an R file of your package.</p>
@@ -333,7 +327,7 @@ magrittr<span class="op">::</span><span class="st">`</span><span class="dt">%&gt
 <div id="rcpp" class="section level3">
 <h3><span class="header-section-number">6.5.2</span> Rcpp</h3>
 <p>We learned about Rcpp in section <a href="performance.html#Rcpp">5.5</a>. To use Rcpp code in your package, just use <code>usethis::use_rcpp()</code> and put the 2 roxygen tags e.g. in the file <code>R/&lt;package&gt;-package.R</code>. Then, create .cpp files with RStudio and save them the <code>src/</code> directory.</p>
-<p>I recall that the <code>// [[Rcpp::export]]</code> makes the C++ function available to R, it doesn’t export the function as part of your package (though you could access it with <code>&lt;package&gt;:::&lt;rcpp-fun&gt;()</code>). If you want your package to explicitly provides an Rcpp function (as an R function), you also need roxygen comments (beginning with <code>//'</code> instead of <code>#'</code>, including <code>//' @export</code>) on top of your Rcpp function.</p>
+<p>Note that the <code>// [[Rcpp::export]]</code> makes the C++ function available to R, it doesn’t export the function as part of your package (though you could access it with <code>&lt;package&gt;:::&lt;rcpp-fun&gt;()</code>). If you want your package to explicitly provides an Rcpp function (as an R function), you also need roxygen comments (beginning with <code>//'</code> instead of <code>#'</code>, including <code>//' @export</code>) on top of your Rcpp function.</p>
 <p>If you need some C++ code from another package (e.g. from package {RcppArmadillo}), normally you would use</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// [[Rcpp::depends(RcppArmadillo)]]</span>
 <span class="pp">#include </span><span class="im">&lt;RcppArmadillo.h&gt;</span></code></pre></div>
@@ -344,7 +338,7 @@ magrittr<span class="op">::</span><span class="st">`</span><span class="dt">%&gt
 <p>There are two types of ignore:</p>
 <ul>
 <li><p>Files ignored by Git, specified in the <em>.gitignore</em> file. For example, you don’t want to track changes for some large data files or some binaries often changing. You can ignore files by using <code>usethis::use_git_ignore()</code>.</p></li>
-<li><p>Files ignored during the build of your package, specified in the <em>.Rbuildignore</em> file. For example, in my packages, I generally have two directories called <code>tmp-tests</code> and <code>tmp-save</code> where I just put some random code that I used once during development. Checks will tell you if your package contains non-standard files or directories. Moreover, I generally ignore vignettes (we’ll see how to build them as part of a website for your package with {pkgdown}). Guess what? There is also a {usethis} function for this: <code>usethis::use_build_ignore()</code>.</p></li>
+<li><p>Files ignored during the build of your package, specified in the <em>.Rbuildignore</em> file. For example, in my packages, I generally have two directories called <code>tmp-tests</code> and <code>tmp-save</code> where I just put some random code that I used once during development. Checks will tell you if your package contains non-standard files or directories. Moreover, I generally ignore vignettes (we’ll see how to build them as part of a website for your package with {pkgdown}). There is also a {usethis} function for this: <code>usethis::use_build_ignore()</code>.</p></li>
 </ul>
 </div>
 <div id="the-inst-directory" class="section level3">
@@ -353,7 +347,7 @@ magrittr<span class="op">::</span><span class="st">`</span><span class="dt">%&gt
 <p>For example, you can have:</p>
 <ul>
 <li><p><code>inst/extdata/</code>: additional external data for examples and vignettes. See section <a href="packages.html#pkg-data">6.5.5</a> for more detail. You can also use <code>inst/testdata/</code> for data you need in tests. To access one file in this directory, use <code>system.file()</code>. For example, if you have a file <code>inst/extdata/mydata.csv</code> in your package, an user can find it using <code>system.file(&quot;extdata&quot;, &quot;mydata.csv&quot;, package = &quot;mypackage&quot;)</code>.</p></li>
-<li><p><code>inst/include</code>: some C++ code usable by others. For example, when you use <code>#include &lt;Rcpp.h&gt;</code> at the top of your Rcpp code, you’re using the code in <a href="https://github.com/RcppCore/Rcpp/blob/master/inst/include/Rcpp.h">there</a>.</p></li>
+<li><p><code>inst/include</code>: some C++ code that others can use by <code>LinkingTo</code> your package. For example, when you use <code>#include &lt;Rcpp.h&gt;</code> at the top of your Rcpp code, you’re using the code in <a href="https://github.com/RcppCore/Rcpp/blob/master/inst/include/Rcpp.h">there</a>.</p></li>
 <li><p><code>inst/CITATION</code>: how to cite the package. Learn more <a href="http://r-pkgs.had.co.nz/inst.html#inst-citation">there</a>.</p></li>
 </ul>
 </div>
@@ -374,7 +368,7 @@ magrittr<span class="op">::</span><span class="st">`</span><span class="dt">%&gt
 <div id="pkgdown" class="section level3">
 <h3><span class="header-section-number">6.6.2</span> Pkgdown</h3>
 <ol style="list-style-type: decimal">
-<li><p>install package {pkgdown} with <code>devtools::install_github(&quot;hadley/pkgdown&quot;)</code> (still under development)</p></li>
+<li><p>install R package {pkgdown}</p></li>
 <li><p>run <code>usethis::use_pkgdown()</code></p></li>
 <li><p>run <code>pkgdown:::build_site()</code> and push the new files</p></li>
 <li><p>on GitHub, go to the settings of your repo, and enable GitHub Pages using the master branch <code>/docs/</code> folder. This will render everything that you have in this folder as a website (after 0-2 minutes).</p></li>
@@ -441,19 +435,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

@@ -30,7 +30,7 @@ Just to experiment with making an R package, we'll try to make a small package t
 
 1. Check your package with `Ctrl/Cmd + Shift + E` and fix all problems. At this point, the only problem should be a WARNING that just says to you that you need to fill the *DESCRIPTION* file with proper information. Do that and run checks again. You could submit this package to CRAN in its present form; congratulations on your new R package!
 
-1. Learn how to make unit tests in section \@ref(pkg-tests) and do that for your new function `select2`. Which silly cases you should test? Here, you can use `usethis::use_package("dplyr", type = "Suggests")` to add package {dplyr} to the suggested packages (because you will use it only in tests).
+1. Learn how to make unit tests in section \@ref(pkg-tests) and do that for your new function `select2`. Which silly cases you should test? Here, you can use `usethis::use_package("dplyr", type = "Suggests")` to add package {dplyr} to the suggested packages (because you will use this package in tests only).
 
 1. Make a function `filter2` that enables to filter rows of a data frame. Add some documentation and tests for this function as well.
 
@@ -81,7 +81,7 @@ See [this chapter](http://r-pkgs.had.co.nz/description.html).
 
 - Never explicitly load a package with `library()` or `require()`. Use `usethis::use_package()` to add one package to your *DESCRIPTION* file. Then, refer to some function with `<package>::<function>()` in your code, or by using the `@import <package>` or `@import <package> <function>` roxygen tags.
 
-- If one R function need another function in another R file, use the `@import <basename>.R` to make sure it is built and documented before (it is for example useful if you define a new generic and a method in different files). 
+- If one R function need another function in another R file, use the `@import <basename>.R` to make sure it is built and documented before (it is for example useful if you define new generics and methods in different files). 
 
 - If you modify global `options()` or graphics `par()`, save the old values and reset when you’re done:
 
@@ -92,7 +92,7 @@ See [this chapter](http://r-pkgs.had.co.nz/description.html).
 
 ### Documentation
 
-Documentation is super useful for other people (including future-you, in 6 months when you won't remember what you implemented in your package). Make sure to document your code as soon as you write it, otherwise you will never do.
+Documentation is super useful for other people (including future-you, in 6 months when you won't remember what you implemented in your package). Make sure to document your code as soon as you write it, otherwise you will never do it.
 
 Forget about the `man/` (manual) directory, files in this directory will be automatically generated thanks to the roxygen comments you use on top of your R functions. 
 
@@ -128,7 +128,7 @@ Learn more with [this chapter](http://r-pkgs.had.co.nz/tests.html).
 
 We learned about Rcpp in section \@ref(Rcpp). To use Rcpp code in your package, just use `usethis::use_rcpp()` and put the 2 roxygen tags e.g. in the file `R/<package>-package.R`. Then, create .cpp files with RStudio and save them the `src/` directory.
 
-I recall that the `// [[Rcpp::export]]` makes the C++ function available to R, it doesn't export the function as part of your package (though you could access it with `<package>:::<rcpp-fun>()`). If you want your package to explicitly provides an Rcpp function (as an R function), you also need roxygen comments (beginning with `//'` instead of `#'`, including `//' @export`) on top of your Rcpp function.
+Note that the `// [[Rcpp::export]]` makes the C++ function available to R, it doesn't export the function as part of your package (though you could access it with `<package>:::<rcpp-fun>()`). If you want your package to explicitly provides an Rcpp function (as an R function), you also need roxygen comments (beginning with `//'` instead of `#'`, including `//' @export`) on top of your Rcpp function.
 
 If you need some C++ code from another package (e.g. from package {RcppArmadillo}), normally you would use
 ```{Rcpp, eval=FALSE}
@@ -143,7 +143,8 @@ There are two types of ignore:
 
 - Files ignored by Git, specified in the *.gitignore* file. For example, you don't want to track changes for some large data files or some binaries often changing. You can ignore files by using `usethis::use_git_ignore()`.
 
-- Files ignored during the build of your package, specified in the *.Rbuildignore* file. For example, in my packages, I generally have two directories called `tmp-tests` and `tmp-save` where I just put some random code that I used once during development. Checks will tell you if your package contains non-standard files or directories. Moreover, I generally ignore vignettes (we'll see how to build them as part of a website for your package with {pkgdown}). Guess what? There is also a {usethis} function for this: `usethis::use_build_ignore()`.
+- Files ignored during the build of your package, specified in the *.Rbuildignore* file. For example, in my packages, I generally have two directories called `tmp-tests` and `tmp-save` where I just put some random code that I used once during development. Checks will tell you if your package contains non-standard files or directories. Moreover, I generally ignore vignettes (we'll see how to build them as part of a website for your package with {pkgdown}). 
+There is also a {usethis} function for this: `usethis::use_build_ignore()`.
 
 ### The `inst/` directory
 
@@ -153,7 +154,7 @@ For example, you can have:
 
 - `inst/extdata/`: additional external data for examples and vignettes. See section \@ref(pkg-data) for more detail. You can also use `inst/testdata/` for data you need in tests. To access one file in this directory, use `system.file()`. For example, if you have a file `inst/extdata/mydata.csv` in your package, an user can find it using `system.file("extdata", "mydata.csv", package = "mypackage")`.
 
-- `inst/include`: some C++ code usable by others. For example, when you use `#include <Rcpp.h>` at the top of your Rcpp code, you're using the code in [there](https://github.com/RcppCore/Rcpp/blob/master/inst/include/Rcpp.h).
+- `inst/include`: some C++ code that others can use by `LinkingTo` your package. For example, when you use `#include <Rcpp.h>` at the top of your Rcpp code, you're using the code in [there](https://github.com/RcppCore/Rcpp/blob/master/inst/include/Rcpp.h).
 
 - `inst/CITATION`: how to cite the package. Learn more [there](http://r-pkgs.had.co.nz/inst.html#inst-citation).
 
@@ -175,7 +176,7 @@ Finally, to prevent typos in your package and especially for non-native English 
 
 ### Pkgdown {#pkgdown}
 
-1. install package {pkgdown} with `devtools::install_github("hadley/pkgdown")` (still under development)
+1. install R package {pkgdown}
 
 2. run `usethis::use_pkgdown()`
 
