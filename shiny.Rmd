@@ -15,7 +15,7 @@ You see my Shiny App for creating pixel art models.
 devtools::install_github("privefl/pixelart")
 
 # Run Shiny App
-pixelart::run_app()
+pixelart::run_pixelart()
 ```
 
 ## DataCamp course
