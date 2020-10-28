@@ -1,39 +1,38 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Good practices | Advanced R Course</title>
-  <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France (2018).">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Good practices | Advanced R Course" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://privefl.github.io/advr38book/" />
   <meta property="og:image" content="https://privefl.github.io/advr38book/images/hexsticker.png" />
-  <meta property="og:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France (2018)." />
+  <meta property="og:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
   <meta name="github-repo" content="privefl/advr38book" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 2 Good practices | Advanced R Course" />
   <meta name="twitter:site" content="@privefl" />
-  <meta name="twitter:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France (2018)." />
+  <meta name="twitter:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
   <meta name="twitter:image" content="https://privefl.github.io/advr38book/images/hexsticker.png" />
 
-<meta name="author" content="Florian Privé">
+<meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2019-03-11">
+<meta name="date" content="2020-10-28" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="introduction.html">
-<link rel="next" href="r-programming.html">
+<link rel="prev" href="introduction.html"/>
+<link rel="next" href="r-programming.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -41,6 +40,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -48,14 +48,8 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.4/datatables.js"></script>
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-100463316-5"></script>
 <script>
@@ -68,41 +62,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -141,7 +160,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a></li>
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#git"><i class="fa fa-check"></i><b>2.3</b> Version control (Git)</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git-you-dont-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git? You don’t use Git?</a></li>
-<li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#git"><i class="fa fa-check"></i><b>2.3.2</b> Git</a></li>
+<li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#git-1"><i class="fa fa-check"></i><b>2.3.2</b> Git</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#getting-help"><i class="fa fa-check"></i><b>2.4</b> Getting help</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#help-yourself-learn-how-to-debug"><i class="fa fa-check"></i><b>2.4.1</b> Help yourself, learn how to debug</a></li>
@@ -188,11 +207,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.2.4" data-path="performance.html"><a href="performance.html#do-not-try-to-optimize-everything"><i class="fa fa-check"></i><b>5.2.4</b> Do not try to optimize everything</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="performance.html"><a href="performance.html#vectorization"><i class="fa fa-check"></i><b>5.3</b> Vectorization</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="performance.html"><a href="performance.html#exercises-2"><i class="fa fa-check"></i><b>5.3.1</b> Exercises</a></li>
+<li class="chapter" data-level="5.3.1" data-path="performance.html"><a href="performance.html#exercise-1"><i class="fa fa-check"></i><b>5.3.1</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="performance.html"><a href="performance.html#algorithms-data-structures"><i class="fa fa-check"></i><b>5.4</b> Algorithms &amp; data structures</a></li>
 <li class="chapter" data-level="5.5" data-path="performance.html"><a href="performance.html#Rcpp"><i class="fa fa-check"></i><b>5.5</b> Rcpp</a></li>
-<li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.6</b> Linear algebra</a></li>
+<li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.6</b> Linear algebra</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="performance.html"><a href="performance.html#exercise-2"><i class="fa fa-check"></i><b>5.6.1</b> Exercise</a></li>
+</ul></li>
 <li class="chapter" data-level="5.7" data-path="performance.html"><a href="performance.html#exos"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
 <li class="chapter" data-level="5.8" data-path="performance.html"><a href="performance.html#parallel"><i class="fa fa-check"></i><b>5.8</b> Parallel</a></li>
 </ul></li>
@@ -251,7 +272,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread.</p>
 <p>– Hadley Wickham</p>
 </blockquote>
-<p>Please make your code readable by following e.g. <a href="http://style.tidyverse.org/">this coding style</a> (examples below come from this guide).</p>
+<p>Please make your code readable by following e.g. <a href="http://style.tidyverse.org/">this coding style</a> (examples below come from this guide).</p>
 <p>You can use <a href="https://github.com/r-lib/styler">package <strong>styler</strong></a> (that provides RStudio addins) to correct your style:</p>
 <p><img src="https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif" width="70%" style="display: block; margin: auto;" /></p>
 <div id="naming" class="section level3">
@@ -260,110 +281,108 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="spacing" class="section level3">
 <h3><span class="header-section-number">2.1.2</span> Spacing</h3>
-<p>Put a space before and after <code>=</code> when naming arguments in function calls. Most infix operators (<code>==</code>, <code>+</code>, <code>-</code>, <code>&lt;-</code>, etc.) are also surrounded by spaces, except those with relatively high precedence: <code>^</code>, <code>:</code>, <code>::</code>, and <code>:::</code>. Always put a space after a comma, and never before (just like in regular English).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-average &lt;-<span class="st"> </span><span class="kw">mean</span>((feet <span class="op">/</span><span class="st"> </span><span class="dv">12</span>) <span class="op">+</span><span class="st"> </span>inches, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
-base<span class="op">::</span>sum
-
-<span class="co"># Bad</span>
-average&lt;-<span class="kw">mean</span>(feet<span class="op">/</span><span class="dv">12</span><span class="op">+</span>inches,<span class="dt">na.rm=</span><span class="ot">TRUE</span>)
-x &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">:</span><span class="st"> </span><span class="dv">10</span>
-base <span class="op">::</span><span class="st"> </span>sum</code></pre></div>
+<p>Put a space before and after <code>=</code> when naming arguments in function calls.
+Most infix operators (<code>==</code>, <code>+</code>, <code>-</code>, <code>&lt;-</code>, etc.) are also surrounded by
+spaces, except those with relatively high precedence: <code>^</code>, <code>:</code>, <code>::</code>, and <code>:::</code>. Always put a space after a comma, and never before (just like in regular English).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Good</span></a>
+<a class="sourceLine" id="cb1-2" title="2">average &lt;-<span class="st"> </span><span class="kw">mean</span>((feet <span class="op">/</span><span class="st"> </span><span class="dv">12</span>) <span class="op">+</span><span class="st"> </span>inches, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb1-3" title="3">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb1-4" title="4">base<span class="op">::</span>sum</a>
+<a class="sourceLine" id="cb1-5" title="5"></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="co"># Bad</span></a>
+<a class="sourceLine" id="cb1-7" title="7">average&lt;-<span class="kw">mean</span>(feet<span class="op">/</span><span class="dv">12</span><span class="op">+</span>inches,<span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb1-8" title="8">x &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">:</span><span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb1-9" title="9">base <span class="op">::</span><span class="st"> </span>sum</a></code></pre></div>
 </div>
 <div id="indenting" class="section level3">
 <h3><span class="header-section-number">2.1.3</span> Indenting</h3>
 <p>Curly braces, <code>{}</code>, define the most important hierarchy of R code. To make this hierarchy easy to see, always indent the code inside <code>{}</code> by two spaces. This should be automatic in RStudio.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-<span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span>debug) {
-  <span class="kw">message</span>(<span class="st">&quot;y is negative&quot;</span>)
-}
-
-<span class="cf">if</span> (y <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {
-  <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {
-    <span class="kw">log</span>(x)
-  } <span class="cf">else</span> {
-    <span class="kw">message</span>(<span class="st">&quot;x is negative or zero&quot;</span>)
-  }
-} <span class="cf">else</span> {
-  y <span class="op">^</span><span class="st"> </span>x
-}
-
-<span class="co"># Bad</span>
-<span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span>debug)
-<span class="kw">message</span>(<span class="st">&quot;Y is negative&quot;</span>)
-
-<span class="cf">if</span> (y <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)
-{
-    <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {
-      <span class="kw">log</span>(x)
-    } <span class="cf">else</span> {
-  <span class="kw">message</span>(<span class="st">&quot;x is negative or zero&quot;</span>)
-    }
-} <span class="cf">else</span> { y <span class="op">^</span><span class="st"> </span>x }</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Good</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span>debug) {</a>
+<a class="sourceLine" id="cb2-3" title="3">  <span class="kw">message</span>(<span class="st">&quot;y is negative&quot;</span>)</a>
+<a class="sourceLine" id="cb2-4" title="4">}</a>
+<a class="sourceLine" id="cb2-5" title="5"></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="cf">if</span> (y <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb2-7" title="7">  <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb2-8" title="8">    <span class="kw">log</span>(x)</a>
+<a class="sourceLine" id="cb2-9" title="9">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb2-10" title="10">    <span class="kw">message</span>(<span class="st">&quot;x is negative or zero&quot;</span>)</a>
+<a class="sourceLine" id="cb2-11" title="11">  }</a>
+<a class="sourceLine" id="cb2-12" title="12">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb2-13" title="13">  y <span class="op">^</span><span class="st"> </span>x</a>
+<a class="sourceLine" id="cb2-14" title="14">}</a>
+<a class="sourceLine" id="cb2-15" title="15"></a>
+<a class="sourceLine" id="cb2-16" title="16"><span class="co"># Bad</span></a>
+<a class="sourceLine" id="cb2-17" title="17"><span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span>debug)</a>
+<a class="sourceLine" id="cb2-18" title="18"><span class="kw">message</span>(<span class="st">&quot;Y is negative&quot;</span>)</a>
+<a class="sourceLine" id="cb2-19" title="19"></a>
+<a class="sourceLine" id="cb2-20" title="20"><span class="cf">if</span> (y <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb2-21" title="21">{</a>
+<a class="sourceLine" id="cb2-22" title="22">    <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb2-23" title="23">      <span class="kw">log</span>(x)</a>
+<a class="sourceLine" id="cb2-24" title="24">    } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb2-25" title="25">  <span class="kw">message</span>(<span class="st">&quot;x is negative or zero&quot;</span>)</a>
+<a class="sourceLine" id="cb2-26" title="26">    }</a>
+<a class="sourceLine" id="cb2-27" title="27">} <span class="cf">else</span> { y <span class="op">^</span><span class="st"> </span>x }</a></code></pre></div>
 </div>
 <div id="long-lines" class="section level3">
 <h3><span class="header-section-number">2.1.4</span> Long lines</h3>
-<p>Strive to limit your code to 80 characters per line. This fits comfortably on a printed page with a reasonably sized font. If you find yourself running out of room, this is a good indication that you should encapsulate some of the work in a separate function.</p>
+<p>Strive to limit your code to 80 characters per line. This fits comfortably on a
+printed page with a reasonably sized font. If you find yourself running out of
+room, this is a good indication that you should encapsulate some of the work in
+a separate function.</p>
 <p><img src="images/margin80.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>If a function call is too long to fit on a single line, use one line for the function name, for each argument, and for the closing <code>)</code>. This makes the code easier to read and to modify later.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-<span class="kw">do_something_very_complicated</span>(
-  <span class="dt">something =</span> <span class="st">&quot;that&quot;</span>,
-  <span class="dt">requires =</span> many,
-  <span class="dt">arguments =</span> <span class="st">&quot;some of which may be long&quot;</span>
-)
-
-<span class="co"># Bad</span>
-<span class="kw">do_something_very_complicated</span>(<span class="st">&quot;that&quot;</span>, requires, many, arguments,
-                              <span class="st">&quot;some of which may be long&quot;</span></code></pre></div>
+<p>If a function call is too long to fit on a single line, use one line for
+the function name, for each argument, and for the closing <code>)</code>.
+This makes the code easier to read and to modify later.</p>
 </div>
 <div id="other" class="section level3">
 <h3><span class="header-section-number">2.1.5</span> Other</h3>
 <ul>
 <li>Use <code>&lt;-</code>, not <code>=</code>, for assignment. Keep <code>=</code> for parameters.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-x &lt;-<span class="st"> </span><span class="dv">5</span>
-<span class="kw">system.time</span>(
-  x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e6</span>)
-)
-
-<span class="co"># Bad</span>
-x =<span class="st"> </span><span class="dv">5</span>
-<span class="kw">system.time</span>(
-  <span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="fl">1e6</span>)
-)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Good</span></a>
+<a class="sourceLine" id="cb3-2" title="2">x &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="kw">system.time</span>(</a>
+<a class="sourceLine" id="cb3-4" title="4">  x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e6</span>)</a>
+<a class="sourceLine" id="cb3-5" title="5">)</a>
+<a class="sourceLine" id="cb3-6" title="6"></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co"># Bad</span></a>
+<a class="sourceLine" id="cb3-8" title="8">x =<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="kw">system.time</span>(</a>
+<a class="sourceLine" id="cb3-10" title="10">  <span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="fl">1e6</span>)</a>
+<a class="sourceLine" id="cb3-11" title="11">)</a></code></pre></div>
 <ul>
-<li><p>Don’t put <code>;</code> at the end of a line, and avoid multiple commands on the same line.</p></li>
+<li><p>Don’t put <code>;</code> at the end of a line, and avoid multiple commands
+on the same line.</p></li>
 <li><p>Only use <code>return()</code> for early returns. Otherwise rely on R to return the result of the last evaluated expression.</p></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-add_two &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {
-  x <span class="op">+</span><span class="st"> </span>y
-}
-
-<span class="co"># Bad</span>
-add_two &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {
-  <span class="kw">return</span>(x <span class="op">+</span><span class="st"> </span>y)
-}</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># Good</span></a>
+<a class="sourceLine" id="cb4-2" title="2">add_two &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
+<a class="sourceLine" id="cb4-3" title="3">  x <span class="op">+</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb4-4" title="4">}</a>
+<a class="sourceLine" id="cb4-5" title="5"></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co"># Bad</span></a>
+<a class="sourceLine" id="cb4-7" title="7">add_two &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
+<a class="sourceLine" id="cb4-8" title="8">  <span class="kw">return</span>(x <span class="op">+</span><span class="st"> </span>y)</a>
+<a class="sourceLine" id="cb4-9" title="9">}</a></code></pre></div>
 <ul>
-<li>Use <code>&quot;</code>, not <code>'</code>, for quoting text. The only exception is when the text already contains double quotes and no single quotes.</li>
+<li>Use <code>"</code>, not <code>'</code>, for quoting text. The only exception is when the text already contains double quotes and no single quotes.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-<span class="st">&quot;Text&quot;</span>
-<span class="st">&#39;Text with &quot;quotes&quot;&#39;</span>
-<span class="st">&#39;&lt;a href=&quot;http://style.tidyverse.org&quot;&gt;A link&lt;/a&gt;&#39;</span>
-
-<span class="co"># Bad</span>
-<span class="st">&#39;Text&#39;</span>
-<span class="st">&#39;Text with &quot;double&quot; and </span><span class="ch">\&#39;</span><span class="st">single</span><span class="ch">\&#39;</span><span class="st"> quotes&#39;</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># Good</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="st">&quot;Text&quot;</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="st">&#39;Text with &quot;quotes&quot;&#39;</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="st">&#39;&lt;a href=&quot;http://style.tidyverse.org&quot;&gt;A link&lt;/a&gt;&#39;</span></a>
+<a class="sourceLine" id="cb5-5" title="5"></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co"># Bad</span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="st">&#39;Text&#39;</span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="st">&#39;Text with &quot;double&quot; and </span><span class="ch">\&#39;</span><span class="st">single</span><span class="ch">\&#39;</span><span class="st"> quotes&#39;</span></a></code></pre></div>
 </div>
 </div>
 <div id="rstudio" class="section level2">
 <h2><span class="header-section-number">2.2</span> RStudio</h2>
-<p>Download the latest version of <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> (&gt; 1.1) and use it!</p>
-<p>Learn more about new features of RStudio v1.1 <a href="https://www.rstudio.com/resources/videos/rstudio-1-1-new-features/">there</a>.</p>
+<p>Download a recent version of <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> (&gt;= 1.2) and use it!</p>
+<p>Learn more about the new features of RStudio at <a href="https://rstudio.com/products/rstudio/release-notes/" class="uri">https://rstudio.com/products/rstudio/release-notes/</a>.</p>
 <p>RStudio features:</p>
 <ul>
 <li>everything you can expect from a good IDE</li>
@@ -380,7 +399,7 @@ add_two &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {
 <li><em>Ctrl + Shift + M</em> (pipe)</li>
 <li><em>Alt + Shift + K</em> to see all shortcuts…</li>
 </ol></li>
-<li>Panels (everything is integrated, including <strong>Git</strong> and a terminal)</li>
+<li>Panels (everything is integrated, including Git and a terminal)</li>
 <li>Interactive data importation from files and connections (see <a href="https://www.rstudio.com/resources/webinars/importing-data-into-r/">this webinar</a>)</li>
 </ul>
 <p><img src="images/data-import-environment.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -391,11 +410,11 @@ add_two &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {
 <ul>
 <li><strong>R Projects</strong>:
 <ul>
-<li><strong>Meaningful structure</strong> in one folder</li>
+<li>Meaningful structure in one folder</li>
 <li>The working directory automatically switches to the project’s folder</li>
 <li>The <em>File</em> tab displays the associated files and folders in the project</li>
 <li>History of R commands and open files</li>
-<li>Any settings associated with the project, such as Git settings, are loaded. Note that you can have a file <em>set-up.R</em> or <em>.Rprofile</em> in the project’s root directory to enable project-specific settings to be loaded each time people open the project.</li>
+<li>Any settings associated with the project, such as Git settings, are loaded. Note that you can have a <em>.Rprofile</em> file in the project’s root directory to enable project-specific settings to be loaded each time people open the project.</li>
 </ul></li>
 </ul>
 <blockquote class="twitter-tweet" data-lang="en" align="center">
@@ -424,7 +443,7 @@ Figure 2.1: You don’t use Version Control?
 <li>Wanted to submit a change to someone else’s code?</li>
 <li>Wanted to share your code, or let other people work on your code?</li>
 </ul>
-<p>In these cases, and no doubt others, a version control system should make your life easier (see <a href="https://stackoverflow.com/a/1408464/6103040" class="uri">https://stackoverflow.com/a/1408464/6103040</a>).</p>
+<p>In these cases, and probably many others, a version control system should make your life easier (see <a href="https://stackoverflow.com/a/1408464/6103040" class="uri">https://stackoverflow.com/a/1408464/6103040</a>).</p>
 <ul>
 <li>Version control for the researcher: don’t do that, use Git</li>
 </ul>
@@ -438,13 +457,12 @@ Figure 2.1: You don’t use Version Control?
 </center>
 <p>Also, see <a href="https://stackoverflow.com/q/2712421/6103040" class="uri">https://stackoverflow.com/q/2712421/6103040</a>.</p>
 <ul>
-<li><p>Use version control to work from anywhere <img src="images/git.svg" width="70%" style="display: block; margin: auto;" /></p></li>
+<li><p>Use version control to work from anywhere
+<img src="images/git.svg" width="70%" style="display: block; margin: auto;" /></p></li>
 <li><p>Working with GitHub can be a line on your CV (<a href="https://github.com/blog/2336-invest-in-tools-students-can-grow-with-github-and-rstudio-for-data-science-at-duke-university">read more</a>):</p></li>
 </ul>
 <blockquote>
 <p>A lot of students have said to me later, even first-year undergraduates, that using GitHub has helped them a lot when they went for an internship or a research position interview.</p>
-</blockquote>
-<blockquote>
 <p>They are able to say, “Oh, I already have worked with GitHub. I’m familiar with it. I know how it works.” So I think they are at least able to put that on their CV and go into a situation where there’s a research or data analysis team and say, “Yeah, sure. I am actually familiar with the same tools that you use.”</p>
 <p>– Mine Cetinkaya-Rundel, Duke University, RStudio</p>
 </blockquote>
@@ -452,7 +470,7 @@ Figure 2.1: You don’t use Version Control?
 <li>Be able to get websites for your packages with <a href="http://pkgdown.r-lib.org/">pkgdown</a>, for your book (like this one!) with <a href="https://bookdown.org/">bookdown</a>, for your personal webpage with <a href="https://rmarkdown.rstudio.com/rmarkdown_websites.html">R Markdown Websites</a> or <a href="https://bookdown.org/yihui/blogdown/">blogdown</a>.</li>
 </ul>
 </div>
-<div id="git" class="section level3">
+<div id="git-1" class="section level3">
 <h3><span class="header-section-number">2.3.2</span> Git</h3>
 <ul>
 <li>Main Git platforms (share your code, collaborate):
@@ -507,7 +525,7 @@ Figure 2.1: You don’t use Version Control?
 <p><img src="images/meme-SO.jpg" width="25%" style="display: block; margin: auto;" /></p>
 <p>You can ask questions on Stack Overflow (using the tag <code>r</code>). You need to <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example">make a great R reproducible example</a> if you want your question to be answered. Sometimes, while making this reproducible example, you find the answer to your problem.</p>
 <p>If you’re confident enough with your R skills, you can take the next step and <a href="https://stackoverflow.com/unanswered/tagged/r?tab=newest">answer questions on Stack Overflow</a>. It’s a good way to increase your skills, or just to <a href="https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/">procrastinate while writing a scientific manuscript</a>.</p>
-<p>You can also join communities, e.g. <a href="https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM">join the French-speaking R community</a> or <a href="https://rladies-community-slack.herokuapp.com/">join the R-Ladies community</a>. These are generally much friendlier and welcoming spaces as compared to Stack Overflow.</p>
+<p>You can also join communities, e.g. <a href="https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM">join the French-speaking R community</a> or <a href="https://rladies-community-slack.herokuapp.com/">join the R-Ladies community</a>. These are generally much friendlier and welcoming spaces compared to Stack Overflow.</p>
 
 </div>
 </div>
@@ -523,11 +541,13 @@ Figure 2.1: You don’t use Version Control?
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -535,12 +555,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -552,6 +571,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

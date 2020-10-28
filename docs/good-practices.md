@@ -87,18 +87,6 @@ the function name, for each argument, and for the closing `)`.
 This makes the code easier to read and to modify later. 
 
 
-```r
-# Good
-do_something_very_complicated(
-  something = "that",
-  requires = many,
-  arguments = "some of which may be long"
-)
-
-# Bad
-do_something_very_complicated("that", requires, many, arguments,
-                              "some of which may be long"
-```
 
 ### Other
 
@@ -154,9 +142,9 @@ add_two <- function(x, y) {
 
 ## RStudio
 
-Download the latest version of [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (> 1.1) and use it!
+Download a recent version of [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (>= 1.2) and use it!
 
-Learn more about new features of RStudio v1.1 [there](https://www.rstudio.com/resources/videos/rstudio-1-1-new-features/).
+Learn more about the new features of RStudio at https://rstudio.com/products/rstudio/release-notes/.
 
 RStudio features:
 
@@ -172,7 +160,7 @@ RStudio features:
     4. *Ctrl + Shift + B* (build package, website or book)
     4. *Ctrl + Shift + M* (pipe)
     4. *Alt + Shift + K* to see all shortcuts...
-- Panels (everything is integrated, including **Git** and a terminal)
+- Panels (everything is integrated, including Git and a terminal)
 - Interactive data importation from files and connections (see [this webinar](https://www.rstudio.com/resources/webinars/importing-data-into-r/))
 
 <img src="images/data-import-environment.png" width="70%" style="display: block; margin: auto;" />
@@ -182,11 +170,11 @@ RStudio features:
 <img src="images/diagnostics.png" width="70%" style="display: block; margin: auto;" />
 
 - **R Projects**: 
-    - **Meaningful structure** in one folder
+    - Meaningful structure in one folder
     - The working directory automatically switches to the project's folder
     - The *File* tab displays the associated files and folders in the project
     - History of R commands and open files
-    - Any settings associated with the project, such as Git settings, are loaded. Note that you can have a file *set-up.R* or *.Rprofile* in the project's root directory to enable project-specific settings to be loaded each time people open the project.
+    - Any settings associated with the project, such as Git settings, are loaded. Note that you can have a *.Rprofile* file in the project's root directory to enable project-specific settings to be loaded each time people open the project.
 
 <blockquote class="twitter-tweet" data-lang="en" align="center"><p lang="en" dir="ltr">The only two things that make <a href="https://twitter.com/JennyBryan?ref_src=twsrc%5Etfw">\@JennyBryan</a> 😤😠🤯. Instead use projects + here::here() <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/GwxnHePL4n">pic.twitter.com/GwxnHePL4n</a></p>&mdash; Hadley Wickham (\@hadleywickham) <a href="https://twitter.com/hadleywickham/status/940021008764846080?ref_src=twsrc%5Etfw">11 décembre 2017</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -209,7 +197,7 @@ Have you ever:
 - Wanted to submit a change to someone else's code?
 - Wanted to share your code, or let other people work on your code?
 
-In these cases, and no doubt others, a version control system should make your life easier (see https://stackoverflow.com/a/1408464/6103040).
+In these cases, and probably many others, a version control system should make your life easier (see https://stackoverflow.com/a/1408464/6103040).
 
 - Version control for the researcher: don't do that, use Git
 
@@ -229,7 +217,7 @@ Also, see https://stackoverflow.com/q/2712421/6103040.
 - Working with GitHub can be a line on your CV ([read more](https://github.com/blog/2336-invest-in-tools-students-can-grow-with-github-and-rstudio-for-data-science-at-duke-university)):
 
 > A lot of students have said to me later, even first-year undergraduates, that using GitHub has helped them a lot when they went for an internship or a research position interview.
-
+>
 > They are able to say, "Oh, I already have worked with GitHub. I'm familiar with it. I know how it works.” So I think they are at least able to put that on their CV and go into a situation where there's a research or data analysis team and say, "Yeah, sure. I am actually familiar with the same tools that you use."
 >
 > -- Mine Cetinkaya-Rundel, Duke University, RStudio
@@ -293,4 +281,4 @@ You can ask questions on Stack Overflow (using the tag `r`). You need to [make a
 
 If you're confident enough with your R skills, you can take the next step and [answer questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). It's a good way to increase your skills, or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).
 
-You can also join communities, e.g. [join the French-speaking R community](https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM) or [join the R-Ladies community](https://rladies-community-slack.herokuapp.com/). These are generally much friendlier and welcoming spaces as compared to Stack Overflow.
+You can also join communities, e.g. [join the French-speaking R community](https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM) or [join the R-Ladies community](https://rladies-community-slack.herokuapp.com/). These are generally much friendlier and welcoming spaces compared to Stack Overflow.
