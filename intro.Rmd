@@ -9,9 +9,9 @@ source("spelling-check.R")
 
 - Have at least a basic knowledge of R,
 
-- Download the latest versions of [R](https://www.r-project.org/) (>= 3.4) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (>= 1.1),
+- Install recent versions of [R](https://www.r-project.org/) (>= 3.4) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (>= 1.2),
 
-- Install associated package **advr38pkg** with `devtools::install_github("privefl/advr38pkg")`. This will install other dependencies that are needed in this book.
+- Install associated package **advr38pkg** with `remotes::install_github("privefl/advr38pkg")`. This will install other dependencies that are needed in this book.
 
 ## Content
 
