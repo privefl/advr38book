@@ -1,6 +1,6 @@
 # R programming
 
-This chapter is about base R stuff that I find important and that are often overlooked or unknown to most R users.
+This chapter is about base R stuff that I find important and that is often overlooked or unknown to most R users.
 
 Learn more with the [Advanced R book](https://adv-r.hadley.nz/).
 
@@ -37,7 +37,7 @@ median(-1, 5, 118)
 args(median)
 ```
 
-Always use one vector if you're not sure:
+Always use a vector if you're not sure:
 
 ```{r}
 min(c(-1, 5, 118))
@@ -180,14 +180,15 @@ mat[1, ]
 mat[, 1:2]
 mat[1, 1:2]
 mat[1, 1:2, drop = FALSE]
-mat[cbind(1, 1:2)]
+(two_col_ind <- cbind(1, 1:2))
+mat[two_col_ind]
 mat[,]
 mat[]
 mat[] <- 2
 mat
 ```
 
-Just add a comma for every new dimension.
+If you use arrays with more than two dimensions, just add a comma for every new dimension.
 
 ### Exercises
 
@@ -226,11 +227,11 @@ Just add a comma for every new dimension.
 
 ## Useful R base functions
 
-In this section, I mention some useful R base functions (also see [this comprehensive list in French](https://cran.r-project.org/doc/contrib/Kauffmann_aide_memoire_R.pdf) and [this one in English](https://github.com/peterhurford/adv-r-book-solutions/blob/master/03_vocab/functions.r)):
+In this section, I present some useful R base functions (also see [this comprehensive list in French](https://cran.r-project.org/doc/contrib/Kauffmann_aide_memoire_R.pdf) and [this one in English](https://github.com/peterhurford/adv-r-book-solutions/blob/master/03_vocab/functions.r)):
 
 ### General
 
-```{r}
+```{r, eval=FALSE}
 # To get some help
 ?topic
 
@@ -346,23 +347,26 @@ Beware with `ifelse()` (learn more [there](https://privefl.github.io/blog/On-the
 ```{r}
 ifelse(FALSE, 0, 1:5)
 `if`(FALSE, 0, 1:5)
+if (FALSE) 0 else 1:5
 ```
 
 ### Exercises
 
-1. Use `sample()`, `rep_len()` and `split()` to make a function that randomly splits some indices in a list of `K` groups of indices. [Which are the special cases that you should consider?]
+1. Use `sample()`, `rep_len()` and `split()` to make a function that randomly splits some indices in a list of `K` groups of indices (like for cross-validation). [Which are the special cases that you should consider?]
 
     ```{r}
     advr38pkg::split_ind(1:40, 3)
     ```
 
-1. Use `replicate()` and `sample()` to get a 95% confidence interval for the mean of the following vector:
+1. Use `replicate()` and `sample()` to get a 95% confidence interval (using bootstrapping) for the mean of the following vector:
 
     ```{r}
     set.seed(1)
     (x <- rnorm(10))
     mean(x)
     ```
+   
+    Expected output (approximately): 
     
     ```{r, echo=FALSE}
     quantile(replicate(1e6, mean(sample(x, replace = TRUE))), probs = c(0.025, 0.975))
@@ -385,7 +389,7 @@ ifelse(FALSE, 0, 1:5)
     head(my_mtcars)
     ```
 
-1. In the following data frame (recall that it is also a list), for the first 3 columns, replace letters by corresponding numbers based on the `code`:
+1. In the following data frame (recall that a data frame is also a list), for the first 3 columns, replace letters by corresponding numbers based on the `code`:
 
     ```{r}
     df <- data.frame(
@@ -548,5 +552,5 @@ print.Worker <- function(x) {
 }
 
 (worker_007 <- Worker("James", "Bond", "secret agent"))
-(worker_me <- Worker("Florian", "Privé", "PhD student"))
+(worker_me <- Worker("Florian", "Privé", "postdoc"))
 ```
