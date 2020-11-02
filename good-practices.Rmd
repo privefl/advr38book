@@ -246,7 +246,7 @@ knitr::include_graphics("images/git.svg")
 - Be able to get websites for your packages with [pkgdown](http://pkgdown.r-lib.org/), for your book (like this one!) with [bookdown](https://bookdown.org/), for your personal webpage with [R Markdown Websites](https://rmarkdown.rstudio.com/rmarkdown_websites.html) or [blogdown](https://bookdown.org/yihui/blogdown/).
 
 
-### Git
+### About Git
 
 - Main Git platforms (share your code, collaborate):
     - [GitHub](https://github.com/magrichard), [documentation](https://guides.github.com/activities/hello-world/) (only free for public repositories, now owned by Microsoft)
@@ -283,7 +283,7 @@ knitr::include_graphics("images/git.svg")
 
 ### Help yourself, learn how to debug
 
-A basic solution is to print everything, but it's usually not working well on complex problems. A convenient solution to see all the variables' states in your code is to place some `browser()` from where you want to check the variables' states.
+A basic solution is to print everything, but it's usually not working well on complex problems. A convenient solution to see all the variables' states in your code is to place some `browser()` from where you want to check the variables' states. To debug functions, `debugonce()` is also very useful.
 
 Learn more with [this book chapter](https://bookdown.org/rdpeng/rprogdatascience/debugging.html), [this other book chapter](http://adv-r.had.co.nz/Exceptions-Debugging.html), [this webinar](https://www.rstudio.com/resources/videos/debugging-techniques-in-rstudio/) and [this RStudio article](https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio).
 
