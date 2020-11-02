@@ -22,6 +22,7 @@ source("spelling-check.R")
 (0.1 + 0.2) == 0.3
 print(c(0.1, 0.2, 0.3), digits = 20)
 all.equal(0.1 + 0.2, 0.3)  ## equality with some tolerance
+all.equal(0.1 + 0.2, 0.4)
 isTRUE(all.equal(0.1 + 0.2, 0.4))  ## if you want a boolean, use isTRUE()
 ```
 
@@ -30,10 +31,10 @@ isTRUE(all.equal(0.1 + 0.2, 0.4))  ## if you want a boolean, use isTRUE()
 ```{r}
 min(-1, 5, 118)
 max(-1, 5, 118)
-args(max)
 mean(-1, 5, 118)
-args(mean)
 median(-1, 5, 118)
+args(max)
+args(mean)
 args(median)
 ```
 
@@ -55,12 +56,12 @@ sample(10.1)
 ```
 
 ```{r}
+n <- 10
+1:n-1  # is (1:n) - 1, so 0:(n - 1)
+1:(n-1)
+seq_len(n - 1)
 1:0
 seq_len(0)  ## prefer using seq_len (e.g. in for-loops)
-n <- 10
-1:n+1  # is (1:n) + 1, so 2:(n + 1)
-1:(n+1)
-seq_len(n + 1)
 ```
 
 
@@ -123,6 +124,12 @@ class(vec)
 - list: vector of elements with possibly different types in it. 
 
 - data.frame: **a list** whose elements have the same lengths, and formatted somewhat as a matrix.
+
+```{r}
+head(iris)
+dim(iris)
+length(iris)
+```
 
 ### Accessors
 
