@@ -425,20 +425,14 @@ Lexical scoping determines where to look for values, not when to look for them. 
 ```{r}
 h <- function() {
   x <- 10
-  g <- function() {
-    f <- function() {
-      x + 1
-    }
-    print(environment(f))
-    print(ls(environment(f)))  ## list the objects in the environment
-    print(parent.env(environment(f)))  ## environment(g)
-    f()
+  f <- function() {
+    x + 1
   }
-  print(environment(g))
-  print(ls(environment(g)))
-  print(parent.env(environment(g)))
-  g()
+  f()
 }
+```
+
+```{r}
 x <- 100
 h()
 ```
@@ -466,8 +460,7 @@ f <- function(i) {
   i + 1
 }
 sapply(1:10, f)
-count1
-count2
+c(count1, count2)
 ```
 
 Finally, how works the `...`? Basically, you copy and paste what is put in `...`:
