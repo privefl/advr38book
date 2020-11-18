@@ -301,9 +301,42 @@ Don't re-implement linear algebra operations (such as matrix products) yourself.
 
 If you want to use some optimized multi-threaded linear library, you can try [Microsoft R Open](https://mran.revolutionanalytics.com/documents/rro/multithread). 
 
-### Exercise
+### Exercises
 
-Rewrite this problem to use linear algebra instead of a loop:
+Compute the Euclidean distances between each of row of `X` and each row of `Y`:
+
+```{r}
+set.seed(1)
+X <- matrix(rnorm(1000), ncol = 5)
+Y <- matrix(rnorm(5000), ncol = 5)
+```
+
+A naive implementation would be:
+
+```{r}
+system.time({
+  dist <- matrix(NA_real_, nrow(X), nrow(Y))
+  for (i in seq_len(nrow(X))) {
+    for (j in seq_len(nrow(Y))) {
+      dist[i, j] <- sqrt(sum((X[i, ] - Y[j, ])^2))
+    }
+  }
+})
+```
+
+A possible faster solution takes
+
+```{r, echo=FALSE}
+fast_dist <- function(x, y) {
+  sqrt(outer(rowSums(x^2), rowSums(y^2), '+') - tcrossprod(x, 2 * y))
+}
+stopifnot(all.equal(fast_dist(X, Y), dist))
+system.time(fast_dist(X, Y))
+```
+
+***
+
+Rewrite this problem to use linear algebra instead of a loop (Hint: resize the 3-dimensional arrays as 2D matrices):
 
 ```{r}
 N <- 1e5
@@ -455,77 +488,6 @@ system.time(
 )
 plot(primes, pch = 20, cex = 0.5)
 ```
-
-***
-
-<!-- Imagine you have a list of animals, which are infected by other individuals: -->
-
-<!-- ```{r} -->
-<!-- # Make some data -->
-<!-- allanimals <- data.frame( -->
-<!--   AnimalID = c("a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "b1", "b2", "b3", -->
-<!--                "b4", "b5", "c1", "c2", "c3", "c4", "d1", "d2", "e1", "e2", "e3", -->
-<!--                "e4", "e5", "e6", "f1", "f2", "f3", "f4", "f5", "f6", "f7"), -->
-<!--   InfectingAnimal = c(NA, "a1", "a2", "a3", "a4", "a5", "a6", "a7", "a2", "b1", -->
-<!--                       "b2", "b3", "b4", "b3", "c1", "c2", "c3", "c3", "d1", -->
-<!--                       "b1", "e1", "e2", "e3", "e4", "e5", "e1", "f1", "f2",  -->
-<!--                       "f3", "f4", "f5", "f6"),  -->
-<!--   habitat = c(1L, 2L, 1L, 2L, 2L, 1L, 3L, 2L, 4L, 5L, 6L, 1L, 2L, 3L, 2L, 3L,  -->
-<!--               2L, 1L, 1L, 2L, 5L, 4L, 1L, 1L, 1L, 1L, 4L, 5L, 4L, 5L, 4L, 3L), -->
-<!--   stringsAsFactors = FALSE -->
-<!-- ) -->
-<!-- # Check it out -->
-<!-- DT::datatable(allanimals) -->
-<!-- ``` -->
-
-<!-- For a given animal (1), you want to get which animal (2) infected (1), and then which animal infected (2), and so on you want to get the whole path of infection.  -->
-
-<!-- ```{r, echo=FALSE, out.width="20%"} -->
-<!-- knitr::include_graphics("https://i.stack.imgur.com/oWoOc.jpg") -->
-<!-- ``` -->
-
-<!-- For example for animal `d2`, you want to return:  -->
-
-<!-- ```{r, echo=FALSE} -->
-<!-- allanimals_ID <- unique(c(allanimals$AnimalID, allanimals$InfectingAnimal)) -->
-
-<!-- infected <- rep(NA_integer_, length(allanimals_ID)) -->
-<!-- infected[match(allanimals$AnimalID, allanimals_ID)] <- -->
-<!--   match(allanimals$InfectingAnimal, allanimals_ID) -->
-
-<!-- curOne <- match("d2", allanimals_ID) -->
-<!-- path <- list() -->
-<!-- i <- 1 -->
-<!-- while (!is.na(nextOne <- infected[curOne])) { -->
-<!--   path[[i]] <- curOne -->
-<!--   i <- i + 1 -->
-<!--   curOne <- nextOne -->
-<!-- } -->
-
-<!-- allanimals[unlist(path), ] -->
-<!-- ``` -->
-
-<!-- Find an efficient solution to this problem so that your solution could be used for a large dataset. -->
-
-<!-- *** -->
-
-Find a fast method to compute pairwise distances between 2 matrices. A naive R function would be:
-
-```{r}
-naive_pdist <- function(A, B) {
-  # A: matrix with observation vectors (nrow = number of observations)
-  # B: matrix with another set of vectors (e.g. cluster centers)
-  result = matrix(ncol = nrow(B), nrow = nrow(A))
-  for (i in 1:nrow(A))
-      for (j in 1:nrow(B))
-          result[i,j] = sqrt(sum( (A[i,] - B[j,])^2 ))
-
-  result
-}
-```
-
-To see a comparison of different computation strategies, see [this nice blog post](http://blog.felixriedel.com/2013/05/pairwise-distances-in-r/).
-
 
 ## Parallel
 
