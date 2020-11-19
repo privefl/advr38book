@@ -156,17 +156,17 @@ apply(mat4, 2, max)[1:10]
 
 Don't listen to people telling you that `sapply()` is a vectorized operation that is so much faster than loops.
 
-### Access columns of a matrix
+<!-- ### Access columns of a matrix -->
 
-When you do computations on a matrix, recall that a matrix is just a vector with some dimensions.
+<!-- When you do computations on a matrix, recall that a matrix is just a vector with some dimensions. -->
 
-```{r}
-vec <- 1:20
-dim(vec) <- c(4, 5)
-vec
-```
+<!-- ```{r} -->
+<!-- vec <- 1:20 -->
+<!-- dim(vec) <- c(4, 5) -->
+<!-- vec -->
+<!-- ``` -->
 
-So, as you can see in this example, R matrices are column-oriented, which means that elements of the same column are stored contiguously in memory. Therefore, accessing elements of the same column is fast. 
+<!-- So, as you can see in this example, R matrices are column-oriented, which means that elements of the same column are stored contiguously in memory. Therefore, accessing elements of the same column is fast.  -->
 
 
 ### Use the right function
@@ -252,17 +252,6 @@ monte_carlo_vec <- function(N) mean(runif(N)^2 > runif(N))
 ```{r}
 system.time(monte_carlo_vec(N))
 ```
-
-
-## Algorithms & data structures
-
-Sometimes, getting the right data structure (e.g. using a matrix instead of a data frame or integers instead of characters) can save you some computation time.
-
-Is your algorithm doing some redundant computations making it e.g. quadratic instead of linear with respect to the dimension of your data?
-
-See exercises (section \@ref(exos)) for some insights.
-
-You can also find a detailed example in [this blog post](https://privefl.github.io/blog/performance-when-algorithmics-meets-mathematics/).
 
 ## Rcpp {#Rcpp}
 
@@ -361,6 +350,16 @@ system.time({
 })
 ```
 
+
+## Algorithms & data structures
+
+Sometimes, getting the right data structure (e.g. using a matrix instead of a data frame or integers instead of characters) can save you some computation time.
+
+Is your algorithm doing some redundant computations making it e.g. quadratic instead of linear with respect to the dimension of your data?
+
+See exercises (section \@ref(exos)) for some insights.
+
+You can also find a detailed example in [this blog post](https://privefl.github.io/blog/performance-when-algorithmics-meets-mathematics/).
 
 ## Exercises {#exos}
 
