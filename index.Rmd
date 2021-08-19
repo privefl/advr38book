@@ -20,7 +20,7 @@ cover-image: "images/hexsticker.png"
 
 ```{r setup, include=FALSE}
 source("knitr-options.R")
-source("spelling-check.R")
+# source("spelling-check.R")
 ```
 
 ## License {-}

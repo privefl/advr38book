@@ -187,7 +187,7 @@ mat[1, ]
 mat[, 1:2]
 mat[1, 1:2]
 mat[1, 1:2, drop = FALSE]
-(two_col_ind <- cbind(1, 1:2))
+(two_col_ind <- cbind(c(1, 3, 2), c(1, 4, 2)))
 mat[two_col_ind]
 mat[,]
 mat[]
@@ -223,7 +223,7 @@ If you use arrays with more than two dimensions, just add a comma for every new 
     (decode <- matrix(c(0, NA, 1, 2), 2))
     ```
     
-    Begin by using `apply()` and then replace it by a special accessor; what is the advantage?
+    Begin by using `apply()` and then replace it by a special accessor; what is the benefit?
     
     Expected result:
     
@@ -251,7 +251,6 @@ example(sum)
 str(iris)
 
 # List objects of environment
-a <- 1:4; b <- list()
 ls()
 
 # Remove objects from the environment
@@ -337,11 +336,11 @@ setdiff(letters[1:4], letters[3:5])
 
 ### Logical operators
 
-```{r}
-tryCatch(TRUE | stop("will go there"), error = function(e) print(e))
+```{r, error=TRUE}
+TRUE | stop("will go there")
 TRUE || stop("won't go there")  ## won't evaluate second condition if first one is TRUE
-c(TRUE, FALSE, TRUE, TRUE) & c(FALSE, TRUE, TRUE, TRUE) 
-c(TRUE, FALSE, TRUE, TRUE) && c(FALSE, TRUE, TRUE, TRUE)  ## no warning!!
+c(TRUE, FALSE, TRUE, TRUE) & c(FALSE, TRUE, TRUE, FALSE) 
+c(TRUE, FALSE, TRUE, TRUE) && c(FALSE, TRUE, TRUE, FALSE)  ## no warning!!
 ```
 
 ```{r}
@@ -379,7 +378,7 @@ if (FALSE) 0 else 1:5
     quantile(replicate(1e6, mean(sample(x, replace = TRUE))), probs = c(0.025, 0.975))
     ```
 
-1. Use `match()` and some accessor to add a column "my_val" to this data `my_mtcars` by putting the corresponding value of the column specified in "my_col". [Can your solution be used for any number of column names?]
+1. Use `match()` and some special accessor to add a column "my_val" to this data `my_mtcars` by putting the corresponding value of the column specified in "my_col". [Can your solution be used for any number of column names?]
 
     ```{r}
     my_mtcars <- mtcars[c("mpg", "hp")]

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Packages | Advanced R Course</title>
   <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Packages | Advanced R Course" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2020-10-28" />
+<meta name="date" content="2021-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="performance.html"/>
 <link rel="next" href="shiny.html"/>
+<script src="libs/header-attrs-2.7.2/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -62,18 +63,17 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -93,7 +93,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -142,17 +142,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./index.html">Advanced R Course</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#author"><i class="fa fa-check"></i>Author</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#content"><i class="fa fa-check"></i><b>1.2</b> Content</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#useful-resources"><i class="fa fa-check"></i><b>1.3</b> Useful resources</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="good-practices.html"><a href="good-practices.html"><i class="fa fa-check"></i><b>2</b> Good practices</a><ul>
-<li class="chapter" data-level="2.1" data-path="good-practices.html"><a href="good-practices.html#coding-style"><i class="fa fa-check"></i><b>2.1</b> Coding style</a><ul>
+<li class="chapter" data-level="2" data-path="good-practices.html"><a href="good-practices.html"><i class="fa fa-check"></i><b>2</b> Good practices</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="good-practices.html"><a href="good-practices.html#coding-style"><i class="fa fa-check"></i><b>2.1</b> Coding style</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="good-practices.html"><a href="good-practices.html#naming"><i class="fa fa-check"></i><b>2.1.1</b> Naming</a></li>
 <li class="chapter" data-level="2.1.2" data-path="good-practices.html"><a href="good-practices.html#spacing"><i class="fa fa-check"></i><b>2.1.2</b> Spacing</a></li>
 <li class="chapter" data-level="2.1.3" data-path="good-practices.html"><a href="good-practices.html#indenting"><i class="fa fa-check"></i><b>2.1.3</b> Indenting</a></li>
@@ -160,31 +164,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1.5" data-path="good-practices.html"><a href="good-practices.html#other"><i class="fa fa-check"></i><b>2.1.5</b> Other</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a></li>
-<li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#git"><i class="fa fa-check"></i><b>2.3</b> Version control (Git)</a><ul>
+<li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#git"><i class="fa fa-check"></i><b>2.3</b> Version control (Git)</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git-you-dont-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git? You don’t use Git?</a></li>
 <li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#about-git"><i class="fa fa-check"></i><b>2.3.2</b> About Git</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#getting-help"><i class="fa fa-check"></i><b>2.4</b> Getting help</a><ul>
+<li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#getting-help"><i class="fa fa-check"></i><b>2.4</b> Getting help</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#help-yourself-learn-how-to-debug"><i class="fa fa-check"></i><b>2.4.1</b> Help yourself, learn how to debug</a></li>
 <li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.2</b> External help</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="r-programming.html"><a href="r-programming.html"><i class="fa fa-check"></i><b>3</b> R programming</a><ul>
-<li class="chapter" data-level="3.1" data-path="r-programming.html"><a href="r-programming.html#common-mistakes"><i class="fa fa-check"></i><b>3.1</b> Common mistakes</a><ul>
+<li class="chapter" data-level="3" data-path="r-programming.html"><a href="r-programming.html"><i class="fa fa-check"></i><b>3</b> R programming</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-programming.html"><a href="r-programming.html#common-mistakes"><i class="fa fa-check"></i><b>3.1</b> Common mistakes</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="r-programming.html"><a href="r-programming.html#equality"><i class="fa fa-check"></i><b>3.1.1</b> Equality</a></li>
 <li class="chapter" data-level="3.1.2" data-path="r-programming.html"><a href="r-programming.html#arguments"><i class="fa fa-check"></i><b>3.1.2</b> Arguments</a></li>
 <li class="chapter" data-level="3.1.3" data-path="r-programming.html"><a href="r-programming.html#others"><i class="fa fa-check"></i><b>3.1.3</b> Others</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="r-programming.html"><a href="r-programming.html#r-base-objects"><i class="fa fa-check"></i><b>3.2</b> R base objects</a><ul>
+<li class="chapter" data-level="3.2" data-path="r-programming.html"><a href="r-programming.html#r-base-objects"><i class="fa fa-check"></i><b>3.2</b> R base objects</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="r-programming.html"><a href="r-programming.html#types"><i class="fa fa-check"></i><b>3.2.1</b> Types</a></li>
 <li class="chapter" data-level="3.2.2" data-path="r-programming.html"><a href="r-programming.html#exercise"><i class="fa fa-check"></i><b>3.2.2</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="r-programming.html"><a href="r-programming.html#base-objects-and-accessors"><i class="fa fa-check"></i><b>3.3</b> Base objects and accessors</a><ul>
+<li class="chapter" data-level="3.3" data-path="r-programming.html"><a href="r-programming.html#base-objects-and-accessors"><i class="fa fa-check"></i><b>3.3</b> Base objects and accessors</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="r-programming.html"><a href="r-programming.html#objects"><i class="fa fa-check"></i><b>3.3.1</b> Objects</a></li>
 <li class="chapter" data-level="3.3.2" data-path="r-programming.html"><a href="r-programming.html#accessors"><i class="fa fa-check"></i><b>3.3.2</b> Accessors</a></li>
 <li class="chapter" data-level="3.3.3" data-path="r-programming.html"><a href="r-programming.html#exercises"><i class="fa fa-check"></i><b>3.3.3</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="r-programming.html"><a href="r-programming.html#useful-r-base-functions"><i class="fa fa-check"></i><b>3.4</b> Useful R base functions</a><ul>
+<li class="chapter" data-level="3.4" data-path="r-programming.html"><a href="r-programming.html#useful-r-base-functions"><i class="fa fa-check"></i><b>3.4</b> Useful R base functions</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="r-programming.html"><a href="r-programming.html#general"><i class="fa fa-check"></i><b>3.4.1</b> General</a></li>
 <li class="chapter" data-level="3.4.2" data-path="r-programming.html"><a href="r-programming.html#sequence-and-vector-operations"><i class="fa fa-check"></i><b>3.4.2</b> Sequence and vector operations</a></li>
 <li class="chapter" data-level="3.4.3" data-path="r-programming.html"><a href="r-programming.html#character-operations"><i class="fa fa-check"></i><b>3.4.3</b> Character operations</a></li>
@@ -194,54 +205,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="r-programming.html"><a href="r-programming.html#environments-and-scoping"><i class="fa fa-check"></i><b>3.5</b> Environments and scoping</a></li>
 <li class="chapter" data-level="3.6" data-path="r-programming.html"><a href="r-programming.html#attributes-and-classes"><i class="fa fa-check"></i><b>3.6</b> Attributes and classes</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> Data analysis with the tidyverse</a><ul>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> Data analysis with the tidyverse</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="tidyverse.html"><a href="tidyverse.html#program"><i class="fa fa-check"></i><b>4.1</b> Program</a></li>
 <li class="chapter" data-level="4.2" data-path="tidyverse.html"><a href="tidyverse.html#other-chapters-from-this-book"><i class="fa fa-check"></i><b>4.2</b> Other chapters from this book</a></li>
 <li class="chapter" data-level="4.3" data-path="tidyverse.html"><a href="tidyverse.html#other-resources"><i class="fa fa-check"></i><b>4.3</b> Other resources</a></li>
 <li class="chapter" data-level="4.4" data-path="tidyverse.html"><a href="tidyverse.html#other-tidy-packages"><i class="fa fa-check"></i><b>4.4</b> Other “tidy” packages</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>5</b> Performance</a><ul>
+<li class="chapter" data-level="5" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>5</b> Performance</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="performance.html"><a href="performance.html#rs-memory-management"><i class="fa fa-check"></i><b>5.1</b> R’s memory management</a></li>
-<li class="chapter" data-level="5.2" data-path="performance.html"><a href="performance.html#early-advice"><i class="fa fa-check"></i><b>5.2</b> Early advice</a><ul>
+<li class="chapter" data-level="5.2" data-path="performance.html"><a href="performance.html#early-advice"><i class="fa fa-check"></i><b>5.2</b> Early advice</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="performance.html"><a href="performance.html#never-grow-a-vector"><i class="fa fa-check"></i><b>5.2.1</b> NEVER GROW A VECTOR</a></li>
 <li class="chapter" data-level="5.2.2" data-path="performance.html"><a href="performance.html#use-the-right-function"><i class="fa fa-check"></i><b>5.2.2</b> Use the right function</a></li>
 <li class="chapter" data-level="5.2.3" data-path="performance.html"><a href="performance.html#do-not-try-to-optimize-everything"><i class="fa fa-check"></i><b>5.2.3</b> Do not try to optimize everything</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="performance.html"><a href="performance.html#vectorization"><i class="fa fa-check"></i><b>5.3</b> Vectorization</a><ul>
+<li class="chapter" data-level="5.3" data-path="performance.html"><a href="performance.html#vectorization"><i class="fa fa-check"></i><b>5.3</b> Vectorization</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="performance.html"><a href="performance.html#exercise-1"><i class="fa fa-check"></i><b>5.3.1</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="performance.html"><a href="performance.html#Rcpp"><i class="fa fa-check"></i><b>5.4</b> Rcpp</a></li>
-<li class="chapter" data-level="5.5" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.5</b> Linear algebra</a><ul>
+<li class="chapter" data-level="5.5" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.5</b> Linear algebra</a>
+<ul>
 <li class="chapter" data-level="5.5.1" data-path="performance.html"><a href="performance.html#exercises-2"><i class="fa fa-check"></i><b>5.5.1</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#algorithms-data-structures"><i class="fa fa-check"></i><b>5.6</b> Algorithms &amp; data structures</a></li>
 <li class="chapter" data-level="5.7" data-path="performance.html"><a href="performance.html#exos"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
 <li class="chapter" data-level="5.8" data-path="performance.html"><a href="performance.html#parallel"><i class="fa fa-check"></i><b>5.8</b> Parallel</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a><ul>
+<li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#resources"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
 <li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#project-exercise"><i class="fa fa-check"></i><b>6.2</b> Project exercise</a></li>
 <li class="chapter" data-level="6.3" data-path="packages.html"><a href="packages.html#pkg-start"><i class="fa fa-check"></i><b>6.3</b> Quick start</a></li>
-<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>6.4</b> Basic stuff</a><ul>
+<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>6.4</b> Basic stuff</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="packages.html"><a href="packages.html#description-file"><i class="fa fa-check"></i><b>6.4.1</b> <em>DESCRIPTION</em> file</a></li>
 <li class="chapter" data-level="6.4.2" data-path="packages.html"><a href="packages.html#r-code"><i class="fa fa-check"></i><b>6.4.2</b> R code</a></li>
 <li class="chapter" data-level="6.4.3" data-path="packages.html"><a href="packages.html#documentation"><i class="fa fa-check"></i><b>6.4.3</b> Documentation</a></li>
 <li class="chapter" data-level="6.4.4" data-path="packages.html"><a href="packages.html#namespace-file"><i class="fa fa-check"></i><b>6.4.4</b> <em>NAMESPACE</em> file</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#other-stuff"><i class="fa fa-check"></i><b>6.5</b> Other stuff</a><ul>
+<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#other-stuff"><i class="fa fa-check"></i><b>6.5</b> Other stuff</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="packages.html"><a href="packages.html#pkg-tests"><i class="fa fa-check"></i><b>6.5.1</b> Testing</a></li>
 <li class="chapter" data-level="6.5.2" data-path="packages.html"><a href="packages.html#rcpp"><i class="fa fa-check"></i><b>6.5.2</b> Rcpp</a></li>
 <li class="chapter" data-level="6.5.3" data-path="packages.html"><a href="packages.html#ignore-files"><i class="fa fa-check"></i><b>6.5.3</b> Ignore files</a></li>
 <li class="chapter" data-level="6.5.4" data-path="packages.html"><a href="packages.html#the-inst-directory"><i class="fa fa-check"></i><b>6.5.4</b> The <code>inst/</code> directory</a></li>
 <li class="chapter" data-level="6.5.5" data-path="packages.html"><a href="packages.html#pkg-data"><i class="fa fa-check"></i><b>6.5.5</b> External data</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.6</b> Good practices</a><ul>
+<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.6</b> Good practices</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="packages.html"><a href="packages.html#pkg-ci"><i class="fa fa-check"></i><b>6.6.1</b> Continuous checking</a></li>
 <li class="chapter" data-level="6.6.2" data-path="packages.html"><a href="packages.html#pkgdown"><i class="fa fa-check"></i><b>6.6.2</b> Pkgdown</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="packages.html"><a href="packages.html#release-on-cran"><i class="fa fa-check"></i><b>6.7</b> Release on CRAN</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>7</b> Shiny</a><ul>
+<li class="chapter" data-level="7" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>7</b> Shiny</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="shiny.html"><a href="shiny.html#example"><i class="fa fa-check"></i><b>7.1</b> Example</a></li>
 <li class="chapter" data-level="7.2" data-path="shiny.html"><a href="shiny.html#datacamp-course"><i class="fa fa-check"></i><b>7.2</b> DataCamp course</a></li>
 <li class="chapter" data-level="7.3" data-path="shiny.html"><a href="shiny.html#other-resources-1"><i class="fa fa-check"></i><b>7.3</b> Other resources</a></li>
@@ -265,9 +286,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="packages" class="section level1">
+<div id="packages" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Packages</h1>
-<div id="resources" class="section level2">
+<div id="resources" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Resources</h2>
 <ul>
 <li><p><a href="http://r-pkgs.had.co.nz/">R Packages book</a> (<strong>read it!</strong>)</p></li>
@@ -279,7 +300,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><a href="https://simplystatistics.org/2015/11/06/how-i-decide-when-to-trust-an-r-package/">How to decide when to trust an R package?</a></p></li>
 </ul>
 </div>
-<div id="project-exercise" class="section level2">
+<div id="project-exercise" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Project exercise</h2>
 <p>Just to experiment with making an R package, we’ll try to make a small package that implements some of the features of package {dplyr} that we learned in chapter <a href="tidyverse.html#tidyverse">4</a>. We can call this package {minidplyr}. You can see <a href="https://github.com/privefl/minidplyr3">the version I ended up with</a>.</p>
 <ol style="list-style-type: decimal">
@@ -292,76 +313,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Implement more functions if you find this project interesting. For example, make a function <code>mutate2</code> with the help of base R function <code>transform</code> (or <code>within</code>). Try to make the previous functions more general by taking many arguments at once (in <code>...</code>). <strong>Make sure to keep your existing code as internal functions in order to break your code in manageable parts.</strong></p></li>
 </ol>
 </div>
-<div id="pkg-start" class="section level2">
+<div id="pkg-start" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Quick start</h2>
 <p>In my first package, I just put some functions I used again and again in my work.</p>
 <p>To quickly start your package, just follow these steps:</p>
 <ol style="list-style-type: decimal">
 <li><p>Create an RStudio project (not a package). Here, I advise you to create a new project on GitHub and then to clone it as an RStudio project. It is a good practice to put all your (public) stuff on GitHub (as we learned in section <a href="good-practices.html#git">2.3</a>).</p></li>
 <li><p>Run the following lines of R code.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="packages.html#cb1-1"></a>usethis<span class="op">::</span><span class="kw">use_description</span>()</span>
-<span id="cb1-2"><a href="packages.html#cb1-2"></a>usethis<span class="op">::</span><span class="kw">use_namespace</span>()</span>
-<span id="cb1-3"><a href="packages.html#cb1-3"></a><span class="kw">dir.create</span>(<span class="st">&quot;R&quot;</span>)</span>
-<span id="cb1-4"><a href="packages.html#cb1-4"></a>usethis<span class="op">::</span><span class="kw">use_package_doc</span>()</span>
-<span id="cb1-5"><a href="packages.html#cb1-5"></a>usethis<span class="op">::</span><span class="kw">use_roxygen_md</span>()</span></code></pre></div></li>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="packages.html#cb422-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_description</span>()</span>
+<span id="cb422-2"><a href="packages.html#cb422-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_namespace</span>()</span>
+<span id="cb422-3"><a href="packages.html#cb422-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;R&quot;</span>)</span>
+<span id="cb422-4"><a href="packages.html#cb422-4" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package_doc</span>()</span>
+<span id="cb422-5"><a href="packages.html#cb422-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_roxygen_md</span>()</span></code></pre></div></li>
 <li><p><strong>Restart RStudio</strong> and change the following options.</p>
 <p><img src="https://privefl.github.io/R-presentation/build-doc.png" width="70%" style="display: block; margin: auto;" /></p></li>
 <li><p>Then use <code>Ctrl/Cmd + Shift + B</code> to build and reload your package.</p></li>
 <li><p>Create a simple function and put it in an <code>.R</code> file in the <code>R/</code> directory. Inside the function, use <em>Code -&gt; Insert Roxygen Skeleton</em>. Build and reload your package and check the documentation of your new function and that you can use it.</p></li>
 </ol>
 </div>
-<div id="pkg-basics" class="section level2">
+<div id="pkg-basics" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Basic stuff</h2>
-<div id="description-file" class="section level3">
+<div id="description-file" class="section level3" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> <em>DESCRIPTION</em> file</h3>
 <p>See <a href="http://r-pkgs.had.co.nz/description.html">this chapter</a>.</p>
 </div>
-<div id="r-code" class="section level3">
+<div id="r-code" class="section level3" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> R code</h3>
 <ul>
 <li><p>Put your R code in the <code>R/</code> directory. Basically it would be mostly functions. Don’t use random lines of code like in R scripts.</p></li>
 <li><p>Never explicitly load a package with <code>library()</code> or <code>require()</code>. Use <code>usethis::use_package()</code> to add one package to your <em>DESCRIPTION</em> file. Then, refer to some function with <code>&lt;package&gt;::&lt;function&gt;()</code> in your code, or by using the <code>@import &lt;package&gt;</code> or <code>@import &lt;package&gt; &lt;function&gt;</code> roxygen tags.</p></li>
 <li><p>If one R function need another function in another R file, use the <code>@import &lt;basename&gt;.R</code> to make sure it is built and documented before (it is for example useful if you define new generics and methods in different files).</p></li>
 <li><p>If you modify global <code>options()</code> or graphics <code>par()</code>, save the old values and reset when you’re done:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="packages.html#cb2-1"></a>old &lt;-<span class="st"> </span><span class="kw">options</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb2-2"><a href="packages.html#cb2-2"></a><span class="kw">on.exit</span>(<span class="kw">options</span>(old), <span class="dt">add =</span> <span class="ot">TRUE</span>)</span></code></pre></div></li>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="packages.html#cb423-1" aria-hidden="true" tabindex="-1"></a>old <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb423-2"><a href="packages.html#cb423-2" aria-hidden="true" tabindex="-1"></a><span class="fu">on.exit</span>(<span class="fu">options</span>(old), <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code></pre></div></li>
 </ul>
 </div>
-<div id="documentation" class="section level3">
+<div id="documentation" class="section level3" number="6.4.3">
 <h3><span class="header-section-number">6.4.3</span> Documentation</h3>
 <p>Documentation is super useful for other people (including future-you, in 6 months when you won’t remember what you implemented in your package). Make sure to document your code as soon as you write it, otherwise you will never do it.</p>
 <p>Forget about the <code>man/</code> (manual) directory, files in this directory will be automatically generated thanks to the roxygen comments you use on top of your R functions.</p>
 <p>Learn more with <a href="http://r-pkgs.had.co.nz/man.html">this chapter</a>. Note that you can now use the Markdown syntax in the documentation. For example, instead of having to use <code>\code{foo}</code>, you can use directly <code>`foo`</code> in the roxygen comments.</p>
 <p>To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use <code>usethis::use_package("magrittr")</code> and put the following code somewhere in an R file of your package.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="packages.html#cb3-1"></a><span class="co">#&#39; @importFrom magrittr %&gt;%</span></span>
-<span id="cb3-2"><a href="packages.html#cb3-2"></a><span class="co">#&#39; @export</span></span>
-<span id="cb3-3"><a href="packages.html#cb3-3"></a>magrittr<span class="op">::</span><span class="st">`</span><span class="dt">%&gt;%</span><span class="st">`</span></span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="packages.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom magrittr %&gt;%</span></span>
+<span id="cb424-2"><a href="packages.html#cb424-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb424-3"><a href="packages.html#cb424-3" aria-hidden="true" tabindex="-1"></a>magrittr<span class="sc">::</span><span class="st">`</span><span class="at">%&gt;%</span><span class="st">`</span></span></code></pre></div>
 <p>Fun: <a href="http://colinfay.me/dancing-banana-r-package-doc/">[How to] Include a dancing banana in your R package documentation</a>.</p>
 </div>
-<div id="namespace-file" class="section level3">
+<div id="namespace-file" class="section level3" number="6.4.4">
 <h3><span class="header-section-number">6.4.4</span> <em>NAMESPACE</em> file</h3>
 <p>You can also forget about this for now because it should be automatically generated by {roxygen}.</p>
 <p>If you want to understand what’s going on, read <a href="http://r-pkgs.had.co.nz/namespace.html">this chapter</a>.</p>
 </div>
 </div>
-<div id="other-stuff" class="section level2">
+<div id="other-stuff" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Other stuff</h2>
-<div id="pkg-tests" class="section level3">
+<div id="pkg-tests" class="section level3" number="6.5.1">
 <h3><span class="header-section-number">6.5.1</span> Testing</h3>
 <p>You are probably already testing your code, you’re only doing it informally. The problem with this approach is that when you come back to this code in 3 months time to add a new feature, you’ve probably forgotten some of the informal tests you ran the first time around. This makes it very easy to break code that used to work. A very good practice is to use unit tests.</p>
 <p>To make your first unit tests, use <code>usethis::use_test()</code> while having open the R file you want to test. Then, you can run tests of your package with <code>Ctrl/Cmd + Shift + T</code>.</p>
 <p>Learn more with <a href="http://r-pkgs.had.co.nz/tests.html">this chapter</a>.</p>
 </div>
-<div id="rcpp" class="section level3">
+<div id="rcpp" class="section level3" number="6.5.2">
 <h3><span class="header-section-number">6.5.2</span> Rcpp</h3>
 <p>We learned about Rcpp in section <a href="performance.html#Rcpp">5.4</a>. To use Rcpp code in your package, just use <code>usethis::use_rcpp()</code> and put the 2 roxygen tags e.g. in the file <code>R/&lt;package&gt;-package.R</code>. Then, create .cpp files with RStudio and save them the <code>src/</code> directory.</p>
 <p>Note that the <code>// [[Rcpp::export]]</code> makes the C++ function available to R, it doesn’t export the function as part of your package (though you could access it with <code>&lt;package&gt;:::&lt;rcpp-fun&gt;()</code>). If you want your package to explicitly provides an Rcpp function (as an R function), you also need roxygen comments (beginning with <code>//'</code> instead of <code>#'</code>, including <code>//' @export</code>) on top of your Rcpp function.</p>
 <p>If you need some C++ code from another package (e.g. from package {RcppArmadillo}), normally you would use</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="packages.html#cb4-1"></a><span class="co">// [[Rcpp::depends(RcppArmadillo)]]</span></span>
-<span id="cb4-2"><a href="packages.html#cb4-2"></a><span class="pp">#include </span><span class="im">&lt;RcppArmadillo.h&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb425-1"><a href="packages.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="co">// [[Rcpp::depends(RcppArmadillo)]]</span></span>
+<span id="cb425-2"><a href="packages.html#cb425-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;RcppArmadillo.h&gt;</span></span></code></pre></div>
 <p>In an R package, you don’t need the first line but instead you need to add the package to the <code>LinkingTo</code> field of the <em>DESCRIPTION</em> file (e.g. with <code>usethis::use_package("RcppArmadillo", "LinkingTo")</code>).</p>
 </div>
-<div id="ignore-files" class="section level3">
+<div id="ignore-files" class="section level3" number="6.5.3">
 <h3><span class="header-section-number">6.5.3</span> Ignore files</h3>
 <p>There are two types of ignore:</p>
 <ul>
@@ -370,7 +391,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 There is also a {usethis} function for this: <code>usethis::use_build_ignore()</code>.</p></li>
 </ul>
 </div>
-<div id="the-inst-directory" class="section level3">
+<div id="the-inst-directory" class="section level3" number="6.5.4">
 <h3><span class="header-section-number">6.5.4</span> The <code>inst/</code> directory</h3>
 <p>When a package is installed, everything in <code>inst/</code> is copied into the top-level package directory.</p>
 <p>For example, you can have:</p>
@@ -380,14 +401,14 @@ There is also a {usethis} function for this: <code>usethis::use_build_ignore()</
 <li><p><code>inst/CITATION</code>: how to cite the package. Learn more <a href="http://r-pkgs.had.co.nz/inst.html#inst-citation">there</a>.</p></li>
 </ul>
 </div>
-<div id="pkg-data" class="section level3">
+<div id="pkg-data" class="section level3" number="6.5.5">
 <h3><span class="header-section-number">6.5.5</span> External data</h3>
 <p>Learn more with <a href="http://r-pkgs.had.co.nz/data.html">this book chapter</a>.</p>
 </div>
 </div>
-<div id="good-practices-1" class="section level2">
+<div id="good-practices-1" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Good practices</h2>
-<div id="pkg-ci" class="section level3">
+<div id="pkg-ci" class="section level3" number="6.6.1">
 <h3><span class="header-section-number">6.6.1</span> Continuous checking</h3>
 <p>I would rarely trust a package that doesn’t use these continuous integration services.
 It’s good practice to check your package regularly and on different Operating Systems (OS). Learn more about the different checks <a href="http://r-pkgs.had.co.nz/check.html">there</a>.</p>
@@ -395,7 +416,7 @@ It’s good practice to check your package regularly and on different Operating 
 <p>To get the coverage of your tests, use <a href="https://codecov.io/">Codecov</a> by running <code>usethis::use_coverage()</code> and <code>usethis::use_github_action("test-coverage")</code>.</p>
 <p>Finally, to prevent typos in your package and especially for non-native English speakers, it can be useful to check the spelling in your package. If you think that the word “programmation” exists and that “prefered” has only one ‘r’ at the end (I did!), you should definitely use package {spelling}. Just run <code>spelling::spell_check_setup()</code>; this will check spelling in your package at the end of checks. If it reports words you want to ignore, just put these words in a text file <code>inst/WORDLIST</code> (with one word by line).</p>
 </div>
-<div id="pkgdown" class="section level3">
+<div id="pkgdown" class="section level3" number="6.6.2">
 <h3><span class="header-section-number">6.6.2</span> Pkgdown</h3>
 <ol style="list-style-type: decimal">
 <li><p>install R package {pkgdown}</p></li>
@@ -408,7 +429,7 @@ It’s good practice to check your package regularly and on different Operating 
 <p>If you want to make a personal website, check <a href="https://github.com/privefl/rmarkdown-website-template#make-your-website-with-r-markdown-in-minutes">this quick tutorial</a>.</p>
 </div>
 </div>
-<div id="release-on-cran" class="section level2">
+<div id="release-on-cran" class="section level2" number="6.7">
 <h2><span class="header-section-number">6.7</span> Release on CRAN</h2>
 <p>If you want your package to be on CRAN, read <a href="http://r-pkgs.had.co.nz/release.html">this chapter</a>.</p>
 
@@ -470,6 +491,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

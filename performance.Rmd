@@ -38,7 +38,7 @@ system.time({
 })
 ```
 
-Here, at each iteration, you reallocating a vector (of increasing size). Allocation of memory takes time as well as computations. This makes your code quadratic with the size of `x` (if you multiply the size of `x` by 2, you can expect the execution time to be multiplied by 4, for large sample sizes), whereas it should be only linear. 
+Here, at each iteration, you are reallocating a vector (of increasing size). Allocation of memory takes time as well as computations. This makes your code quadratic with the size of `x` (if you multiply the size of `x` by 2, you can expect the execution time to be multiplied by 4, for large sample sizes), whereas it should be only linear. 
 
 A good solution is to always pre-allocate your results (if you know the size):
 

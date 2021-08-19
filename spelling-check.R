@@ -14,4 +14,4 @@ if (nrow(spelling_errors)) {
   stop("Check spelling! Check file 'spelling.errors'")
 }
 
-rm(spelling_errors)
+rm(WORDS_TO_IGNORE, spelling_errors)
