@@ -24,7 +24,7 @@
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2021-08-19" />
+<meta name="date" content="2021-08-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -439,13 +439,6 @@ on the same line.</p></li>
 <li>Any settings associated with the project, such as Git settings, are loaded. Note that you can have a <em>.Rprofile</em> file in the project’s root directory to enable project-specific settings to be loaded each time people open the project.</li>
 </ul></li>
 </ul>
-<blockquote class="twitter-tweet" data-lang="en" align="center">
-<p lang="en" dir="ltr">
-The only two things that make <a href="https://twitter.com/JennyBryan?ref_src=twsrc%5Etfw">@JennyBryan</a> 😤😠🤯. Instead use projects + here::here() <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/GwxnHePL4n">pic.twitter.com/GwxnHePL4n</a>
-</p>
-— Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/940021008764846080?ref_src=twsrc%5Etfw">11 décembre 2017</a>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <p>Read more at <a href="https://www.tidyverse.org/articles/2017/12/workflow-vs-script/" class="uri">https://www.tidyverse.org/articles/2017/12/workflow-vs-script/</a> and also see chapter <a href="https://bookdown.org/csgillespie/efficientR/set-up.html"><em>Efficient set-up</em></a> of book <em>Efficient R programming</em>.</p>
 </div>
 <div id="git" class="section level2" number="2.3">
@@ -537,7 +530,21 @@ Figure 2.1: You don’t use Version Control?
 <div id="help-yourself-learn-how-to-debug" class="section level3" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> Help yourself, learn how to debug</h3>
 <p>A basic solution is to print everything, but it’s usually not working well on complex problems. A convenient solution to see all the variables’ states in your code is to place some <code>browser()</code> from where you want to check the variables’ states. To debug functions, <code>debugonce()</code> is also very useful.</p>
-<p>Learn more with <a href="https://bookdown.org/rdpeng/rprogdatascience/debugging.html">this book chapter</a>, <a href="http://adv-r.had.co.nz/Exceptions-Debugging.html">this other book chapter</a>, <a href="https://www.rstudio.com/resources/videos/debugging-techniques-in-rstudio/">this webinar</a> and <a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio">this RStudio article</a>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="good-practices.html#cb6-1" aria-hidden="true" tabindex="-1"></a>my_log <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">log</span>(x <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb6-2"><a href="good-practices.html#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="good-practices.html#cb6-3" aria-hidden="true" tabindex="-1"></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb6-4"><a href="good-practices.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># browser()</span></span>
+<span id="cb6-5"><a href="good-practices.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  la <span class="ot">&lt;-</span> <span class="fu">my_log</span>(a) </span>
+<span id="cb6-6"><a href="good-practices.html#cb6-6" aria-hidden="true" tabindex="-1"></a>  lb <span class="ot">&lt;-</span> <span class="fu">my_log</span>(b)</span>
+<span id="cb6-7"><a href="good-practices.html#cb6-7" aria-hidden="true" tabindex="-1"></a>  la <span class="sc">+</span> lb</span>
+<span id="cb6-8"><a href="good-practices.html#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-9"><a href="good-practices.html#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">my_fun</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>#&gt; Warning in log(x - 1): NaNs produced</code></pre>
+<pre><code>#&gt; [1] NaN</code></pre>
+<p>Try to uncomment <code>browser()</code> or use <code>debugonce(my_fun)</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="good-practices.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">debugonce</span>(my_fun)</span>
+<span id="cb9-2"><a href="good-practices.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">my_fun</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
+<p>Learn more with <a href="https://bookdown.org/rdpeng/rprogdatascience/debugging.html">this book chapter</a>, <a href="http://adv-r.had.co.nz/Exceptions-Debugging.html">this other book chapter</a>, <a href="https://www.rstudio.com/resources/webinars/debugging-techniques-in-rstudio/">this webinar</a> and <a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio">this RStudio article</a>.</p>
 </div>
 <div id="external-help" class="section level3" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> External help</h3>

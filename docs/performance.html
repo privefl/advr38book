@@ -24,7 +24,7 @@
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2021-08-19" />
+<meta name="date" content="2021-08-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -290,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 5</span> Performance</h1>
 <p>Some resources used here or for further reading:</p>
 <ul>
-<li><a href="https://adv-r.hadley.nz/performance.html">Advanced R</a></li>
+<li><a href="https://adv-r.hadley.nz/perf-improve.html">Advanced R</a></li>
 <li><a href="https://bookdown.org/csgillespie/efficientR/">Efficient R programming</a></li>
 </ul>
 <p>The people who say that “R is just always slow” are usually not great R programmers. It is true that writing inefficient R code is easy, yet writing efficient R code is also possible when you know what you’re doing.
@@ -298,138 +298,138 @@ In this chapter, you will learn how to write R(cpp) code that is fast.</p>
 <!-- Some years ago, when introducing the Julia language, some really unfair benchmark comparisons were released (e.g. with loops where obvious and simpler vectorized code would have been much faster). I'm still mad at Julia for this and [I am not the only one](https://matloff.wordpress.com/2014/05/21/r-beats-python-r-beats-julia-anyone-else-wanna-challenge-r/). -->
 <div id="rs-memory-management" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> R’s memory management</h2>
-<p>See <a href="https://adv-r.hadley.nz/names-values.html">this new chapter of Advanced R</a>.</p>
+<p>See <a href="https://adv-r.hadley.nz/names-values.html">this chapter of Advanced R</a>.</p>
 </div>
 <div id="early-advice" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Early advice</h2>
 <div id="never-grow-a-vector" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> NEVER GROW A VECTOR</h3>
 <p>Example computing the cumulative sums of a vector:</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="performance.html#cb343-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e4</span>)  <span class="co"># Try also with n = 1e5</span></span>
-<span id="cb343-2"><a href="performance.html#cb343-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb343-3"><a href="performance.html#cb343-3" aria-hidden="true" tabindex="-1"></a>  current_sum <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb343-4"><a href="performance.html#cb343-4" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb343-5"><a href="performance.html#cb343-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (x_i <span class="cf">in</span> x) {</span>
-<span id="cb343-6"><a href="performance.html#cb343-6" aria-hidden="true" tabindex="-1"></a>    current_sum <span class="ot">&lt;-</span> current_sum <span class="sc">+</span> x_i</span>
-<span id="cb343-7"><a href="performance.html#cb343-7" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">c</span>(res, current_sum)</span>
-<span id="cb343-8"><a href="performance.html#cb343-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb343-9"><a href="performance.html#cb343-9" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="performance.html#cb347-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e4</span>)  <span class="co"># Try also with n = 1e5</span></span>
+<span id="cb347-2"><a href="performance.html#cb347-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb347-3"><a href="performance.html#cb347-3" aria-hidden="true" tabindex="-1"></a>  current_sum <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb347-4"><a href="performance.html#cb347-4" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb347-5"><a href="performance.html#cb347-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (x_i <span class="cf">in</span> x) {</span>
+<span id="cb347-6"><a href="performance.html#cb347-6" aria-hidden="true" tabindex="-1"></a>    current_sum <span class="ot">&lt;-</span> current_sum <span class="sc">+</span> x_i</span>
+<span id="cb347-7"><a href="performance.html#cb347-7" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">c</span>(res, current_sum)</span>
+<span id="cb347-8"><a href="performance.html#cb347-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb347-9"><a href="performance.html#cb347-9" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;    0.08    0.02    0.10</code></pre>
+#&gt;    0.09    0.00    0.09</code></pre>
 <p>Here, at each iteration, you are reallocating a vector (of increasing size). Allocation of memory takes time as well as computations. This makes your code quadratic with the size of <code>x</code> (if you multiply the size of <code>x</code> by 2, you can expect the execution time to be multiplied by 4, for large sample sizes), whereas it should be only linear.</p>
 <p>A good solution is to always pre-allocate your results (if you know the size):</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="performance.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb345-2"><a href="performance.html#cb345-2" aria-hidden="true" tabindex="-1"></a>  current_sum <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb345-3"><a href="performance.html#cb345-3" aria-hidden="true" tabindex="-1"></a>  res2 <span class="ot">&lt;-</span> <span class="fu">double</span>(<span class="fu">length</span>(x))</span>
-<span id="cb345-4"><a href="performance.html#cb345-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(x)) {</span>
-<span id="cb345-5"><a href="performance.html#cb345-5" aria-hidden="true" tabindex="-1"></a>    current_sum <span class="ot">&lt;-</span> current_sum <span class="sc">+</span> x[i]</span>
-<span id="cb345-6"><a href="performance.html#cb345-6" aria-hidden="true" tabindex="-1"></a>    res2[i] <span class="ot">&lt;-</span> current_sum</span>
-<span id="cb345-7"><a href="performance.html#cb345-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb345-8"><a href="performance.html#cb345-8" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<pre><code>#&gt;    user  system elapsed 
-#&gt;       0       0       0</code></pre>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="performance.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(res2, res)</span></code></pre></div>
-<pre><code>#&gt; [1] TRUE</code></pre>
-<p>If you don’t know the size of the results, you can store them in a list and merge them afterwards:</p>
 <div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="performance.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
 <span id="cb349-2"><a href="performance.html#cb349-2" aria-hidden="true" tabindex="-1"></a>  current_sum <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb349-3"><a href="performance.html#cb349-3" aria-hidden="true" tabindex="-1"></a>  res3 <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb349-3"><a href="performance.html#cb349-3" aria-hidden="true" tabindex="-1"></a>  res2 <span class="ot">&lt;-</span> <span class="fu">double</span>(<span class="fu">length</span>(x))</span>
 <span id="cb349-4"><a href="performance.html#cb349-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(x)) {</span>
 <span id="cb349-5"><a href="performance.html#cb349-5" aria-hidden="true" tabindex="-1"></a>    current_sum <span class="ot">&lt;-</span> current_sum <span class="sc">+</span> x[i]</span>
-<span id="cb349-6"><a href="performance.html#cb349-6" aria-hidden="true" tabindex="-1"></a>    res3[[i]] <span class="ot">&lt;-</span> current_sum</span>
+<span id="cb349-6"><a href="performance.html#cb349-6" aria-hidden="true" tabindex="-1"></a>    res2[i] <span class="ot">&lt;-</span> current_sum</span>
 <span id="cb349-7"><a href="performance.html#cb349-7" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb349-8"><a href="performance.html#cb349-8" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;    0.01    0.00    0.02</code></pre>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="performance.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">unlist</span>(res3), res)</span></code></pre></div>
+#&gt;       0       0       0</code></pre>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="performance.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(res2, res)</span></code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
-<p>With recent versions of R (&gt;= 3.4), you can efficiently grow a vector using</p>
+<p>If you don’t know the size of the results, you can store them in a list and merge them afterwards:</p>
 <div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="performance.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
 <span id="cb353-2"><a href="performance.html#cb353-2" aria-hidden="true" tabindex="-1"></a>  current_sum <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb353-3"><a href="performance.html#cb353-3" aria-hidden="true" tabindex="-1"></a>  res4 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb353-3"><a href="performance.html#cb353-3" aria-hidden="true" tabindex="-1"></a>  res3 <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
 <span id="cb353-4"><a href="performance.html#cb353-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(x)) {</span>
 <span id="cb353-5"><a href="performance.html#cb353-5" aria-hidden="true" tabindex="-1"></a>    current_sum <span class="ot">&lt;-</span> current_sum <span class="sc">+</span> x[i]</span>
-<span id="cb353-6"><a href="performance.html#cb353-6" aria-hidden="true" tabindex="-1"></a>    res4[i] <span class="ot">&lt;-</span> current_sum</span>
+<span id="cb353-6"><a href="performance.html#cb353-6" aria-hidden="true" tabindex="-1"></a>    res3[[i]] <span class="ot">&lt;-</span> current_sum</span>
 <span id="cb353-7"><a href="performance.html#cb353-7" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb353-8"><a href="performance.html#cb353-8" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
 #&gt;       0       0       0</code></pre>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="performance.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(res4, res)</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="performance.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">unlist</span>(res3), res)</span></code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<p>With recent versions of R (&gt;= 3.4), you can efficiently grow a vector using</p>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="performance.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb357-2"><a href="performance.html#cb357-2" aria-hidden="true" tabindex="-1"></a>  current_sum <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb357-3"><a href="performance.html#cb357-3" aria-hidden="true" tabindex="-1"></a>  res4 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb357-4"><a href="performance.html#cb357-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(x)) {</span>
+<span id="cb357-5"><a href="performance.html#cb357-5" aria-hidden="true" tabindex="-1"></a>    current_sum <span class="ot">&lt;-</span> current_sum <span class="sc">+</span> x[i]</span>
+<span id="cb357-6"><a href="performance.html#cb357-6" aria-hidden="true" tabindex="-1"></a>    res4[i] <span class="ot">&lt;-</span> current_sum</span>
+<span id="cb357-7"><a href="performance.html#cb357-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb357-8"><a href="performance.html#cb357-8" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<pre><code>#&gt;    user  system elapsed 
+#&gt;       0       0       0</code></pre>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="performance.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(res4, res)</span></code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
 <blockquote>
 <p>Assigning to an element of a vector beyond the current length now over-allocates by a small fraction. The new vector is marked internally as growable, and the true length of the new vector is stored in the truelength field. This makes building up a vector result by assigning to the next element beyond the current length more efficient, though pre-allocating is still preferred. The implementation is subject to change and not intended to be used in packages at this time. (<a href="https://cran.r-project.org/doc/manuals/r-release/NEWS.html">NEWS</a>)</p>
 </blockquote>
 <p>An even better solution would be to avoid the loop by using a vectorized function:</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="performance.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(res5 <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(x))</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="performance.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(res5 <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(x))</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
 #&gt;       0       0       0</code></pre>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="performance.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(res5, res)</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="performance.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(res5, res)</span></code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="performance.html#cb361-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e7</span>)</span>
-<span id="cb361-2"><a href="performance.html#cb361-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">cumsum</span>(x))</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="performance.html#cb365-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e7</span>)</span>
+<span id="cb365-2"><a href="performance.html#cb365-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">cumsum</span>(x))</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;    0.08    0.00    0.08</code></pre>
+#&gt;    0.05    0.00    0.05</code></pre>
 <hr />
 <p>As a second example, let us generate a matrix of uniform values (max changing for every column):</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="performance.html#cb363-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fl">1e3</span></span>
-<span id="cb363-2"><a href="performance.html#cb363-2" aria-hidden="true" tabindex="-1"></a>max <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span></span>
-<span id="cb363-3"><a href="performance.html#cb363-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb363-4"><a href="performance.html#cb363-4" aria-hidden="true" tabindex="-1"></a>  mat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb363-5"><a href="performance.html#cb363-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (m <span class="cf">in</span> max) {</span>
-<span id="cb363-6"><a href="performance.html#cb363-6" aria-hidden="true" tabindex="-1"></a>    mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(mat, <span class="fu">runif</span>(n, <span class="at">max =</span> m))</span>
-<span id="cb363-7"><a href="performance.html#cb363-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb363-8"><a href="performance.html#cb363-8" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="performance.html#cb367-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fl">1e3</span></span>
+<span id="cb367-2"><a href="performance.html#cb367-2" aria-hidden="true" tabindex="-1"></a>max <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span></span>
+<span id="cb367-3"><a href="performance.html#cb367-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb367-4"><a href="performance.html#cb367-4" aria-hidden="true" tabindex="-1"></a>  mat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb367-5"><a href="performance.html#cb367-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (m <span class="cf">in</span> max) {</span>
+<span id="cb367-6"><a href="performance.html#cb367-6" aria-hidden="true" tabindex="-1"></a>    mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(mat, <span class="fu">runif</span>(n, <span class="at">max =</span> m))</span>
+<span id="cb367-7"><a href="performance.html#cb367-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb367-8"><a href="performance.html#cb367-8" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;    0.72    0.14    0.86</code></pre>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="performance.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
-<pre><code>#&gt;  [1] 0.999618 1.998164 2.999998 3.997976 4.994091 5.999753 6.988452 7.997161 8.992893
-#&gt; [10] 9.999561</code></pre>
+#&gt;    0.66    0.14    0.79</code></pre>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="performance.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
+<pre><code>#&gt;  [1] 0.9990033 1.9947379 2.9966283 3.9979628 4.9952530 5.9998482 6.9988867 7.9914421
+#&gt;  [9] 8.9975518 9.9997234</code></pre>
 <p>So, we can either pre-allocate a list or a matrix:</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="performance.html#cb367-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb367-2"><a href="performance.html#cb367-2" aria-hidden="true" tabindex="-1"></a>  l <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;list&quot;</span>, <span class="fu">length</span>(max))</span>
-<span id="cb367-3"><a href="performance.html#cb367-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(max)) {</span>
-<span id="cb367-4"><a href="performance.html#cb367-4" aria-hidden="true" tabindex="-1"></a>    l[[i]] <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">max =</span> max[i])</span>
-<span id="cb367-5"><a href="performance.html#cb367-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb367-6"><a href="performance.html#cb367-6" aria-hidden="true" tabindex="-1"></a>  mat2 <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">&quot;cbind&quot;</span>, l)</span>
-<span id="cb367-7"><a href="performance.html#cb367-7" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<pre><code>#&gt;    user  system elapsed 
-#&gt;    0.03    0.00    0.03</code></pre>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="performance.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat2, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
-<pre><code>#&gt;  [1] 0.9990673 1.9916112 2.9984215 3.9995064 4.9821316 5.9985397 6.9966095 7.9974436
-#&gt;  [9] 8.9977400 9.9995880</code></pre>
 <div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="performance.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb371-2"><a href="performance.html#cb371-2" aria-hidden="true" tabindex="-1"></a>  mat3 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, n, <span class="fu">length</span>(max))</span>
+<span id="cb371-2"><a href="performance.html#cb371-2" aria-hidden="true" tabindex="-1"></a>  l <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;list&quot;</span>, <span class="fu">length</span>(max))</span>
 <span id="cb371-3"><a href="performance.html#cb371-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(max)) {</span>
-<span id="cb371-4"><a href="performance.html#cb371-4" aria-hidden="true" tabindex="-1"></a>    mat3[, i] <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">max =</span> max[i])</span>
+<span id="cb371-4"><a href="performance.html#cb371-4" aria-hidden="true" tabindex="-1"></a>    l[[i]] <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">max =</span> max[i])</span>
 <span id="cb371-5"><a href="performance.html#cb371-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb371-6"><a href="performance.html#cb371-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<span id="cb371-6"><a href="performance.html#cb371-6" aria-hidden="true" tabindex="-1"></a>  mat2 <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">&quot;cbind&quot;</span>, l)</span>
+<span id="cb371-7"><a href="performance.html#cb371-7" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
 #&gt;    0.03    0.00    0.03</code></pre>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="performance.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat3, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
-<pre><code>#&gt;  [1] 0.9985493 1.9943074 2.9985237 3.9982320 4.9981510 5.9975730 6.9643795 7.9920902
-#&gt;  [9] 8.9905681 9.9936075</code></pre>
-<p>What is nice with using a list is that you don’t need to pre-allocate. Indeed, as opposed to atomic vectors, each element of a list is in different places in memory so that you don’t have to reallocate all the data when you add an element to a list.</p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="performance.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat2, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
+<pre><code>#&gt;  [1] 0.9977958 1.9993057 2.9980112 3.9947798 4.9936573 5.9955111 6.9949959 7.9991962
+#&gt;  [9] 8.9704675 9.9882626</code></pre>
 <div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="performance.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb375-2"><a href="performance.html#cb375-2" aria-hidden="true" tabindex="-1"></a>  l <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb375-2"><a href="performance.html#cb375-2" aria-hidden="true" tabindex="-1"></a>  mat3 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, n, <span class="fu">length</span>(max))</span>
 <span id="cb375-3"><a href="performance.html#cb375-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(max)) {</span>
-<span id="cb375-4"><a href="performance.html#cb375-4" aria-hidden="true" tabindex="-1"></a>    l[[i]] <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">max =</span> max[i])</span>
+<span id="cb375-4"><a href="performance.html#cb375-4" aria-hidden="true" tabindex="-1"></a>    mat3[, i] <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">max =</span> max[i])</span>
 <span id="cb375-5"><a href="performance.html#cb375-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb375-6"><a href="performance.html#cb375-6" aria-hidden="true" tabindex="-1"></a>  mat4 <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">&quot;cbind&quot;</span>, l)</span>
-<span id="cb375-7"><a href="performance.html#cb375-7" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<span id="cb375-6"><a href="performance.html#cb375-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;    0.03    0.00    0.04</code></pre>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="performance.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat4, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
-<pre><code>#&gt;  [1] 0.9992579 1.9993780 2.9939130 3.9895485 4.9944604 5.9792141 6.9942515 7.9970052
-#&gt;  [9] 8.9703109 9.9994441</code></pre>
-<p>Instead of pre-allocating yourself, you can use <code>sapply</code> (or <code>lapply</code> and calling <code>do.call()</code> after, as previously done):</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="performance.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(</span>
-<span id="cb379-2"><a href="performance.html#cb379-2" aria-hidden="true" tabindex="-1"></a>  mat4 <span class="ot">&lt;-</span> <span class="fu">sapply</span>(max, <span class="cf">function</span>(m) <span class="fu">runif</span>(n, <span class="at">max =</span> m))</span>
-<span id="cb379-3"><a href="performance.html#cb379-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+#&gt;    0.04    0.00    0.04</code></pre>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="performance.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat3, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
+<pre><code>#&gt;  [1] 0.9995909 1.9981943 2.9992271 3.9902041 4.9961783 5.9956276 6.9959661 7.9996706
+#&gt;  [9] 8.9962345 9.9832806</code></pre>
+<p>What is nice with using a list is that you don’t need to pre-allocate. Indeed, as opposed to atomic vectors, each element of a list is in different places in memory so that you don’t have to reallocate all the data when you add an element to a list.</p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="performance.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb379-2"><a href="performance.html#cb379-2" aria-hidden="true" tabindex="-1"></a>  l <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb379-3"><a href="performance.html#cb379-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(max)) {</span>
+<span id="cb379-4"><a href="performance.html#cb379-4" aria-hidden="true" tabindex="-1"></a>    l[[i]] <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="at">max =</span> max[i])</span>
+<span id="cb379-5"><a href="performance.html#cb379-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb379-6"><a href="performance.html#cb379-6" aria-hidden="true" tabindex="-1"></a>  mat4 <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">&quot;cbind&quot;</span>, l)</span>
+<span id="cb379-7"><a href="performance.html#cb379-7" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
 #&gt;    0.03    0.00    0.03</code></pre>
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="performance.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat4, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
-<pre><code>#&gt;  [1] 0.9998458 1.9990017 2.9988646 3.9965826 4.9991678 5.9961115 6.9960555 7.9948875
-#&gt;  [9] 8.9980654 9.9996164</code></pre>
+<pre><code>#&gt;  [1] 0.9995388 1.9955198 2.9997691 3.9987404 4.9922388 5.9898789 6.9971913 7.9992277
+#&gt;  [9] 8.9981424 9.9906220</code></pre>
+<p>Instead of pre-allocating yourself, you can use <code>sapply</code> (or <code>lapply</code> and calling <code>do.call()</code> after, as previously done):</p>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="performance.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(</span>
+<span id="cb383-2"><a href="performance.html#cb383-2" aria-hidden="true" tabindex="-1"></a>  mat4 <span class="ot">&lt;-</span> <span class="fu">sapply</span>(max, <span class="cf">function</span>(m) <span class="fu">runif</span>(n, <span class="at">max =</span> m))</span>
+<span id="cb383-3"><a href="performance.html#cb383-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>#&gt;    user  system elapsed 
+#&gt;    0.03    0.00    0.03</code></pre>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="performance.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(mat4, <span class="dv">2</span>, max)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
+<pre><code>#&gt;  [1] 0.9996156 1.9989325 2.9964446 3.9933756 4.9968914 5.9902297 6.9989946 7.9964186
+#&gt;  [9] 8.9832429 9.9785801</code></pre>
 <p>Don’t listen to people telling you that <code>sapply()</code> is a vectorized operation that is so much faster than loops.</p>
 <!-- ### Access columns of a matrix -->
 <!-- When you do computations on a matrix, recall that a matrix is just a vector with some dimensions. -->
@@ -479,26 +479,26 @@ maintenance are considered.”</p>
 <li>Area estimate = <code>hits / N</code></li>
 </ol>
 <p>Naively implementing this Monte-Carlo algorithm in R would typically lead to something like:</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="performance.html#cb383-1" aria-hidden="true" tabindex="-1"></a>monte_carlo <span class="ot">&lt;-</span> <span class="cf">function</span>(N) {</span>
-<span id="cb383-2"><a href="performance.html#cb383-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb383-3"><a href="performance.html#cb383-3" aria-hidden="true" tabindex="-1"></a>  hits <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb383-4"><a href="performance.html#cb383-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(N)) {</span>
-<span id="cb383-5"><a href="performance.html#cb383-5" aria-hidden="true" tabindex="-1"></a>    u1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
-<span id="cb383-6"><a href="performance.html#cb383-6" aria-hidden="true" tabindex="-1"></a>    u2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
-<span id="cb383-7"><a href="performance.html#cb383-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (u1 <span class="sc">^</span> <span class="dv">2</span> <span class="sc">&gt;</span> u2) {</span>
-<span id="cb383-8"><a href="performance.html#cb383-8" aria-hidden="true" tabindex="-1"></a>      hits <span class="ot">&lt;-</span> hits <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb383-9"><a href="performance.html#cb383-9" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb383-10"><a href="performance.html#cb383-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb383-11"><a href="performance.html#cb383-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb383-12"><a href="performance.html#cb383-12" aria-hidden="true" tabindex="-1"></a>  hits <span class="sc">/</span> N</span>
-<span id="cb383-13"><a href="performance.html#cb383-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="performance.html#cb387-1" aria-hidden="true" tabindex="-1"></a>monte_carlo <span class="ot">&lt;-</span> <span class="cf">function</span>(N) {</span>
+<span id="cb387-2"><a href="performance.html#cb387-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb387-3"><a href="performance.html#cb387-3" aria-hidden="true" tabindex="-1"></a>  hits <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb387-4"><a href="performance.html#cb387-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(N)) {</span>
+<span id="cb387-5"><a href="performance.html#cb387-5" aria-hidden="true" tabindex="-1"></a>    u1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
+<span id="cb387-6"><a href="performance.html#cb387-6" aria-hidden="true" tabindex="-1"></a>    u2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
+<span id="cb387-7"><a href="performance.html#cb387-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (u1 <span class="sc">^</span> <span class="dv">2</span> <span class="sc">&gt;</span> u2) {</span>
+<span id="cb387-8"><a href="performance.html#cb387-8" aria-hidden="true" tabindex="-1"></a>      hits <span class="ot">&lt;-</span> hits <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb387-9"><a href="performance.html#cb387-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb387-10"><a href="performance.html#cb387-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb387-11"><a href="performance.html#cb387-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb387-12"><a href="performance.html#cb387-12" aria-hidden="true" tabindex="-1"></a>  hits <span class="sc">/</span> N</span>
+<span id="cb387-13"><a href="performance.html#cb387-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>This takes a few seconds for <code>N = 1e6</code>:</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="performance.html#cb384-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fl">1e6</span></span>
-<span id="cb384-2"><a href="performance.html#cb384-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">monte_carlo</span>(N))</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="performance.html#cb388-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fl">1e6</span></span>
+<span id="cb388-2"><a href="performance.html#cb388-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">monte_carlo</span>(N))</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
 #&gt;    2.50    0.03    2.55</code></pre>
 <p><strong>Your task: Find a vectorized solution for this problem:</strong></p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="performance.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">monte_carlo_vec</span>(N))</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="performance.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">monte_carlo_vec</span>(N))</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
 #&gt;    0.05    0.00    0.05</code></pre>
 </div>
@@ -507,21 +507,21 @@ maintenance are considered.”</p>
 <h2><span class="header-section-number">5.4</span> Rcpp</h2>
 <p>See <a href="https://privefl.github.io/R-presentation/Rcpp.html">this presentation</a>.</p>
 <p>You have this data and this working code (a loop) that is slow</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="performance.html#cb388-1" aria-hidden="true" tabindex="-1"></a>mydf <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata/one-million.rds&quot;</span>, <span class="at">package =</span> <span class="st">&quot;advr38pkg&quot;</span>))</span>
-<span id="cb388-2"><a href="performance.html#cb388-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb388-3"><a href="performance.html#cb388-3" aria-hidden="true" tabindex="-1"></a>QRA_3Dmatrix <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">0</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="fu">max</span>(mydf<span class="sc">$</span>ID), <span class="fu">max</span>(mydf<span class="sc">$</span>Volume), <span class="dv">2</span>))</span>
-<span id="cb388-4"><a href="performance.html#cb388-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb388-5"><a href="performance.html#cb388-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(mydf))) {</span>
-<span id="cb388-6"><a href="performance.html#cb388-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Row corresponds to IDcell </span></span>
-<span id="cb388-7"><a href="performance.html#cb388-7" aria-hidden="true" tabindex="-1"></a>  row    <span class="ot">&lt;-</span> mydf[[i, <span class="dv">1</span>]]    </span>
-<span id="cb388-8"><a href="performance.html#cb388-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Column corresponds to the volume class</span></span>
-<span id="cb388-9"><a href="performance.html#cb388-9" aria-hidden="true" tabindex="-1"></a>  column <span class="ot">&lt;-</span> mydf[[i, <span class="dv">3</span>]]      </span>
-<span id="cb388-10"><a href="performance.html#cb388-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Number of events, initially zero, then +1</span></span>
-<span id="cb388-11"><a href="performance.html#cb388-11" aria-hidden="true" tabindex="-1"></a>  QRA_3Dmatrix[row, column, <span class="dv">1</span>] <span class="ot">&lt;-</span> QRA_3Dmatrix[row, column, <span class="dv">1</span>] <span class="sc">+</span> <span class="dv">1</span>  </span>
-<span id="cb388-12"><a href="performance.html#cb388-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sum energy </span></span>
-<span id="cb388-13"><a href="performance.html#cb388-13" aria-hidden="true" tabindex="-1"></a>  QRA_3Dmatrix[row, column, <span class="dv">2</span>] <span class="ot">&lt;-</span> QRA_3Dmatrix[row, column, <span class="dv">2</span>] <span class="sc">+</span> </span>
-<span id="cb388-14"><a href="performance.html#cb388-14" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span> <span class="sc">-</span> <span class="fl">1.358</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>( (<span class="dv">1000</span> <span class="sc">*</span> mydf[[i, <span class="dv">2</span>]] <span class="sc">-</span> <span class="dv">129000</span>) <span class="sc">/</span> <span class="dv">120300</span> ))</span>
-<span id="cb388-15"><a href="performance.html#cb388-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="performance.html#cb392-1" aria-hidden="true" tabindex="-1"></a>mydf <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata/one-million.rds&quot;</span>, <span class="at">package =</span> <span class="st">&quot;advr38pkg&quot;</span>))</span>
+<span id="cb392-2"><a href="performance.html#cb392-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb392-3"><a href="performance.html#cb392-3" aria-hidden="true" tabindex="-1"></a>QRA_3Dmatrix <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">0</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="fu">max</span>(mydf<span class="sc">$</span>ID), <span class="fu">max</span>(mydf<span class="sc">$</span>Volume), <span class="dv">2</span>))</span>
+<span id="cb392-4"><a href="performance.html#cb392-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb392-5"><a href="performance.html#cb392-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(mydf))) {</span>
+<span id="cb392-6"><a href="performance.html#cb392-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Row corresponds to IDcell </span></span>
+<span id="cb392-7"><a href="performance.html#cb392-7" aria-hidden="true" tabindex="-1"></a>  row    <span class="ot">&lt;-</span> mydf[[i, <span class="dv">1</span>]]    </span>
+<span id="cb392-8"><a href="performance.html#cb392-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Column corresponds to the volume class</span></span>
+<span id="cb392-9"><a href="performance.html#cb392-9" aria-hidden="true" tabindex="-1"></a>  column <span class="ot">&lt;-</span> mydf[[i, <span class="dv">3</span>]]      </span>
+<span id="cb392-10"><a href="performance.html#cb392-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Number of events, initially zero, then +1</span></span>
+<span id="cb392-11"><a href="performance.html#cb392-11" aria-hidden="true" tabindex="-1"></a>  QRA_3Dmatrix[row, column, <span class="dv">1</span>] <span class="ot">&lt;-</span> QRA_3Dmatrix[row, column, <span class="dv">1</span>] <span class="sc">+</span> <span class="dv">1</span>  </span>
+<span id="cb392-12"><a href="performance.html#cb392-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sum energy </span></span>
+<span id="cb392-13"><a href="performance.html#cb392-13" aria-hidden="true" tabindex="-1"></a>  QRA_3Dmatrix[row, column, <span class="dv">2</span>] <span class="ot">&lt;-</span> QRA_3Dmatrix[row, column, <span class="dv">2</span>] <span class="sc">+</span> </span>
+<span id="cb392-14"><a href="performance.html#cb392-14" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span> <span class="sc">-</span> <span class="fl">1.358</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>( (<span class="dv">1000</span> <span class="sc">*</span> mydf[[i, <span class="dv">2</span>]] <span class="sc">-</span> <span class="dv">129000</span>) <span class="sc">/</span> <span class="dv">120300</span> ))</span>
+<span id="cb392-15"><a href="performance.html#cb392-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Rewrite this for-loop with Rcpp.</p>
 <p>You can also try to use {dplyr} for this problem.</p>
 </div>
@@ -533,18 +533,18 @@ maintenance are considered.”</p>
 <div id="exercises-2" class="section level3" number="5.5.1">
 <h3><span class="header-section-number">5.5.1</span> Exercises</h3>
 <p>Compute the Euclidean distances between each of row of <code>X</code> and each row of <code>Y</code>:</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="performance.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb389-2"><a href="performance.html#cb389-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">1000</span>), <span class="at">ncol =</span> <span class="dv">5</span>)</span>
-<span id="cb389-3"><a href="performance.html#cb389-3" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">5000</span>), <span class="at">ncol =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="performance.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb393-2"><a href="performance.html#cb393-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">1000</span>), <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb393-3"><a href="performance.html#cb393-3" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">5000</span>), <span class="at">ncol =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p>A naive implementation would be:</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="performance.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb390-2"><a href="performance.html#cb390-2" aria-hidden="true" tabindex="-1"></a>  dist <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA_real_</span>, <span class="fu">nrow</span>(X), <span class="fu">nrow</span>(Y))</span>
-<span id="cb390-3"><a href="performance.html#cb390-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(X))) {</span>
-<span id="cb390-4"><a href="performance.html#cb390-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(Y))) {</span>
-<span id="cb390-5"><a href="performance.html#cb390-5" aria-hidden="true" tabindex="-1"></a>      dist[i, j] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>((X[i, ] <span class="sc">-</span> Y[j, ])<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb390-6"><a href="performance.html#cb390-6" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb390-7"><a href="performance.html#cb390-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb390-8"><a href="performance.html#cb390-8" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="performance.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb394-2"><a href="performance.html#cb394-2" aria-hidden="true" tabindex="-1"></a>  dist <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA_real_</span>, <span class="fu">nrow</span>(X), <span class="fu">nrow</span>(Y))</span>
+<span id="cb394-3"><a href="performance.html#cb394-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(X))) {</span>
+<span id="cb394-4"><a href="performance.html#cb394-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(Y))) {</span>
+<span id="cb394-5"><a href="performance.html#cb394-5" aria-hidden="true" tabindex="-1"></a>      dist[i, j] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>((X[i, ] <span class="sc">-</span> Y[j, ])<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb394-6"><a href="performance.html#cb394-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb394-7"><a href="performance.html#cb394-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb394-8"><a href="performance.html#cb394-8" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
 #&gt;    0.24    0.00    0.24</code></pre>
 <p>A possible faster solution takes</p>
@@ -552,21 +552,21 @@ maintenance are considered.”</p>
 #&gt;       0       0       0</code></pre>
 <hr />
 <p>Rewrite this problem to use linear algebra instead of a loop (Hint: resize the 3-dimensional arrays as 2D matrices):</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="performance.html#cb393-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fl">1e5</span></span>
-<span id="cb393-2"><a href="performance.html#cb393-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N<span class="sc">*</span><span class="dv">3</span><span class="sc">*</span><span class="dv">3</span>);   <span class="fu">dim</span>(x) <span class="ot">&lt;-</span> <span class="fu">c</span>(N,<span class="dv">3</span>,<span class="dv">3</span>)</span>
-<span id="cb393-3"><a href="performance.html#cb393-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N<span class="sc">*</span><span class="dv">3</span><span class="sc">*</span><span class="dv">3</span>);   <span class="fu">dim</span>(y) <span class="ot">&lt;-</span> <span class="fu">c</span>(N,<span class="dv">3</span>,<span class="dv">3</span>)</span>
-<span id="cb393-4"><a href="performance.html#cb393-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-5"><a href="performance.html#cb393-5" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb393-6"><a href="performance.html#cb393-6" aria-hidden="true" tabindex="-1"></a>  gg <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb393-7"><a href="performance.html#cb393-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(x)[<span class="dv">1</span>]){</span>
-<span id="cb393-8"><a href="performance.html#cb393-8" aria-hidden="true" tabindex="-1"></a>    gg <span class="ot">&lt;-</span> gg <span class="sc">+</span> <span class="fu">t</span>(x[n,,]) <span class="sc">%*%</span> y[n,,]</span>
-<span id="cb393-9"><a href="performance.html#cb393-9" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb393-10"><a href="performance.html#cb393-10" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="performance.html#cb397-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fl">1e5</span></span>
+<span id="cb397-2"><a href="performance.html#cb397-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N<span class="sc">*</span><span class="dv">3</span><span class="sc">*</span><span class="dv">3</span>);   <span class="fu">dim</span>(x) <span class="ot">&lt;-</span> <span class="fu">c</span>(N,<span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb397-3"><a href="performance.html#cb397-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N<span class="sc">*</span><span class="dv">3</span><span class="sc">*</span><span class="dv">3</span>);   <span class="fu">dim</span>(y) <span class="ot">&lt;-</span> <span class="fu">c</span>(N,<span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb397-4"><a href="performance.html#cb397-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb397-5"><a href="performance.html#cb397-5" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb397-6"><a href="performance.html#cb397-6" aria-hidden="true" tabindex="-1"></a>  gg <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb397-7"><a href="performance.html#cb397-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(x)[<span class="dv">1</span>]){</span>
+<span id="cb397-8"><a href="performance.html#cb397-8" aria-hidden="true" tabindex="-1"></a>    gg <span class="ot">&lt;-</span> gg <span class="sc">+</span> <span class="fu">t</span>(x[n,,]) <span class="sc">%*%</span> y[n,,]</span>
+<span id="cb397-9"><a href="performance.html#cb397-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb397-10"><a href="performance.html#cb397-10" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;    0.66    0.02    0.67</code></pre>
+#&gt;    0.49    0.05    0.53</code></pre>
 <p>A possible faster solution takes</p>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;    0.02    0.00    0.01</code></pre>
+#&gt;       0       0       0</code></pre>
 </div>
 </div>
 <div id="algorithms-data-structures" class="section level2" number="5.6">
@@ -580,125 +580,125 @@ maintenance are considered.”</p>
 <h2><span class="header-section-number">5.7</span> Exercises</h2>
 <p>Generate <span class="math inline">\(10^8\)</span> (begin with <span class="math inline">\(10^4\)</span>) steps of the process described by the formula:<span class="math display">\[X(0)=0\]</span><span class="math display">\[X(t+1)=X(t)+Y(t)\]</span> where <span class="math inline">\(Y(t)\)</span> are independent random variables with the distribution <span class="math inline">\(N(0,1)\)</span>. Then, calculate in what percentage of indices <span class="math inline">\(t\)</span> the value of <span class="math inline">\(X(t)\)</span> was negative. You don’t need to store values of <span class="math inline">\(X\)</span> if you don’t want to.
 What would be the benefit of writing an Rcpp function over a simple vectorized R function?</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="performance.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb396-2"><a href="performance.html#cb396-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(p <span class="ot">&lt;-</span> advr38pkg<span class="sc">::</span><span class="fu">random_walk_neg_prop</span>(<span class="fl">1e7</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="performance.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb400-2"><a href="performance.html#cb400-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(p <span class="ot">&lt;-</span> advr38pkg<span class="sc">::</span><span class="fu">random_walk_neg_prop</span>(<span class="fl">1e7</span>))</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;    0.40    0.01    0.44</code></pre>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="performance.html#cb398-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+#&gt;    0.36    0.02    0.37</code></pre>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="performance.html#cb402-1" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
 <pre><code>#&gt; [1] 0.3400444</code></pre>
 <hr />
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="performance.html#cb400-1" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(mtcars)</span>
-<span id="cb400-2"><a href="performance.html#cb400-2" aria-hidden="true" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(mat))</span>
-<span id="cb400-3"><a href="performance.html#cb400-3" aria-hidden="true" tabindex="-1"></a>mat_big <span class="ot">&lt;-</span> mat[<span class="fu">rep</span>(ind, <span class="dv">1000</span>), ]  <span class="do">## 1000 times bigger dataset</span></span>
-<span id="cb400-4"><a href="performance.html#cb400-4" aria-hidden="true" tabindex="-1"></a>last_row <span class="ot">&lt;-</span> mat_big[<span class="fu">nrow</span>(mat_big), ]</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="performance.html#cb404-1" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(mtcars)</span>
+<span id="cb404-2"><a href="performance.html#cb404-2" aria-hidden="true" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(mat))</span>
+<span id="cb404-3"><a href="performance.html#cb404-3" aria-hidden="true" tabindex="-1"></a>mat_big <span class="ot">&lt;-</span> mat[<span class="fu">rep</span>(ind, <span class="dv">1000</span>), ]  <span class="do">## 1000 times bigger dataset</span></span>
+<span id="cb404-4"><a href="performance.html#cb404-4" aria-hidden="true" tabindex="-1"></a>last_row <span class="ot">&lt;-</span> mat_big[<span class="fu">nrow</span>(mat_big), ]</span></code></pre></div>
 <p>Speed up these loops:</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="performance.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb401-2"><a href="performance.html#cb401-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(mat_big)) {</span>
-<span id="cb401-3"><a href="performance.html#cb401-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mat_big)) {</span>
-<span id="cb401-4"><a href="performance.html#cb401-4" aria-hidden="true" tabindex="-1"></a>      mat_big[i, j] <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">*</span> mat_big[i, j] <span class="sc">*</span> last_row[j]</span>
-<span id="cb401-5"><a href="performance.html#cb401-5" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb401-6"><a href="performance.html#cb401-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb401-7"><a href="performance.html#cb401-7" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="performance.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb405-2"><a href="performance.html#cb405-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(mat_big)) {</span>
+<span id="cb405-3"><a href="performance.html#cb405-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mat_big)) {</span>
+<span id="cb405-4"><a href="performance.html#cb405-4" aria-hidden="true" tabindex="-1"></a>      mat_big[i, j] <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">*</span> mat_big[i, j] <span class="sc">*</span> last_row[j]</span>
+<span id="cb405-5"><a href="performance.html#cb405-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb405-6"><a href="performance.html#cb405-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb405-7"><a href="performance.html#cb405-7" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;    0.36    0.00    0.37</code></pre>
+#&gt;    0.36    0.00    0.36</code></pre>
 <hr />
 <p>Why <code>colSums()</code> on a whole matrix is faster than on only half of it?</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="performance.html#cb403-1" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="fl">1e6</span>), <span class="fl">1e3</span>, <span class="fl">1e3</span>)</span>
-<span id="cb403-2"><a href="performance.html#cb403-2" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb403-3"><a href="performance.html#cb403-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colSums</span>(m0[, <span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>]), </span>
-<span id="cb403-4"><a href="performance.html#cb403-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colSums</span>(m0)</span>
-<span id="cb403-5"><a href="performance.html#cb403-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="performance.html#cb407-1" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="fl">1e6</span>), <span class="fl">1e3</span>, <span class="fl">1e3</span>)</span>
+<span id="cb407-2"><a href="performance.html#cb407-2" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb407-3"><a href="performance.html#cb407-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colSums</span>(m0[, <span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>]), </span>
+<span id="cb407-4"><a href="performance.html#cb407-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colSums</span>(m0)</span>
+<span id="cb407-5"><a href="performance.html#cb407-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>#&gt; Unit: microseconds
-#&gt;                  expr      min       lq      mean    median       uq      max neval
-#&gt;  colSums(m0[, 1:500]) 1411.502 1762.801 1912.6901 1818.4510 1947.401 6786.900   100
-#&gt;           colSums(m0)  747.700  805.001  862.0511  826.7005  891.401 1266.301   100</code></pre>
+#&gt;                  expr    min      lq     mean  median      uq    max neval
+#&gt;  colSums(m0[, 1:500]) 1419.4 1787.65 1979.024 1830.60 1904.00 8656.8   100
+#&gt;           colSums(m0)  763.9  807.85  873.664  827.55  858.65 2130.4   100</code></pre>
 <hr />
 <p>Try to speed up this code by vectorizing it first. Then, recode it in Rcpp and benchmark all the solutions you came up with.</p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="performance.html#cb405-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb405-2"><a href="performance.html#cb405-2" aria-hidden="true" tabindex="-1"></a>step1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(M)</span>
-<span id="cb405-3"><a href="performance.html#cb405-3" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(M)</span>
-<span id="cb405-4"><a href="performance.html#cb405-4" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fl">1e4</span></span>
-<span id="cb405-5"><a href="performance.html#cb405-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb405-6"><a href="performance.html#cb405-6" aria-hidden="true" tabindex="-1"></a>tau <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, N <span class="sc">+</span> <span class="dv">1</span>, M)</span>
-<span id="cb405-7"><a href="performance.html#cb405-7" aria-hidden="true" tabindex="-1"></a>tau[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> A</span>
-<span id="cb405-8"><a href="performance.html#cb405-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>M) {</span>
-<span id="cb405-9"><a href="performance.html#cb405-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(tau)) {</span>
-<span id="cb405-10"><a href="performance.html#cb405-10" aria-hidden="true" tabindex="-1"></a>    tau[i, j] <span class="ot">&lt;-</span> tau[i <span class="sc">-</span> <span class="dv">1</span>, j] <span class="sc">+</span> step1[j] <span class="sc">*</span> <span class="fl">1.0025</span><span class="sc">^</span>(i <span class="sc">-</span> <span class="dv">2</span>)</span>
-<span id="cb405-11"><a href="performance.html#cb405-11" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb405-12"><a href="performance.html#cb405-12" aria-hidden="true" tabindex="-1"></a>} </span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="performance.html#cb409-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb409-2"><a href="performance.html#cb409-2" aria-hidden="true" tabindex="-1"></a>step1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(M)</span>
+<span id="cb409-3"><a href="performance.html#cb409-3" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(M)</span>
+<span id="cb409-4"><a href="performance.html#cb409-4" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fl">1e4</span></span>
+<span id="cb409-5"><a href="performance.html#cb409-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb409-6"><a href="performance.html#cb409-6" aria-hidden="true" tabindex="-1"></a>tau <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, N <span class="sc">+</span> <span class="dv">1</span>, M)</span>
+<span id="cb409-7"><a href="performance.html#cb409-7" aria-hidden="true" tabindex="-1"></a>tau[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> A</span>
+<span id="cb409-8"><a href="performance.html#cb409-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>M) {</span>
+<span id="cb409-9"><a href="performance.html#cb409-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(tau)) {</span>
+<span id="cb409-10"><a href="performance.html#cb409-10" aria-hidden="true" tabindex="-1"></a>    tau[i, j] <span class="ot">&lt;-</span> tau[i <span class="sc">-</span> <span class="dv">1</span>, j] <span class="sc">+</span> step1[j] <span class="sc">*</span> <span class="fl">1.0025</span><span class="sc">^</span>(i <span class="sc">-</span> <span class="dv">2</span>)</span>
+<span id="cb409-11"><a href="performance.html#cb409-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb409-12"><a href="performance.html#cb409-12" aria-hidden="true" tabindex="-1"></a>} </span></code></pre></div>
 <hr />
 <p>Make a fast function that counts the number of elements between a sequence of breaks. Can you do it in base R? Try also implementing it in Rcpp. How can you implement a solution whose computation time doesn’t depend on the number of breaks? [Which are the special cases that you should consider?]</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="performance.html#cb406-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">10</span>, <span class="at">size =</span> <span class="fl">1e4</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb406-2"><a href="performance.html#cb406-2" aria-hidden="true" tabindex="-1"></a>breaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="fl">9.5</span>, <span class="dv">10</span>)</span>
-<span id="cb406-3"><a href="performance.html#cb406-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">cut</span>(x, breaks))</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="performance.html#cb410-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">10</span>, <span class="at">size =</span> <span class="fl">1e4</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb410-2"><a href="performance.html#cb410-2" aria-hidden="true" tabindex="-1"></a>breaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="fl">9.5</span>, <span class="dv">10</span>)</span>
+<span id="cb410-3"><a href="performance.html#cb410-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">cut</span>(x, breaks))</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt;    (1,3]    (3,9]  (9,9.5] (9.5,10] 
 #&gt;     2006     5997        0      944</code></pre>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="performance.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, breaks, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts  <span class="co"># includes first break</span></span></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="performance.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, breaks, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts  <span class="co"># includes first break</span></span></code></pre></div>
 <pre><code>#&gt; [1] 3059 5997    0  944</code></pre>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="performance.html#cb410-1" aria-hidden="true" tabindex="-1"></a>advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks</span>(x, breaks)</span></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="performance.html#cb414-1" aria-hidden="true" tabindex="-1"></a>advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks</span>(x, breaks)</span></code></pre></div>
 <pre><code>#&gt; [1] 2006 5997    0  944</code></pre>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="performance.html#cb412-1" aria-hidden="true" tabindex="-1"></a>advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks_fast</span>(x, breaks)</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="performance.html#cb416-1" aria-hidden="true" tabindex="-1"></a>advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks_fast</span>(x, breaks)</span></code></pre></div>
 <pre><code>#&gt; [1] 2006 5997    0  944</code></pre>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="performance.html#cb414-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb414-2"><a href="performance.html#cb414-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(<span class="fu">cut</span>(x, breaks)), </span>
-<span id="cb414-3"><a href="performance.html#cb414-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(x, breaks, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts, </span>
-<span id="cb414-4"><a href="performance.html#cb414-4" aria-hidden="true" tabindex="-1"></a>  advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks</span>(x, breaks),</span>
-<span id="cb414-5"><a href="performance.html#cb414-5" aria-hidden="true" tabindex="-1"></a>  advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks_fast</span>(x, breaks)</span>
-<span id="cb414-6"><a href="performance.html#cb414-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="performance.html#cb418-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb418-2"><a href="performance.html#cb418-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(<span class="fu">cut</span>(x, breaks)), </span>
+<span id="cb418-3"><a href="performance.html#cb418-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(x, breaks, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts, </span>
+<span id="cb418-4"><a href="performance.html#cb418-4" aria-hidden="true" tabindex="-1"></a>  advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks</span>(x, breaks),</span>
+<span id="cb418-5"><a href="performance.html#cb418-5" aria-hidden="true" tabindex="-1"></a>  advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks_fast</span>(x, breaks)</span>
+<span id="cb418-6"><a href="performance.html#cb418-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>#&gt; Unit: microseconds
-#&gt;                                        expr     min       lq     mean   median       uq
-#&gt;                       table(cut(x, breaks)) 721.901 760.8005 883.9370 856.5505 918.8020
-#&gt;        hist(x, breaks, plot = FALSE)$counts 287.701 319.7510 378.7889 356.0010 396.6005
-#&gt;       advr38pkg::count_by_breaks(x, breaks) 264.901 283.0510 450.0010 380.0515 415.7010
-#&gt;  advr38pkg::count_by_breaks_fast(x, breaks) 153.100 168.8510 201.9600 190.1010 211.4015
-#&gt;       max neval
-#&gt;  1474.201   100
-#&gt;   781.401   100
-#&gt;  8994.002   100
-#&gt;   367.201   100</code></pre>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="performance.html#cb416-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">10</span>, <span class="at">size =</span> <span class="fl">1e5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb416-2"><a href="performance.html#cb416-2" aria-hidden="true" tabindex="-1"></a>breaks2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb416-3"><a href="performance.html#cb416-3" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb416-4"><a href="performance.html#cb416-4" aria-hidden="true" tabindex="-1"></a>  advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks</span>(x2, breaks),</span>
-<span id="cb416-5"><a href="performance.html#cb416-5" aria-hidden="true" tabindex="-1"></a>  advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks_fast</span>(x2, breaks),</span>
-<span id="cb416-6"><a href="performance.html#cb416-6" aria-hidden="true" tabindex="-1"></a>  advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks</span>(x2, breaks2),</span>
-<span id="cb416-7"><a href="performance.html#cb416-7" aria-hidden="true" tabindex="-1"></a>  advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks_fast</span>(x2, breaks2)</span>
-<span id="cb416-8"><a href="performance.html#cb416-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+#&gt;                                        expr   min     lq    mean median     uq    max
+#&gt;                       table(cut(x, breaks)) 650.3 698.75 822.415 817.50 851.90 1326.9
+#&gt;        hist(x, breaks, plot = FALSE)$counts 283.4 311.60 357.663 351.35 382.05  755.5
+#&gt;       advr38pkg::count_by_breaks(x, breaks) 262.6 344.15 420.802 390.55 424.50 4112.2
+#&gt;  advr38pkg::count_by_breaks_fast(x, breaks) 151.5 183.75 205.426 195.00 209.45  336.3
+#&gt;  neval
+#&gt;    100
+#&gt;    100
+#&gt;    100
+#&gt;    100</code></pre>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="performance.html#cb420-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">10</span>, <span class="at">size =</span> <span class="fl">1e5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb420-2"><a href="performance.html#cb420-2" aria-hidden="true" tabindex="-1"></a>breaks2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb420-3"><a href="performance.html#cb420-3" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb420-4"><a href="performance.html#cb420-4" aria-hidden="true" tabindex="-1"></a>  advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks</span>(x2, breaks),</span>
+<span id="cb420-5"><a href="performance.html#cb420-5" aria-hidden="true" tabindex="-1"></a>  advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks_fast</span>(x2, breaks),</span>
+<span id="cb420-6"><a href="performance.html#cb420-6" aria-hidden="true" tabindex="-1"></a>  advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks</span>(x2, breaks2),</span>
+<span id="cb420-7"><a href="performance.html#cb420-7" aria-hidden="true" tabindex="-1"></a>  advr38pkg<span class="sc">::</span><span class="fu">count_by_breaks_fast</span>(x2, breaks2)</span>
+<span id="cb420-8"><a href="performance.html#cb420-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>#&gt; Unit: milliseconds
-#&gt;                                          expr       min         lq       mean     median
-#&gt;        advr38pkg::count_by_breaks(x2, breaks)  2.456801   2.500201   2.635903   2.571101
-#&gt;   advr38pkg::count_by_breaks_fast(x2, breaks)  1.142001   1.169001   1.285503   1.219151
-#&gt;       advr38pkg::count_by_breaks(x2, breaks2) 74.134300 102.344101 105.304608 103.056001
-#&gt;  advr38pkg::count_by_breaks_fast(x2, breaks2)  1.154601   1.193250   1.277853   1.244601
-#&gt;          uq        max neval
-#&gt;    2.690551   4.077000   100
-#&gt;    1.278501   2.834601   100
-#&gt;  105.587201 129.506900   100
-#&gt;    1.300301   1.941202   100</code></pre>
+#&gt;                                          expr     min       lq      mean   median
+#&gt;        advr38pkg::count_by_breaks(x2, breaks)  2.4547  2.49165  2.734437  2.53315
+#&gt;   advr38pkg::count_by_breaks_fast(x2, breaks)  1.1389  1.16740  1.317822  1.22795
+#&gt;       advr38pkg::count_by_breaks(x2, breaks2) 89.4837 90.80580 93.249831 91.23050
+#&gt;  advr38pkg::count_by_breaks_fast(x2, breaks2)  1.1583  1.18855  1.264271  1.24435
+#&gt;        uq      max neval
+#&gt;   2.75105   5.0151   100
+#&gt;   1.30285   6.3222   100
+#&gt;  92.21150 123.9045   100
+#&gt;   1.28480   1.7095   100</code></pre>
 <hr />
 <p>An R user wants to implement some sampling on a sparse matrix and provides this working code:</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="performance.html#cb418-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
-<span id="cb418-2"><a href="performance.html#cb418-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb418-3"><a href="performance.html#cb418-3" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">Matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> N, <span class="at">ncol =</span> N)</span>
-<span id="cb418-4"><a href="performance.html#cb418-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb418-5"><a href="performance.html#cb418-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
-<span id="cb418-6"><a href="performance.html#cb418-6" aria-hidden="true" tabindex="-1"></a>  cols <span class="ot">&lt;-</span> <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span>N)[<span class="sc">-</span>j], <span class="dv">2</span>)  <span class="co"># 2 columns != j </span></span>
-<span id="cb418-7"><a href="performance.html#cb418-7" aria-hidden="true" tabindex="-1"></a>  m[j, cols] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb418-8"><a href="performance.html#cb418-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="performance.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb422-2"><a href="performance.html#cb422-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb422-3"><a href="performance.html#cb422-3" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">Matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> N, <span class="at">ncol =</span> N)</span>
+<span id="cb422-4"><a href="performance.html#cb422-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb422-5"><a href="performance.html#cb422-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
+<span id="cb422-6"><a href="performance.html#cb422-6" aria-hidden="true" tabindex="-1"></a>  cols <span class="ot">&lt;-</span> <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span>N)[<span class="sc">-</span>j], <span class="dv">2</span>)  <span class="co"># 2 columns != j </span></span>
+<span id="cb422-7"><a href="performance.html#cb422-7" aria-hidden="true" tabindex="-1"></a>  m[j, cols] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb422-8"><a href="performance.html#cb422-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>This code is slow; can you find two major reasons why?</p>
 <p>How can you more efficiently assign 1s?</p>
 <p>Can you use sampling with replacement (which can be easily vectorized) in this example?</p>
 <p>Implement faster solutions in R and Rcpp.</p>
 <hr />
 <p>Make a fast function that returns all prime numbers up to a number <code>N</code>.</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="performance.html#cb419-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fl">1e6</span></span>
-<span id="cb419-2"><a href="performance.html#cb419-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(</span>
-<span id="cb419-3"><a href="performance.html#cb419-3" aria-hidden="true" tabindex="-1"></a>  primes <span class="ot">&lt;-</span> advr38pkg<span class="sc">::</span><span class="fu">AllPrimesUpTo</span>(N)</span>
-<span id="cb419-4"><a href="performance.html#cb419-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="performance.html#cb423-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fl">1e6</span></span>
+<span id="cb423-2"><a href="performance.html#cb423-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(</span>
+<span id="cb423-3"><a href="performance.html#cb423-3" aria-hidden="true" tabindex="-1"></a>  primes <span class="ot">&lt;-</span> advr38pkg<span class="sc">::</span><span class="fu">AllPrimesUpTo</span>(N)</span>
+<span id="cb423-4"><a href="performance.html#cb423-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>#&gt;    user  system elapsed 
-#&gt;    0.04    0.00    0.05</code></pre>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="performance.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(primes, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+#&gt;    0.03    0.00    0.03</code></pre>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="performance.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(primes, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="performance_files/figure-html/unnamed-chunk-29-1.svg" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="parallel" class="section level2" number="5.8">

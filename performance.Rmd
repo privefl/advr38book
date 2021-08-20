@@ -8,7 +8,7 @@ source("spelling-check.R")
 
 Some resources used here or for further reading:
 
-- [Advanced R](https://adv-r.hadley.nz/performance.html)
+- [Advanced R](https://adv-r.hadley.nz/perf-improve.html)
 - [Efficient R programming](https://bookdown.org/csgillespie/efficientR/)
 
 The people who say that "R is just always slow" are usually not great R programmers. It is true that writing inefficient R code is easy, yet writing efficient R code is also possible when you know what you're doing. 
@@ -18,7 +18,7 @@ In this chapter, you will learn how to write R(cpp) code that is fast.
 
 ## R's memory management
 
-See [this new chapter of Advanced R](https://adv-r.hadley.nz/names-values.html).
+See [this chapter of Advanced R](https://adv-r.hadley.nz/names-values.html).
 
 ## Early advice
 

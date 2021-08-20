@@ -47,7 +47,7 @@ Unfortunately, we won't have time to cover them in class. A brief introduction o
 
 - [[IN FRENCH] introduction à R et au tidyverse](https://juba.github.io/tidyverse/index.html)
 
-- [switching from base R to the tidyverse](http://www.significantdigits.org/2017/10/switching-from-base-r-to-tidyverse/)
+- [comparing dplyr functions to their base R equivalents](https://dplyr.tidyverse.org/articles/base.html)
 
 - [summarize and mutate multiple columns](http://dplyr.tidyverse.org/reference/summarise_all.html)
 
@@ -55,7 +55,7 @@ Unfortunately, we won't have time to cover them in class. A brief introduction o
 
 - [reorder those bars](https://github.com/jtr13/codehelp/blob/master/R/reorder.md)
 
-- [the lesser known stars of the tidyverse](https://www.rstudio.com/resources/videos/the-lesser-known-stars-of-the-tidyverse/)
+- [the lesser known stars of the tidyverse](https://www.rstudio.com/resources/rstudioconf-2018/the-lesser-known-stars-of-the-tidyverse/)
 
 - [summary statistics of variables](https://github.com/ropenscilabs/skimr)
 
