@@ -265,15 +265,15 @@ mydf <- readRDS(system.file("extdata/one-million.rds", package = "advr38pkg"))
 QRA_3Dmatrix <- array(0, dim = c(max(mydf$ID), max(mydf$Volume), 2))
 
 for (i in seq_len(nrow(mydf))) {
-  # Row corresponds to IDcell 
-  row    <- mydf[[i, 1]]    
+  # Row corresponds to the ID class
+  row    <- mydf$ID[i]
   # Column corresponds to the volume class
-  column <- mydf[[i, 3]]      
+  column <- mydf$Volume[i]
   # Number of events, initially zero, then +1
   QRA_3Dmatrix[row, column, 1] <- QRA_3Dmatrix[row, column, 1] + 1  
   # Sum energy 
   QRA_3Dmatrix[row, column, 2] <- QRA_3Dmatrix[row, column, 2] + 
-    1 - 1.358 / (1 + exp( (1000 * mydf[[i, 2]] - 129000) / 120300 ))
+    1 - 1.358 / (1 + exp( (1000 * mydf$Energy[i] - 129000) / 120300 ))
 }
 ```
 
