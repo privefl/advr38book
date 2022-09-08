@@ -41,7 +41,7 @@ Unfortunately, we won't have time to cover them in class. A brief introduction o
 
 1. [many models](http://r4ds.had.co.nz/many-models.html) will introduce the concept of *list-columns* that enable you to store complex objects in a structured way inside a data frame
 
-1. databases: packages [{DBI}](https://github.com/r-dbi/DBI) and [{dbplyr}](https://dbplyr.tidyverse.org/articles/dbplyr.html) + [RStudio's webpage](https://db.rstudio.com/dplyr/)
+1. databases: packages [{DBI}](https://github.com/r-dbi/DBI) and [{dbplyr}](https://dbplyr.tidyverse.org/articles/dbplyr.html) + [RStudio's webpage](https://solutions.rstudio.com/db/r-packages/dplyr/)
 
 ## Other resources
 

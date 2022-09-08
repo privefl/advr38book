@@ -11,7 +11,9 @@ source("spelling-check.R")
 
 - Install recent versions of [R](https://www.r-project.org/) (>= 3.4) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (>= 1.2),
 
-- Install associated package **advr38pkg** with `remotes::install_github("privefl/advr38pkg")`. This will install other dependencies that are needed in this book.
+- Install associated package **advr38pkg** with `remotes::install_github("privefl/advr38pkg")`; this will install other dependencies that are needed in this book.
+
+- Install Git
 
 ## Content
 

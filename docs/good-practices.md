@@ -165,7 +165,7 @@ RStudio features:
 
 <img src="images/data-import-environment.png" width="70%" style="display: block; margin: auto;" />
 
-- Use [code diagnostics](https://support.rstudio.com/hc/en-us/articles/205753617-Code-Diagnostics):
+- Use [code diagnostics](https://support.rstudio.com/hc/en-us/articles/205753617-Code-Diagnostics-in-the-RStudio-IDE):
 
 <img src="images/diagnostics.png" width="70%" style="display: block; margin: auto;" />
 
@@ -247,7 +247,6 @@ Also, see https://stackoverflow.com/q/2712421/6103040.
 </center>
 
 - Help with Git:
-    - [H. Wickham's book](http://r-pkgs.had.co.nz/git.html)
     - [Happy Git and GitHub for the useR](http://happygitwithr.com/)
     - [Git cheat sheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
     - [When things go wrong](https://github.com/k88hudson/git-flight-rules)
@@ -290,7 +289,7 @@ debugonce(my_fun)
 my_fun(1, 0)
 ```
 
-Learn more with [this book chapter](https://bookdown.org/rdpeng/rprogdatascience/debugging.html), [this other book chapter](http://adv-r.had.co.nz/Exceptions-Debugging.html), [this webinar](https://www.rstudio.com/resources/webinars/debugging-techniques-in-rstudio/) and [this RStudio article](https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio).
+Learn more with [this book chapter](https://bookdown.org/rdpeng/rprogdatascience/debugging.html), [this other book chapter](http://adv-r.had.co.nz/Exceptions-Debugging.html), [this webinar](https://www.rstudio.com/resources/webinars/debugging-techniques-in-rstudio/) and [this RStudio article](https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE).
 
 
 ### External help
