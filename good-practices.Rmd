@@ -253,7 +253,7 @@ knitr::include_graphics("images/git.svg")
 
 - 3 main commands: 
     - pull: update your local project with the latest version of the main project
-    - commit: snapshot of your code at a specified point in time
+    - commit: snapshot of your code at a specified point in time (you can and you should use this even when having no internet connection)
     - push: merge your local modifications with the main project
 
 

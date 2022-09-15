@@ -1,8 +1,13 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 # Performance
 
 ```{r, include=FALSE}
 source("knitr-options.R")
-WORDS_TO_IGNORE <- c("truelength", "growable")
+WORDS_TO_IGNORE <- c("truelength", "growable", "precomputing")
 source("spelling-check.R")
 ```
 
@@ -27,7 +32,7 @@ See [this chapter of Advanced R](https://adv-r.hadley.nz/names-values.html).
 Example computing the cumulative sums of a vector:
 
 ```{r}
-x <- rnorm(1e4)  # Try also with n = 1e5
+x <- rnorm(2e4)  # Try also with n = 1e5
 system.time({
   current_sum <- 0
   res <- c()
@@ -109,18 +114,7 @@ system.time({
 apply(mat, 2, max)[1:10]
 ```
 
-So, we can either pre-allocate a list or a matrix:
-
-```{r}
-system.time({
-  l <- vector("list", length(max))
-  for (i in seq_along(max)) {
-    l[[i]] <- runif(n, max = max[i])
-  }
-  mat2 <- do.call("cbind", l)
-})
-apply(mat2, 2, max)[1:10]
-```
+Instead, we should pre-allocate a matrix of the right size:
 
 ```{r}
 system.time({
@@ -132,7 +126,7 @@ system.time({
 apply(mat3, 2, max)[1:10]
 ```
 
-What is nice with using a list is that you don't need to pre-allocate. Indeed, as opposed to atomic vectors, each element of a list is in different places in memory so that you don't have to reallocate all the data when you add an element to a list.
+Or we could use a list instead. What is nice with using a list is that you don't need to pre-allocate. Indeed, as opposed to atomic vectors, each element of a list is in different places in memory so that you don't have to reallocate all the data when you add an element to a list.
 
 ```{r}
 system.time({
@@ -154,7 +148,7 @@ system.time(
 apply(mat4, 2, max)[1:10]
 ```
 
-Don't listen to people telling you that `sapply()` is a vectorized operation that is so much faster than loops.
+Don't listen to people telling you that `sapply()` is a vectorized operation that is so much faster than loops. You can learn more with [this blog post](https://privefl.github.io/blog/why-loops-are-slow-in-r/).
 
 <!-- ### Access columns of a matrix -->
 
@@ -173,7 +167,8 @@ Don't listen to people telling you that `sapply()` is a vectorized operation tha
 
 Often, in order to optimize your code, you can simply find the right function to do what you need to do. 
 
-For example, using `rowMeans(x)` instead of `apply(x, 1, mean)` can save you a lot of time. For example, if you want more efficient functions that apply to rows and columns of matrices, you can check [package {matrixStats}](https://github.com/HenrikBengtsson/matrixStats). 
+For example, `rowMeans(x)` is much faster than `apply(x, 1, mean)`. 
+Similarly, if you want more efficient functions that apply to rows and columns of matrices, you can check [package {matrixStats}](https://github.com/HenrikBengtsson/matrixStats). 
 
 Another example is when reading large text files; in such cases, prefer using `data.table::fread()` rather than `read.table()`.
 
@@ -188,9 +183,11 @@ Generally, packages that uses C/Rcpp are efficient.
 >
 > --- Donald Knuth.
 
-If you try to optimize each and every part of your code, you will end up losing a lot of time writing it and it will probably less readable.
+If you try to optimize each and every part of your code, you will end up losing a lot of time writing it, and it will probably make your code less readable.
 
-R is great at prototyping quickly because you can write code in a concise and easy way. Begin by doing just that. If performance matters, then profile your code to see which part of your code is taking too much time and optimize only this part!
+R is great at prototyping quickly because you can write code in a concise and easy way. Start by doing just that. If performance matters, then profile your code to see which part of your code is taking too much time and optimize only this part!
+
+[Example]
 
 Learn more on how to profile your code in RStudio in [this article](https://support.rstudio.com/hc/en-us/articles/218221837-Profiling-R-code-with-the-RStudio-IDE).
 
@@ -243,7 +240,7 @@ N <- 1e6
 system.time(monte_carlo(N))
 ```
 
-**Your task: Find a vectorized solution for this problem:**
+Your task: find a vectorized solution for this problem:
 
 ```{r echo=FALSE}
 monte_carlo_vec <- function(N) mean(runif(N)^2 > runif(N))
@@ -313,7 +310,9 @@ system.time({
 })
 ```
 
-A possible faster solution takes
+Hint: $\text{dist}(X_i, Y_j)^2 = (X_i - Y_j)^T (X_i - Y_j) = X_i^T X_i + Y_j^T Y_j - 2 X_i^T Y_j$.
+
+A faster possible solution takes
 
 ```{r, echo=FALSE}
 fast_dist <- function(x, y) {
@@ -323,32 +322,32 @@ stopifnot(all.equal(fast_dist(X, Y), dist))
 system.time(fast_dist(X, Y))
 ```
 
-***
+<!-- *** -->
 
-Rewrite this problem to use linear algebra instead of a loop (Hint: resize the 3-dimensional arrays as 2D matrices):
+<!-- Rewrite this problem to use linear algebra instead of a loop (Hint: resize the 3-dimensional arrays as 2D matrices): -->
 
-```{r}
-N <- 1e5
-x <- rnorm(N*3*3);   dim(x) <- c(N,3,3)
-y <- rnorm(N*3*3);   dim(y) <- c(N,3,3)
+<!-- ```{r} -->
+<!-- N <- 1e5 -->
+<!-- x <- rnorm(N*3*3);   dim(x) <- c(N,3,3) -->
+<!-- y <- rnorm(N*3*3);   dim(y) <- c(N,3,3) -->
 
-system.time({
-  gg <- 0
-  for (n in 1:dim(x)[1]){
-    gg <- gg + t(x[n,,]) %*% y[n,,]
-  }
-})
-```
+<!-- system.time({ -->
+<!--   gg <- 0 -->
+<!--   for (n in 1:dim(x)[1]){ -->
+<!--     gg <- gg + t(x[n,,]) %*% y[n,,] -->
+<!--   } -->
+<!-- }) -->
+<!-- ``` -->
 
-A possible faster solution takes
+<!-- A possible faster solution takes -->
 
-```{r, echo=FALSE}
-system.time({
-  dim(x) <- c(3 * N, 3)
-  dim(y) <- c(3 * N, 3)
-  gg2 <- crossprod(x, y)
-})
-```
+<!-- ```{r, echo=FALSE} -->
+<!-- system.time({ -->
+<!--   dim(x) <- c(3 * N, 3) -->
+<!--   dim(y) <- c(3 * N, 3) -->
+<!--   gg2 <- crossprod(x, y) -->
+<!-- }) -->
+<!-- ``` -->
 
 
 ## Algorithms & data structures
@@ -363,7 +362,7 @@ You can also find a detailed example in [this blog post](https://privefl.github.
 
 ## Exercises {#exos}
 
-Generate $10^8$ (begin with $10^4$) steps of the process described by the formula:$$X(0)=0$$$$X(t+1)=X(t)+Y(t)$$ where $Y(t)$ are independent random variables with the distribution $N(0,1)$. Then, calculate in what percentage of indices $t$ the value of $X(t)$ was negative. You don't need to store values of $X$ if you don't want to.
+Generate $10^7$ (start with $10^4$) steps of the process described by the formula:$$X(0)=0$$$$X(t+1)=X(t)+Y(t)$$ where $Y(t)$ are independent random variables with the distribution $N(0,1)$. Then, calculate in what percentage of indices $t$ the value of $X(t)$ was negative. You don't need to store values of $X$ if you don't want to.
 What would be the benefit of writing an Rcpp function over a simple vectorized R function?
 
 ```{r}
@@ -407,7 +406,7 @@ microbenchmark::microbenchmark(
 
 ***
 
-Try to speed up this code by vectorizing it first. Then, recode it in Rcpp and benchmark all the solutions you came up with.
+Try to speed up this code by vectorizing it first, and by precomputing. Then, recode it in Rcpp and benchmark all the solutions you came up with.
 
 ```{r}
 M <- 50
@@ -430,8 +429,8 @@ Make a fast function that counts the number of elements between a sequence of br
 
 ```{r}
 x <- sample(10, size = 1e4, replace = TRUE)
-breaks <- c(1, 3, 9, 9.5, 10)
-table(cut(x, breaks))
+breaks <- c(1, 3, 8.5, 9.5, 10)
+table(cut(x, breaks), exclude = NULL) # does not include first break (1)
 hist(x, breaks, plot = FALSE)$counts  # includes first break
 advr38pkg::count_by_breaks(x, breaks)
 advr38pkg::count_by_breaks_fast(x, breaks)
@@ -439,17 +438,19 @@ advr38pkg::count_by_breaks_fast(x, breaks)
 microbenchmark::microbenchmark(
   table(cut(x, breaks)), 
   hist(x, breaks, plot = FALSE)$counts, 
-  advr38pkg::count_by_breaks(x, breaks),
+  advr38pkg::count_by_breaks(x, breaks, use_outer = TRUE),
+  advr38pkg::count_by_breaks(x, breaks, use_outer = FALSE),
   advr38pkg::count_by_breaks_fast(x, breaks)
 )
 
-x2 <- sample(10, size = 1e5, replace = TRUE)
-breaks2 <- seq(0, 10, length.out = 100)
+x2 <- sample(100, size = 1e5, replace = TRUE)
+breaks2 <- breaks * 10
+breaks3 <- seq(0, 100, length.out = 100)
 microbenchmark::microbenchmark(
-  advr38pkg::count_by_breaks(x2, breaks),
-  advr38pkg::count_by_breaks_fast(x2, breaks),
   advr38pkg::count_by_breaks(x2, breaks2),
-  advr38pkg::count_by_breaks_fast(x2, breaks2)
+  advr38pkg::count_by_breaks_fast(x2, breaks2),
+  advr38pkg::count_by_breaks(x2, breaks3),
+  advr38pkg::count_by_breaks_fast(x2, breaks3)
 )
 ```
 
@@ -457,30 +458,70 @@ microbenchmark::microbenchmark(
 
 An R user wants to implement some sampling on a sparse matrix and provides this working code:
 
-```{r, eval=FALSE}
-library(Matrix)
-N <- 100
-m <- Matrix(0, nrow = N, ncol = N)
-
-for (j in 1:N) {
-  cols <- sample((1:N)[-j], 2)  # 2 columns != j 
-  m[j, cols] <- 1
-}
+```{r}
+N <- 2000
+system.time({
+  m <- Matrix::Matrix(0, nrow = N, ncol = N)
+  for (j in 1:N) {
+    cols <- sample((1:N)[-j], 2)  # pick 2 columns that are not j 
+    m[j, cols] <- 1
+  }
+})
 ```
 
 This code is slow; can you find two major reasons why? 
 
-How can you more efficiently assign 1s? 
+How can you more efficiently assign 1s? A faster solution would take:
 
-Can you use sampling with replacement (which can be easily vectorized) in this example?
+```{r, echo=FALSE}
+system.time({
+  m <- Matrix::Matrix(0, nrow = N, ncol = N)
+  ind <- sapply(1:N, function(j) sample((1:N)[-j], 2))
+  m[t(ind)] <- 1
+})
+```
 
-Implement faster solutions in R and Rcpp.
+Can you use sampling with replacement (to avoid unnecessarily allocating memory) in this example? A faster solution would take:
+
+```{r, echo=FALSE}
+sample2 <- function(N) {
+  
+  res <- rep(NA_integer_, 2 * N)
+  
+  for (j in seq_len(N)) {
+    
+    # sample first one
+    repeat {
+      ind1 <- sample(N, 1)
+      if (ind1 != j) break
+    }
+    
+    # sample second one
+    repeat {
+      ind2 <- sample(N, 1)
+      if (ind2 != j && ind2 != ind1) break
+    }
+    
+    res[2 * j - 1:0] = c(ind1, ind2)
+  }
+  
+  cbind(rep(1:N, each = 2), res)
+}
+
+system.time({
+  m <- Matrix::Matrix(0, nrow = N, ncol = N)
+  m[sample(N)] <- 1
+})
+```
+
+It would be even faster using Rcpp (cf. [this SO answer](https://stackoverflow.com/a/45796424/6103040)).
+
 
 ***
 
 Make a fast function that returns all prime numbers up to a number `N`.
 
-```{r}
+```{r, dev='png'}
 N <- 1e6
 system.time(
   primes <- advr38pkg::AllPrimesUpTo(N)
