@@ -29,7 +29,7 @@ This material is licensed under the [Creative Commons Attribution-ShareAlike 3.0
 
 ## Author {-}
 
-[Florian Privé](https://privefl.github.io/) is a postdoc in predictive human genetics, fond of Data Science and an R(cpp) enthusiast. He is also the founder and  former organizer of [the Grenoble R user group](https://r-in-grenoble.github.io/). You can find him on [Twitter](https://twitter.com/privefl) and [GitHub](https://github.com/privefl) as \@privefl and on [Stack Overflow](https://stackoverflow.com/users/6103040/f-priv%c3%a9) as F. Privé.
+[Florian Privé](https://privefl.github.io/) is a researcher in predictive human genetics, fond of Data Science and an R(cpp) enthusiast. He is also the founder and  former organizer of [the Grenoble R user group](https://r-in-grenoble.github.io/). You can find him on [Twitter](https://twitter.com/privefl) and [GitHub](https://github.com/privefl) as \@privefl and on [Stack Overflow](https://stackoverflow.com/users/6103040/f-priv%c3%a9) as F. Privé.
 
 ```{r, out.width="25%", echo=FALSE}
 knitr::include_graphics("images/hexsticker.png")

@@ -29,7 +29,7 @@ We won't use DataCamp for this course anymore because
 
 ## Other resources
 
-- [Mastering Shiny](https://mastering-shiny.org/).
+- [Mastering Shiny](https://mastering-shiny.org/)
 
 - [Shiny website](http://shiny.rstudio.com/)
 
