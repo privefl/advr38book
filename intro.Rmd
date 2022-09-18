@@ -13,7 +13,7 @@ source("spelling-check.R")
 
 - Install associated package **advr38pkg** with `remotes::install_github("privefl/advr38pkg")`; this will install other dependencies that are needed in this book.
 
-- Install Git
+- Install Git and create a GitHub account
 
 ## Content
 

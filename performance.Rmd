@@ -187,8 +187,6 @@ If you try to optimize each and every part of your code, you will end up losing 
 
 R is great at prototyping quickly because you can write code in a concise and easy way. Start by doing just that. If performance matters, then profile your code to see which part of your code is taking too much time and optimize only this part!
 
-[Example]
-
 Learn more on how to profile your code in RStudio in [this article](https://support.rstudio.com/hc/en-us/articles/218221837-Profiling-R-code-with-the-RStudio-IDE).
 
 

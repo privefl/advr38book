@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 R programming | Advanced R Course</title>
   <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 R programming | Advanced R Course" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://privefl.github.io/advr38book/" />
-  <meta property="og:image" content="https://privefl.github.io/advr38book/images/hexsticker.png" />
+  <meta property="og:image" content="https://privefl.github.io/advr38book//images/hexsticker.png" />
   <meta property="og:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
   <meta name="github-repo" content="privefl/advr38book" />
 
@@ -19,12 +18,12 @@
   <meta name="twitter:title" content="Chapter 3 R programming | Advanced R Course" />
   <meta name="twitter:site" content="@privefl" />
   <meta name="twitter:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="twitter:image" content="https://privefl.github.io/advr38book/images/hexsticker.png" />
+  <meta name="twitter:image" content="https://privefl.github.io/advr38book//images/hexsticker.png" />
 
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2022-09-16" />
+<meta name="date" content="2022-09-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="good-practices.html"/>
 <link rel="next" href="tidyverse.html"/>
-<script src="libs/header-attrs-2.16/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-100463316-5"></script>
 <script>
@@ -125,6 +126,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -246,18 +248,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4.3" data-path="packages.html"><a href="packages.html#documentation"><i class="fa fa-check"></i><b>6.4.3</b> Documentation</a></li>
 <li class="chapter" data-level="6.4.4" data-path="packages.html"><a href="packages.html#namespace-file"><i class="fa fa-check"></i><b>6.4.4</b> <em>NAMESPACE</em> file</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#other-stuff"><i class="fa fa-check"></i><b>6.5</b> Other stuff</a>
+<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.5</b> Good practices</a>
 <ul>
 <li class="chapter" data-level="6.5.1" data-path="packages.html"><a href="packages.html#pkg-tests"><i class="fa fa-check"></i><b>6.5.1</b> Testing</a></li>
-<li class="chapter" data-level="6.5.2" data-path="packages.html"><a href="packages.html#rcpp"><i class="fa fa-check"></i><b>6.5.2</b> Rcpp</a></li>
-<li class="chapter" data-level="6.5.3" data-path="packages.html"><a href="packages.html#ignore-files"><i class="fa fa-check"></i><b>6.5.3</b> Ignore files</a></li>
-<li class="chapter" data-level="6.5.4" data-path="packages.html"><a href="packages.html#the-inst-directory"><i class="fa fa-check"></i><b>6.5.4</b> The <code>inst/</code> directory</a></li>
-<li class="chapter" data-level="6.5.5" data-path="packages.html"><a href="packages.html#pkg-data"><i class="fa fa-check"></i><b>6.5.5</b> External data</a></li>
+<li class="chapter" data-level="6.5.2" data-path="packages.html"><a href="packages.html#pkg-ci"><i class="fa fa-check"></i><b>6.5.2</b> Continuous checking</a></li>
+<li class="chapter" data-level="6.5.3" data-path="packages.html"><a href="packages.html#pkgdown"><i class="fa fa-check"></i><b>6.5.3</b> Pkgdown</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.6</b> Good practices</a>
+<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#more"><i class="fa fa-check"></i><b>6.6</b> More</a>
 <ul>
-<li class="chapter" data-level="6.6.1" data-path="packages.html"><a href="packages.html#pkg-ci"><i class="fa fa-check"></i><b>6.6.1</b> Continuous checking</a></li>
-<li class="chapter" data-level="6.6.2" data-path="packages.html"><a href="packages.html#pkgdown"><i class="fa fa-check"></i><b>6.6.2</b> Pkgdown</a></li>
+<li class="chapter" data-level="6.6.1" data-path="packages.html"><a href="packages.html#rcpp"><i class="fa fa-check"></i><b>6.6.1</b> Rcpp</a></li>
+<li class="chapter" data-level="6.6.2" data-path="packages.html"><a href="packages.html#ignore-files"><i class="fa fa-check"></i><b>6.6.2</b> Ignore files</a></li>
+<li class="chapter" data-level="6.6.3" data-path="packages.html"><a href="packages.html#the-inst-directory"><i class="fa fa-check"></i><b>6.6.3</b> The <code>inst/</code> directory</a></li>
+<li class="chapter" data-level="6.6.4" data-path="packages.html"><a href="packages.html#pkg-data"><i class="fa fa-check"></i><b>6.6.4</b> External data</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="packages.html"><a href="packages.html#release-on-cran"><i class="fa fa-check"></i><b>6.7</b> Release on CRAN</a></li>
 </ul></li>
@@ -286,18 +288,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-programming" class="section level1" number="3">
-<h1><span class="header-section-number">Chapter 3</span> R programming</h1>
+<div id="r-programming" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> R programming<a href="r-programming.html#r-programming" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This chapter is about base R stuff that I find important and that is often overlooked or unknown to most R users.</p>
 <p>Learn more with the <a href="https://adv-r.hadley.nz/">Advanced R book</a>.</p>
-<div id="common-mistakes" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Common mistakes</h2>
+<div id="common-mistakes" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Common mistakes<a href="r-programming.html#common-mistakes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
 <p>If you are using R and you think you’re in hell, <a href="http://www.burns-stat.com/pages/Tutor/R_inferno.pdf">this is a map</a> for you.</p>
 <p>– Patrick Burns</p>
 </blockquote>
-<div id="equality" class="section level3" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> Equality</h3>
+<div id="equality" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Equality<a href="r-programming.html#equality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="r-programming.html#cb10-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.1</span> <span class="sc">+</span> <span class="fl">0.2</span>) <span class="sc">==</span> <span class="fl">0.3</span></span></code></pre></div>
 <pre><code>#&gt; [1] FALSE</code></pre>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="r-programming.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>), <span class="at">digits =</span> <span class="dv">20</span>)</span></code></pre></div>
@@ -309,8 +311,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="r-programming.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isTRUE</span>(<span class="fu">all.equal</span>(<span class="fl">0.1</span> <span class="sc">+</span> <span class="fl">0.2</span>, <span class="fl">0.4</span>))  <span class="do">## if you want a boolean, use isTRUE()</span></span></code></pre></div>
 <pre><code>#&gt; [1] FALSE</code></pre>
 </div>
-<div id="arguments" class="section level3" number="3.1.2">
-<h3><span class="header-section-number">3.1.2</span> Arguments</h3>
+<div id="arguments" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Arguments<a href="r-programming.html#arguments" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="r-programming.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">118</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] -1</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="r-programming.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">118</span>)</span></code></pre></div>
@@ -338,14 +340,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r-programming.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">118</span>))</span></code></pre></div>
 <pre><code>#&gt; [1] 5</code></pre>
 </div>
-<div id="others" class="section level3" number="3.1.3">
-<h3><span class="header-section-number">3.1.3</span> Others</h3>
+<div id="others" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Others<a href="r-programming.html#others" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="r-programming.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
-<pre><code>#&gt;  [1]  5  3  6  1  4  9  2  7  8 10</code></pre>
+<pre><code>#&gt;  [1] 10  1  3  8  2  6  7  5  9  4</code></pre>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-programming.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>#&gt;  [1]  1  6 10  5  7  4  8  3  9  2</code></pre>
+<pre><code>#&gt;  [1] 10  4  5  6  2  7  9  3  8  1</code></pre>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="r-programming.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="fl">10.1</span>)</span></code></pre></div>
-<pre><code>#&gt;  [1] 10  7  6  3  1  5  4  9  2  8</code></pre>
+<pre><code>#&gt;  [1]  1  4  7  5  6  2  9  3  8 10</code></pre>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="r-programming.html#cb48-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb48-2"><a href="r-programming.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span>n<span class="dv">-1</span>  <span class="co"># is (1:n) - 1, so 0:(n - 1)</span></span></code></pre></div>
 <pre><code>#&gt;  [1] 0 1 2 3 4 5 6 7 8 9</code></pre>
@@ -359,10 +361,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>#&gt; integer(0)</code></pre>
 </div>
 </div>
-<div id="r-base-objects" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> R base objects</h2>
-<div id="types" class="section level3" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> Types</h3>
+<div id="r-base-objects" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> R base objects<a href="r-programming.html#r-base-objects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="types" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Types<a href="r-programming.html#types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are many “atomic” types of data: <code>logical</code>, <code>integer</code>, <code>double</code> and <code>character</code> (in this order, see below). There are also <code>raw</code> and <code>complex</code> but they are rarely used.</p>
 <p>You can’t mix types in an atomic vector (you can in a list). Coercion will automatically occur if you mix types:</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="r-programming.html#cb58-1" aria-hidden="true" tabindex="-1"></a>(a <span class="ot">&lt;-</span> <span class="cn">FALSE</span>)</span></code></pre></div>
@@ -392,20 +394,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="r-programming.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="dv">50</span> <span class="sc">&lt;</span> <span class="st">&quot;7&quot;</span>  <span class="do">## &quot;50&quot; &lt; &quot;7&quot;</span></span></code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
 </div>
-<div id="exercise" class="section level3" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> Exercise</h3>
+<div id="exercise" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Exercise<a href="r-programming.html#exercise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Use the automatic type coercion to convert this boolean matrix to a numeric one (with 0s and 1s). [What do you need to change to get an integer matrix instead?]</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="r-programming.html#cb80-1" aria-hidden="true" tabindex="-1"></a>(mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="dv">12</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>), <span class="dv">3</span>))</span></code></pre></div>
-<pre><code>#&gt;       [,1]  [,2] [,3]  [,4]
-#&gt; [1,]  TRUE  TRUE TRUE FALSE
-#&gt; [2,] FALSE FALSE TRUE FALSE
-#&gt; [3,] FALSE  TRUE TRUE  TRUE</code></pre>
+<pre><code>#&gt;       [,1]  [,2]  [,3]  [,4]
+#&gt; [1,] FALSE  TRUE  TRUE  TRUE
+#&gt; [2,]  TRUE FALSE FALSE FALSE
+#&gt; [3,] FALSE FALSE  TRUE FALSE</code></pre>
 </div>
 </div>
-<div id="base-objects-and-accessors" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Base objects and accessors</h2>
-<div id="objects" class="section level3" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Objects</h3>
+<div id="base-objects-and-accessors" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Base objects and accessors<a href="r-programming.html#base-objects-and-accessors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="objects" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Objects<a href="r-programming.html#objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>“atomic” vector: vector of one base type (see above).</p></li>
 <li><p>scalar: this doesn’t exist, this is a vector of length 1.</p></li>
@@ -455,24 +457,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="r-programming.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(iris)</span></code></pre></div>
 <pre><code>#&gt; [1] 5</code></pre>
 </div>
-<div id="accessors" class="section level3" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Accessors</h3>
+<div id="accessors" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Accessors<a href="r-programming.html#accessors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>The <code>[</code> accessor is used to access a subset of the data <strong>with the same class</strong>.</li>
 </ol>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="r-programming.html#cb98-1" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">5</span>))</span></code></pre></div>
-<pre><code>#&gt; [1] 0.5201042 0.7675636 0.2581406 0.4688081 0.9460966</code></pre>
+<pre><code>#&gt; [1] 0.89976837 0.01554217 0.89386129 0.47921106 0.66254209</code></pre>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="r-programming.html#cb100-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
-<pre><code>#&gt; [1] 0.7675636 0.2581406</code></pre>
+<pre><code>#&gt; [1] 0.01554217 0.89386129</code></pre>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="r-programming.html#cb102-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>]</span></code></pre></div>
-<pre><code>#&gt; [1] 0.7675636 0.2581406 0.4688081 0.9460966        NA        NA        NA</code></pre>
+<pre><code>#&gt; [1] 0.01554217 0.89386129 0.47921106 0.66254209         NA         NA         NA</code></pre>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="r-programming.html#cb104-1" aria-hidden="true" tabindex="-1"></a>(y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(<span class="dv">12</span>), <span class="dv">3</span>))</span></code></pre></div>
-<pre><code>#&gt;           [,1]      [,2]      [,3]      [,4]
-#&gt; [1,] 0.2041566 0.7441262 0.5812760 0.9337893
-#&gt; [2,] 0.9707046 0.2065655 0.2226151 0.4232697
-#&gt; [3,] 0.7691846 0.2474701 0.8070805 0.9871322</code></pre>
+<pre><code>#&gt;           [,1]      [,2]       [,3]      [,4]
+#&gt; [1,] 0.6008275 0.1897488 0.27241908 0.7451854
+#&gt; [2,] 0.7570602 0.3844780 0.15686065 0.7728640
+#&gt; [3,] 0.1602381 0.7092299 0.03533146 0.3138906</code></pre>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="r-programming.html#cb106-1" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">4</span><span class="sc">:</span><span class="dv">9</span>]  <span class="do">## a matrix is a vector</span></span></code></pre></div>
-<pre><code>#&gt; [1] 0.7441262 0.2065655 0.2474701 0.5812760 0.2226151 0.8070805</code></pre>
+<pre><code>#&gt; [1] 0.18974880 0.38447799 0.70922989 0.27241908 0.15686065 0.03533146</code></pre>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="r-programming.html#cb108-1" aria-hidden="true" tabindex="-1"></a>(l <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">b =</span> <span class="st">&quot;toto&quot;</span>, <span class="at">c =</span> <span class="fu">runif</span>(<span class="dv">10</span>)))</span></code></pre></div>
 <pre><code>#&gt; $a
 #&gt; [1] 2 3
@@ -481,15 +483,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; [1] &quot;toto&quot;
 #&gt; 
 #&gt; $c
-#&gt;  [1] 0.9700647 0.7316871 0.7139832 0.1789005 0.7837284 0.5755611 0.6435345 0.3190850
-#&gt;  [9] 0.4853237 0.1467061</code></pre>
+#&gt;  [1] 0.1620761 0.1319349 0.7781933 0.8110567 0.3951918 0.4993644 0.6711929 0.5282945
+#&gt;  [9] 0.3977626 0.4849054</code></pre>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="r-programming.html#cb110-1" aria-hidden="true" tabindex="-1"></a>l[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>#&gt; $b
 #&gt; [1] &quot;toto&quot;
 #&gt; 
 #&gt; $c
-#&gt;  [1] 0.9700647 0.7316871 0.7139832 0.1789005 0.7837284 0.5755611 0.6435345 0.3190850
-#&gt;  [9] 0.4853237 0.1467061</code></pre>
+#&gt;  [1] 0.1620761 0.1319349 0.7781933 0.8110567 0.3951918 0.4993644 0.6711929 0.5282945
+#&gt;  [9] 0.3977626 0.4849054</code></pre>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="r-programming.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code></pre></div>
 <pre><code>#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 #&gt; 1          5.1         3.5          1.4         0.2  setosa
@@ -510,11 +512,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>#&gt; [1] &quot;data.frame&quot;</code></pre>
 <p>You can also use a logical and character vectors to index these objects.</p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="r-programming.html#cb118-1" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">4</span>))</span></code></pre></div>
-<pre><code>#&gt; [1] 0.5437146 0.7540143 0.3103594 0.4389036</code></pre>
+<pre><code>#&gt; [1] 0.32721481 0.44314935 0.02041743 0.31606673</code></pre>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="r-programming.html#cb120-1" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)]</span></code></pre></div>
-<pre><code>#&gt; [1] 0.7540143 0.4389036</code></pre>
+<pre><code>#&gt; [1] 0.4431494 0.3160667</code></pre>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="r-programming.html#cb122-1" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>)]  <span class="do">## logical vectors are recycled</span></span></code></pre></div>
-<pre><code>#&gt; [1] 0.7540143 0.4389036</code></pre>
+<pre><code>#&gt; [1] 0.4431494 0.3160667</code></pre>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="r-programming.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris[<span class="fu">c</span>(<span class="st">&quot;Petal.Length&quot;</span>, <span class="st">&quot;Species&quot;</span>)])</span></code></pre></div>
 <pre><code>#&gt;   Petal.Length Species
 #&gt; 1          1.4  setosa
@@ -540,7 +542,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; [49] setosa setosa
 #&gt;  [ reached getOption(&quot;max.print&quot;) -- omitted 100 entries ]
 #&gt; Levels: setosa versicolor virginica</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-14"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
 <img src="https://pbs.twimg.com/media/DQ5en8XWAAICIaJ.jpg" alt="Indexing lists in R. [Source: https://goo.gl/8UkcHq]" width="70%" />
 <p class="caption">
 Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class="uri">https://goo.gl/8UkcHq</a>]
@@ -601,8 +603,8 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
 #&gt; [3,]    2    2    2    2</code></pre>
 <p>If you use arrays with more than two dimensions, just add a comma for every new dimension.</p>
 </div>
-<div id="exercises" class="section level3" number="3.3.3">
-<h3><span class="header-section-number">3.3.3</span> Exercises</h3>
+<div id="exercises" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Exercises<a href="r-programming.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li><p>Use the dimension attribute to make a function that computes the sums every n elements of a vector. In which order are matrix elements stored? [Which are the special cases that you should consider?]</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="r-programming.html#cb160-1" aria-hidden="true" tabindex="-1"></a>advr38pkg<span class="sc">::</span><span class="fu">sum_every</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">2</span>)</span></code></pre></div>
@@ -634,11 +636,11 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
 </ol>
 </div>
 </div>
-<div id="useful-r-base-functions" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Useful R base functions</h2>
+<div id="useful-r-base-functions" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Useful R base functions<a href="r-programming.html#useful-r-base-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this section, I present some useful R base functions (also see <a href="https://cran.r-project.org/doc/contrib/Kauffmann_aide_memoire_R.pdf">this comprehensive list in French</a> and <a href="https://github.com/peterhurford/adv-r-book-solutions/blob/master/03_vocab/functions.r">this one in English</a>):</p>
-<div id="general" class="section level3" number="3.4.1">
-<h3><span class="header-section-number">3.4.1</span> General</h3>
+<div id="general" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> General<a href="r-programming.html#general" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="r-programming.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To get some help</span></span>
 <span id="cb168-2"><a href="r-programming.html#cb168-2" aria-hidden="true" tabindex="-1"></a>?topic</span>
 <span id="cb168-3"><a href="r-programming.html#cb168-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -661,23 +663,25 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
 <span id="cb173-2"><a href="r-programming.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())  <span class="do">## remove all objects in the environment</span></span></code></pre></div>
 <div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="r-programming.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list of available S3 methods</span></span>
 <span id="cb174-2"><a href="r-programming.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(summary)</span></code></pre></div>
-<pre><code>#&gt;  [1] summary.aov                    summary.aovlist*              
-#&gt;  [3] summary.aspell*                summary.check_packages_in_dir*
-#&gt;  [5] summary.connection             summary.data.frame            
-#&gt;  [7] summary.Date                   summary.default               
-#&gt;  [9] summary.ecdf*                  summary.factor                
-#&gt; [11] summary.glm                    summary.infl*                 
-#&gt; [13] summary.lm                     summary.loess*                
-#&gt; [15] summary.manova                 summary.matrix                
-#&gt; [17] summary.mlm*                   summary.nls*                  
-#&gt; [19] summary.packageStatus*         summary.POSIXct               
-#&gt; [21] summary.POSIXlt                summary.ppr*                  
-#&gt; [23] summary.prcomp*                summary.princomp*             
-#&gt; [25] summary.proc_time              summary.rlang_error*          
-#&gt; [27] summary.rlang_trace*           summary.srcfile               
-#&gt; [29] summary.srcref                 summary.stepfun               
-#&gt; [31] summary.stl*                   summary.table                 
-#&gt; [33] summary.tukeysmooth*           summary.warnings              
+<pre><code>#&gt;  [1] summary.aov                         summary.aovlist*                   
+#&gt;  [3] summary.aspell*                     summary.check_packages_in_dir*     
+#&gt;  [5] summary.connection                  summary.data.frame                 
+#&gt;  [7] summary.Date                        summary.default                    
+#&gt;  [9] summary.ecdf*                       summary.factor                     
+#&gt; [11] summary.glm                         summary.infl*                      
+#&gt; [13] summary.lm                          summary.loess*                     
+#&gt; [15] summary.manova                      summary.matrix                     
+#&gt; [17] summary.mlm*                        summary.nls*                       
+#&gt; [19] summary.packageStatus*              summary.POSIXct                    
+#&gt; [21] summary.POSIXlt                     summary.ppr*                       
+#&gt; [23] summary.prcomp*                     summary.princomp*                  
+#&gt; [25] summary.proc_time                   summary.rlang:::list_of_conditions*
+#&gt; [27] summary.rlang_error*                summary.rlang_message*             
+#&gt; [29] summary.rlang_trace*                summary.rlang_warning*             
+#&gt; [31] summary.srcfile                     summary.srcref                     
+#&gt; [33] summary.stepfun                     summary.stl*                       
+#&gt; [35] summary.table                       summary.tukeysmooth*               
+#&gt; [37] summary.warnings                   
 #&gt; see &#39;?methods&#39; for accessing help and source code</code></pre>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="r-programming.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="at">class =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt;  [1] add1           alias          anova          case.names     coerce        
@@ -708,8 +712,8 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="r-programming.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">do.call</span>(<span class="st">&#39;c&#39;</span>, list_of_int)</span></code></pre></div>
 <pre><code>#&gt; [1] 1 2 3 4 5</code></pre>
 </div>
-<div id="sequence-and-vector-operations" class="section level3" number="3.4.2">
-<h3><span class="header-section-number">3.4.2</span> Sequence and vector operations</h3>
+<div id="sequence-and-vector-operations" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Sequence and vector operations<a href="r-programming.html#sequence-and-vector-operations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="r-programming.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>  <span class="do">## of type integer</span></span></code></pre></div>
 <pre><code>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="r-programming.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">2</span>)  <span class="do">## of type double</span></span></code></pre></div>
@@ -729,17 +733,17 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="r-programming.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep_len</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">8</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 1 2 3 1 2 3 1 2</code></pre>
 <div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="r-programming.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">replicate</span>(<span class="dv">5</span>, <span class="fu">rnorm</span>(<span class="dv">10</span>))  <span class="do">## How to use a multiline expression?</span></span></code></pre></div>
-<pre><code>#&gt;             [,1]        [,2]        [,3]       [,4]       [,5]
-#&gt;  [1,]  0.8457294  0.27291444  1.85086886  0.2319977 -1.5304643
-#&gt;  [2,]  2.0530346  2.01524227  0.20104553  0.4134975  1.4152135
-#&gt;  [3,] -0.9042458 -0.86356834  0.06269037 -0.4109867 -1.5787243
-#&gt;  [4,] -1.3194563  0.28765779  0.48176007  0.8268212 -0.6550001
-#&gt;  [5,]  1.0986174  0.03814780 -0.11728071 -0.5003595  0.2248905
-#&gt;  [6,]  0.2580123 -0.44811091 -0.36909065  0.7229745  0.2004195
-#&gt;  [7,]  2.4591949  1.53858358 -1.50793074  1.4760282  1.7187500
-#&gt;  [8,]  0.6045999 -0.09552853 -0.49694009  0.8465545 -0.9847056
-#&gt;  [9,]  0.2076766  0.19061550 -0.68471674 -0.6452238 -0.7888480
-#&gt; [10,] -0.6132419  1.33268391 -0.60700738  0.9954242 -1.9068735</code></pre>
+<pre><code>#&gt;             [,1]       [,2]       [,3]         [,4]       [,5]
+#&gt;  [1,] -0.3720935 -0.4820007  0.5475180 -1.380176706 -0.2839646
+#&gt;  [2,]  0.1928852  0.4472068 -0.7460517  0.007057711 -0.5808257
+#&gt;  [3,] -2.3648252 -0.5561363  0.3695806  0.036192075  2.0267886
+#&gt;  [4,] -1.2698213  1.1000708  0.8820731  0.018715091  0.3245016
+#&gt;  [5,]  0.1691651  0.6274578 -1.7218334 -0.690631376  0.9596874
+#&gt;  [6,]  0.9907185  0.6370115 -0.8467926 -1.847681121  0.5080000
+#&gt;  [7,] -1.0387572 -0.2867368  0.4867353  1.266688383 -1.0009340
+#&gt;  [8,]  1.2565594 -1.2833397  0.6424480 -1.529737600  1.6609545
+#&gt;  [9,] -1.2284475  0.6024777 -1.6019124  0.161295406 -1.2792711
+#&gt; [10,]  0.3315397 -0.3700831 -0.6939102  0.684027041 -1.0012055</code></pre>
 <div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="r-programming.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span></code></pre></div>
 <pre><code>#&gt; [1] 1 2 2 6 8</code></pre>
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="r-programming.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">order</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span></code></pre></div>
@@ -768,18 +772,18 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
 #&gt;   1 2 1
 #&gt;   2 1 1</code></pre>
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="r-programming.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>#&gt;  [1]  2  3  1 10  6  9  8  7  4  5</code></pre>
+<pre><code>#&gt;  [1] 10  2  6  7  5  9  8  3  4  1</code></pre>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="r-programming.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>)</span></code></pre></div>
-<pre><code>#&gt; [1] 3 9 7 8 6</code></pre>
+<pre><code>#&gt; [1] 3 6 9 8 4</code></pre>
 <div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="r-programming.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">50</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>#&gt;  [1]  9 10  6  9  5 10  9  7  7 10  9  8  7 10  6  4 10  6  5  7 10 10  4  9  8  9  4  7
-#&gt; [29]  5  4  5  7  4  7  4 10  7  5  9  5  8  5  6  4  5  8  4  5 10  5</code></pre>
+<pre><code>#&gt;  [1]  4  4  4  8  7  5  6  3  4  3  4  3  9  9  5  7  9  8 10  7  6 10  4 10  7  7  4  7
+#&gt; [29]  5  3  3  6  8  6  4  6  5  7 10  7  6  4  9 10  5  3  3  5 10  4</code></pre>
 <div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="r-programming.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">10</span>, <span class="at">max =</span> <span class="dv">100</span>))</span></code></pre></div>
-<pre><code>#&gt;  [1] 91  0 42 14 77 98  2 64 43 95</code></pre>
+<pre><code>#&gt;  [1] 45 17 54 66 79 25 92 84 92 42</code></pre>
 <div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="r-programming.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(x, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>#&gt;  [1] 91.09  0.42 41.69 14.40 77.01 98.10  1.85 64.38 43.45 94.98</code></pre>
+<pre><code>#&gt;  [1] 45.08 16.78 53.70 66.21 79.08 24.57 92.08 83.94 91.56 41.79</code></pre>
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="r-programming.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(x, <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
-<pre><code>#&gt;  [1]  90   0  40  10  80 100   0  60  40  90</code></pre>
+<pre><code>#&gt;  [1] 50 20 50 70 80 20 90 80 90 40</code></pre>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="r-programming.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pmin</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 1 2 2 1</code></pre>
 <div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="r-programming.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pmax</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">1</span>)</span></code></pre></div>
@@ -800,8 +804,8 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
 #&gt; 6     50     10</code></pre>
 <p>Also see <a href="https://stackoverflow.com/questions/3505701/grouping-functions-tapply-by-aggregate-and-the-apply-family">this nice Q/A on grouping functions and the *apply family</a> and <a href="https://bookdown.org/rdpeng/rprogdatascience/loop-functions.html">this book chapter about looping</a>.</p>
 </div>
-<div id="character-operations" class="section level3" number="3.4.3">
-<h3><span class="header-section-number">3.4.3</span> Character operations</h3>
+<div id="character-operations" class="section level3 hasAnchor" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Character operations<a href="r-programming.html#character-operations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="r-programming.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;am&quot;</span>, <span class="st">&quot;me&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;I am me&quot;</code></pre>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="r-programming.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;test&quot;</span>, <span class="dv">0</span>)</span></code></pre></div>
@@ -820,11 +824,11 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
 #&gt; [4] &quot;./packages.pdf&quot;       &quot;./performance.pdf&quot;    &quot;./rprog.pdf&quot;         
 #&gt; [7] &quot;./shiny.pdf&quot;          &quot;./tidyverse.pdf&quot;</code></pre>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="r-programming.html#cb256-1" aria-hidden="true" tabindex="-1"></a>(y <span class="ot">&lt;-</span> <span class="fu">sample</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
-<pre><code>#&gt;  [1] &quot;c&quot; &quot;a&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;b&quot; &quot;b&quot; &quot;d&quot; &quot;a&quot; &quot;d&quot;</code></pre>
+<pre><code>#&gt;  [1] &quot;c&quot; &quot;d&quot; &quot;d&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;a&quot; &quot;d&quot; &quot;c&quot; &quot;a&quot;</code></pre>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="r-programming.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">match</span>(y, letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span></code></pre></div>
-<pre><code>#&gt;  [1] 3 1 1 2 3 2 2 4 1 4</code></pre>
+<pre><code>#&gt;  [1] 3 4 4 1 2 3 1 4 3 1</code></pre>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="r-programming.html#cb260-1" aria-hidden="true" tabindex="-1"></a>y <span class="sc">%in%</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
-<pre><code>#&gt;  [1] FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE</code></pre>
+<pre><code>#&gt;  [1] FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE</code></pre>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="r-programming.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">split</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="fu">rep</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="dv">4</span>))</span></code></pre></div>
 <pre><code>#&gt; $a
 #&gt; [1]  1  4  7 10
@@ -841,8 +845,8 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="r-programming.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], letters[<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;a&quot; &quot;b&quot;</code></pre>
 </div>
-<div id="logical-operators" class="section level3" number="3.4.4">
-<h3><span class="header-section-number">3.4.4</span> Logical operators</h3>
+<div id="logical-operators" class="section level3 hasAnchor" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> Logical operators<a href="r-programming.html#logical-operators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="r-programming.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">|</span> <span class="fu">stop</span>(<span class="st">&quot;will go there&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; Error in eval(expr, envir, enclos): will go there</code></pre>
 <div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="r-programming.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">||</span> <span class="fu">stop</span>(<span class="st">&quot;won&#39;t go there&quot;</span>)  <span class="do">## won&#39;t evaluate second condition if first one is TRUE</span></span></code></pre></div>
@@ -852,11 +856,11 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
 <div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="r-programming.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>) <span class="sc">&amp;&amp;</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)  <span class="do">## no warning!!</span></span></code></pre></div>
 <pre><code>#&gt; [1] FALSE</code></pre>
 <div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="r-programming.html#cb278-1" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>))</span></code></pre></div>
-<pre><code>#&gt;  [1] -0.58230836 -0.89463791  2.21392222 -0.99112739 -0.04345414 -0.48211720 -0.72579107
-#&gt;  [8]  0.39071694  0.80310677 -1.52710839</code></pre>
+<pre><code>#&gt;  [1] -0.197861982 -0.846783106 -0.003490484 -1.683335767  1.909999951  1.428867609
+#&gt;  [7] -0.572211219 -1.691651214 -0.303404179  0.315105917</code></pre>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="r-programming.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, x, <span class="sc">-</span>x)  <span class="co"># try to find two other equivalents</span></span></code></pre></div>
-<pre><code>#&gt;  [1] 0.58230836 0.89463791 2.21392222 0.99112739 0.04345414 0.48211720 0.72579107
-#&gt;  [8] 0.39071694 0.80310677 1.52710839</code></pre>
+<pre><code>#&gt;  [1] 0.197861982 0.846783106 0.003490484 1.683335767 1.909999951 1.428867609 0.572211219
+#&gt;  [8] 1.691651214 0.303404179 0.315105917</code></pre>
 <p>Beware with <code>ifelse()</code> (learn more <a href="https://privefl.github.io/blog/On-the-ifelse-function/">there</a>), for example</p>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="r-programming.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="cn">FALSE</span>, <span class="dv">0</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 1</code></pre>
@@ -865,19 +869,19 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
 <div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="r-programming.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="cn">FALSE</span>) <span class="dv">0</span> <span class="cf">else</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span></code></pre></div>
 <pre><code>#&gt; [1] 1 2 3 4 5</code></pre>
 </div>
-<div id="exercises-1" class="section level3" number="3.4.5">
-<h3><span class="header-section-number">3.4.5</span> Exercises</h3>
+<div id="exercises-1" class="section level3 hasAnchor" number="3.4.5">
+<h3><span class="header-section-number">3.4.5</span> Exercises<a href="r-programming.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li><p>Use <code>sample()</code>, <code>rep_len()</code> and <code>split()</code> to make a function that randomly splits some indices in a list of <code>K</code> groups of indices (like for cross-validation). [Which are the special cases that you should consider?]</p>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="r-programming.html#cb288-1" aria-hidden="true" tabindex="-1"></a>advr38pkg<span class="sc">::</span><span class="fu">split_ind</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>#&gt; $`1`
-#&gt;  [1]  2  6  8 10 13 15 16 17 21 22 23 31 34 40
+#&gt;  [1]  1  7  9 15 17 19 21 22 26 30 31 32 39 40
 #&gt; 
 #&gt; $`2`
-#&gt;  [1]  1  5  9 12 19 24 27 28 29 32 36 38 39
+#&gt;  [1]  2  8 11 13 18 23 25 27 29 33 34 36 37
 #&gt; 
 #&gt; $`3`
-#&gt;  [1]  3  4  7 11 14 18 20 25 26 30 33 35 37</code></pre></li>
+#&gt;  [1]  3  4  5  6 10 12 14 16 20 24 28 35 38</code></pre></li>
 <li><p>Use <code>replicate()</code> and <code>sample()</code> to get a 95% confidence interval (using bootstrapping) for the mean of the following vector:</p>
 <div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="r-programming.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb290-2"><a href="r-programming.html#cb290-2" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>))</span></code></pre></div>
@@ -931,8 +935,8 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
 </ol>
 </div>
 </div>
-<div id="environments-and-scoping" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Environments and scoping</h2>
+<div id="environments-and-scoping" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Environments and scoping<a href="r-programming.html#environments-and-scoping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Lexical scoping determines where to look for values, not when to look for them. R looks for values when the function is run, not when it’s created. This means that the output of a function can be different depending on objects outside its environment:</p>
 <div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="r-programming.html#cb303-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
 <span id="cb303-2"><a href="r-programming.html#cb303-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
@@ -984,8 +988,8 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
 #&gt; [1] 3</code></pre>
 <p>Learn more about <a href="https://bookdown.org/rdpeng/rprogdatascience/functions.html">functions</a> and <a href="https://bookdown.org/rdpeng/rprogdatascience/scoping-rules-of-r.html">scoping rules of R</a> with the <a href="https://bookdown.org/rdpeng/rprogdatascience/">R Programming for Data Science book</a>.</p>
 </div>
-<div id="attributes-and-classes" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> Attributes and classes</h2>
+<div id="attributes-and-classes" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Attributes and classes<a href="r-programming.html#attributes-and-classes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Attributes are metadata associated with an object. You can get/set the list of attributes with <code>attributes()</code> or one particular attribute with <code>attr()</code>.</p>
 <div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="r-programming.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(iris)</span></code></pre></div>
 <pre><code>#&gt; $names
@@ -1105,7 +1109,6 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1124,6 +1127,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1144,6 +1148,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
@@ -1157,7 +1165,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

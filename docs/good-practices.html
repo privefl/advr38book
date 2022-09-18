@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Good practices | Advanced R Course</title>
   <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Good practices | Advanced R Course" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://privefl.github.io/advr38book/" />
-  <meta property="og:image" content="https://privefl.github.io/advr38book/images/hexsticker.png" />
+  <meta property="og:image" content="https://privefl.github.io/advr38book//images/hexsticker.png" />
   <meta property="og:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
   <meta name="github-repo" content="privefl/advr38book" />
 
@@ -19,12 +18,12 @@
   <meta name="twitter:title" content="Chapter 2 Good practices | Advanced R Course" />
   <meta name="twitter:site" content="@privefl" />
   <meta name="twitter:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="twitter:image" content="https://privefl.github.io/advr38book/images/hexsticker.png" />
+  <meta name="twitter:image" content="https://privefl.github.io/advr38book//images/hexsticker.png" />
 
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2022-09-16" />
+<meta name="date" content="2022-09-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="introduction.html"/>
 <link rel="next" href="r-programming.html"/>
-<script src="libs/header-attrs-2.16/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-100463316-5"></script>
 <script>
@@ -125,6 +126,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -246,18 +248,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4.3" data-path="packages.html"><a href="packages.html#documentation"><i class="fa fa-check"></i><b>6.4.3</b> Documentation</a></li>
 <li class="chapter" data-level="6.4.4" data-path="packages.html"><a href="packages.html#namespace-file"><i class="fa fa-check"></i><b>6.4.4</b> <em>NAMESPACE</em> file</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#other-stuff"><i class="fa fa-check"></i><b>6.5</b> Other stuff</a>
+<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.5</b> Good practices</a>
 <ul>
 <li class="chapter" data-level="6.5.1" data-path="packages.html"><a href="packages.html#pkg-tests"><i class="fa fa-check"></i><b>6.5.1</b> Testing</a></li>
-<li class="chapter" data-level="6.5.2" data-path="packages.html"><a href="packages.html#rcpp"><i class="fa fa-check"></i><b>6.5.2</b> Rcpp</a></li>
-<li class="chapter" data-level="6.5.3" data-path="packages.html"><a href="packages.html#ignore-files"><i class="fa fa-check"></i><b>6.5.3</b> Ignore files</a></li>
-<li class="chapter" data-level="6.5.4" data-path="packages.html"><a href="packages.html#the-inst-directory"><i class="fa fa-check"></i><b>6.5.4</b> The <code>inst/</code> directory</a></li>
-<li class="chapter" data-level="6.5.5" data-path="packages.html"><a href="packages.html#pkg-data"><i class="fa fa-check"></i><b>6.5.5</b> External data</a></li>
+<li class="chapter" data-level="6.5.2" data-path="packages.html"><a href="packages.html#pkg-ci"><i class="fa fa-check"></i><b>6.5.2</b> Continuous checking</a></li>
+<li class="chapter" data-level="6.5.3" data-path="packages.html"><a href="packages.html#pkgdown"><i class="fa fa-check"></i><b>6.5.3</b> Pkgdown</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.6</b> Good practices</a>
+<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#more"><i class="fa fa-check"></i><b>6.6</b> More</a>
 <ul>
-<li class="chapter" data-level="6.6.1" data-path="packages.html"><a href="packages.html#pkg-ci"><i class="fa fa-check"></i><b>6.6.1</b> Continuous checking</a></li>
-<li class="chapter" data-level="6.6.2" data-path="packages.html"><a href="packages.html#pkgdown"><i class="fa fa-check"></i><b>6.6.2</b> Pkgdown</a></li>
+<li class="chapter" data-level="6.6.1" data-path="packages.html"><a href="packages.html#rcpp"><i class="fa fa-check"></i><b>6.6.1</b> Rcpp</a></li>
+<li class="chapter" data-level="6.6.2" data-path="packages.html"><a href="packages.html#ignore-files"><i class="fa fa-check"></i><b>6.6.2</b> Ignore files</a></li>
+<li class="chapter" data-level="6.6.3" data-path="packages.html"><a href="packages.html#the-inst-directory"><i class="fa fa-check"></i><b>6.6.3</b> The <code>inst/</code> directory</a></li>
+<li class="chapter" data-level="6.6.4" data-path="packages.html"><a href="packages.html#pkg-data"><i class="fa fa-check"></i><b>6.6.4</b> External data</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="packages.html"><a href="packages.html#release-on-cran"><i class="fa fa-check"></i><b>6.7</b> Release on CRAN</a></li>
 </ul></li>
@@ -286,10 +288,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="good-practices" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Good practices</h1>
-<div id="coding-style" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Coding style</h2>
+<div id="good-practices" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Good practices<a href="good-practices.html#good-practices" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="coding-style" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Coding style<a href="good-practices.html#coding-style" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
 <p>Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread.</p>
 <p>– Hadley Wickham</p>
@@ -297,12 +299,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Please make your code readable by following e.g. <a href="http://style.tidyverse.org/">this coding style</a> (examples below come from this guide).</p>
 <p>You can use <a href="https://github.com/r-lib/styler">package <strong>styler</strong></a> (that provides RStudio addins) to correct your style:</p>
 <p><img src="https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif" width="70%" style="display: block; margin: auto;" /></p>
-<div id="naming" class="section level3" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Naming</h3>
+<div id="naming" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Naming<a href="good-practices.html#naming" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Be smart with your naming. I can’t tell the number of times I’ve seen <code>df &lt;- as.matrix(mtcars)</code> on Stack Overflow.</p>
 </div>
-<div id="spacing" class="section level3" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> Spacing</h3>
+<div id="spacing" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Spacing<a href="good-practices.html#spacing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Put a space before and after <code>=</code> when naming arguments in function calls.
 Most infix operators (<code>==</code>, <code>+</code>, <code>-</code>, <code>&lt;-</code>, etc.) are also surrounded by
 spaces, except those with relatively high precedence: <code>^</code>, <code>:</code>, <code>::</code>, and <code>:::</code>. Always put a space after a comma, and never before (just like in regular English).</p>
@@ -316,8 +318,8 @@ spaces, except those with relatively high precedence: <code>^</code>, <code>:</c
 <span id="cb1-8"><a href="good-practices.html#cb1-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">:</span> <span class="dv">10</span></span>
 <span id="cb1-9"><a href="good-practices.html#cb1-9" aria-hidden="true" tabindex="-1"></a>base <span class="sc">::</span> sum</span></code></pre></div>
 </div>
-<div id="indenting" class="section level3" number="2.1.3">
-<h3><span class="header-section-number">2.1.3</span> Indenting</h3>
+<div id="indenting" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Indenting<a href="good-practices.html#indenting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Curly braces, <code>{}</code>, define the most important hierarchy of R code. To make this hierarchy easy to see, always indent the code inside <code>{}</code> by two spaces. This should be automatic in RStudio.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="good-practices.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
 <span id="cb2-2"><a href="good-practices.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> debug) {</span>
@@ -347,8 +349,8 @@ spaces, except those with relatively high precedence: <code>^</code>, <code>:</c
 <span id="cb2-26"><a href="good-practices.html#cb2-26" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb2-27"><a href="good-practices.html#cb2-27" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> { y <span class="sc">^</span> x }</span></code></pre></div>
 </div>
-<div id="long-lines" class="section level3" number="2.1.4">
-<h3><span class="header-section-number">2.1.4</span> Long lines</h3>
+<div id="long-lines" class="section level3 hasAnchor" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Long lines<a href="good-practices.html#long-lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Strive to limit your code to 80 characters per line. This fits comfortably on a
 printed page with a reasonably sized font. If you find yourself running out of
 room, this is a good indication that you should encapsulate some of the work in
@@ -358,8 +360,8 @@ a separate function.</p>
 the function name, for each argument, and for the closing <code>)</code>.
 This makes the code easier to read and to modify later.</p>
 </div>
-<div id="other" class="section level3" number="2.1.5">
-<h3><span class="header-section-number">2.1.5</span> Other</h3>
+<div id="other" class="section level3 hasAnchor" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Other<a href="good-practices.html#other" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Use <code>&lt;-</code>, not <code>=</code>, for assignment. Keep <code>=</code> for parameters.</li>
 </ul>
@@ -401,8 +403,8 @@ on the same line.</p></li>
 <span id="cb5-8"><a href="good-practices.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Text with &quot;double&quot; and </span><span class="sc">\&#39;</span><span class="st">single</span><span class="sc">\&#39;</span><span class="st"> quotes&#39;</span></span></code></pre></div>
 </div>
 </div>
-<div id="rstudio" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> RStudio</h2>
+<div id="rstudio" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> RStudio<a href="good-practices.html#rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Download a recent version of <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> (&gt;= 1.2) and use it!</p>
 <p>Learn more about the new features of RStudio at <a href="https://rstudio.com/products/rstudio/release-notes/" class="uri">https://rstudio.com/products/rstudio/release-notes/</a>.</p>
 <p>RStudio features:</p>
@@ -441,11 +443,11 @@ on the same line.</p></li>
 </ul>
 <p>Read more at <a href="https://www.tidyverse.org/articles/2017/12/workflow-vs-script/" class="uri">https://www.tidyverse.org/articles/2017/12/workflow-vs-script/</a> and also see chapter <a href="https://bookdown.org/csgillespie/efficientR/set-up.html"><em>Efficient set-up</em></a> of book <em>Efficient R programming</em>.</p>
 </div>
-<div id="git" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Version control (Git)</h2>
-<div id="why-use-git-you-dont-use-git" class="section level3" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Why use Git? You don’t use Git?</h3>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
+<div id="git" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Version control (Git)<a href="good-practices.html#git" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="why-use-git-you-dont-use-git" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Why use Git? You don’t use Git?<a href="good-practices.html#why-use-git-you-dont-use-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
 <img src="images/i-also-like-to-live-dangerously.jpg" alt="You don't use Version Control?" width="50%" />
 <p class="caption">
 Figure 2.1: You don’t use Version Control?
@@ -485,28 +487,30 @@ Figure 2.1: You don’t use Version Control?
 <li>Be able to get websites for your packages with <a href="http://pkgdown.r-lib.org/">pkgdown</a>, for your book (like this one!) with <a href="https://bookdown.org/">bookdown</a>, for your personal webpage with <a href="https://rmarkdown.rstudio.com/rmarkdown_websites.html">R Markdown Websites</a> or <a href="https://bookdown.org/yihui/blogdown/">blogdown</a>.</li>
 </ul>
 </div>
-<div id="about-git" class="section level3" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> About Git</h3>
+<div id="about-git" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> About Git<a href="good-practices.html#about-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Main Git platforms (share your code, collaborate):
+<li><p>Main Git platforms (share your code, collaborate):</p>
 <ul>
-<li><a href="https://github.com/magrichard">GitHub</a>, <a href="https://guides.github.com/activities/hello-world/">documentation</a> (only free for public repositories, now owned by Microsoft)</li>
+<li><a href="https://github.com/">GitHub</a>, <a href="https://guides.github.com/activities/hello-world/">documentation</a> (only free for public repositories, now owned by Microsoft)</li>
 <li><a href="https://gricad-gitlab.univ-grenoble-alpes.fr/">GitLab UGA</a> (<a href="https://docs.gricad-pages.univ-grenoble-alpes.fr/help/">documentation</a>) or just <a href="https://about.gitlab.com/">GitLab</a> (open source &amp; free)</li>
 <li><a href="https://bitbucket.org/">Bitbucket</a> (free when you have less than 5 collaborators)</li>
 <li>any server..</li>
 </ul></li>
-<li>3 main commands:
+<li><p>4 main commands:</p>
 <ul>
-<li>pull: update your local project with the latest version of the main project</li>
-<li>commit: snapshot of your code at a specified point in time (you can and you should use this even when having no internet connection)</li>
-<li>push: merge your local modifications with the main project</li>
+<li><em>add</em>: add files to be part of the next commit</li>
+<li><em>commit</em>: snapshot of your code at a specified point in time (you can and you should use this even when having no internet connection)</li>
+<li><em>push</em>: merge your local modifications with the main project</li>
+<li><em>pull</em>: update your local project with the latest version of the main project</li>
 </ul></li>
-<li>Simple (solo) use of git to prevent merge conflicts:
+<li><p>Simple (solo) use of git to prevent merge conflicts:</p>
 <ul>
 <li>after opening a project, always pull</li>
 <li>before closing a project, always commit/push</li>
 </ul></li>
-<li>How to link between an RStudio project and a GitHub repository?</li>
+<li><p>Use git even when you do not have any internet connection! (e.g. on a secure server) Just use commits for version control locally.</p></li>
+<li><p>How to link between an RStudio project and a GitHub repository?</p></li>
 </ul>
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8Q3fYwgyNGQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
@@ -524,10 +528,10 @@ Figure 2.1: You don’t use Version Control?
 </ul>
 </div>
 </div>
-<div id="getting-help" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Getting help</h2>
-<div id="help-yourself-learn-how-to-debug" class="section level3" number="2.4.1">
-<h3><span class="header-section-number">2.4.1</span> Help yourself, learn how to debug</h3>
+<div id="getting-help" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Getting help<a href="good-practices.html#getting-help" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="help-yourself-learn-how-to-debug" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Help yourself, learn how to debug<a href="good-practices.html#help-yourself-learn-how-to-debug" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A basic solution is to print everything, but it’s usually not working well on complex problems. A convenient solution to see all the variables’ states in your code is to place some <code>browser()</code> from where you want to check the variables’ states. To debug functions, <code>debugonce()</code> is also very useful.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="good-practices.html#cb6-1" aria-hidden="true" tabindex="-1"></a>my_log <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">log</span>(x <span class="sc">-</span> <span class="dv">1</span>)</span>
 <span id="cb6-2"><a href="good-practices.html#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -545,8 +549,8 @@ Figure 2.1: You don’t use Version Control?
 <span id="cb9-2"><a href="good-practices.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">my_fun</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
 <p>Learn more with <a href="https://bookdown.org/rdpeng/rprogdatascience/debugging.html">this book chapter</a>, <a href="http://adv-r.had.co.nz/Exceptions-Debugging.html">this other book chapter</a>, <a href="https://www.rstudio.com/resources/webinars/debugging-techniques-in-rstudio/">this webinar</a> and <a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE">this RStudio article</a>.</p>
 </div>
-<div id="external-help" class="section level3" number="2.4.2">
-<h3><span class="header-section-number">2.4.2</span> External help</h3>
+<div id="external-help" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> External help<a href="good-practices.html#external-help" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Can’t remember useful functions? Use <a href="https://www.rstudio.com/resources/cheatsheets/">cheat sheets</a>.</p>
 <p>You can search for specific R stuff on <a href="https://rseek.org/" class="uri">https://rseek.org/</a>. You should also read documentations carefully. If you’re using a package, search for vignettes and a GitHub repository.</p>
 <p>You can also use <a href="https://stackoverflow.com/">Stack Overflow</a>. The most common use of Stack Overflow is when you have an error or a question, you google it, and most of the times the first links are Q/A on Stack Overflow.</p>
@@ -568,7 +572,6 @@ Figure 2.1: You don’t use Version Control?
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -587,6 +590,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -607,6 +611,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
@@ -620,7 +628,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -10,7 +10,7 @@ source("spelling-check.R")
 
 - [R Packages book](http://r-pkgs.had.co.nz/) (**read it!**)
 
-- [Writing R extensions, the official CRAN guide](https://cran.r-project.org/doc/manuals/r-release/R-exts.html)
+- [Writing R extensions, the official CRAN guide](https://cran.r-project.org/doc/manuals/r-release/R-exts.html) (easier to read as a [bookdown](https://colinfay.me/writing-r-extensions/))
 
 - Look at popular R packages on GitHub
 
@@ -24,13 +24,15 @@ source("spelling-check.R")
 
 ## Project exercise
 
-Just to experiment with making an R package, we'll try to make a small package that implements some of the features of package {dplyr} that we learned in chapter \@ref(tidyverse). We can call this package {minidplyr}. You can see [the version I ended up with](https://github.com/privefl/minidplyr).
+Just to experiment with making an R package, we'll try to make a small package that implements some of the features of package {dplyr} that we learned in chapter \@ref(tidyverse). We can call this package {minidplyr}.
 
-1. After having read the following two sections (\@ref(pkg-start) and \@ref(pkg-basics)), create a first function that helps you `select` variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it. Bonus: can you use base R function `subset` to use variables names without quoting them?
+1. After having read the following two sections (\@ref(pkg-start) and \@ref(pkg-basics)), create a first function that helps you `select` variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it. Bonus (for later): can you use base R function `subset` to use variables names without quoting them?
 
-1. Check your package with `Ctrl/Cmd + Shift + E` and fix all problems. At this point, the only problem should be a WARNING that just says to you that you need to fill the *DESCRIPTION* file with proper information. Do that and run checks again. You could submit this package to CRAN in its present form; congratulations on your new R package!
+1. Check your package with `Ctrl/Cmd + Shift + E` and fix all problems. At this point, there should be no ERROR or WARNING, unless you did not document the previous function properly. However, you should still update the *DESCRIPTION* file with proper information. Do it, fix any problem, and run checks again. You could submit this package to CRAN in its present form; congratulations on your new R package!
 
-1. Learn how to make unit tests in section \@ref(pkg-tests) and do that for your new function `select2`. Which silly cases you should test? Here, you can use `usethis::use_package("dplyr", type = "Suggests")` to add package {dplyr} to the suggested packages (because you will use this package in tests only).
+1. Commit everything and push to GitHub. Try to install the package from someone else using `remotes::install_github("<github-username>/minidplyr")`.
+
+1. Learn how to make unit tests in section \@ref(pkg-tests) and do that for your new function `select2`. Which silly cases you should test? Here, you can use `usethis::use_package("dplyr", type = "Suggests")` to add package {dplyr} to the suggested packages (because you will use this package in tests only). You can see [the unit tests I came up with for this function](https://github.com/privefl/minidplyr/blob/master/tests/testthat/test-select.R).
 
 1. Make a function `filter2` that enables to filter rows of a data frame. Add some documentation and tests for this function as well.
 
@@ -47,21 +49,21 @@ In my first package, I just put some functions I used again and again in my work
 
 To quickly start your package, just follow these steps:
 
-1. Create an RStudio project (not a package). Here, I advise you to create a new project on GitHub and then to clone it as an RStudio project. It is a good practice to put all your (public) stuff on GitHub (as we learned in section \@ref(git)).
+1. Create a new RStudio project (not a package). Here, I advise you to create a new project on GitHub (with a README) and then clone it as an RStudio project. It is a good practice to put all your (public) stuff on GitHub (as we learned in section \@ref(git)).
 
 1. Run the following lines of R code.
 
     ```{r, eval=FALSE}
-    usethis::use_description()
+    usethis::use_description(list(License = "GPL-3"))
     usethis::use_namespace()
     dir.create("R")
     usethis::use_package_doc()
     usethis::use_roxygen_md()
     ```
 
-1. **Restart RStudio** and change the following options.
+1. **Restart RStudio** and change the following options. You should see a new "Build" panel next to the "Git" panel.
 
-    ```{r, echo=FALSE}
+    ```{r, echo=FALSE, out.width = "60%"}
     knitr::include_graphics("https://privefl.github.io/R-presentation/build-doc.png")
     ```
 
@@ -69,11 +71,12 @@ To quickly start your package, just follow these steps:
 
 1. Create a simple function and put it in an `.R` file in the `R/` directory. Inside the function, use *Code -> Insert Roxygen Skeleton*. Build and reload your package and check the documentation of your new function and that you can use it.
 
+
 ## Basic stuff {#pkg-basics}
 
 ### *DESCRIPTION* file
 
-See [this chapter](https://r-pkgs.org/Metadata.html#sec-description).
+See [this chapter on the DESCRIPTION file](https://r-pkgs.org/Metadata.html#sec-description).
 
 ### R code
 
@@ -81,9 +84,9 @@ See [this chapter](https://r-pkgs.org/Metadata.html#sec-description).
 
 - Never explicitly load a package with `library()` or `require()`. Use `usethis::use_package()` to add one package to your *DESCRIPTION* file. Then, refer to some function with `<package>::<function>()` in your code, or by using the `@import <package>` or `@import <package> <function>` roxygen tags.
 
-- If one R function need another function in another R file, use the `@import <basename>.R` to make sure it is built and documented before (it is for example useful if you define new generics and methods in different files). 
+- If one R function need another function in another R file, use the `@import <basename>.R` to make sure it is built and documented before; it is for example useful if you define new generics and methods in different files. 
 
-- If you modify global `options()` or graphics `par()`, save the old values and reset when you’re done:
+- If you modify global `options()` or graphics `par()` in a function of your package (try to avoid it), save the old values and reset when you are done:
 
     ```{r, eval=FALSE}
     old <- options(stringsAsFactors = FALSE)
@@ -96,7 +99,7 @@ Documentation is super useful for other people (including future-you, in 6 month
 
 Forget about the `man/` (manual) directory, files in this directory will be automatically generated thanks to the roxygen comments you use on top of your R functions. 
 
-Learn more with [this chapter](http://r-pkgs.had.co.nz/man.html). Note that you can now use the Markdown syntax in the documentation. For example, instead of having to use `\code{foo}`, you can use directly `` `foo` `` in the roxygen comments.
+Learn more with [this chapter](http://r-pkgs.had.co.nz/man.html). Note that you can now use the Markdown syntax in the documentation. For example, instead of having to use `\code{foo}`, you can directly use `` `foo` `` in the roxygen comments.
 
 To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use `usethis::use_package("magrittr")` and put the following code somewhere in an R file of your package.
 
@@ -114,15 +117,48 @@ You can also forget about this for now because it should be automatically genera
 
 If you want to understand what's going on, read [this chapter](https://r-pkgs.org/Metadata.html#sec-namespace).
 
-## Other stuff
+
+## Good practices
 
 ### Testing {#pkg-tests}
 
-You are probably already testing your code, you're only doing it informally. The problem with this approach is that when you come back to this code in 3 months time to add a new feature, you’ve probably forgotten some of the informal tests you ran the first time around. This makes it very easy to break code that used to work. A very good practice is to use unit tests.
+You are probably already testing your code, you're only doing it informally. The problem with this approach is that when you come back to this code in 3 months time to add a new feature, you’ve probably forgotten some of the informal tests you ran the first time around. This makes it very easy to break existing code that used to work (which you should avoid as much as you can). A very good practice is to use unit tests.
 
-To make your first unit tests, use `usethis::use_test()` while having open the R file you want to test. Then, you can run tests of your package with `Ctrl/Cmd + Shift + T`.
+Read [this chapter](https://r-pkgs.org/testing-basics.html).
 
-Learn more with [this chapter](https://r-pkgs.org/testing-basics.html).
+To make your first unit tests, use `usethis::use_test()` while having open the R file you want to test. Write some unit tests, then you can run tests of your package with `Ctrl/Cmd + Shift + T`.
+
+### Continuous checking {#pkg-ci}
+
+I would rarely trust a package that doesn't use these continuous integration services.
+It's good practice to check your package regularly and on different Operating Systems (OS). Learn more about the different checks [there](http://r-pkgs.had.co.nz/check.html).
+
+An easy way to regularly check your package on GitHub is to use [GitHub Actions](https://github.com/features/actions). Indeed, each time you push to your GitHub repository, checks are run on different OS. To use this service, you can run `usethis::use_github_action_check_standard()`. 
+
+To get the coverage of your tests, use [Codecov](https://codecov.io/) by running `usethis::use_coverage()` and `usethis::use_github_action("test-coverage")`.
+
+Finally, to prevent typos in your package and especially for non-native English speakers, it can be useful to check the spelling in your package. If you think that the word "programmation" exists and that "prefered" has only one 'r' at the end (I did!), you should definitely use package {spelling}. Just run `spelling::spell_check_setup()`; this will check spelling in your package at the end of checks. If it reports words you want to ignore, just put these words in a text file `inst/WORDLIST` (with one word by line).
+
+### Pkgdown {#pkgdown}
+
+1. Run `usethis::use_pkgdown()`. If added, remove `docs` from the *.gitignore* file.
+
+1. Run `pkgdown:::build_site()`.
+
+1. On GitHub, go to the settings of your repo, and enable GitHub Pages from the `/docs` folder. 
+```{r, echo=FALSE}
+knitr::include_graphics("images/github-pages.jpg")
+```
+
+1. Push the new files. This will render everything that you have in this folder as a website (after 0-2 minutes). 
+
+To get more information and especially to configure the website, see [the documentation](http://pkgdown.r-lib.org/articles/pkgdown.html), as a {pkgdown} website, of course.
+For an example, see [the website of my package {bigstatsr}](https://privefl.github.io/bigstatsr/) and [the corresponding YAML file](https://github.com/privefl/bigstatsr/blob/master/_pkgdown.yml). 
+
+If you want to make a personal website, check [this quick tutorial](https://github.com/privefl/rmarkdown-website-template#make-your-website-with-r-markdown-in-minutes).
+
+
+## More
 
 ### Rcpp
 
@@ -143,7 +179,7 @@ There are two types of ignore:
 
 - Files ignored by Git, specified in the *.gitignore* file. For example, you don't want to track changes for some large data files or some binaries often changing. You can ignore files by using `usethis::use_git_ignore()`.
 
-- Files ignored during the build of your package, specified in the *.Rbuildignore* file. For example, in my packages, I generally have two directories called `tmp-tests` and `tmp-save` where I just put some random code that I used once during development. Checks will tell you if your package contains non-standard files or directories. Moreover, I generally ignore vignettes (we'll see how to build them as part of a website for your package with {pkgdown}). 
+- Files ignored during the build of your package, specified in the *.Rbuildignore* file. For example, in my packages, I generally have two directories called `tmp-tests` and `tmp-save` where I just put some random code that I used once during development. Checks will tell you if your package contains non-standard files or directories. Moreover, I generally ignore vignettes; they are still built as part of the {pkgdown} website. 
 There is also a {usethis} function for this: `usethis::use_build_ignore()`.
 
 ### The `inst/` directory
@@ -152,7 +188,7 @@ When a package is installed, everything in `inst/` is copied into the top-level 
 
 For example, you can have:
 
-- `inst/extdata/`: additional external data for examples and vignettes. See section \@ref(pkg-data) for more detail. You can also use `inst/testdata/` for data you need in tests. To access one file in this directory, use `system.file()`. For example, if you have a file `inst/extdata/mydata.csv` in your package, an user can find it using `system.file("extdata", "mydata.csv", package = "mypackage")`.
+- `inst/extdata/`: additional external data for examples and vignettes. See section \@ref(pkg-data) for more detail. You can also use `inst/testdata/` for data you need in tests. To access one file in this directory, use `system.file()`. For example, if you have a file `inst/extdata/mydata.csv` in your package, an user can find it using `system.file("extdata", "mydata.csv", package = "<package>")`.
 
 - `inst/include`: some C++ code that others can use by `LinkingTo` your package. For example, when you use `#include <Rcpp.h>` at the top of your Rcpp code, you're using the code in [there](https://github.com/RcppCore/Rcpp/blob/master/inst/include/Rcpp.h).
 
@@ -162,34 +198,6 @@ For example, you can have:
 
 Learn more with [this book chapter](http://r-pkgs.had.co.nz/data.html).
 
-## Good practices
-
-### Continuous checking {#pkg-ci}
-
-I would rarely trust a package that doesn't use these continuous integration services.
-It's good practice to check your package regularly and on different Operating Systems (OS). Learn more about the different checks [there](http://r-pkgs.had.co.nz/check.html).
-
-An easy way to regularly check your package on GitHub is to use [GitHub Actions](https://github.com/features/actions). Indeed, each time you push to your GitHub repository, checks are run on different OS. To use this service, you can run `usethis::use_github_action_check_standard()`. 
-
-To get the coverage of your tests, use [Codecov](https://codecov.io/) by running `usethis::use_coverage()` and `usethis::use_github_action("test-coverage")`.
-
-Finally, to prevent typos in your package and especially for non-native English speakers, it can be useful to check the spelling in your package. If you think that the word "programmation" exists and that "prefered" has only one 'r' at the end (I did!), you should definitely use package {spelling}. Just run `spelling::spell_check_setup()`; this will check spelling in your package at the end of checks. If it reports words you want to ignore, just put these words in a text file `inst/WORDLIST` (with one word by line).
-
-### Pkgdown {#pkgdown}
-
-1. install R package {pkgdown}
-
-2. run `usethis::use_pkgdown()`
-
-4. run `pkgdown:::build_site()` and push the new files
-
-4. on GitHub, go to the settings of your repo, and enable GitHub Pages using the master branch `/docs/` folder. This will render everything that you have in this folder as a website (after 0-2 minutes). 
-
-To get more information and especially to configure the website, see [the documentation](http://pkgdown.r-lib.org/articles/pkgdown.html), as a {pkgdown} website, of course.
-
-For an example, see [the website of my package {bigstatsr}](https://privefl.github.io/bigstatsr/) and [the corresponding YAML file](https://github.com/privefl/bigstatsr/blob/master/_pkgdown.yml). 
-
-If you want to make a personal website, check [this quick tutorial](https://github.com/privefl/rmarkdown-website-template#make-your-website-with-r-markdown-in-minutes).
 
 ## Release on CRAN
 

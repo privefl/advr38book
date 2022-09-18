@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Data analysis with the tidyverse | Advanced R Course</title>
   <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Data analysis with the tidyverse | Advanced R Course" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://privefl.github.io/advr38book/" />
-  <meta property="og:image" content="https://privefl.github.io/advr38book/images/hexsticker.png" />
+  <meta property="og:image" content="https://privefl.github.io/advr38book//images/hexsticker.png" />
   <meta property="og:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
   <meta name="github-repo" content="privefl/advr38book" />
 
@@ -19,12 +18,12 @@
   <meta name="twitter:title" content="Chapter 4 Data analysis with the tidyverse | Advanced R Course" />
   <meta name="twitter:site" content="@privefl" />
   <meta name="twitter:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="twitter:image" content="https://privefl.github.io/advr38book/images/hexsticker.png" />
+  <meta name="twitter:image" content="https://privefl.github.io/advr38book//images/hexsticker.png" />
 
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2022-09-16" />
+<meta name="date" content="2022-09-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="r-programming.html"/>
 <link rel="next" href="performance.html"/>
-<script src="libs/header-attrs-2.16/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-100463316-5"></script>
 <script>
@@ -125,6 +126,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -246,18 +248,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4.3" data-path="packages.html"><a href="packages.html#documentation"><i class="fa fa-check"></i><b>6.4.3</b> Documentation</a></li>
 <li class="chapter" data-level="6.4.4" data-path="packages.html"><a href="packages.html#namespace-file"><i class="fa fa-check"></i><b>6.4.4</b> <em>NAMESPACE</em> file</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#other-stuff"><i class="fa fa-check"></i><b>6.5</b> Other stuff</a>
+<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.5</b> Good practices</a>
 <ul>
 <li class="chapter" data-level="6.5.1" data-path="packages.html"><a href="packages.html#pkg-tests"><i class="fa fa-check"></i><b>6.5.1</b> Testing</a></li>
-<li class="chapter" data-level="6.5.2" data-path="packages.html"><a href="packages.html#rcpp"><i class="fa fa-check"></i><b>6.5.2</b> Rcpp</a></li>
-<li class="chapter" data-level="6.5.3" data-path="packages.html"><a href="packages.html#ignore-files"><i class="fa fa-check"></i><b>6.5.3</b> Ignore files</a></li>
-<li class="chapter" data-level="6.5.4" data-path="packages.html"><a href="packages.html#the-inst-directory"><i class="fa fa-check"></i><b>6.5.4</b> The <code>inst/</code> directory</a></li>
-<li class="chapter" data-level="6.5.5" data-path="packages.html"><a href="packages.html#pkg-data"><i class="fa fa-check"></i><b>6.5.5</b> External data</a></li>
+<li class="chapter" data-level="6.5.2" data-path="packages.html"><a href="packages.html#pkg-ci"><i class="fa fa-check"></i><b>6.5.2</b> Continuous checking</a></li>
+<li class="chapter" data-level="6.5.3" data-path="packages.html"><a href="packages.html#pkgdown"><i class="fa fa-check"></i><b>6.5.3</b> Pkgdown</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.6</b> Good practices</a>
+<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#more"><i class="fa fa-check"></i><b>6.6</b> More</a>
 <ul>
-<li class="chapter" data-level="6.6.1" data-path="packages.html"><a href="packages.html#pkg-ci"><i class="fa fa-check"></i><b>6.6.1</b> Continuous checking</a></li>
-<li class="chapter" data-level="6.6.2" data-path="packages.html"><a href="packages.html#pkgdown"><i class="fa fa-check"></i><b>6.6.2</b> Pkgdown</a></li>
+<li class="chapter" data-level="6.6.1" data-path="packages.html"><a href="packages.html#rcpp"><i class="fa fa-check"></i><b>6.6.1</b> Rcpp</a></li>
+<li class="chapter" data-level="6.6.2" data-path="packages.html"><a href="packages.html#ignore-files"><i class="fa fa-check"></i><b>6.6.2</b> Ignore files</a></li>
+<li class="chapter" data-level="6.6.3" data-path="packages.html"><a href="packages.html#the-inst-directory"><i class="fa fa-check"></i><b>6.6.3</b> The <code>inst/</code> directory</a></li>
+<li class="chapter" data-level="6.6.4" data-path="packages.html"><a href="packages.html#pkg-data"><i class="fa fa-check"></i><b>6.6.4</b> External data</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="packages.html"><a href="packages.html#release-on-cran"><i class="fa fa-check"></i><b>6.7</b> Release on CRAN</a></li>
 </ul></li>
@@ -286,12 +288,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tidyverse" class="section level1" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Data analysis with the tidyverse</h1>
+<div id="tidyverse" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Data analysis with the tidyverse<a href="tidyverse.html#tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The tidyverse is an opinionated <a href="https://www.tidyverse.org/packages/">collection of R packages</a> designed for data science. All packages share an underlying design philosophy, grammar, and data structures.</p>
 <p>For learning how to do data analysis from importing data and tidying it to analyzing it and reporting results, we will use <a href="http://r4ds.had.co.nz/">book R for Data Science</a>. You can find most of the exercise solutions <a href="https://jrnold.github.io/r4ds-exercise-solutions/">there</a>.</p>
-<div id="program" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Program</h2>
+<div id="program" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Program<a href="tidyverse.html#program" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p><a href="https://privefl.github.io/R-presentation/rmarkdown.html">my {R Markdown} presentation</a> (also see <a href="https://r4ds.had.co.nz/r-markdown.html" class="uri">https://r4ds.had.co.nz/r-markdown.html</a>)</p></li>
 <li><p><a href="https://privefl.github.io/R-presentation/ggplot2.html">my {ggplot2} presentation</a> + exercises from <a href="http://r4ds.had.co.nz/data-visualisation.html">data visualization with {ggplot2}</a></p></li>
@@ -302,8 +304,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>more if time allows it (see below)</p></li>
 </ol>
 </div>
-<div id="other-chapters-from-this-book" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Other chapters from this book</h2>
+<div id="other-chapters-from-this-book" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Other chapters from this book<a href="tidyverse.html#other-chapters-from-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>The other chapters of R for Data Science book are very interesting and you should read them.</strong>
 Unfortunately, we won’t have time to cover them in class. A brief introduction of what you could learn:</p>
 <ol style="list-style-type: decimal">
@@ -315,8 +317,8 @@ Unfortunately, we won’t have time to cover them in class. A brief introduction
 <li><p>databases: packages <a href="https://github.com/r-dbi/DBI">{DBI}</a> and <a href="https://dbplyr.tidyverse.org/articles/dbplyr.html">{dbplyr}</a> + <a href="https://solutions.rstudio.com/db/r-packages/dplyr/">RStudio’s webpage</a></p></li>
 </ol>
 </div>
-<div id="other-resources" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Other resources</h2>
+<div id="other-resources" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Other resources<a href="tidyverse.html#other-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p><a href="https://juba.github.io/tidyverse/index.html">[IN FRENCH] introduction à R et au tidyverse</a></p></li>
 <li><p><a href="https://dplyr.tidyverse.org/articles/base.html">comparing dplyr functions to their base R equivalents</a></p></li>
@@ -328,8 +330,8 @@ Unfortunately, we won’t have time to cover them in class. A brief introduction
 <li><p><a href="https://youtu.be/go5Au01Jrvs">live data analysis by Hadley</a></p></li>
 </ul>
 </div>
-<div id="other-tidy-packages" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> Other “tidy” packages</h2>
+<div id="other-tidy-packages" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Other “tidy” packages<a href="tidyverse.html#other-tidy-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>analysis of text data: <a href="https://github.com/juliasilge/tidytext">package {tidytext}</a> with <a href="https://www.tidytextmining.com/">the associated book</a>,</p></li>
 <li><p>analysis of financial data: <a href="https://business-science.github.io/tidyquant/index.html">package {tidyquant}</a>,</p></li>
@@ -351,7 +353,6 @@ Unfortunately, we won’t have time to cover them in class. A brief introduction
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -370,6 +371,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -390,6 +392,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
@@ -403,7 +409,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

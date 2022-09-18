@@ -225,20 +225,23 @@ Also, see https://stackoverflow.com/q/2712421/6103040.
 ### About Git
 
 - Main Git platforms (share your code, collaborate):
-    - [GitHub](https://github.com/magrichard), [documentation](https://guides.github.com/activities/hello-world/) (only free for public repositories, now owned by Microsoft)
+    - [GitHub](https://github.com/), [documentation](https://guides.github.com/activities/hello-world/) (only free for public repositories, now owned by Microsoft)
     - [GitLab UGA](https://gricad-gitlab.univ-grenoble-alpes.fr/) ([documentation](https://docs.gricad-pages.univ-grenoble-alpes.fr/help/)) or just [GitLab](https://about.gitlab.com/) (open source & free)
     - [Bitbucket](https://bitbucket.org/) (free when you have less than 5 collaborators)
     - any server..
 
-- 3 main commands: 
-    - pull: update your local project with the latest version of the main project
-    - commit: snapshot of your code at a specified point in time (you can and you should use this even when having no internet connection)
-    - push: merge your local modifications with the main project
+- 4 main commands: 
+    - *add*: add files to be part of the next commit
+    - *commit*: snapshot of your code at a specified point in time (you can and you should use this even when having no internet connection)
+    - *push*: merge your local modifications with the main project
+    - *pull*: update your local project with the latest version of the main project
 
 
 - Simple (solo) use of git to prevent merge conflicts:
     - after opening a project, always pull
     - before closing a project, always commit/push
+    
+- Use git even when you do not have any internet connection! (e.g. on a secure server) Just use commits for version control locally.
 
 - How to link between an RStudio project and a GitHub repository?
 
