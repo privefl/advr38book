@@ -265,7 +265,7 @@ methods(class = "lm")
 
 ```{r}
 # Call a function with arguments as a list
-(list_of_int <- lapply(1:5, function(i) i))
+(list_of_int <- as.list(1:5))
 do.call('c', list_of_int)
 ```
 
@@ -461,7 +461,7 @@ sapply(1:10, f)
 c(count1, count2)
 ```
 
-Finally, how works the `...`? Basically, you copy and paste what is put in `...`:
+Finally, how does `...` work? Basically, you copy and paste what is put in `...`:
 
 ```{r}
 f1 <- function(...) {
