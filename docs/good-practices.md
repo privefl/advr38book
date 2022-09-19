@@ -169,7 +169,7 @@ RStudio features:
 
 <img src="images/diagnostics.png" width="70%" style="display: block; margin: auto;" />
 
-- **R Projects**: 
+- **RStudio Projects**: 
     - Meaningful structure in one folder
     - The working directory automatically switches to the project's folder
     - The *File* tab displays the associated files and folders in the project
@@ -230,7 +230,7 @@ Also, see https://stackoverflow.com/q/2712421/6103040.
     - [Bitbucket](https://bitbucket.org/) (free when you have less than 5 collaborators)
     - any server..
 
-- 4 main commands: 
+- 4 main commands:
     - *add*: add files to be part of the next commit
     - *commit*: snapshot of your code at a specified point in time (you can and you should use this even when having no internet connection)
     - *push*: merge your local modifications with the main project
@@ -309,4 +309,4 @@ You can ask questions on Stack Overflow (using the tag `r`). You need to [make a
 
 If you're confident enough with your R skills, you can take the next step and [answer questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). It's a good way to increase your skills, or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).
 
-You can also join communities, e.g. [join the French-speaking R community](https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM) or [join the R-Ladies community](https://rladies-community-slack.herokuapp.com/). These are generally much friendlier and welcoming spaces compared to Stack Overflow.
+You can also join communities, e.g. [join the French-speaking R community](https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM) or [join the R-Ladies community](https://rladies-community-slack.herokuapp.com/) on Slack. These are generally much friendlier and welcoming spaces compared to Stack Overflow.
