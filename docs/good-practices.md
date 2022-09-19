@@ -249,6 +249,9 @@ Also, see https://stackoverflow.com/q/2712421/6103040.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8Q3fYwgyNGQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </center>
 
+For Mac users, you might need to use the terminal for `git clone`, then create the RStudio project from the existing directory. If you have some permission denied for the public key, you might also need to run `ssh-agent -s &&
+ssh-add <path_to_public_key>` (cf. [this SO answer](https://stackoverflow.com/a/30806058/6103040)).
+
 - Help with Git:
     - [Happy Git and GitHub for the useR](http://happygitwithr.com/)
     - [Git cheat sheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
