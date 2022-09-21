@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Advanced R Course</title>
+  <title>Chapter 8 Project | Advanced R Course</title>
   <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Advanced R Course" />
+  <meta property="og:title" content="Chapter 8 Project | Advanced R Course" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://privefl.github.io/advr38book//images/hexsticker.png" />
   <meta property="og:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
   <meta name="github-repo" content="privefl/advr38book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Advanced R Course" />
+  <meta name="twitter:title" content="Chapter 8 Project | Advanced R Course" />
   <meta name="twitter:site" content="@privefl" />
   <meta name="twitter:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
   <meta name="twitter:image" content="https://privefl.github.io/advr38book//images/hexsticker.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="shiny.html"/>
 
-<link rel="next" href="introduction.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -301,23 +301,121 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Advanced R Course</h1>
-<h2 class="subtitle"><em>Originally, materials for the doctoral school of Grenoble, France</em></h2>
-<p class="author"><em>Florian Privé</em></p>
-<p class="date"><em>2022-09-21</em></p>
+<div id="project" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Project<a href="project.html#project" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Either</p>
+<ul>
+<li><p>have some idea about new functions you want to create and share, and make it as a new R package,</p></li>
+<li><p>explore, visualize, and analyze some data (cf. hereinafter).</p></li>
+</ul>
+<div id="what-is-tidy-tuesday" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> What is Tidy Tuesday?<a href="project.html#what-is-tidy-tuesday" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="images/tt_logo.jpg" width="60%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><p>A weekly data project from <a href="https://www.rfordatasci.com/">the R4DS community</a>.</p></li>
+<li><p>The aim is to understand how to summarize and arrange data to make meaningful charts with <code>ggplot2</code>, <code>tidyr</code>, <code>dplyr</code>, and other tools in the <code>tidyverse</code> ecosystem.</p></li>
+<li><p>Safe and supportive space for individuals to practice their <strong>wrangling and data visualization</strong> skills independent of drawing conclusions.</p></li>
+</ul>
+<p>How it works:</p>
+<ol style="list-style-type: decimal">
+<li><p>The dataset comes from a <em>source article</em> and it is made available on Mondays.</p></li>
+<li><p>People then play with the data set using the tidyverse, explore things that they think are interesting, and/or try to recreate the source article plots/results.</p></li>
+<li><p>And share their own version on Twitter (with <a href="https://twitter.com/search?q=%23tidytuesday&amp;src=typed_query">the hashtag #TidyTuesday</a>).</p></li>
+</ol>
 </div>
-<div id="about" class="section level1 unnumbered hasAnchor">
-<h1>About<a href="index.html#about" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="license" class="section level2 unnumbered hasAnchor">
-<h2>License<a href="index.html#license" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This material is licensed under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>.</p>
+<div id="tidy-thursday" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Tidy Thursday<a href="project.html#tidy-thursday" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Our own mini-version of Tidy Tuesday!</p>
+<ol style="list-style-type: decimal">
+<li><p>Join in teams of 2 (or 3).</p></li>
+<li><p>Choose a dataset from the ones provided.</p></li>
+<li><p>Come up with an interesting topic to visualize (or recreate an existing one).</p></li>
+<li><p>Apply things you have learned in this course, and try to learn new things with our help and Google’s help.</p></li>
+<li><p>Share the resulting plot(s) and the code with the rest on Friday with a short presentation talking about challenges and conclusions from the plot.</p></li>
+</ol>
+<div id="choose-a-dataset" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Choose a dataset<a href="project.html#choose-a-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Install the {tidytuesdayR} package:</p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="project.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidytuesdayR&quot;</span>)</span></code></pre></div>
+<p>Some interesting datasets:</p>
+<ul>
+<li><a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-07-27/readme.md">Olympic medals</a></li>
+</ul>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="project.html#cb426-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2021-07-27&#39;</span>)[[<span class="st">&quot;olympics&quot;</span>]]</span></code></pre></div>
+<ul>
+<li><a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-20/readme.md">Netflix titles</a></li>
+</ul>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="project.html#cb427-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2021-04-20&#39;</span>)[[<span class="st">&quot;netflix_titles&quot;</span>]]</span></code></pre></div>
+<ul>
+<li><a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md">Spotify songs</a></li>
+</ul>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="project.html#cb428-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2020-01-21&#39;</span>)[[<span class="st">&quot;spotify_songs&quot;</span>]]</span></code></pre></div>
+<p>If you do not like any of these, you can also choose from all the previous tidy Tuesday datasets <a href="https://github.com/rfordatascience/tidytuesday#datasets">here</a>.</p>
 </div>
-<div id="author" class="section level2 unnumbered hasAnchor">
-<h2>Author<a href="index.html#author" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><a href="https://privefl.github.io/">Florian Privé</a> is a researcher in predictive human genetics, fond of Data Science and an R(cpp) enthusiast. He is also the founder and former organizer of <a href="https://r-in-grenoble.github.io/">the Grenoble R user group</a>. You can find him on <a href="https://twitter.com/privefl">Twitter</a> and <a href="https://github.com/privefl">GitHub</a> as @privefl and on <a href="https://stackoverflow.com/users/6103040/f-priv%c3%a9">Stack Overflow</a> as F. Privé.</p>
-<p><img src="images/hexsticker.png" width="25%" style="display: block; margin: auto;" /></p>
+<div id="visualize-the-data" class="section level3 hasAnchor" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Visualize the data<a href="project.html#visualize-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Come up with a question, or an interesting thing to learn from the data.</p>
+<p>You can get inspired by looking at other participants on Twitter:</p>
+<ul>
+<li><p>Shiny app with a compilation of tweets ordered by likes <a href="https://nsgrantham.shinyapps.io/tidytuesdayrocks/">TidyTuesdayRocks</a></p></li>
+<li><p>Search for #TidyTuesday + dataset_name on Twitter.</p></li>
+</ul>
+<p>Remember that the code is always available at the author’s github page.</p>
+</div>
+<div id="compilation-of-tweets" class="section level3 hasAnchor" number="8.2.3">
+<h3><span class="header-section-number">8.2.3</span> Compilation of tweets<a href="project.html#compilation-of-tweets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<iframe src="https://nsgrantham.shinyapps.io/tidytuesdayrocks/?showcase=0" width="672" height="400px" data-external="1">
+</iframe>
+</div>
+<div id="example-1" class="section level3 hasAnchor" number="8.2.4">
+<h3><span class="header-section-number">8.2.4</span> Example<a href="project.html#example-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Someone tried the recreate a plot using the <strong>Netflix dataset</strong>:</p>
+<blockquote class="twitter-tweet" data-width="550" data-lang="en" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">In today&#39;s <a href="https://twitter.com/hashtag/TidyTuesday?src=hash&amp;ref_src=twsrc%5Etfw">#TidyTuesday</a> I looked at Netflix movies, specifically checking out movie duration over time. <a href="https://twitter.com/hashtag/Rstats?src=hash&amp;ref_src=twsrc%5Etfw">#Rstats</a> <a href="https://t.co/PeVIhpAsSy">https://t.co/PeVIhpAsSy</a> <a href="https://t.co/2TOZ9nFKQP">pic.twitter.com/2TOZ9nFKQP</a></p>&mdash; Marieke (@marieke_k_jones) <a href="https://twitter.com/marieke_k_jones/status/1384560097821614081?ref_src=twsrc%5Etfw">April 20, 2021</a></blockquote>
 
+<p><br></p>
+<p>Clara’s (quick) version:</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="project.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb429-2"><a href="project.html#cb429-2" aria-hidden="true" tabindex="-1"></a>netflix_titles <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2021-04-20&#39;</span>)[[<span class="st">&quot;netflix_titles&quot;</span>]]</span></code></pre></div>
+<pre><code>## 
+##  Downloading file 1 of 1: `netflix_titles.csv`</code></pre>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="project.html#cb431-1" aria-hidden="true" tabindex="-1"></a>netflix_titles <span class="sc">%&gt;%</span></span>
+<span id="cb431-2"><a href="project.html#cb431-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&quot;Movie&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb431-3"><a href="project.html#cb431-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duration =</span> <span class="fu">as.numeric</span>(<span class="fu">str_extract</span>(duration, <span class="st">&quot;(</span><span class="sc">\\</span><span class="st">d)+&quot;</span>)),</span>
+<span id="cb431-4"><a href="project.html#cb431-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">cat =</span> <span class="fu">map_chr</span>(listed_in, <span class="sc">~</span><span class="fu">str_split</span>(.x, <span class="st">&quot;, &quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]),</span>
+<span id="cb431-5"><a href="project.html#cb431-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb431-6"><a href="project.html#cb431-6" aria-hidden="true" tabindex="-1"></a>    cat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Horror Movies&quot;</span>, <span class="st">&quot;Thrillers&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Horror Movies &amp; Thrillers&quot;</span>,</span>
+<span id="cb431-7"><a href="project.html#cb431-7" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> cat)) <span class="sc">%&gt;%</span></span>
+<span id="cb431-8"><a href="project.html#cb431-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(release_year, cat) <span class="sc">%&gt;%</span></span>
+<span id="cb431-9"><a href="project.html#cb431-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_duration =</span> <span class="fu">mean</span>(duration)) <span class="sc">%&gt;%</span></span>
+<span id="cb431-10"><a href="project.html#cb431-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Action &amp; Adventure&quot;</span>, <span class="st">&quot;Children &amp; Family Movies&quot;</span>,</span>
+<span id="cb431-11"><a href="project.html#cb431-11" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Comedies&quot;</span>, <span class="st">&quot;Documentaries&quot;</span>, <span class="st">&quot;Dramas&quot;</span>, </span>
+<span id="cb431-12"><a href="project.html#cb431-12" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Horror Movies &amp; Thrillers&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb431-13"><a href="project.html#cb431-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> release_year, <span class="at">y =</span> mean_duration, <span class="at">color =</span> cat)) <span class="sc">+</span></span>
+<span id="cb431-14"><a href="project.html#cb431-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb431-15"><a href="project.html#cb431-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1980</span>, <span class="dv">2020</span>)) <span class="sc">+</span></span>
+<span id="cb431-16"><a href="project.html#cb431-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">160</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">50</span>,<span class="dv">150</span>, <span class="dv">25</span>)) <span class="sc">+</span></span>
+<span id="cb431-17"><a href="project.html#cb431-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cat) <span class="sc">+</span></span>
+<span id="cb431-18"><a href="project.html#cb431-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb431-19"><a href="project.html#cb431-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb431-20"><a href="project.html#cb431-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, </span>
+<span id="cb431-21"><a href="project.html#cb431-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb431-22"><a href="project.html#cb431-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Children&#39;s movies and Dramas decrease in duration over time&quot;</span>, </span>
+<span id="cb431-23"><a href="project.html#cb431-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Average movie duration (min)&quot;</span>)</span></code></pre></div>
+<p><img src="presentation_project_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="presentation" class="section level3 hasAnchor" number="8.2.5">
+<h3><span class="header-section-number">8.2.5</span> Presentation<a href="project.html#presentation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Make a short (5-10 min) presentation; you can simply make an HTML from RMarkdown, push to GitHub and we can preview it on <a href="http://htmlpreview.github.io/" class="uri">http://htmlpreview.github.io/</a>.</p>
+<p>What you can present:</p>
+<ul>
+<li><p>Introduce the data set and the variables you have chosen to visualize.</p></li>
+<li><p>Show the resulting plot and discuss the trends/patterns in the data.</p></li>
+<li><p>If you chose to recreate a visualization from Twitter, comment on the quality of the plot or potential problems.</p></li>
+<li><p>Show the generative code and comment on the steps and transformations you have applied to the data.</p></li>
+<li><p>Did you find a set of <code>tidyverse</code> functions particularly useful? Did you discover another useful package?</p></li>
+</ul>
+
+</div>
 </div>
 </div>
             </section>
@@ -325,8 +423,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
+<a href="shiny.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,5 +1,6 @@
 rmd_files: ["index.Rmd", "intro.Rmd", "good-practices.Rmd", "rprog.Rmd", 
-            "tidyverse.Rmd", "performance.Rmd", "packages.Rmd", "shiny.Rmd"]
+            "tidyverse.Rmd", "performance.Rmd", "packages.Rmd", 
+            "shiny.Rmd", "presentation_project.Rmd"]
 output_dir: docs
 new_session: yes
 language:

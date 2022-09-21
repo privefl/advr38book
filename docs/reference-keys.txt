@@ -80,3 +80,11 @@ shiny
 example
 datacamp-course
 other-resources-1
+project
+what-is-tidy-tuesday
+tidy-thursday
+choose-a-dataset
+visualize-the-data
+compilation-of-tweets
+example-1
+presentation
