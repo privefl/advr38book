@@ -1,0 +1,201 @@
+---
+title: "Advanced R course - ´Tidy Thursday´"
+subtitle: ""
+author: "Clara Albiñana"
+institute: "NCRR"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+  slidy_presentation:
+    font_adjustment: -1
+---
+class: top, middle
+
+![](tt_logo.png)
+
+
+- A weekly data project from the [R4DS](https://r4ds.had.co.nz/) community.
+
+- The aim is to understand how to summarize and arrange data to make meaningful charts with `ggplot2`, `tidyr`, `dplyr`, and other tools in the `tidyverse` ecosystem.
+
+- Safe and supportive space for individuals to practice their **wrangling and data visualization** skills independent of drawing conclusions.
+
+---
+
+# How it works
+
+1. The data set comes from a *source article* and it's available on Mondays.
+
+2. Play with the data set using `ggplot2`, `tidyr` and `dplyr`: explore things that you think are interesting or try to recreate the source article plots/results.
+
+3. Share on [Twitter](https://twitter.com/search?q=%23tidytuesday&src=typed_query) with the hashtag #TidyTuesday on Twitter if you create your own version.
+
+---
+
+# Tidy Thursday
+
+Our own mini-version of Tidy Tuesday!
+
+The idea is to choose a data set from the ones we provide (or use your own), come up with an interesting topic to visualize (or recreate an existing one) using things you have learnt in this course and share with the rest.
+
+0- Join in teams of 2.
+
+1- Choose a dataset from the ones we provide (or use your own if GDPR allow it).
+
+2- Come up with an interesting topic to visualize (or recreate an existing one).
+
+3- Apply things you have learnt in this course or learn how to do them with our help or SO.
+
+4- Share the resulting plot and the code with the rest on Friday with a short presentation talking about challenges and conclusions from the plot.
+
+---
+
+# Choose dataset
+
+Install the **tidytuesdayR** package:
+
+```{r eval=FALSE, tidy=FALSE}
+install.packages("tidytuesdayR")
+```
+
+Some interesting ones:
+
+- [Olympic medals](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-07-27/readme.md)
+
+```{r eval=FALSE, tidy=FALSE}
+data <- tidytuesdayR::tt_load('2021-07-27')[["olympics"]]
+```
+
+
+- [Netflix titles](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-20/readme.md)
+
+```{r eval=FALSE, tidy=FALSE}
+data <- tidytuesdayR::tt_load('2021-04-20')[["netflix_titles"]]
+```
+
+
+- [Spotify songs](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md)
+
+```{r eval=FALSE, tidy=FALSE}
+data <- tidytuesdayR::tt_load('2020-01-21')[["spotify_songs"]]
+```
+
+
+
+If you don't like any of these, you can also choose from all the previous tidy Tuesday datasets [here](https://github.com/rfordatascience/tidytuesday#datasets). 
+
+
+---
+
+# Visualize the data
+
+Come up with a question, or an interesting thing to learn from the variables available in the dataset.
+
+***
+
+You can get inspired by looking at other participants on Twitter:
+
+- Shiny app with a compilation of tweets ordered by likes [TidyTuesdayRocks](https://nsgrantham.shinyapps.io/tidytuesdayrocks/)
+
+- Search for #TidyTuesday + dataset_name in Twitter.
+
+***
+
+Remember that the code will always be available at the author's github page.
+
+---
+# Compilation of tweets
+
+```{r, echo=FALSE}
+knitr::include_app("https://nsgrantham.shinyapps.io/tidytuesdayrocks/")
+```
+
+
+---
+
+# Example
+
+I tried the recreate a plot using the **Netflix data set**:
+
+```{r, echo=FALSE}
+tweetrmd::tweet_embed("https://twitter.com/marieke_k_jones/status/1384560097821614081")
+
+
+```
+
+```{r, out.width="60%", fig.align='center', echo=FALSE}
+knitr::include_graphics("plot_twitter.png")
+```
+
+
+---
+
+### My (quick) version
+
+```{r echo = FALSE, message=FALSE}
+library(tidyverse)
+netflix_titles <- readRDS("netflix_titles.rds")
+```
+
+```{r, message=FALSE}
+
+plot_netflix <- netflix_titles %>%
+  filter(type == "Movie") %>%
+  mutate(duration = as.numeric(str_extract(duration, "(\\d)+")),
+         cat = map_chr(listed_in, ~str_split(.x, ", ")[[1]][1]),
+         cat = case_when(
+    cat %in% c("Horror Movies", "Thrillers") ~ "Horror Movies & Thrillers",
+    TRUE ~ cat)) %>%
+  group_by(release_year, cat) %>%
+  summarise(mean_duration = mean(duration)) %>%
+  filter(cat %in% c("Action & Adventure", "Children & Family Movies",
+                    "Comedies", "Documentaries", "Dramas", 
+                    "Horror Movies & Thrillers")) %>%
+  ggplot(aes(x = release_year, y = mean_duration, color = cat)) +
+  geom_line() +
+  scale_x_continuous(limits = c(1980, 2020)) +
+  scale_y_continuous(limits = c(50, 160), breaks = seq(50,150, 25)) +
+  facet_wrap(~cat) +
+  theme_minimal() + 
+  theme(text = element_text(size = 14),
+        legend.position = "none", 
+        axis.title.x = element_blank()) +
+  labs(title = "Children's movies and Dramas decrease in duration over time", 
+       y = "Average movie duration (min)")
+
+```
+
+
+
+---
+
+```{r, echo=FALSE, warning=FALSE, fig.align='center', fig.width=10}
+
+plot_netflix
+
+```
+
+
+---
+
+# Presentation
+
+Make a short presentation (try using Rmarkdown for the slides, recommend `xaringan`) with your results.
+
+Structure suggestions:
+
+- Introduce the data set and the variables you have chosen to visualize.
+
+- Show the resulting plot and discuss the trends/patterns in the data.
+
+- If you chose to recreate a visualization from Twitter, comment on the quality of the plot or potential problems.
+
+- Show the generative code and comment on the steps and transformations you have applied to the data.
+
+- Did you find a set of `tidyverse` functions particularly useful? Did you discover a useful package?
+
