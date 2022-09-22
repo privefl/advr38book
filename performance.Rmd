@@ -7,7 +7,7 @@ editor_options:
 
 ```{r, include=FALSE}
 source("knitr-options.R")
-WORDS_TO_IGNORE <- c("truelength", "growable", "precomputing")
+WORDS_TO_IGNORE <- c("truelength", "growable", "precomputing", "vectorize")
 source("spelling-check.R")
 ```
 
@@ -308,7 +308,7 @@ system.time({
 })
 ```
 
-Hint: $\text{dist}(X_i, Y_j)^2 = (X_i - Y_j)^T (X_i - Y_j) = X_i^T X_i + Y_j^T Y_j - 2 X_i^T Y_j$.
+Try first to remove one of the two loops using `sweep()` instead. Then, try to implement a fully vectorized solution based on this hint: $\text{dist}(X_i, Y_j)^2 = (X_i - Y_j)^T (X_i - Y_j) = X_i^T X_i + Y_j^T Y_j - 2 X_i^T Y_j$.
 
 A faster possible solution takes
 
@@ -360,13 +360,42 @@ You can also find a detailed example in [this blog post](https://privefl.github.
 
 ## Exercises {#exos}
 
-Generate $10^7$ (start with $10^4$) steps of the process described by the formula:$$X(0)=0$$$$X(t+1)=X(t)+Y(t)$$ where $Y(t)$ are independent random variables with the distribution $N(0,1)$. Then, calculate in what percentage of indices $t$ the value of $X(t)$ was negative. You don't need to store values of $X$ if you don't want to.
+Generate $10^7$ (start with $10^5$) steps of the process described by the formula:$$X(0)=0$$$$X(t+1)=X(t)+Y(t)$$ where $Y(t)$ are independent random variables with the distribution $N(0,1)$. 
+Then, calculate the percentage of $X(t)$ that are negative. 
+You do not need to store all values of $X$.
+
+A naive implementation with a for-loop could be:
+
+```{r}
+set.seed(1)
+
+system.time({
+  N <- 1e5
+  x <- 0
+  count <- 0
+  for (i in seq_len(N)) {
+    y <- rnorm(1)
+    x <- x + y
+    if (x < 0) count <- count + 1
+  }
+  p <- count / N
+})
+p
+```
+
+Try to vectorize this after having written the value of X(0), X(1), X(2), and X(3).
 What would be the benefit of writing an Rcpp function over a simple vectorized R function?
 
 ```{r}
 set.seed(1)
-system.time(p <- advr38pkg::random_walk_neg_prop(1e7))
-p
+system.time(p2 <- advr38pkg::random_walk_neg_prop(1e5))
+p2
+```
+
+```{r}
+set.seed(1)
+system.time(p3 <- advr38pkg::random_walk_neg_prop(1e7))
+p3
 ```
 
 ***
@@ -378,7 +407,7 @@ mat_big <- mat[rep(ind, 1000), ]  ## 1000 times bigger dataset
 last_row <- mat_big[nrow(mat_big), ]
 ```
 
-Speed up these loops:
+Speed up these loops (vectorize):
 
 ```{r}
 system.time({
@@ -404,7 +433,7 @@ microbenchmark::microbenchmark(
 
 ***
 
-Try to speed up this code by vectorizing it first, and by precomputing. Then, recode it in Rcpp and benchmark all the solutions you came up with.
+Try to speed up this code by vectorizing it first, and/or by precomputing. Then, recode it in Rcpp and benchmark all the solutions you came up with.
 
 ```{r}
 M <- 50
