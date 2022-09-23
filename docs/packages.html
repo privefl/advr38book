@@ -336,11 +336,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><p>Create a new RStudio project (not a package). Here, I advise you to create a new project on GitHub (with a README) and then clone it as an RStudio project. It is a good practice to put all your (public) stuff on GitHub (as we learned in section <a href="good-practices.html#git">2.3</a>).</p></li>
 <li><p>Run the following lines of R code.</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="packages.html#cb420-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_description</span>(<span class="fu">list</span>(<span class="at">License =</span> <span class="st">&quot;GPL-3&quot;</span>))</span>
-<span id="cb420-2"><a href="packages.html#cb420-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_namespace</span>()</span>
-<span id="cb420-3"><a href="packages.html#cb420-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;R&quot;</span>)</span>
-<span id="cb420-4"><a href="packages.html#cb420-4" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package_doc</span>()</span>
-<span id="cb420-5"><a href="packages.html#cb420-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_roxygen_md</span>()</span></code></pre></div></li>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="packages.html#cb1-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_description</span>(<span class="fu">list</span>(<span class="at">License =</span> <span class="st">&quot;GPL-3&quot;</span>))</span>
+<span id="cb1-2"><a href="packages.html#cb1-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_namespace</span>()</span>
+<span id="cb1-3"><a href="packages.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;R&quot;</span>)</span>
+<span id="cb1-4"><a href="packages.html#cb1-4" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package_doc</span>()</span>
+<span id="cb1-5"><a href="packages.html#cb1-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_roxygen_md</span>()</span></code></pre></div></li>
 <li><p><strong>Restart RStudio</strong> and change the following options. You should see a new “Build” panel next to the “Git” panel.</p>
 <p><img src="https://privefl.github.io/R-presentation/build-doc.png" width="60%" style="display: block; margin: auto;" /></p></li>
 <li><p>Then use <code>Ctrl/Cmd + Shift + B</code> to build and reload your package.</p></li>
@@ -357,11 +357,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.4.2</span> R code<a href="packages.html#r-code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>Put your R code in the <code>R/</code> directory. Basically it would be mostly functions. Don’t use random lines of code like in R scripts.</p></li>
-<li><p>Never explicitly load a package with <code>library()</code> or <code>require()</code>. Use <code>usethis::use_package()</code> to add one package to your <em>DESCRIPTION</em> file. Then, refer to some function with <code>&lt;package&gt;::&lt;function&gt;()</code> in your code, or by using the <code>@import &lt;package&gt;</code> or <code>@import &lt;package&gt; &lt;function&gt;</code> roxygen tags.</p></li>
+<li><p>Never explicitly load a package with <code>library()</code> or <code>require()</code>. Use <code>usethis::use_package()</code> to add one package to your <em>DESCRIPTION</em> file. Then, refer to some function with <code>&lt;package&gt;::&lt;function&gt;()</code> in your code, or by using the <code>@import &lt;package&gt;</code> or <code>@importFrom &lt;package&gt; &lt;function&gt;</code> roxygen tags.</p></li>
 <li><p>If one R function need another function in another R file, use the <code>@import &lt;basename&gt;.R</code> to make sure it is built and documented before; it is for example useful if you define new generics and methods in different files.</p></li>
 <li><p>If you modify global <code>options()</code> or graphics <code>par()</code> in a function of your package (try to avoid it), save the old values and reset when you are done:</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="packages.html#cb421-1" aria-hidden="true" tabindex="-1"></a>old <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb421-2"><a href="packages.html#cb421-2" aria-hidden="true" tabindex="-1"></a><span class="fu">on.exit</span>(<span class="fu">options</span>(old), <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code></pre></div></li>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="packages.html#cb2-1" aria-hidden="true" tabindex="-1"></a>old <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-2"><a href="packages.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">on.exit</span>(<span class="fu">options</span>(old), <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code></pre></div></li>
 </ul>
 </div>
 <div id="documentation" class="section level3 hasAnchor" number="6.4.3">
@@ -370,9 +370,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Forget about the <code>man/</code> (manual) directory, files in this directory will be automatically generated thanks to the roxygen comments you use on top of your R functions.</p>
 <p>Learn more with <a href="http://r-pkgs.had.co.nz/man.html">this chapter</a>. Note that you can now use the Markdown syntax in the documentation. For example, instead of having to use <code>\code{foo}</code>, you can directly use <code>`foo`</code> in the roxygen comments.</p>
 <p>To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use <code>usethis::use_package("magrittr")</code> and put the following code somewhere in an R file of your package.</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="packages.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom magrittr %&gt;%</span></span>
-<span id="cb422-2"><a href="packages.html#cb422-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
-<span id="cb422-3"><a href="packages.html#cb422-3" aria-hidden="true" tabindex="-1"></a>magrittr<span class="sc">::</span><span class="st">`</span><span class="at">%&gt;%</span><span class="st">`</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="packages.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom magrittr %&gt;%</span></span>
+<span id="cb3-2"><a href="packages.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb3-3"><a href="packages.html#cb3-3" aria-hidden="true" tabindex="-1"></a>magrittr<span class="sc">::</span><span class="st">`</span><span class="at">%&gt;%</span><span class="st">`</span></span></code></pre></div>
 <p>Fun: <a href="http://colinfay.me/dancing-banana-r-package-doc/">[How to] Include a dancing banana in your R package documentation</a>.</p>
 </div>
 <div id="namespace-file" class="section level3 hasAnchor" number="6.4.4">
@@ -418,8 +418,8 @@ For an example, see <a href="https://privefl.github.io/bigstatsr/">the website o
 <p>We learned about Rcpp in section <a href="performance.html#Rcpp">5.4</a>. To use Rcpp code in your package, just use <code>usethis::use_rcpp()</code> and put the 2 roxygen tags e.g. in the file <code>R/&lt;package&gt;-package.R</code>. Then, create .cpp files with RStudio and save them the <code>src/</code> directory.</p>
 <p>Note that the <code>// [[Rcpp::export]]</code> makes the C++ function available to R, it doesn’t export the function as part of your package (though you could access it with <code>&lt;package&gt;:::&lt;rcpp-fun&gt;()</code>). If you want your package to explicitly provides an Rcpp function (as an R function), you also need roxygen comments (beginning with <code>//'</code> instead of <code>#'</code>, including <code>//' @export</code>) on top of your Rcpp function.</p>
 <p>If you need some C++ code from another package (e.g. from package {RcppArmadillo}), normally you would use</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb423-1"><a href="packages.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="co">// [[Rcpp::depends(RcppArmadillo)]]</span></span>
-<span id="cb423-2"><a href="packages.html#cb423-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;RcppArmadillo.h&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="packages.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// [[Rcpp::depends(RcppArmadillo)]]</span></span>
+<span id="cb4-2"><a href="packages.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;RcppArmadillo.h&gt;</span></span></code></pre></div>
 <p>In an R package, you don’t need the first line but instead you need to add the package to the <code>LinkingTo</code> field of the <em>DESCRIPTION</em> file (e.g. with <code>usethis::use_package("RcppArmadillo", "LinkingTo")</code>).</p>
 </div>
 <div id="ignore-files" class="section level3 hasAnchor" number="6.6.2">
@@ -512,20 +512,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

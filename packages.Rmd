@@ -82,7 +82,7 @@ See [this chapter on the DESCRIPTION file](https://r-pkgs.org/Metadata.html#sec-
 
 - Put your R code in the `R/` directory. Basically it would be mostly functions. Don't use random lines of code like in R scripts.
 
-- Never explicitly load a package with `library()` or `require()`. Use `usethis::use_package()` to add one package to your *DESCRIPTION* file. Then, refer to some function with `<package>::<function>()` in your code, or by using the `@import <package>` or `@import <package> <function>` roxygen tags.
+- Never explicitly load a package with `library()` or `require()`. Use `usethis::use_package()` to add one package to your *DESCRIPTION* file. Then, refer to some function with `<package>::<function>()` in your code, or by using the `@import <package>` or `@importFrom <package> <function>` roxygen tags.
 
 - If one R function need another function in another R file, use the `@import <basename>.R` to make sure it is built and documented before; it is for example useful if you define new generics and methods in different files. 
 
