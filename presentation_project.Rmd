@@ -153,3 +153,15 @@ What you can present:
 - Show the generative code and comment on the steps and transformations you have applied to the data.
 
 - Did you find a set of `tidyverse` functions particularly useful? Did you discover another useful package?
+
+Some examples from students in 2022:
+
+- [alcohol consumption](presentations/alcohol-consumption.html)
+
+- [lego sets](presentations/lego.html)
+
+- [F1 winners](presentations/f1.html)
+
+- [baby names](presentations/baby-names.html)
+
+- [a package](presentations/package-stRoke.html)
