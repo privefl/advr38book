@@ -209,7 +209,7 @@ Also, see https://stackoverflow.com/q/2712421/6103040.
 
 > A lot of students have said to me later, even first-year undergraduates, that using GitHub has helped them a lot when they went for an internship or a research position interview.
 >
-> They are able to say, "Oh, I already have worked with GitHub. I am familiar with it. I know how it works.” So I think they are at least able to put that on their CV and go into a situation where there's a research or data analysis team and say, "Yeah, sure. I am actually familiar with the same tools that you use."
+> They are able to say, "Oh, I already have worked with GitHub. I am familiar with it. I know how it works." So I think they are at least able to put that on their CV and go into a situation where there's a research or data analysis team and say, "Yeah, sure. I am actually familiar with the same tools that you use."
 >
 > -- Mine Cetinkaya-Rundel, Duke University, RStudio
 
