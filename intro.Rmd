@@ -17,7 +17,7 @@ source("spelling-check.R")
 
 ## Content
 
-It is impossible to become expert in R in only one training course. Yet, this course aims at giving a wide understanding of many aspects of R. Some external resources will be referred to in this book for you to be able to deepen what you would have learned in this course.
+It is impossible to become expert in R in one training course only. Yet, this course aims at giving a wide understanding of many aspects of R. Some external resources are referred to in this book for you to be able to deepen what you have learned in this course.
 
 This course was originally composed of 9 sessions (3 hours each):
 
@@ -26,6 +26,14 @@ This course was originally composed of 9 sessions (3 hours each):
 3. R code performance (2 sessions)
 4. R packages (1 session)
 5. Bonus: Shiny (1 session)
+
+The program is now composed of 10 sessions over a full week:
+
+1. R programming and good practices (1.5 sessions)
+1. Data analysis with the tidyverse (3.5 sessions)
+1. R code performance (1 session)
+1. R packages (1 session)
+1. Project preparation + presentation (3 sessions)
 
 ## Useful resources
 
