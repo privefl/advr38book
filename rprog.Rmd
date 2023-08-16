@@ -33,12 +33,17 @@ min(-1, 5, 118)
 max(-1, 5, 118)
 mean(-1, 5, 118)
 median(-1, 5, 118)
+```
+
+How to explain the issue with `mean` and `median`? Let us look at the parameters of these functions:
+
+```{r}
 args(max)
 args(mean)
 args(median)
 ```
 
-Always use a vector if you're not sure:
+One solution is to always use a vector:
 
 ```{r}
 min(c(-1, 5, 118))
@@ -57,11 +62,12 @@ sample(10.1)
 
 ```{r}
 n <- 10
-1:n-1  # is (1:n) - 1, so 0:(n - 1)
+1:n-1  ## is (1:n) - 1, so 0:(n - 1)
 1:(n-1)
 seq_len(n - 1)
 1:0
-seq_len(0)  ## prefer using seq_len (e.g. in for-loops)
+seq_len(0)  ## prefer using seq_len(n) rather than 1:n (e.g. in for-loops)
+seq_along(5:7)  ## a shortcut for seq_len(length(.))
 ```
 
 
@@ -69,9 +75,9 @@ seq_len(0)  ## prefer using seq_len (e.g. in for-loops)
 
 ### Types
 
-There are many "atomic" types of data: `logical`, `integer`, `double` and `character` (in this order, see below). There are also `raw` and `complex` but they are rarely used.
+There are several "atomic" types of data: `logical`, `integer`, `double` and `character` (in this order, see below). There are also `raw` and `complex`, but they are rarely used.
 
-You can't mix types in an atomic vector (you can in a list). Coercion will automatically occur if you mix types:
+You cannot mix types in an atomic vector, but you can in a list. Coercion will automatically occur when you mix types in a vector:
 
 ```{r}
 (a <- FALSE)
@@ -79,7 +85,7 @@ typeof(a)
 
 (b <- 1:10)
 typeof(b)
-c(a, b)  ## FALSE is coerced to integer 0
+c(a, b)  ## FALSE is coerced to an integer -> 0
 
 (c <- 10.5)
 typeof(c)
@@ -89,15 +95,15 @@ c(d, "a")  ## coerced to character
 
 c(list(1), "a")
 
-50 < "7"  ## "50" < "7"
+50 < "7"  ## does "50" < "7"
 ```
 
 ### Exercise
 
-Use the automatic type coercion to convert this boolean matrix to a numeric one (with 0s and 1s). [What do you need to change to get an integer matrix instead?]
+Use the automatic type coercion to convert this boolean matrix to a numeric one (with 0s and 1s). [What do you need to change in your code to get an integer matrix instead of a numeric one?]
 
 ```{r}
-(mat <- matrix(sample(c(TRUE, FALSE), 12, replace = TRUE), 3))
+(mat <- matrix(sample(c(TRUE, FALSE), 12, replace = TRUE), nrow = 3))
 ```
 
 
@@ -128,7 +134,7 @@ class(vec)
 ```{r}
 head(iris)
 dim(iris)
-length(iris)
+length(iris)  ## a data.frame is also a list
 ```
 
 ### Accessors
@@ -138,10 +144,10 @@ length(iris)
 ```{r}
 (x <- runif(5))
 x[2:3]
-x[2:8]
-(y <- matrix(runif(12), 3))
-y[4:9]  ## a matrix is a vector
-(l <- list(a = 2:3, b = "toto", c = runif(10)))
+x[2:8]  ## /!\ no warning
+(y <- matrix(runif(12), nrow = 3))
+y[4:9]  ## a matrix is also a vector
+(l <- list(a = 1, b = "I love R", c = matrix(runif(6), nrow = 2)))
 l[2:3]
 head(iris)
 head(iris[3:4])
@@ -189,13 +195,12 @@ mat[1, 1:2]
 mat[1, 1:2, drop = FALSE]
 (two_col_ind <- cbind(c(1, 3, 2), c(1, 4, 2)))
 mat[two_col_ind]
-mat[,]
 mat[]
 mat[] <- 2
 mat
 ```
 
-If you use arrays with more than two dimensions, just add a comma for every new dimension.
+If you use arrays with more than two dimensions, simply add an additional comma for every new dimension.
 
 ### Exercises
 
@@ -250,16 +255,17 @@ example(sum)
 # Structure overview
 str(iris)
 
-# List objects of environment
+# List objects in the environment
 ls()
 
 # Remove objects from the environment
-rm(list = ls())  ## remove all objects in the environment
+rm(list = ls())  ## remove all objects in the global environment
 ```
 
 ```{r}
-# list of available S3 methods
+# For a particular method, list available implementations for different classes 
 methods(summary)
+# List methods available for a particular class
 methods(class = "lm")
 ```
 
@@ -291,7 +297,7 @@ order(c(1, 6, 8, 2, 2), c(0, 0, 0, 2, 1))
 rank(c(1, 6, 8, 2, 2))
 rank(c(1, 6, 8, 2, 2), ties.method = "first")
 sort(c("a1", "a2", "a10"))
-gtools::mixedsort(c("a1", "a2", "a10"))  ## not in base, obviously
+gtools::mixedsort(c("a1", "a2", "a10"))  ## not in base, but useful
 which.max(c(1, 5, 3, 6, 2, 0))
 which.min(c(1, 5, 3, 6, 2, 0))
 unique(c(1, NA, 2, 3, 2, NA, 3))
@@ -321,7 +327,7 @@ paste("I", "am", "me")
 paste0("test", 0)
 paste0("PC", 1:10)
 me <- "Florian"
-glue::glue("I am {me}")  ## not in base, but SO useful
+glue::glue("I am {me}")  ## not in base, but so useful
 (x <- list.files(pattern = "\\.Rmd$", full.names = TRUE))
 sub("\\.Rmd$", ".pdf", x)
 (y <- sample(letters[1:4], 10, replace = TRUE))
@@ -339,7 +345,7 @@ setdiff(letters[1:4], letters[3:5])
 TRUE | stop("will go there")
 TRUE || stop("won't go there")  ## won't evaluate second condition if first one is TRUE
 c(TRUE, FALSE, TRUE, TRUE) & c(FALSE, TRUE, TRUE, FALSE) 
-c(TRUE, FALSE, TRUE, TRUE) && c(FALSE, TRUE, TRUE, FALSE)  ## no warning!!
+c(TRUE, FALSE, TRUE, TRUE) && c(FALSE, TRUE, TRUE, FALSE)  ## /!\ no warning in prior R versions
 ```
 
 ```{r}
@@ -453,8 +459,8 @@ You can use the `<<-` operator to change the value of an object in an upper envi
 count1 <- 0
 count2 <- 0
 f <- function(i) {
-  count1 <-  count1 + 1  ## will assign a new (temporary) count1
-  count2 <<- count2 + 1  ## will assign count2 on top
+  count1 <-  count1 + 1  ## will assign a new (temporary) count1 each time
+  count2 <<- count2 + 1  ## will increment count2 on top
   i + 1
 }
 sapply(1:10, f)
