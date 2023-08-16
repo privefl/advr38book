@@ -23,7 +23,7 @@
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2022-09-21" />
+<meta name="date" content="2023-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -101,7 +102,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -114,7 +115,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -321,46 +322,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Put a space before and after <code>=</code> when naming arguments in function calls.
 Most infix operators (<code>==</code>, <code>+</code>, <code>-</code>, <code>&lt;-</code>, etc.) are also surrounded by
 spaces, except those with relatively high precedence: <code>^</code>, <code>:</code>, <code>::</code>, and <code>:::</code>. Always put a space after a comma, and never before (just like in regular English).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="good-practices.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
-<span id="cb1-2"><a href="good-practices.html#cb1-2" aria-hidden="true" tabindex="-1"></a>average <span class="ot">&lt;-</span> <span class="fu">mean</span>((feet <span class="sc">/</span> <span class="dv">12</span>) <span class="sc">+</span> inches, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-3"><a href="good-practices.html#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb1-4"><a href="good-practices.html#cb1-4" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span>sum</span>
-<span id="cb1-5"><a href="good-practices.html#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="good-practices.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
-<span id="cb1-7"><a href="good-practices.html#cb1-7" aria-hidden="true" tabindex="-1"></a>average<span class="ot">&lt;-</span><span class="fu">mean</span>(feet<span class="sc">/</span><span class="dv">12</span><span class="sc">+</span>inches,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb1-8"><a href="good-practices.html#cb1-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">:</span> <span class="dv">10</span></span>
-<span id="cb1-9"><a href="good-practices.html#cb1-9" aria-hidden="true" tabindex="-1"></a>base <span class="sc">::</span> sum</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="good-practices.html#cb1-1" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb1-2"><a href="good-practices.html#cb1-2" tabindex="-1"></a>average <span class="ot">&lt;-</span> <span class="fu">mean</span>((feet <span class="sc">/</span> <span class="dv">12</span>) <span class="sc">+</span> inches, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-3"><a href="good-practices.html#cb1-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb1-4"><a href="good-practices.html#cb1-4" tabindex="-1"></a>base<span class="sc">::</span>sum</span>
+<span id="cb1-5"><a href="good-practices.html#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="good-practices.html#cb1-6" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb1-7"><a href="good-practices.html#cb1-7" tabindex="-1"></a>average<span class="ot">&lt;-</span><span class="fu">mean</span>(feet<span class="sc">/</span><span class="dv">12</span><span class="sc">+</span>inches,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1-8"><a href="good-practices.html#cb1-8" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">:</span> <span class="dv">10</span></span>
+<span id="cb1-9"><a href="good-practices.html#cb1-9" tabindex="-1"></a>base <span class="sc">::</span> sum</span></code></pre></div>
 </div>
 <div id="indenting" class="section level3 hasAnchor" number="2.1.3">
 <h3><span class="header-section-number">2.1.3</span> Indenting<a href="good-practices.html#indenting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Curly braces, <code>{}</code>, define the most important hierarchy of R code. To make this hierarchy easy to see, always indent the code inside <code>{}</code> by two spaces. This should be automatic in RStudio.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="good-practices.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
-<span id="cb2-2"><a href="good-practices.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> debug) {</span>
-<span id="cb2-3"><a href="good-practices.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;y is negative&quot;</span>)</span>
-<span id="cb2-4"><a href="good-practices.html#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-5"><a href="good-practices.html#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="good-practices.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb2-7"><a href="good-practices.html#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb2-8"><a href="good-practices.html#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">log</span>(x)</span>
-<span id="cb2-9"><a href="good-practices.html#cb2-9" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb2-10"><a href="good-practices.html#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;x is negative or zero&quot;</span>)</span>
-<span id="cb2-11"><a href="good-practices.html#cb2-11" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-12"><a href="good-practices.html#cb2-12" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb2-13"><a href="good-practices.html#cb2-13" aria-hidden="true" tabindex="-1"></a>  y <span class="sc">^</span> x</span>
-<span id="cb2-14"><a href="good-practices.html#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-15"><a href="good-practices.html#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="good-practices.html#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
-<span id="cb2-17"><a href="good-practices.html#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> debug)</span>
-<span id="cb2-18"><a href="good-practices.html#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">&quot;Y is negative&quot;</span>)</span>
-<span id="cb2-19"><a href="good-practices.html#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="good-practices.html#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb2-21"><a href="good-practices.html#cb2-21" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb2-22"><a href="good-practices.html#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb2-23"><a href="good-practices.html#cb2-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">log</span>(x)</span>
-<span id="cb2-24"><a href="good-practices.html#cb2-24" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb2-25"><a href="good-practices.html#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x is negative or zero&quot;</span>)</span>
-<span id="cb2-26"><a href="good-practices.html#cb2-26" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-27"><a href="good-practices.html#cb2-27" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> { y <span class="sc">^</span> x }</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="good-practices.html#cb2-1" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb2-2"><a href="good-practices.html#cb2-2" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> debug) {</span>
+<span id="cb2-3"><a href="good-practices.html#cb2-3" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;y is negative&quot;</span>)</span>
+<span id="cb2-4"><a href="good-practices.html#cb2-4" tabindex="-1"></a>}</span>
+<span id="cb2-5"><a href="good-practices.html#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="good-practices.html#cb2-6" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb2-7"><a href="good-practices.html#cb2-7" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb2-8"><a href="good-practices.html#cb2-8" tabindex="-1"></a>    <span class="fu">log</span>(x)</span>
+<span id="cb2-9"><a href="good-practices.html#cb2-9" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb2-10"><a href="good-practices.html#cb2-10" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;x is negative or zero&quot;</span>)</span>
+<span id="cb2-11"><a href="good-practices.html#cb2-11" tabindex="-1"></a>  }</span>
+<span id="cb2-12"><a href="good-practices.html#cb2-12" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb2-13"><a href="good-practices.html#cb2-13" tabindex="-1"></a>  y <span class="sc">^</span> x</span>
+<span id="cb2-14"><a href="good-practices.html#cb2-14" tabindex="-1"></a>}</span>
+<span id="cb2-15"><a href="good-practices.html#cb2-15" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="good-practices.html#cb2-16" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb2-17"><a href="good-practices.html#cb2-17" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> debug)</span>
+<span id="cb2-18"><a href="good-practices.html#cb2-18" tabindex="-1"></a><span class="fu">message</span>(<span class="st">&quot;Y is negative&quot;</span>)</span>
+<span id="cb2-19"><a href="good-practices.html#cb2-19" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="good-practices.html#cb2-20" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb2-21"><a href="good-practices.html#cb2-21" tabindex="-1"></a>{</span>
+<span id="cb2-22"><a href="good-practices.html#cb2-22" tabindex="-1"></a>    <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb2-23"><a href="good-practices.html#cb2-23" tabindex="-1"></a>      <span class="fu">log</span>(x)</span>
+<span id="cb2-24"><a href="good-practices.html#cb2-24" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb2-25"><a href="good-practices.html#cb2-25" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;x is negative or zero&quot;</span>)</span>
+<span id="cb2-26"><a href="good-practices.html#cb2-26" tabindex="-1"></a>    }</span>
+<span id="cb2-27"><a href="good-practices.html#cb2-27" tabindex="-1"></a>} <span class="cf">else</span> { y <span class="sc">^</span> x }</span></code></pre></div>
 </div>
 <div id="long-lines" class="section level3 hasAnchor" number="2.1.4">
 <h3><span class="header-section-number">2.1.4</span> Long lines<a href="good-practices.html#long-lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -378,42 +379,42 @@ This makes the code easier to read and to modify later.</p>
 <ul>
 <li>Use <code>&lt;-</code>, not <code>=</code>, for assignment. Keep <code>=</code> for parameters.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="good-practices.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
-<span id="cb3-2"><a href="good-practices.html#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb3-3"><a href="good-practices.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(</span>
-<span id="cb3-4"><a href="good-practices.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e6</span>)</span>
-<span id="cb3-5"><a href="good-practices.html#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-6"><a href="good-practices.html#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="good-practices.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
-<span id="cb3-8"><a href="good-practices.html#cb3-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">5</span></span>
-<span id="cb3-9"><a href="good-practices.html#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(</span>
-<span id="cb3-10"><a href="good-practices.html#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="fl">1e6</span>)</span>
-<span id="cb3-11"><a href="good-practices.html#cb3-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="good-practices.html#cb3-1" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb3-2"><a href="good-practices.html#cb3-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb3-3"><a href="good-practices.html#cb3-3" tabindex="-1"></a><span class="fu">system.time</span>(</span>
+<span id="cb3-4"><a href="good-practices.html#cb3-4" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e6</span>)</span>
+<span id="cb3-5"><a href="good-practices.html#cb3-5" tabindex="-1"></a>)</span>
+<span id="cb3-6"><a href="good-practices.html#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="good-practices.html#cb3-7" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb3-8"><a href="good-practices.html#cb3-8" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">5</span></span>
+<span id="cb3-9"><a href="good-practices.html#cb3-9" tabindex="-1"></a><span class="fu">system.time</span>(</span>
+<span id="cb3-10"><a href="good-practices.html#cb3-10" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="fl">1e6</span>)</span>
+<span id="cb3-11"><a href="good-practices.html#cb3-11" tabindex="-1"></a>)</span></code></pre></div>
 <ul>
 <li><p>Don’t put <code>;</code> at the end of a line, and avoid multiple commands
 on the same line.</p></li>
 <li><p>Only use <code>return()</code> for early returns. Otherwise rely on R to return the result of the last evaluated expression.</p></li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="good-practices.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
-<span id="cb4-2"><a href="good-practices.html#cb4-2" aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb4-3"><a href="good-practices.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
-<span id="cb4-4"><a href="good-practices.html#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-5"><a href="good-practices.html#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="good-practices.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
-<span id="cb4-7"><a href="good-practices.html#cb4-7" aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb4-8"><a href="good-practices.html#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">+</span> y)</span>
-<span id="cb4-9"><a href="good-practices.html#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="good-practices.html#cb4-1" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb4-2"><a href="good-practices.html#cb4-2" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb4-3"><a href="good-practices.html#cb4-3" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
+<span id="cb4-4"><a href="good-practices.html#cb4-4" tabindex="-1"></a>}</span>
+<span id="cb4-5"><a href="good-practices.html#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="good-practices.html#cb4-6" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb4-7"><a href="good-practices.html#cb4-7" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb4-8"><a href="good-practices.html#cb4-8" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">+</span> y)</span>
+<span id="cb4-9"><a href="good-practices.html#cb4-9" tabindex="-1"></a>}</span></code></pre></div>
 <ul>
 <li>Use <code>"</code>, not <code>'</code>, for quoting text. The only exception is when the text already contains double quotes and no single quotes.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="good-practices.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
-<span id="cb5-2"><a href="good-practices.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Text&quot;</span></span>
-<span id="cb5-3"><a href="good-practices.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Text with &quot;quotes&quot;&#39;</span></span>
-<span id="cb5-4"><a href="good-practices.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;&lt;a href=&quot;http://style.tidyverse.org&quot;&gt;A link&lt;/a&gt;&#39;</span></span>
-<span id="cb5-5"><a href="good-practices.html#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="good-practices.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
-<span id="cb5-7"><a href="good-practices.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Text&#39;</span></span>
-<span id="cb5-8"><a href="good-practices.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Text with &quot;double&quot; and </span><span class="sc">\&#39;</span><span class="st">single</span><span class="sc">\&#39;</span><span class="st"> quotes&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="good-practices.html#cb5-1" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb5-2"><a href="good-practices.html#cb5-2" tabindex="-1"></a><span class="st">&quot;Text&quot;</span></span>
+<span id="cb5-3"><a href="good-practices.html#cb5-3" tabindex="-1"></a><span class="st">&#39;Text with &quot;quotes&quot;&#39;</span></span>
+<span id="cb5-4"><a href="good-practices.html#cb5-4" tabindex="-1"></a><span class="st">&#39;&lt;a href=&quot;http://style.tidyverse.org&quot;&gt;A link&lt;/a&gt;&#39;</span></span>
+<span id="cb5-5"><a href="good-practices.html#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="good-practices.html#cb5-6" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb5-7"><a href="good-practices.html#cb5-7" tabindex="-1"></a><span class="st">&#39;Text&#39;</span></span>
+<span id="cb5-8"><a href="good-practices.html#cb5-8" tabindex="-1"></a><span class="st">&#39;Text with &quot;double&quot; and </span><span class="sc">\&#39;</span><span class="st">single</span><span class="sc">\&#39;</span><span class="st"> quotes&#39;</span></span></code></pre></div>
 </div>
 </div>
 <div id="rstudio" class="section level2 hasAnchor" number="2.2">
@@ -441,7 +442,7 @@ on the same line.</p></li>
 </ul>
 <p><img src="images/data-import-environment.png" width="70%" style="display: block; margin: auto;" /></p>
 <ul>
-<li>Use <a href="https://support.rstudio.com/hc/en-us/articles/205753617-Code-Diagnostics-in-the-RStudio-IDE">code diagnostics</a>:</li>
+<li>Use <a href="https://support.posit.co/hc/en-us/articles/205753617-Code-Diagnostics-in-the-RStudio-IDE">code diagnostics</a>:</li>
 </ul>
 <p><img src="images/diagnostics.png" width="70%" style="display: block; margin: auto;" /></p>
 <ul>
@@ -534,7 +535,7 @@ Figure 2.1: You don’t use Version Control?
 <li>Help with Git:
 <ul>
 <li><a href="http://happygitwithr.com/">Happy Git and GitHub for the useR</a></li>
-<li><a href="https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf">Git cheat sheet</a></li>
+<li><a href="https://education.github.com/git-cheat-sheet-education.pdf">Git cheat sheet</a></li>
 <li><a href="https://github.com/k88hudson/git-flight-rules">When things go wrong</a></li>
 <li><a href="http://ohshitgit.com/">To fix a mistake</a></li>
 <li><a href="https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches">Create a new branch with git and manage branches</a></li>
@@ -547,21 +548,21 @@ Figure 2.1: You don’t use Version Control?
 <div id="help-yourself-learn-how-to-debug" class="section level3 hasAnchor" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> Help yourself, learn how to debug<a href="good-practices.html#help-yourself-learn-how-to-debug" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A basic solution is to print everything, but it’s usually not working well on complex problems. A convenient solution to see all the variables’ states in your code is to place some <code>browser()</code> from where you want to check the variables’ states. To debug functions, <code>debugonce()</code> is also very useful.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="good-practices.html#cb6-1" aria-hidden="true" tabindex="-1"></a>my_log <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">log</span>(x <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb6-2"><a href="good-practices.html#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="good-practices.html#cb6-3" aria-hidden="true" tabindex="-1"></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
-<span id="cb6-4"><a href="good-practices.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># browser()</span></span>
-<span id="cb6-5"><a href="good-practices.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  la <span class="ot">&lt;-</span> <span class="fu">my_log</span>(a) </span>
-<span id="cb6-6"><a href="good-practices.html#cb6-6" aria-hidden="true" tabindex="-1"></a>  lb <span class="ot">&lt;-</span> <span class="fu">my_log</span>(b)</span>
-<span id="cb6-7"><a href="good-practices.html#cb6-7" aria-hidden="true" tabindex="-1"></a>  la <span class="sc">+</span> lb</span>
-<span id="cb6-8"><a href="good-practices.html#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-9"><a href="good-practices.html#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">my_fun</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="good-practices.html#cb6-1" tabindex="-1"></a>my_log <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">log</span>(x <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb6-2"><a href="good-practices.html#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="good-practices.html#cb6-3" tabindex="-1"></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb6-4"><a href="good-practices.html#cb6-4" tabindex="-1"></a>  <span class="co"># browser()</span></span>
+<span id="cb6-5"><a href="good-practices.html#cb6-5" tabindex="-1"></a>  la <span class="ot">&lt;-</span> <span class="fu">my_log</span>(a) </span>
+<span id="cb6-6"><a href="good-practices.html#cb6-6" tabindex="-1"></a>  lb <span class="ot">&lt;-</span> <span class="fu">my_log</span>(b)</span>
+<span id="cb6-7"><a href="good-practices.html#cb6-7" tabindex="-1"></a>  la <span class="sc">+</span> lb</span>
+<span id="cb6-8"><a href="good-practices.html#cb6-8" tabindex="-1"></a>}</span>
+<span id="cb6-9"><a href="good-practices.html#cb6-9" tabindex="-1"></a><span class="fu">my_fun</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>#&gt; Warning in log(x - 1): NaNs produced</code></pre>
 <pre><code>#&gt; [1] NaN</code></pre>
 <p>Try to uncomment <code>browser()</code> or use <code>debugonce(my_fun)</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="good-practices.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">debugonce</span>(my_fun)</span>
-<span id="cb9-2"><a href="good-practices.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">my_fun</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
-<p>Learn more with <a href="https://bookdown.org/rdpeng/rprogdatascience/debugging.html">this book chapter</a>, <a href="http://adv-r.had.co.nz/Exceptions-Debugging.html">this other book chapter</a>, <a href="https://www.rstudio.com/resources/webinars/debugging-techniques-in-rstudio/">this webinar</a> and <a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE">this RStudio article</a>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="good-practices.html#cb9-1" tabindex="-1"></a><span class="fu">debugonce</span>(my_fun)</span>
+<span id="cb9-2"><a href="good-practices.html#cb9-2" tabindex="-1"></a><span class="fu">my_fun</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
+<p>Learn more with <a href="https://bookdown.org/rdpeng/rprogdatascience/debugging.html">this book chapter</a>, <a href="http://adv-r.had.co.nz/Exceptions-Debugging.html">this other book chapter</a>, <a href="https://www.rstudio.com/resources/webinars/debugging-techniques-in-rstudio/">this webinar</a> and <a href="https://support.posit.co/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE">this RStudio article</a>.</p>
 </div>
 <div id="external-help" class="section level3 hasAnchor" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> External help<a href="good-practices.html#external-help" class="anchor-section" aria-label="Anchor link to header"></a></h3>

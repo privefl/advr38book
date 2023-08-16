@@ -187,7 +187,7 @@ If you try to optimize each and every part of your code, you will end up losing 
 
 R is great at prototyping quickly because you can write code in a concise and easy way. Start by doing just that. If performance matters, then profile your code to see which part of your code is taking too much time and optimize only this part!
 
-Learn more on how to profile your code in RStudio in [this article](https://support.rstudio.com/hc/en-us/articles/218221837-Profiling-R-code-with-the-RStudio-IDE).
+Learn more on how to profile your code in RStudio in [this article](https://support.posit.co/hc/en-us/articles/218221837-Profiling-R-code-with-the-RStudio-IDE).
 
 
 ## Vectorization
@@ -283,7 +283,7 @@ In R, prefer using `crossprod(X)` and `tcrossprod(X)` instead of `t(X) %*% X` an
 
 Don't re-implement linear algebra operations (such as matrix products) yourself. There exist some highly optimized libraries for this. If you want to use linear algebra in Rcpp, try [RcppArmadillo](http://dirk.eddelbuettel.com/code/rcpp.armadillo.html) or [RcppEigen](http://dirk.eddelbuettel.com/code/rcpp.eigen.html).
 
-If you want to use some optimized multi-threaded linear library, you can try [Microsoft R Open](https://mran.revolutionanalytics.com/documents/rro/multithread). 
+If you want to use some optimized multi-threaded linear library, you can try [Microsoft R Open](https://www.microsoft.com/en-US/download/details.aspx?id=51205). 
 
 ### Exercises
 
