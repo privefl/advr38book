@@ -8,11 +8,13 @@
 >
 > -- Hadley Wickham
 
-Please make your code readable by following e.g. [this coding style](http://style.tidyverse.org/) (examples below come from this guide).
+Please make your code readable by following e.g. [this coding style](http://style.tidyverse.org/). Hereinafter I provide some examples from this guide.
 
 You can use [package **styler**](https://github.com/r-lib/styler) (that provides RStudio addins) to correct your style:
 
 <img src="https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif" width="70%" style="display: block; margin: auto;" />
+
+You can also use Ctrl+Shift+A in RStudio; we will talk about RStudio shortcuts in section \@ref(rstudio).
 
 ### Naming
 
@@ -74,19 +76,11 @@ if (y == 0)
 
 ### Long lines
 
-Strive to limit your code to 80 characters per line. This fits comfortably on a 
-printed page with a reasonably sized font. If you find yourself running out of 
+Strive to limit your code to 80 characters per line. This fits comfortably on your screen with a reasonably sized font. If you find yourself running out of 
 room, this is a good indication that you should encapsulate some of the work in 
-a separate function.
+a separate function. In RStudio -> Tools -> Global Options, set
 
 <img src="images/margin80.png" width="70%" style="display: block; margin: auto;" />
-
-
-If a function call is too long to fit on a single line, use one line for 
-the function name, for each argument, and for the closing `)`. 
-This makes the code easier to read and to modify later. 
-
-
 
 ### Other
 
@@ -140,9 +134,9 @@ add_two <- function(x, y) {
 ```
 
 
-## RStudio
+## RStudio {#rstudio}
 
-Download a recent version of [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (>= 1.2) and use it!
+Download a recent enough version of [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (>= 1.2) and use it!
 
 Learn more about the new features of RStudio at https://rstudio.com/products/rstudio/release-notes/.
 
@@ -184,7 +178,7 @@ Read more at https://www.tidyverse.org/articles/2017/12/workflow-vs-script/ and 
 
 <div class="figure" style="text-align: center">
 <img src="images/i-also-like-to-live-dangerously.jpg" alt="You don't use Version Control?" width="50%" />
-<p class="caption">(\#fig:unnamed-chunk-12)You don't use Version Control?</p>
+<p class="caption">(\#fig:unnamed-chunk-11)You don't use Version Control?</p>
 </div>
 
 Have you ever:
@@ -215,7 +209,7 @@ Also, see https://stackoverflow.com/q/2712421/6103040.
 
 > A lot of students have said to me later, even first-year undergraduates, that using GitHub has helped them a lot when they went for an internship or a research position interview.
 >
-> They are able to say, "Oh, I already have worked with GitHub. I'm familiar with it. I know how it works.” So I think they are at least able to put that on their CV and go into a situation where there's a research or data analysis team and say, "Yeah, sure. I am actually familiar with the same tools that you use."
+> They are able to say, "Oh, I already have worked with GitHub. I am familiar with it. I know how it works.” So I think they are at least able to put that on their CV and go into a situation where there's a research or data analysis team and say, "Yeah, sure. I am actually familiar with the same tools that you use."
 >
 > -- Mine Cetinkaya-Rundel, Duke University, RStudio
 
@@ -226,7 +220,7 @@ Also, see https://stackoverflow.com/q/2712421/6103040.
 
 - Main Git platforms (share your code, collaborate):
     - [GitHub](https://github.com/), [documentation](https://guides.github.com/activities/hello-world/) (only free for public repositories, now owned by Microsoft)
-    - [GitLab UGA](https://gricad-gitlab.univ-grenoble-alpes.fr/) ([documentation](https://docs.gricad-pages.univ-grenoble-alpes.fr/help/)) or just [GitLab](https://about.gitlab.com/) (open source & free)
+    - [GitLab](https://about.gitlab.com/) (open source & free)
     - [Bitbucket](https://bitbucket.org/) (free when you have less than 5 collaborators)
     - any server..
 
@@ -308,8 +302,8 @@ You can also use [Stack Overflow](https://stackoverflow.com/). The most common u
 
 <img src="images/meme-SO.jpg" width="25%" style="display: block; margin: auto;" />
 
-You can ask questions on Stack Overflow (using the tag `r`). You need to [make a great R reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) if you want your question to be answered. Sometimes, while making this reproducible example, you find the answer to your problem.
+You can ask questions on Stack Overflow (using the tag `r`). You need to [make a great R reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) if you want your question to be answered. Sometimes, while making this minimal reproducible example, you end up understanding and solving the issue on your own.
 
-If you're confident enough with your R skills, you can take the next step and [answer questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). It's a good way to increase your skills, or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).
+If you are confident enough with your R skills, you can take the next step and [answer questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). It's a good way to increase your skills, or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).
 
 You can also join communities, e.g. [join the French-speaking R community](https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM) or [join the R-Ladies community](https://rladies-community-slack.herokuapp.com/) on Slack. These are generally much friendlier and welcoming spaces compared to Stack Overflow.

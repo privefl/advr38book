@@ -310,9 +310,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread.</p>
 <p>– Hadley Wickham</p>
 </blockquote>
-<p>Please make your code readable by following e.g. <a href="http://style.tidyverse.org/">this coding style</a> (examples below come from this guide).</p>
+<p>Please make your code readable by following e.g. <a href="http://style.tidyverse.org/">this coding style</a>. Hereinafter I provide some examples from this guide.</p>
 <p>You can use <a href="https://github.com/r-lib/styler">package <strong>styler</strong></a> (that provides RStudio addins) to correct your style:</p>
 <p><img src="https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif" width="70%" style="display: block; margin: auto;" /></p>
+<p>You can also use Ctrl+Shift+A in RStudio; we will talk about RStudio shortcuts in section <a href="good-practices.html#rstudio">2.2</a>.</p>
 <div id="naming" class="section level3 hasAnchor" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Naming<a href="good-practices.html#naming" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Be smart with your naming. I can’t tell the number of times I’ve seen <code>df &lt;- as.matrix(mtcars)</code> on Stack Overflow.</p>
@@ -365,14 +366,10 @@ spaces, except those with relatively high precedence: <code>^</code>, <code>:</c
 </div>
 <div id="long-lines" class="section level3 hasAnchor" number="2.1.4">
 <h3><span class="header-section-number">2.1.4</span> Long lines<a href="good-practices.html#long-lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Strive to limit your code to 80 characters per line. This fits comfortably on a
-printed page with a reasonably sized font. If you find yourself running out of
+<p>Strive to limit your code to 80 characters per line. This fits comfortably on your screen with a reasonably sized font. If you find yourself running out of
 room, this is a good indication that you should encapsulate some of the work in
-a separate function.</p>
+a separate function. In RStudio -&gt; Tools -&gt; Global Options, set</p>
 <p><img src="images/margin80.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>If a function call is too long to fit on a single line, use one line for
-the function name, for each argument, and for the closing <code>)</code>.
-This makes the code easier to read and to modify later.</p>
 </div>
 <div id="other" class="section level3 hasAnchor" number="2.1.5">
 <h3><span class="header-section-number">2.1.5</span> Other<a href="good-practices.html#other" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -419,7 +416,7 @@ on the same line.</p></li>
 </div>
 <div id="rstudio" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> RStudio<a href="good-practices.html#rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Download a recent version of <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> (&gt;= 1.2) and use it!</p>
+<p>Download a recent enough version of <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> (&gt;= 1.2) and use it!</p>
 <p>Learn more about the new features of RStudio at <a href="https://rstudio.com/products/rstudio/release-notes/" class="uri">https://rstudio.com/products/rstudio/release-notes/</a>.</p>
 <p>RStudio features:</p>
 <ul>
@@ -461,7 +458,7 @@ on the same line.</p></li>
 <h2><span class="header-section-number">2.3</span> Version control (Git)<a href="good-practices.html#git" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="why-use-git-you-dont-use-git" class="section level3 hasAnchor" number="2.3.1">
 <h3><span class="header-section-number">2.3.1</span> Why use Git? You don’t use Git?<a href="good-practices.html#why-use-git-you-dont-use-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
 <img src="images/i-also-like-to-live-dangerously.jpg" alt="You don't use Version Control?" width="50%" />
 <p class="caption">
 Figure 2.1: You don’t use Version Control?
@@ -494,7 +491,7 @@ Figure 2.1: You don’t use Version Control?
 </ul>
 <blockquote>
 <p>A lot of students have said to me later, even first-year undergraduates, that using GitHub has helped them a lot when they went for an internship or a research position interview.</p>
-<p>They are able to say, “Oh, I already have worked with GitHub. I’m familiar with it. I know how it works.” So I think they are at least able to put that on their CV and go into a situation where there’s a research or data analysis team and say, “Yeah, sure. I am actually familiar with the same tools that you use.”</p>
+<p>They are able to say, “Oh, I already have worked with GitHub. I am familiar with it. I know how it works.” So I think they are at least able to put that on their CV and go into a situation where there’s a research or data analysis team and say, “Yeah, sure. I am actually familiar with the same tools that you use.”</p>
 <p>– Mine Cetinkaya-Rundel, Duke University, RStudio</p>
 </blockquote>
 <ul>
@@ -507,7 +504,7 @@ Figure 2.1: You don’t use Version Control?
 <li><p>Main Git platforms (share your code, collaborate):</p>
 <ul>
 <li><a href="https://github.com/">GitHub</a>, <a href="https://guides.github.com/activities/hello-world/">documentation</a> (only free for public repositories, now owned by Microsoft)</li>
-<li><a href="https://gricad-gitlab.univ-grenoble-alpes.fr/">GitLab UGA</a> (<a href="https://docs.gricad-pages.univ-grenoble-alpes.fr/help/">documentation</a>) or just <a href="https://about.gitlab.com/">GitLab</a> (open source &amp; free)</li>
+<li><a href="https://about.gitlab.com/">GitLab</a> (open source &amp; free)</li>
 <li><a href="https://bitbucket.org/">Bitbucket</a> (free when you have less than 5 collaborators)</li>
 <li>any server..</li>
 </ul></li>
@@ -570,8 +567,8 @@ Figure 2.1: You don’t use Version Control?
 <p>You can search for specific R stuff on <a href="https://rseek.org/" class="uri">https://rseek.org/</a>. You should also read documentations carefully. If you’re using a package, search for vignettes and a GitHub repository.</p>
 <p>You can also use <a href="https://stackoverflow.com/">Stack Overflow</a>. The most common use of Stack Overflow is when you have an error or a question, you google it, and most of the times the first links are Q/A on Stack Overflow.</p>
 <p><img src="images/meme-SO.jpg" width="25%" style="display: block; margin: auto;" /></p>
-<p>You can ask questions on Stack Overflow (using the tag <code>r</code>). You need to <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example">make a great R reproducible example</a> if you want your question to be answered. Sometimes, while making this reproducible example, you find the answer to your problem.</p>
-<p>If you’re confident enough with your R skills, you can take the next step and <a href="https://stackoverflow.com/unanswered/tagged/r?tab=newest">answer questions on Stack Overflow</a>. It’s a good way to increase your skills, or just to <a href="https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/">procrastinate while writing a scientific manuscript</a>.</p>
+<p>You can ask questions on Stack Overflow (using the tag <code>r</code>). You need to <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example">make a great R reproducible example</a> if you want your question to be answered. Sometimes, while making this minimal reproducible example, you end up understanding and solving the issue on your own.</p>
+<p>If you are confident enough with your R skills, you can take the next step and <a href="https://stackoverflow.com/unanswered/tagged/r?tab=newest">answer questions on Stack Overflow</a>. It’s a good way to increase your skills, or just to <a href="https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/">procrastinate while writing a scientific manuscript</a>.</p>
 <p>You can also join communities, e.g. <a href="https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM">join the French-speaking R community</a> or <a href="https://rladies-community-slack.herokuapp.com/">join the R-Ladies community</a> on Slack. These are generally much friendlier and welcoming spaces compared to Stack Overflow.</p>
 
 </div>
@@ -637,20 +634,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
