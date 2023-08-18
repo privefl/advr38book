@@ -47,6 +47,8 @@ Unfortunately, we won't have time to cover them in class. A brief introduction o
 
 - [[IN FRENCH] introduction à R et au tidyverse](https://juba.github.io/tidyverse/index.html)
 
+- [package {tidylog}](https://github.com/elbersb/tidylog) provides verbose feedback about {dplyr} and {tidyr} operations
+
 - [comparing dplyr functions to their base R equivalents](https://dplyr.tidyverse.org/articles/base.html)
 
 - [summarize and mutate multiple columns](http://dplyr.tidyverse.org/reference/summarise_all.html)
@@ -75,5 +77,3 @@ Unfortunately, we won't have time to cover them in class. A brief introduction o
 - a tidy API for graph manipulation: [package {tidygraph}](https://github.com/thomasp85/tidygraph),
 
 - many other packages..
-
-
