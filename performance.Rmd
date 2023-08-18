@@ -23,7 +23,148 @@ In this chapter, you will learn how to write R(cpp) code that is fast.
 
 ## R's memory management
 
-See [this chapter of Advanced R](https://adv-r.hadley.nz/names-values.html).
+Read more with [this chapter of Advanced R](https://adv-r.hadley.nz/names-values.html).
+
+
+### Understanding binding basics
+
+```{r, echo = TRUE}
+x <- c(1, 2, 3)
+```
+
+* It's creating an object, a vector of values, `c(1, 2, 3)`.
+* And it's binding that object to a name, `x`.
+
+```{r, out.width="32%", echo=FALSE}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/bd90c87ac98708b1731c92900f2f53ec6a71edaf/ce375/diagrams/name-value/binding-1.png")
+```
+
+<br>
+
+```{r, echo = TRUE}
+y <- x
+```
+```{r, out.width="30%", echo=FALSE}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/bdc72c04d3135f19fb3ab13731129eb84c9170af/f0ab9/diagrams/name-value/binding-2.png")
+```
+
+There are now two names for the same object in memory.
+
+
+### Copy-on-modify
+
+```{r, echo=TRUE}
+x <- c(1, 2, 3)
+y <- x
+y[3] <- 4
+```
+
+```{r, echo=TRUE}
+x
+```
+
+```{r, out.width="28%", echo=FALSE}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/ef9f480effa2f1d0e401d1f94218d0cf118433c0/b56e9/diagrams/name-value/binding-3.png")
+```
+
+The object in memory is copied before being modified, so that `x` is not modified.
+
+
+### Copy-on-modify: what about inside functions?
+
+```{r, echo=TRUE}
+f <- function(a) {
+  a
+}
+x <- c(1, 2, 3)
+z <- f(x)
+```
+
+```{r, out.width="30%", echo=FALSE}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/e8718027aabaed377da311f45b45a179588e4dcf/6bf90/diagrams/name-value/binding-f2.png")
+```
+
+```{r, echo=TRUE}
+f2 <- function(a) {
+  a[1] <- 10
+  a
+}
+z2 <- f2(x)
+```
+
+```{r}
+cbind(x, z2)
+```
+
+The input parameter is not modified; you operate on a local copy of `a = x` in `f2()`.
+
+
+### Lists
+
+It's not just names (i.e. variables) that point to values; elements of lists do too. 
+
+```{r, echo=TRUE}
+l1 <- list(1, 2, 3)
+```
+
+```{r, out.width="32%", echo=FALSE}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/dae84980f1586fc4ef47091c91f51a5737b38135/a1403/diagrams/name-value/list.png")
+```
+
+```{r, echo=TRUE}
+l2 <- l1
+```
+
+```{r, out.width="30%", echo=FALSE}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/52bc0e3da3382cba957a9d83397b6c9200906ce2/c72aa/diagrams/name-value/l-modify-1.png")
+```
+
+
+### Copy-on-modify for lists?
+
+```{r, echo=TRUE}
+l2[[3]] <- 4
+```
+
+```{r, out.width="38%", echo=FALSE}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/b844bb5a3443e1344299627f5760e2ae3a9885b5/e1c76/diagrams/name-value/l-modify-2.png")
+```
+
+Only the third element needs to be copied.
+
+
+### Data frames
+
+**Data frames are lists of vectors.**
+
+```{r, echo=TRUE}
+d1 <- data.frame(x = c(1, 5, 6), y = c(2, 4, 3))
+```
+
+```{r, out.width="28%", echo=FALSE}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/80d8995999aa240ff4bc91bb6aba2c7bf72afc24/95ee6/diagrams/name-value/dataframe.png")
+```
+
+```{r, echo=TRUE}
+d2 <- d1
+d2[, 2] <- d2[, 2] * 2  # modify one column
+```
+
+```{r, out.width="30%", echo=FALSE}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/c19fd7e31bf34ceff73d0fac6e3ea22b09429e4a/23d8d/diagrams/name-value/d-modify-c.png")
+```
+
+```{r, echo=TRUE}
+d3 <- d1
+d3[1, ] <- d3[1, ] * 3  # modify one row
+```
+
+```{r, out.width="45%", echo=FALSE}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/36df61f54d1ac62e066fb814cb7ba38ea6047a74/facf8/diagrams/name-value/d-modify-r.png")
+```
+
+By modifying the first row, you're modifying the first element of all vectors, therefore the full data frame is copied..
+
 
 ## Early advice
 
