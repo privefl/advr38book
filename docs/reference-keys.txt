@@ -90,3 +90,10 @@ example-1
 presentation
 fig:unnamed-chunk-11
 fig:unnamed-chunk-15
+understanding-binding-basics
+copy-on-modify
+copy-on-modify-what-about-inside-functions
+lists
+copy-on-modify-for-lists
+data-frames
+parallel-computing

@@ -3,11 +3,12 @@ output: html_document
 editor_options: 
   chunk_output_type: console
 ---
+
 # Performance
 
 ```{r, include=FALSE}
 source("knitr-options.R")
-WORDS_TO_IGNORE <- c("truelength", "growable", "precomputing", "vectorize")
+WORDS_TO_IGNORE <- c("truelength", "growable", "precomputing", "vectorize", "JIT")
 source("spelling-check.R")
 ```
 
@@ -184,7 +185,13 @@ system.time({
 })
 ```
 
-Here, at each iteration, you are reallocating a vector (of increasing size). Allocation of memory takes time as well as computations. This makes your code quadratic with the size of `x` (if you multiply the size of `x` by 2, you can expect the execution time to be multiplied by 4, for large sample sizes), whereas it should be only linear. 
+Here, at each iteration, you are reallocating a vector (of increasing size). Not only computations take time, memory allocations do too. This makes your code quadratic with the size of `x` (if you multiply the size of `x` by 2, you can expect the execution time to be multiplied by 4, for large sample sizes), whereas it should be only linear. 
+
+What happens is similar to if you would like to climb these stairs, you climb one stair, go to the bottom, then climb two stairs, go to bottom, climb three, and so on. That takes way more time than just climbing all stairs at once.
+
+```{r, out.width = "50%", echo=FALSE}
+knitr::include_graphics("https://privefl.github.io/blog/images/stairs.jpg")
+```
 
 A good solution is to always pre-allocate your results (if you know the size):
 
@@ -289,7 +296,7 @@ system.time(
 apply(mat4, 2, max)[1:10]
 ```
 
-Don't listen to people telling you that `sapply()` is a vectorized operation that is so much faster than loops. You can learn more with [this blog post](https://privefl.github.io/blog/why-loops-are-slow-in-r/).
+Don't listen to people telling you that `sapply()` is a vectorized operation that is so much faster than loops. That's false, and for-loops can actually be much faster than `sapply()` when using just-in-time (JIT) compilation. You can learn more with [this blog post](https://privefl.github.io/blog/why-loops-are-slow-in-r/).
 
 <!-- ### Access columns of a matrix -->
 
@@ -333,7 +340,33 @@ Learn more on how to profile your code in RStudio in [this article](https://supp
 
 ## Vectorization
 
-See [this great blog post by Noam Ross](http://www.noamross.net/blog/2014/4/16/vectorization-in-r--why.html) to understand vectorization. 
+I call *vectorized* a function that takes vectors as arguments and operate on each element of these vectors in another (compiled) language (such as C, C++ and Fortran). Again, `sapply()` is not a vectorized function (cf. above).
+
+Take this code:
+```{r, eval=FALSE}
+N <- 10e3; x <- runif(N); y <- rnorm(N)
+
+res <- double(length(x))
+for (i in seq_along(x)) {
+  res[i] <- x[i] + y[i]
+}
+```
+
+As an interpreted language, for each iteration `res[i] <- x[i] + y[i]`, R has to ask:
+
+- what is the type of `x[i]` and `y[i]`?
+
+- can I add these two types? 
+
+- what is the type of `x[i] + y[i]` then?
+
+- can I store this result in `res` or do I need to convert it?
+
+These questions must be answered for each iteration, which takes time.    
+Some of this is alleviated by JIT compilation.
+
+On the contrary, for vectorized functions, these questions must be answered only once, which saves a lot of time. 
+Read more with [Noam Ross’s blog post on vectorization](http://www.noamross.net/blog/2014/4/16/vectorization-in-r--why.html).
 
 ### Exercise
 
@@ -697,7 +730,7 @@ system.time(
 plot(primes, pch = 20, cex = 0.5)
 ```
 
-## Parallel
+## Parallel computing
 
 I basically always use `foreach` and recommend to do so. See [my guide to parallelism in R with `foreach`](https://privefl.github.io/blog/a-guide-to-parallelism-in-r/). 
 
