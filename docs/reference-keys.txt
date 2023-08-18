@@ -1,5 +1,5 @@
-fig:unnamed-chunk-12
-fig:unnamed-chunk-14
+fig:unnamed-chunk-11
+fig:unnamed-chunk-15
 introduction
 prerequisites
 content
@@ -45,6 +45,12 @@ other-resources
 other-tidy-packages
 performance
 rs-memory-management
+understanding-binding-basics
+copy-on-modify
+copy-on-modify-what-about-inside-functions
+lists
+copy-on-modify-for-lists
+data-frames
 early-advice
 never-grow-a-vector
 use-the-right-function
@@ -56,7 +62,7 @@ linear-algebra
 exercises-2
 algorithms-data-structures
 exos
-parallel
+parallel-computing
 packages
 resources
 project-exercise
@@ -88,12 +94,3 @@ visualize-the-data
 compilation-of-tweets
 example-1
 presentation
-fig:unnamed-chunk-11
-fig:unnamed-chunk-15
-understanding-binding-basics
-copy-on-modify
-copy-on-modify-what-about-inside-functions
-lists
-copy-on-modify-for-lists
-data-frames
-parallel-computing

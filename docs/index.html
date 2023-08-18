@@ -23,7 +23,7 @@
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2023-08-16" />
+<meta name="date" content="2023-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -218,7 +218,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>5</b> Performance</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="performance.html"><a href="performance.html#rs-memory-management"><i class="fa fa-check"></i><b>5.1</b> R’s memory management</a></li>
+<li class="chapter" data-level="5.1" data-path="performance.html"><a href="performance.html#rs-memory-management"><i class="fa fa-check"></i><b>5.1</b> R’s memory management</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="performance.html"><a href="performance.html#understanding-binding-basics"><i class="fa fa-check"></i><b>5.1.1</b> Understanding binding basics</a></li>
+<li class="chapter" data-level="5.1.2" data-path="performance.html"><a href="performance.html#copy-on-modify"><i class="fa fa-check"></i><b>5.1.2</b> Copy-on-modify</a></li>
+<li class="chapter" data-level="5.1.3" data-path="performance.html"><a href="performance.html#copy-on-modify-what-about-inside-functions"><i class="fa fa-check"></i><b>5.1.3</b> Copy-on-modify: what about inside functions?</a></li>
+<li class="chapter" data-level="5.1.4" data-path="performance.html"><a href="performance.html#lists"><i class="fa fa-check"></i><b>5.1.4</b> Lists</a></li>
+<li class="chapter" data-level="5.1.5" data-path="performance.html"><a href="performance.html#copy-on-modify-for-lists"><i class="fa fa-check"></i><b>5.1.5</b> Copy-on-modify for lists?</a></li>
+<li class="chapter" data-level="5.1.6" data-path="performance.html"><a href="performance.html#data-frames"><i class="fa fa-check"></i><b>5.1.6</b> Data frames</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="performance.html"><a href="performance.html#early-advice"><i class="fa fa-check"></i><b>5.2</b> Early advice</a>
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="performance.html"><a href="performance.html#never-grow-a-vector"><i class="fa fa-check"></i><b>5.2.1</b> NEVER GROW A VECTOR</a></li>
@@ -236,7 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#algorithms-data-structures"><i class="fa fa-check"></i><b>5.6</b> Algorithms &amp; data structures</a></li>
 <li class="chapter" data-level="5.7" data-path="performance.html"><a href="performance.html#exos"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
-<li class="chapter" data-level="5.8" data-path="performance.html"><a href="performance.html#parallel"><i class="fa fa-check"></i><b>5.8</b> Parallel</a></li>
+<li class="chapter" data-level="5.8" data-path="performance.html"><a href="performance.html#parallel-computing"><i class="fa fa-check"></i><b>5.8</b> Parallel computing</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a>
 <ul>
@@ -306,7 +314,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Advanced R Course</h1>
 <h2 class="subtitle"><em>Originally, materials for the doctoral school of Grenoble, France</em></h2>
 <p class="author"><em>Florian Privé</em></p>
-<p class="date"><em>2023-08-16</em></p>
+<p class="date"><em>2023-08-18</em></p>
 </div>
 <div id="about" class="section level1 unnumbered hasAnchor">
 <h1>About<a href="index.html#about" class="anchor-section" aria-label="Anchor link to header"></a></h1>
