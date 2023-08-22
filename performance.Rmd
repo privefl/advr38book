@@ -372,20 +372,11 @@ Read more with [Noam Ross’s blog post on vectorization](http://www.noamross.ne
 
 Monte-Carlo integration (example from [book Efficient R programming](https://bookdown.org/csgillespie/efficientR/programming.html#vectorised-code))
 
-Suppose we wish to estimate the integral $\int_0^1 x^2 dx$ using a Monte-Carlo method. Essentially, we throw darts at the curve and count the number of darts that fall below the curve (as in the following figure).
+Suppose we wish to estimate the integral $\int_0^1 x^2 dx$ using a Monte-Carlo method. Essentially, we throw darts (at random) and count the proportion of darts that fall below the curve (as in the following figure).
 
 ```{r monte-carlo, echo=FALSE}
 knitr::include_graphics("https://bookdown.org/csgillespie/efficientR/_main_files/figure-html/3-1-1.png")
 ```
-
-_Monte Carlo Integration pseudo-code_
-
-1. Initialize: `hits = 0`
-1. __for i in 1:N__
-1. $~~$ Generate two random numbers, $U_1$ and $U_2$, between 0 and 1
-1. $~~$ If $U_2 < U_1^2$, then `hits = hits + 1`
-1. __end for__
-1. Area estimate = `hits / N`
 
 Naively implementing this Monte-Carlo algorithm in R would typically lead to something like:
 
@@ -393,10 +384,11 @@ Naively implementing this Monte-Carlo algorithm in R would typically lead to som
 monte_carlo <- function(N) {
   
   hits <- 0
+  
   for (i in seq_len(N)) {
-    u1 <- runif(1)
-    u2 <- runif(1)
-    if (u1 ^ 2 > u2) {
+    x <- runif(1)
+    y <- runif(1)
+    if (y < x^2) {
       hits <- hits + 1
     }
   }
@@ -408,8 +400,9 @@ monte_carlo <- function(N) {
 This takes a few seconds for `N = 1e6`:
 
 ```{r cache=TRUE}
-N <- 1e6
-system.time(monte_carlo(N))
+N <- 2e5
+system.time(res <- monte_carlo(N))
+res
 ```
 
 Your task: find a vectorized solution for this problem:
@@ -419,8 +412,10 @@ monte_carlo_vec <- function(N) mean(runif(N)^2 > runif(N))
 ```
 
 ```{r}
-system.time(monte_carlo_vec(N))
+system.time(res2 <- monte_carlo_vec(N))
+res2
 ```
+
 
 ## Rcpp {#Rcpp}
 

@@ -22,8 +22,10 @@ source("spelling-check.R")
 (0.1 + 0.2) == 0.3
 print(c(0.1, 0.2, 0.3), digits = 20)
 all.equal(0.1 + 0.2, 0.3)  ## equality with some tolerance
+all.equal(0.1 + 0.2, 0.3, tolerance = 0)
 all.equal(0.1 + 0.2, 0.4)
 isTRUE(all.equal(0.1 + 0.2, 0.4))  ## if you want a boolean, use isTRUE()
+dplyr::near(0.1 + 0.2, 0.3)  ## similar, from the {dplyr} package
 ```
 
 ### Arguments
@@ -142,12 +144,12 @@ length(iris)  ## a data.frame is also a list
 1. The `[` accessor is used to access a subset of the data **with the same class**.
 
 ```{r}
-(x <- runif(5))
+(x <- 1:5)
 x[2:3]
 x[2:8]  ## /!\ no warning
-(y <- matrix(runif(12), nrow = 3))
+(y <- matrix(1:12, nrow = 3))
 y[4:9]  ## a matrix is also a vector
-(l <- list(a = 1, b = "I love R", c = matrix(runif(6), nrow = 2)))
+(l <- list(a = 1, b = "I love R", c = matrix(1:6, nrow = 2)))
 l[2:3]
 head(iris)
 head(iris[3:4])
@@ -157,7 +159,7 @@ class(iris[5])
 You can also use a logical and character vectors to index these objects. 
 
 ```{r}
-(x <- runif(4))
+(x <- 1:4)
 x[c(FALSE, TRUE, FALSE, TRUE)]
 x[c(FALSE, TRUE)]  ## logical vectors are recycled
 head(iris[c("Petal.Length", "Species")])
@@ -253,7 +255,7 @@ example(sum)
 
 ```{r}
 # Structure overview
-str(iris)
+str(iris)  ## skimr::skim(iris) is also very useful
 
 # List objects in the environment
 ls()
@@ -309,7 +311,7 @@ sample(3:10, 50, replace = TRUE)
 ```
 
 ```{r}
-round(x <- runif(10, max = 100))
+round(x <- runif(10, max = 100))  ## 10 random numbers between 0 and 100
 round(x, digits = 2)
 round(x, -1)
 pmin(1:4, 4:1)
