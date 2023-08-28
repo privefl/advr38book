@@ -154,7 +154,7 @@ What you can present:
 
 - Did you find a set of `tidyverse` functions particularly useful? Did you discover another useful package?
 
-Some examples from students in 2022:
+Some examples from students in 2022-2023:
 
 - [alcohol consumption](presentations/alcohol-consumption.html)
 
@@ -164,4 +164,16 @@ Some examples from students in 2022:
 
 - [baby names](presentations/baby-names.html)
 
-- [a package](presentations/package-stRoke.html)
+- [UFO sightings](presentations/UFO_Sightings.html)
+
+- [tornados](presentations/tornados.html)
+
+- [wealth inequalities in the USA](presentations/wealth-inequalities.html)
+
+- [Eurovision](presentations/TidyTuesday_Eurovision.html)
+
+- [horror movies](presentations/Horror-movies.docx)
+
+- [a package for clinical data](presentations/package-stRoke.html)
+
+- [a package to read BAM files](presentations/package_banalyzer.html)
