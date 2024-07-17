@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Advanced R Course</title>
-  <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <title>Advanced R</title>
+  <meta name="description" content="This document contains all the materials used in connection to the PhD course about Advanced R held first at the doctoral school of Grenoble, France, and afterwards at the Graduate School of Health, Aarhus University, Denmark." />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Advanced R Course" />
+  <meta property="og:title" content="Advanced R" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="https://privefl.github.io/advr38book//images/hexsticker.png" />
-  <meta property="og:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
+  <meta property="og:image" content="https://privefl.github.io/advr38book//images/new_hexsticker.png" />
+  <meta property="og:description" content="This document contains all the materials used in connection to the PhD course about Advanced R held first at the doctoral school of Grenoble, France, and afterwards at the Graduate School of Health, Aarhus University, Denmark." />
   <meta name="github-repo" content="privefl/advr38book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Advanced R Course" />
+  <meta name="twitter:title" content="Advanced R" />
   <meta name="twitter:site" content="@privefl" />
-  <meta name="twitter:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="twitter:image" content="https://privefl.github.io/advr38book//images/hexsticker.png" />
+  <meta name="twitter:description" content="This document contains all the materials used in connection to the PhD course about Advanced R held first at the doctoral school of Grenoble, France, and afterwards at the Graduate School of Health, Aarhus University, Denmark." />
+  <meta name="twitter:image" content="https://privefl.github.io/advr38book//images/new_hexsticker.png" />
 
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2023-08-22" />
+<meta name="date" content="2024-07-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/twitter-widget-0.0.1/widgets.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-100463316-5"></script>
 <script>
@@ -64,71 +63,11 @@
 </script>
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -146,10 +85,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./index.html">Advanced R Course</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
 <ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-read-this-book"><i class="fa fa-check"></i>How to read this book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the Author</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#author"><i class="fa fa-check"></i>Author</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
@@ -302,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced R Course</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced R</a>
           </h1>
         </div>
 
@@ -311,21 +251,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Advanced R Course</h1>
-<h2 class="subtitle"><em>Originally, materials for the doctoral school of Grenoble, France</em></h2>
+<h1 class="title">Advanced R</h1>
+<h2 class="subtitle"><em>PhD course offered by the Graduate School of Health, Aarhus University</em></h2>
 <p class="author"><em>Florian Privé</em></p>
-<p class="date"><em>2023-08-22</em></p>
+<p class="date"><em>2024-07-10</em></p>
 </div>
-<div id="about" class="section level1 unnumbered hasAnchor">
-<h1>About<a href="index.html#about" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="preface" class="section level1 unnumbered hasAnchor">
+<h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This book is based on materials originally developed for the doctoral school of Grenoble, France. It is now used as the main course material for the PhD course <strong>Advanced R</strong> offered by the Graduate School of Health, Aarhus University, Denmark.
+The main aim of this book is to give the reader a greater understanding of the R language, and to enable them to produce more clean, sophisticated and efficient R code. The reader will learn about packages and tools to simplify their coding life, about data analysis and visualization, and about best practices when coding in R.
+After studying these materials, the reader should be able to</p>
+<ul>
+<li>use RStudio with a better setup to be more efficient</li>
+<li>use Git as a version control system to track file changes</li>
+<li>understand how to write better and simpler code in R</li>
+<li>manipulate and visualize data with the tidyverse and R Markdown</li>
+<li>produce efficient R code</li>
+<li>develop an R package.</li>
+</ul>
+<div id="how-to-read-this-book" class="section level2 unnumbered hasAnchor">
+<h2>How to read this book<a href="index.html#how-to-read-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Readers are recommended to have a basic understanding of R and some experience writing R code. You should, for example, be able to create variables, define functions, implement loops and subset objects such as vectors and data frames.
+If you are new to R, you can take a look at Garrett Grolemund’s <a href="https://rstudio-education.github.io/hopr/">Hands-On Programming with R</a> (2014), a book that uses hands-on examples to teach you how to program in R. Some other useful resources are</p>
+<ul>
+<li><a href="https://rladiessydney.org/courses/ryouwithme/01-basicbasics-0/">Basic Basics</a>, a lesson unit from <a href="https://rladiessydney.org/">R-Ladies Sydney</a> providing an opinionated tour of RStudio for new users and a step-by-step guide to installing and using R packages.</li>
+<li><a href="https://posit.co/resources/videos/a-gentle-introduction-to-tidy-statistics-in-r/">A Gentle Introduction to Tidy Statistics in R</a> (Thomas Mock, 2019), a one-hour free video webinar about how to get started quickly with basics of research statistics in R.</li>
+<li><a href="https://posit.cloud/learn/recipes">Posit Recipes</a>, a collection of R code snippets and instructions featuring up-to-date best practices for coding in R.</li>
+<li><a href="https://www.rstudio.com/tags/essentials/">The RStudio Essentials Series</a>, a webinar series about how to program and manage R projects using RStudio’s tools. These videos will also help you learn good development practices.</li>
+</ul>
+<p>Finally, posit also provides some very useful <a href="https://posit.co/resources/cheatsheets/">cheatsheets</a>, for example about the <a href="https://rstudio.github.io/cheatsheets/html/rstudio-ide.html">RStudio IDE</a>, that you may find helpful.</p>
+<p>In total, this book consists of eight chapters. The first chapter is a short introduction covering prerequisites, content and other useful resources. The following six chapters are theoretical and cover the following topics</p>
+<ul>
+<li>Good practices</li>
+<li>Advanced R programming</li>
+<li>Data analysis with the tidyverse</li>
+<li>Code performance</li>
+<li>How to make an R package</li>
+<li>Introduction to Shiny Apps.</li>
+</ul>
+<p>The final chapter is an opportunity for the reader to apply the new theory using real data from <a href="https://github.com/rfordatascience/tidytuesday/blob/master/README.md">Tidy Tuesday</a>.</p>
+<p>You do not need to read through the materials from beginning to end. We have tried to make each chapter as self-contained as possible, and the reader should be able to only read the parts that are most interesting or relevant.</p>
+</div>
+<div id="about-the-author" class="section level2 unnumbered hasAnchor">
+<h2>About the Author<a href="index.html#about-the-author" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://privefl.github.io/">Florian Privé</a> is a researcher in predictive human genetics, fond of Data Science and an R(cpp) enthusiast. He is also the founder and former organizer of <a href="https://r-in-grenoble.github.io/">the Grenoble R user group</a>. You can find him on <a href="https://twitter.com/privefl">Twitter</a> and <a href="https://github.com/privefl">GitHub</a> as @privefl and on <a href="https://stackoverflow.com/users/6103040/f-priv%c3%a9">Stack Overflow</a> as F. Privé.</p>
+</div>
 <div id="license" class="section level2 unnumbered hasAnchor">
 <h2>License<a href="index.html#license" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This material is licensed under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>.</p>
-</div>
-<div id="author" class="section level2 unnumbered hasAnchor">
-<h2>Author<a href="index.html#author" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><a href="https://privefl.github.io/">Florian Privé</a> is a researcher in predictive human genetics, fond of Data Science and an R(cpp) enthusiast. He is also the founder and former organizer of <a href="https://r-in-grenoble.github.io/">the Grenoble R user group</a>. You can find him on <a href="https://twitter.com/privefl">Twitter</a> and <a href="https://github.com/privefl">GitHub</a> as @privefl and on <a href="https://stackoverflow.com/users/6103040/f-priv%c3%a9">Stack Overflow</a> as F. Privé.</p>
-<p><img src="images/hexsticker.png" width="25%" style="display: block; margin: auto;" /></p>
+<p><img src="images/new_hexsticker.png" width="50%" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
@@ -389,20 +363,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
