@@ -1,52 +1,158 @@
 # Good practices
 
 ```{r, include=FALSE}
-WORDS_TO_IGNORE <- "butitsuremakesthingseasiertoread"
+WORDS_TO_IGNORE <- c("butitsuremakesthingseasiertoread", "addin")
 source("knitr-options.R")
 source("spelling-check.R")
 ```
+
+In the following, we will consider some good practices for writing `R` code. But before we dive into that topic, let us explain why code needs to be clean and efficient. First, if you are working in a team, writing efficient and clean code makes it a lot easier for you colleagues to understand, debug and improve it. If you want your colleagues or collaborators to reuse your code, it should be readable and easy to follow. Second, you can spare your future self a lot of frustration by writing clean code from the beginning. By doing that, you won't have to ask yourself _What the hell am I doing in this function?_ 
+
+![](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMm03cWxxNnFvdTJxZjU1cnIyN2ptdDdxMjNmcnd1Z3RlZDQ0NDF4NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/11tTNkNy1SdXGg/giphy.gif)
 
 ## Coding style
 
 > Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. 
 >
-> -- Hadley Wickham
+> `r tufte::quote_footer('--- Hadley Wickham')`
 
-Please make your code readable by following e.g. [this coding style](http://style.tidyverse.org/). Hereinafter I provide some examples from this guide.
-
-You can use [package **styler**](https://github.com/r-lib/styler) (that provides RStudio addins) to correct your style:
-
-```{r, echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif")
-```
-
-You can also use Ctrl+Shift+A in RStudio; we will talk about RStudio shortcuts in section \@ref(rstudio).
+Please make your code readable by following the available style guides. We recommend you take a look at the [tidyverse style guide](http://style.tidyverse.org/). In the following, we provide some examples from this guide.
 
 ### Naming
 
-Be smart with your naming. I can't tell the number of times I've seen `df <- as.matrix(mtcars)` on Stack Overflow. 
+Be smart with your naming. You won't believe how often we have seen `df <- as.matrix(mtcars)` on Stack Overflow. Use meaningful and concise names for you files, data sets, and functions; you will save yourself a lot of time.
+For example, consider the following piece of code
+```{r eval=FALSE}
+dat1 <- tidytuesdayR::tt_load("2020-01-14")[[1]]
+dat2 <- dat1[dat1$category == "animal",]
+dat3 <- dat1[dat1$strength == 7,]
+
+fct1 <- function(tbl, n = 5) {
+  
+  tbl <- tbl[complete.cases(tbl$rank),]
+  tbl[tbl$rank <= n, 2]
+}
+```
+Looking only at this code, do you have any idea what data is stored in `dat1`, `dat2` and `dat3`? Not really, right? Now imagine, you have 500 lines of code analyzing and visualizing the three different data sets using numerous functions. You would probably get confused about the different data sets and functions quite quick. Now consider the following lines of code
+```{r eval=FALSE}
+passwords <- tidytuesdayR::tt_load("2020-01-14")[[1]]
+password_category <- passwords[passwords$category == "animal",]
+password_strength <- passwords[passwords$strength == 7,]
+
+get_popular_passwords <- function(tbl, n = 5) {
+  
+  tbl <- tbl[complete.cases(tbl$rank),]
+  tbl[tbl$rank <= n, 2]
+}
+```
+This code is identical to the previous code; except for the names. But it is much easier to read and understand. Let us improve the code even more by adding comments.
+```{r eval=FALSE}
+# Loading the passwords data
+passwords <- tidytuesdayR::tt_load("2020-01-14")[[1]]
+# Extracting passwords within the category "animal"
+password_category <- passwords[passwords$category == "animal",]
+# Extracting passwords with a quality of 7
+password_strength <- passwords[passwords$strength == 7,]
+
+# Function: extracts the n most popular passwords
+get_popular_passwords <- function(tbl, n = 5) {
+  
+  tbl <- tbl[complete.cases(tbl$rank),]
+  tbl[tbl$rank <= n, 2]
+}
+```
+When commenting code, you should focus on explaining the "why" instead of the "what" or "how". Comments should be in sentence case, and only end with a full stop if they contain at least two sentences.
+
+Suggestions for naming:
+
+* For files names, use underscore separated strings. All words should be lower case, e.g. `fit_models.R` or `utility_functions.R` (with consideration for operating systems with a case-sensitive file systems). Never have file names that only differ in their capitalization! Avoid using special characters in file names.
+* For function names, use only lowercase letters and numbers separated by an underscore (`_`), e.g. `compute_mean`. Avoid using dots in function names, as they should be reserved exclusively for the S3 object system. Generally, function names should be verbs.
+* For variable names, use only lowercase letters and numbers separated by an underscore (`_`), e.g. `day_1`.
+Avoid re-using names of common functions and variables (such as `mean`, `c` or `T`), as this may cause confusion for the readers. Generally, variable names should be nouns. 
 
 ### Spacing
 
-Put a space before and after `=` when naming arguments in function calls.
-Most infix operators (`==`, `+`, `-`, `<-`, etc.) are also surrounded by
-spaces, except those with relatively high precedence: `^`, `:`, `::`, and `:::`. Always put a space after a comma, and never before (just like in regular English).
+Place a space before and after `=` when naming arguments in function calls.
+Most infix operators (`==`, `+`, `-`, `<-`, etc.) are also surrounded by spaces, except 
+
+* those with high precedence (`^`, `:`, `::`, and `:::`, `$`, `[`, `[[`),
+* `!!` (bang-bang) and `!!!` (bang-bang-bang) when used in tidy evaluation,
+* the help operator `?`. 
 
 ```{r, eval=FALSE}
 # Good
 average <- mean((feet / 12) + inches, na.rm = TRUE)
 x <- 1:10
 base::sum
+?mean
 
-# Bad
+# Unfortunate
 average<-mean(feet/12+inches,na.rm=TRUE)
 x <- 1 : 10
 base :: sum
+? mean
 ```
+Always put a space after a comma, and never before (just like in regular English).
+```{r, eval=FALSE}
+
+# Good
+x[, 1]
+
+# Unfortunate
+x[,1]
+x[ ,1]
+x[ , 1]
+```
+For parenthesis, there are three different rules. When parentheses are used in connection to regular function calls, they are not surround by space:
+```{r, eval=FALSE}
+# Good
+mean(x, na.rm = TRUE)
+
+# Unfortunate
+mean (x, na.rm = TRUE)
+mean( x, na.rm = TRUE )
+```
+However, when the parentheses are used with `if`, `for`, or `while`, they are surrounded by space:
+```{r, eval=FALSE}
+# Good
+if (debug) {
+  show(x)
+}
+
+# Unfortunate
+if(debug){
+  show(x)
+}
+```
+When the parentheses are used for function arguments, you put a space after the closing parenthesis `)`:
+```{r, eval=FALSE}
+# Good
+function(x) {}
+
+# Unfortunate
+function (x) {}
+function(x){}
+```
+Finally, the pipe ` %>%` should always have a space before it, and it is usually followed by a new line. 
+```{r, eval=FALSE}
+# Good
+iris %>%
+  group_by(Species) %>%
+  summarize_if(is.numeric, mean) %>%
+  ungroup() %>%
+  gather(measure, value, -Species) %>%
+  arrange(value)
+
+# Unfortunate
+iris %>% group_by(Species) %>% summarize_all(mean) %>%
+ungroup %>% gather(measure, value, -Species) %>%
+arrange(value)
+```
+We will return to the pipe operator in Chapter \@ref(tidyverse). The same styling suggestions also hold for the operator that separates `ggplot2` layers, `+`. You will meet this operator again in Chapter \@ref(tidyverse).
 
 ### Indenting
 
-Curly braces, `{}`, define the most important hierarchy of R code. To make this hierarchy easy to see, always indent the code inside `{}` by two spaces. This should be automatic in RStudio.
+Curly braces, `{}`, define the most important hierarchy of `R` code. To make this hierarchy easy to see, always indent the code inside `{}` by two spaces. This should be automatic in RStudio.
 
 ```{r, eval=FALSE}
 # Good
@@ -64,7 +170,7 @@ if (y == 0) {
   y ^ x
 }
 
-# Bad
+# Unfortunate
 if (y < 0 && debug)
 message("Y is negative")
 
@@ -80,13 +186,14 @@ if (y == 0)
 
 ### Long lines
 
-Strive to limit your code to 80 characters per line. This fits comfortably on your screen with a reasonably sized font. If you find yourself running out of 
-room, this is a good indication that you should encapsulate some of the work in 
-a separate function. In RStudio -> Tools -> Global Options, set
+Strive to limit your code to 80 characters per line. This fits comfortably on your screen with a reasonably sized font. If you find yourself running out of room, this is a good indication that you should encapsulate some of the work in a separate function. To change the margin in RStudio go to Tools -> Global Options -> Code -> Display, and set `Margin column:` to 80.
 
-```{r, echo=FALSE}
-knitr::include_graphics("images/margin80.png")
-```
+<center>
+<video width="560" height="315" autoplay> 
+<source src="Clips/Change_margin_column.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</center>
 
 ### Other
 
@@ -99,17 +206,17 @@ system.time(
   x <- rnorm(1e6)
 )
 
-# Bad
+# Unfortunate
 x = 5
 system.time(
   x = rnorm(1e6)
 )
 ```
 
-- Don't put `;` at the end of a line, and avoid multiple commands 
+- Don't end a line of code with `;`, and avoid multiple commands 
 on the same line.
 
-- Only use `return()` for early returns. Otherwise rely on R to return the result of the last evaluated expression.
+- Only use `return()` for early returns. Otherwise rely on `R` to return the result of the last evaluated expression. Moreover, return statements should always be on their own line.
 
 ```{r, eval=FALSE}
 # Good
@@ -117,7 +224,7 @@ add_two <- function(x, y) {
   x + y
 }
 
-# Bad
+# Unfortunate
 add_two <- function(x, y) {
   return(x + y)
 }
@@ -131,10 +238,55 @@ add_two <- function(x, y) {
 'Text with "quotes"'
 '<a href="http://style.tidyverse.org">A link</a>'
 
-# Bad
+# Unfortunate
 'Text'
 'Text with "double" and \'single\' quotes'
 ```
+
+- Use `TRUE` and `FALSE` instead of `T` and `F`.
+
+### Code organization
+
+The way the code is organized within a single file significantly impacts the readability. 
+We suggest to start each file with a comment holding a description of the file, who wrote it,
+and when it was last updated. You may want to set a default template that is used each time you open a new `.R` script. To do this, you have to create a `templates` folder in `AppData/Roaming/RStudio/` and include a `default.R` file with the desired template.
+
+```{r, eval=FALSE}
+# Create a template folder
+fs::dir_create(path = "~/AppData/Roaming/RStudio/templates")
+
+# Create the file
+fs::file_create(path = "~/AppData/Roaming/RStudio/templates/default.R")
+
+# Open the file in RStudio
+usethis::edit_file("~/AppData/Roaming/RStudio/templates/default.R")
+```
+For example, you can add the following comments to `default.R`.
+```{r, eval=FALSE}
+######################################################################
+## Title        :
+##
+## Description  :
+##
+## Author       :
+##
+## Date         :
+######################################################################
+##
+## Loading required libraries:########################################
+
+```
+Remember to save the changes you made to `default.R`. 
+
+After the comment section, you should load all required add-on packages using `library()`. This is more transparent than having many `library()` calls throughout your entire code. Afterwards, any required files should be sourced using `source()`. Again, this is more transparent than having many `source()` calls throughout your entire code. Finally, you can start your code. Within your code, use commented lines of `-`, `=` or `#` to break up your file into smaller bits.
+
+### Styler
+
+You can use the package [**styler**](https://github.com/r-lib/styler) to correct your style. It even has RStudio Addins. Once you have installed the package using `install.packages("styler")`, you can format your code according to the [tidyverse style guide](http://style.tidyverse.org/) (or your custom style guide) through the RStudio addin as demonstrated below, or through `R` functions like `style_text()`, `style_file()` or `style_pkg()`. 
+```{r, echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif")
+```
+In RStudio, you can also use the shortcut Ctrl+Shift+A (Windows and Linux) or Shift+Command+A (Mac)to reformat selected code. We will talk about RStudio shortcuts in the next section (\@ref(rstudio)).
 
 
 ## RStudio {#rstudio}
@@ -174,7 +326,7 @@ knitr::include_graphics("images/diagnostics.png")
     - Meaningful structure in one folder
     - The working directory automatically switches to the project's folder
     - The *File* tab displays the associated files and folders in the project
-    - History of R commands and open files
+    - History of `R` commands and open files
     - Any settings associated with the project, such as Git settings, are loaded. Note that you can have a *.Rprofile* file in the project's root directory to enable project-specific settings to be loaded each time people open the project.
 
 Read more at https://www.tidyverse.org/articles/2017/12/workflow-vs-script/ and also see chapter [*Efficient set-up*](https://bookdown.org/csgillespie/efficientR/set-up.html) of book *Efficient R programming*.
@@ -296,7 +448,7 @@ Learn more with [this book chapter](https://bookdown.org/rdpeng/rprogdatascience
 
 Can't remember useful functions? Use [cheat sheets](https://www.rstudio.com/resources/cheatsheets/).
 
-You can search for specific R stuff on https://rseek.org/. You should also read documentations carefully. If you're using a package, search for vignettes and a GitHub repository.
+You can search for specific `R` stuff on https://rseek.org/. You should also read documentations carefully. If you're using a package, search for vignettes and a GitHub repository.
 
 You can also use [Stack Overflow](https://stackoverflow.com/). The most common use of Stack Overflow is when you have an error or a question, you google it, and most of the times the first links are Q/A on Stack Overflow.
 
@@ -309,3 +461,8 @@ You can ask questions on Stack Overflow (using the tag `r`). You need to [make a
 If you are confident enough with your R skills, you can take the next step and [answer questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). It's a good way to increase your skills, or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).
 
 You can also join communities, e.g. [join the French-speaking R community](https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM) or [join the R-Ladies community](https://rladies-community-slack.herokuapp.com/) on Slack. These are generally much friendlier and welcoming spaces compared to Stack Overflow.
+
+
+## Useful resources {.unnumbered}
+
+- [Best Coding Practices for R](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/#coverpage) by Grace Hopper
