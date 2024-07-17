@@ -94,3 +94,8 @@ visualize-the-data
 compilation-of-tweets
 example-1
 presentation
+fig:unnamed-chunk-12
+fig:unnamed-chunk-20
+code-organization
+styler
+fig:unnamed-chunk-19
