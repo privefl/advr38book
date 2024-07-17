@@ -98,7 +98,7 @@ knitr::include_app("https://nsgrantham.shinyapps.io/tidytuesdayrocks/")
 
 Someone tried the recreate a plot using the **Netflix dataset**:
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, eval=FALSE}
 tweetrmd::tweet_embed("https://twitter.com/marieke_k_jones/status/1384560097821614081")
 ```
 
