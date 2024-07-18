@@ -106,6 +106,8 @@
 <li class="chapter" data-level="2.1.3" data-path="good-practices.html"><a href="good-practices.html#indenting"><i class="fa fa-check"></i><b>2.1.3</b> Indenting</a></li>
 <li class="chapter" data-level="2.1.4" data-path="good-practices.html"><a href="good-practices.html#long-lines"><i class="fa fa-check"></i><b>2.1.4</b> Long lines</a></li>
 <li class="chapter" data-level="2.1.5" data-path="good-practices.html"><a href="good-practices.html#other"><i class="fa fa-check"></i><b>2.1.5</b> Other</a></li>
+<li class="chapter" data-level="2.1.6" data-path="good-practices.html"><a href="good-practices.html#code-organization"><i class="fa fa-check"></i><b>2.1.6</b> Code organization</a></li>
+<li class="chapter" data-level="2.1.7" data-path="good-practices.html"><a href="good-practices.html#styler"><i class="fa fa-check"></i><b>2.1.7</b> Styler</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a></li>
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#git"><i class="fa fa-check"></i><b>2.3</b> Version control (Git)</a>
@@ -118,6 +120,7 @@
 <li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#help-yourself-learn-how-to-debug"><i class="fa fa-check"></i><b>2.4.1</b> Help yourself, learn how to debug</a></li>
 <li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.2</b> External help</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="good-practices.html"><a href="good-practices.html#useful-resources-1"><i class="fa fa-check"></i>Useful resources</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="r-programming.html"><a href="r-programming.html"><i class="fa fa-check"></i><b>3</b> R programming</a>
 <ul>
@@ -257,15 +260,29 @@
 <p>To get the most out of these materials, you should have a basic understanding of <code>R</code> and some experience writing <code>R</code> code. You should, for example, be able to create variables, define functions, implement loops and subset objects such as vectors and data frames.
 Furthermore, you should</p>
 <ul>
-<li><p>install the most recent version of <a href="https://www.r-project.org/">R</a>. In this book, we will use <code>R</code> version 4.4.1. Make sure that you have installed <code>R</code> version &gt;= 4.4.1 to run the examples and exercises provided throughout these materials. You can get your current version with <code>version[['version.string']]</code> or <code>R.Version()$version.string</code>.
-Once you have downloaded and installed the desired version of <code>R</code>, go to <code>Tools &gt; Global Options...</code> and change the <code>R</code> version. Remember to restart <code>R</code> afterwards.
-<img src="images/Change_R_version.jpg" width="50%" style="display: block; margin: auto;" /></p></li>
+<li>install the most recent version of <a href="https://www.r-project.org/">R</a>. In this book, we will use <code>R</code> version 4.4.1. Make sure that you have installed <code>R</code> version &gt;= 4.4.1 to run the examples and exercises provided throughout these materials. You can get your current version with <code>version[['version.string']]</code> or <code>R.Version()$version.string</code>.
+Once you have downloaded and installed the desired version of <code>R</code>, go to <code>Tools &gt; Global Options...</code> and change the <code>R</code> version. Remember to restart <code>R</code> afterwards.</li>
+</ul>
+<center>
+<video width="560" height="315" autoplay loop muted preload="true" poster="images/Change_R_version.jpg">
+<source src="Clips/Change_R_version.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</center>
+<ul>
 <li><p>install the most recent version of <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a>. In this book, we will use RStudio version 2024.04.2. You can get the current version of your R Studio by opening <code>Help &gt; About RStudio</code> (on Windows) or <code>RStudio &gt; About RStudio</code> (on Mac).<br />
 <img src="images/Change_RStudio_version.jpg" width="50%" style="display: block; margin: auto;" /></p></li>
 <li><p>install the package <strong>advr38pkg</strong> with <code>remotes::install_github("privefl/advr38pkg")</code>. This will also install other dependencies needed in this book. Please note that you might need to install the package <code>remotes</code> first using <code>install.packages("remotes")</code>.</p></li>
-<li><p>install <a href="https://git-scm.com/downloads">Git</a>. Once the version control system has been installed, you need to activate it. Go to <code>Tools &gt; Global Options &gt; Git/SVN</code> and click <code>Enable version control interface for RStudio projects</code>. If necessary, enter the path for the Git executable.
-<img src="images/Activate_git.jpg" width="50%" style="display: block; margin: auto;" /></p></li>
-<li><p>create a <a href="https://github.com/">GitHub</a> account.</p></li>
+<li><p>install <a href="https://git-scm.com/downloads">Git</a>. Once the version control system has been installed, you need to activate it. Go to <code>Tools &gt; Global Options &gt; Git/SVN</code> and click <code>Enable version control interface for RStudio projects</code>. If necessary, enter the path for the Git executable.</p></li>
+</ul>
+<center>
+<video width="560" height="315" autoplay loop muted preload="true" poster="images/Activate_git.jpg">
+<source src="Clips/Activate_git.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</center>
+<ul>
+<li>create a <a href="https://github.com/">GitHub</a> account.</li>
 </ul>
 </div>
 <div id="content" class="section level2 unnumbered hasAnchor">

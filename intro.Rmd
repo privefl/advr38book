@@ -12,9 +12,13 @@ Furthermore, you should
 
 - install the most recent version of [R](https://www.r-project.org/). In this book, we will use `R` version 4.4.1. Make sure that you have installed `R` version >= 4.4.1 to run the examples and exercises provided throughout these materials. You can get your current version with `version[['version.string']]` or `R.Version()$version.string`.
 Once you have downloaded and installed the desired version of `R`, go to `Tools > Global Options...` and change the `R` version. Remember to restart `R` afterwards.
-```{r, out.width="50%", echo=FALSE}
-knitr::include_graphics("images/Change_R_version.jpg")
-```
+
+<center>
+<video width="560" height="315" autoplay loop muted preload="true" poster="images/Change_R_version.jpg"> 
+<source src="Clips/Change_R_version.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</center>
 
 - install the most recent version of [RStudio](https://www.rstudio.com/products/rstudio/download/#download). In this book, we will use RStudio version 2024.04.2. You can get the current version of your R Studio by opening `Help > About RStudio` (on Windows) or `RStudio > About RStudio` (on Mac).   
 ```{r, out.width="50%", echo=FALSE}
@@ -24,9 +28,13 @@ knitr::include_graphics("images/Change_RStudio_version.jpg")
 - install the package **advr38pkg** with `remotes::install_github("privefl/advr38pkg")`. This will also install other dependencies needed in this book. Please note that you might need to install the package `remotes` first using `install.packages("remotes")`.
 
 - install [Git](https://git-scm.com/downloads). Once the version control system has been installed, you need to activate it. Go to `Tools > Global Options > Git/SVN` and click `Enable version control interface for RStudio projects`. If necessary, enter the path for the Git executable. 
-```{r, out.width="50%", echo=FALSE}
-knitr::include_graphics("images/Activate_git.jpg")
-```
+
+<center>
+<video width="560" height="315" autoplay loop muted preload="true" poster="images/Activate_git.jpg"> 
+<source src="Clips/Activate_git.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</center>
 
 - create a [GitHub](https://github.com/) account.
 
