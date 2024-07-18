@@ -176,7 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a></li>
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#git"><i class="fa fa-check"></i><b>2.3</b> Version control (Git)</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git-you-dont-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git? You don’t use Git?</a></li>
+<li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git?</a></li>
 <li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#about-git"><i class="fa fa-check"></i><b>2.3.2</b> About Git</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#getting-help"><i class="fa fa-check"></i><b>2.4</b> Getting help</a>
@@ -478,7 +478,7 @@ Most infix operators (<code>==</code>, <code>+</code>, <code>-</code>, <code>&lt
 <h3><span class="header-section-number">2.1.4</span> Long lines<a href="good-practices.html#long-lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Strive to limit your code to 80 characters per line. This fits comfortably on your screen with a reasonably sized font. If you find yourself running out of room, this is a good indication that you should encapsulate some of the work in a separate function. To change the margin in RStudio go to Tools -&gt; Global Options -&gt; Code -&gt; Display, and set <code>Margin column:</code> to 80.</p>
 <center>
-<video width="560" height="315" autoplay>
+<video width="560" height="315" autoplay loop muted preload="true" poster="images/margin80.png">
 <source src="Clips/Change_margin_column.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
@@ -542,7 +542,7 @@ and when it was last updated. You may want to set a default template that is use
 <span id="cb14-6"><a href="good-practices.html#cb14-6" tabindex="-1"></a></span>
 <span id="cb14-7"><a href="good-practices.html#cb14-7" tabindex="-1"></a><span class="co"># Open the file in RStudio</span></span>
 <span id="cb14-8"><a href="good-practices.html#cb14-8" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_file</span>(<span class="st">&quot;~/AppData/Roaming/RStudio/templates/default.R&quot;</span>)</span></code></pre></div>
-<p>For example, you can add the following comments to <code>default.R</code>.</p>
+<p>For example, you can add the following comments to <code>default.R</code>:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="good-practices.html#cb15-1" tabindex="-1"></a><span class="do">######################################################################</span></span>
 <span id="cb15-2"><a href="good-practices.html#cb15-2" tabindex="-1"></a><span class="do">## Title        :</span></span>
 <span id="cb15-3"><a href="good-practices.html#cb15-3" tabindex="-1"></a><span class="do">##</span></span>
@@ -559,73 +559,79 @@ and when it was last updated. You may want to set a default template that is use
 </div>
 <div id="styler" class="section level3 hasAnchor" number="2.1.7">
 <h3><span class="header-section-number">2.1.7</span> Styler<a href="good-practices.html#styler" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>You can use the package <a href="https://github.com/r-lib/styler"><strong>styler</strong></a> to correct your style. It even has RStudio Addins. Once you have installed the package using <code>install.packages("styler")</code>, you can format your code according to the <a href="http://style.tidyverse.org/">tidyverse style guide</a> (or your custom style guide) through the RStudio addin as demonstrated below, or through <code>R</code> functions like <code>style_text()</code>, <code>style_file()</code> or <code>style_pkg()</code>.
-<img src="https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif" width="70%" style="display: block; margin: auto;" />
-In RStudio, you can also use the shortcut Ctrl+Shift+A (Windows and Linux) or Shift+Command+A (Mac)to reformat selected code. We will talk about RStudio shortcuts in the next section (<a href="good-practices.html#rstudio">2.2</a>).</p>
+<p>You can use the package <a href="https://github.com/r-lib/styler"><strong>styler</strong></a> to correct your style. It even has RStudio Addins. Once you have installed the package using <code>install.packages("styler")</code>, you can format your code according to the <a href="http://style.tidyverse.org/">tidyverse style guide</a> (or your custom style guide) through the RStudio addin as demonstrated below, or through <code>R</code> functions like <code>style_text()</code>, <code>style_file()</code> or <code>style_pkg()</code>.</p>
+<p><img src="https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif" width="70%" style="display: block; margin: auto;" /></p>
+<p>In RStudio, you can also use the shortcut Ctrl+Shift+A (Windows and Linux) or Shift+Command+A (Mac) to reformat selected code. We will talk about RStudio shortcuts in the next section (<a href="good-practices.html#rstudio">2.2</a>).</p>
 </div>
 </div>
 <div id="rstudio" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> RStudio<a href="good-practices.html#rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Download a recent enough version of <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> (&gt;= 1.2) and use it!</p>
-<p>Learn more about the new features of RStudio at <a href="https://rstudio.com/products/rstudio/release-notes/" class="uri">https://rstudio.com/products/rstudio/release-notes/</a>.</p>
-<p>RStudio features:</p>
+<p>Download a recent enough version of the <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> IDE (see <a href="introduction.html#prerequisites">Prerequisites</a> in Chapter 1 for details). These materials are based on RStudio version 2024.04.2, and we recommend that you use that or any newer version. Once you have installed RStudio, use it!</p>
+<p>RStudio comes with many tools and features, for example</p>
 <ul>
-<li>everything you can expect from a good IDE</li>
-<li>keyboard shortcuts I use
+<li>everything you can expect from a good integrated development environment (IDE)</li>
+<li>useful keyboard shortcuts. We often use the following shortcuts (Windows or Linux / Mac)
 <ol style="list-style-type: decimal">
-<li><em>Ctrl + Space</em> (auto-completion, better than <em>Tab</em>)</li>
-<li><em>Ctrl + Up</em> (command history &amp; search)</li>
-<li><em>Ctrl + Click</em> (function source code)</li>
-<li><em>Ctrl + Enter</em> (execute line of code)</li>
-<li><em>Ctrl + Shift + A</em> (reformat code)</li>
-<li><em>Ctrl + Shift + C</em> (comment/uncomment selected lines)</li>
-<li><em>Ctrl + Shift + K</em> (knit)</li>
-<li><em>Ctrl + Shift + B</em> (build package, website or book)</li>
-<li><em>Ctrl + Shift + M</em> (pipe)</li>
-<li><em>Alt + Shift + K</em> to see all shortcuts…</li>
+<li><em>Ctrl+Space</em> / <em>Command+Space</em> for auto-completion (better than <em>Tab</em>)</li>
+<li><em>Ctrl+Up</em> / <em>Command+Up</em> to show and search the command history in a popup</li>
+<li><em>Ctrl+Click</em> / <em>Command+Click</em> to see a function’s source code</li>
+<li><em>Ctrl+Enter</em> / <em>Command+Return</em> to execute current line/selection of code</li>
+<li><em>Ctrl+Shift+A</em> / <em>Shift+Command+A</em> to reformat current selection of code</li>
+<li><em>Ctrl+Shift+C</em> / <em>Shift+Command+C</em> to comment/uncomment selected lines</li>
+<li><em>Ctrl+Shift+K</em> / <em>Shift+Command+K</em> to knit a document (you will need this in Chapter <a href="tidyverse.html#tidyverse">4</a>)</li>
+<li><em>Ctrl+Shift+B</em> / <em>Shift+Command+B</em> to build a package, website or book (you will learn how to build a package in Chapter <a href="packages.html#packages">6</a>)</li>
+<li><em>Ctrl+Shift+M</em> / <em>Shift+Command+M</em> to insert the pipe operator (we use this shortcut all of the time when working in the <a href="https://www.tidyverse.org/">tidyverse</a>!)</li>
+<li><em>Alt+Shift+K</em> / <em>Option+Shift+K</em> to see more keyboard shortcuts.
+You can find all keyboard shortcuts by using the keyboard shortcut <em>Alt+Shift+K</em> / <em>Option+Shift+K</em> and click on <em>See All Shortcuts</em> in the upper right corner of the window. You can also find them under the Tools menu <code>Tools -&gt; Keyboard Shortcuts Help -&gt; See All Shortcuts</code>, or you can go to <a href="https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE">this</a> Posit Support website. Finally, you can also change keyboard shortcuts under the Tools menu <code>Tools -&gt; Modify Keyboard Shortcuts</code>.</li>
 </ol></li>
-<li>Panels (everything is integrated, including Git and a terminal)</li>
-<li>Interactive data importation from files and connections (see <a href="https://www.rstudio.com/resources/webinars/importing-data-into-r/">this webinar</a>)</li>
+<li>panels (everything is integrated, including Git and a terminal). You can also change the appearance, pane layout, and more under the Tools menu <code>Tools -&gt; Global Options... -&gt; Appearance/Pane Layout</code></li>
 </ul>
-<p><img src="images/data-import-environment.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="images/RStudio_appearance_and_pane_layout.jpg" width="70%" style="display: block; margin: auto;" /></p>
 <ul>
-<li>Use <a href="https://support.posit.co/hc/en-us/articles/205753617-Code-Diagnostics-in-the-RStudio-IDE">code diagnostics</a>:</li>
+<li>interactive data importation from files and connections (see <a href="https://www.rstudio.com/resources/webinars/importing-data-into-r/">this webinar</a>):</li>
 </ul>
-<p><img src="images/diagnostics.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="images/data-import-environment.jpg" width="70%" style="display: block; margin: auto;" /></p>
 <ul>
-<li><strong>RStudio Projects</strong>:
+<li><p><a href="https://support.posit.co/hc/en-us/articles/205753617-Code-Diagnostics-in-the-RStudio-IDE">code diagnostics</a> can be enabled and options can be set within the <code>Tools -&gt; Global Options -&gt; Code -&gt; Diagnostics</code> editing pane.
+<img src="images/code_diagnostics.jpg" width="70%" style="display: block; margin: auto;" />
+When code diagnostics are enabled, RStudio performs static and dynamic analysis of your <code>R</code> code and warns you when it detects problems. RStudio reports any errors or warnings in the left gutter (next to the line number) by a marker and by underlining the position in the code. When you mouse over the marker, a popup with a short explanation will appear.<br />
+<img src="images/code_diagnostics_examples.jpg" width="70%" style="display: block; margin: auto;" /></p></li>
+<li><p>Another very useful feature of the RStudio IDE is that it includes <strong>RStudio projects</strong>. RStudio projects make it straightforward to divide your work into multiple contexts, and keep all files associated with a single project together - input data, <code>R</code> scripts, analytic results, figures, etc.
+The reason why we advise you to work in RStudio projects is that it doesn’t rely on absolute file paths (in contrast to setting your working directory using <code>setwd()</code>). The chance of <code>setwd()</code> working for anyone besides its author is basically 0 %. And having to hand edit one or more paths every time you take over a project can be extremely annoying. RStudio projects solve this issue by making file paths relative. When your RStudio session is running through an RStudio project file (.Rproj), the current working directory points to the root folder where that .Rproj file is saved. In short, the benefits of using RStudio projects are</p>
 <ul>
-<li>Meaningful structure in one folder</li>
-<li>The working directory automatically switches to the project’s folder</li>
-<li>The <em>File</em> tab displays the associated files and folders in the project</li>
-<li>History of <code>R</code> commands and open files</li>
-<li>Any settings associated with the project, such as Git settings, are loaded. Note that you can have a <em>.Rprofile</em> file in the project’s root directory to enable project-specific settings to be loaded each time people open the project.</li>
+<li>a meaningful structure in one folder</li>
+<li>the working directory automatically switches to the project’s folder</li>
+<li>the last previously open file is loaded into the Source pane</li>
+<li>the <strong>History</strong> tab in the <strong>Environment pane</strong> displays <code>R</code> commands executed in previous sessions.</li>
+<li>the <strong>Files</strong> tab in the <strong>Files pane</strong> displays the associated files and folders in the project</li>
+<li>any settings associated with the project, such as Git settings, are loaded.
+Note that you can have a <em>.Rprofile</em> file in the project’s root directory to enable project-specific settings to be loaded each time someone opens the project.</li>
 </ul></li>
 </ul>
-<p>Read more at <a href="https://www.tidyverse.org/articles/2017/12/workflow-vs-script/" class="uri">https://www.tidyverse.org/articles/2017/12/workflow-vs-script/</a> and also see chapter <a href="https://bookdown.org/csgillespie/efficientR/set-up.html"><em>Efficient set-up</em></a> of book <em>Efficient R programming</em>.</p>
+<p>You can read more about RStudio projects in <a href="https://r4ds.had.co.nz/workflow-projects.html">Chapter 8</a> of <a href="https://r4ds.had.co.nz/index.html"><em>R for Data Science</em></a> by Hadley Wickham and Garrett Grolemund, in <a href="https://www.tidyverse.org/articles/2017/12/workflow-vs-script/">this</a> <code>Tidyverse</code> blog post, and also in Section 2.5 <a href="https://bookdown.org/csgillespie/efficientR/set-up.html#rstudio"><em>RStudio</em></a> of <a href="https://bookdown.org/csgillespie/efficientR/"><em>Efficient R programming</em></a> by Colin Gillespie and Robin Lovelace.</p>
 </div>
 <div id="git" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Version control (Git)<a href="good-practices.html#git" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="why-use-git-you-dont-use-git" class="section level3 hasAnchor" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Why use Git? You don’t use Git?<a href="good-practices.html#why-use-git-you-dont-use-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
+<p>A useful feature of RStudio projects is that it enables you to use formal version control. Version control is an important process to back up files, keep track of changes, and simplify collaborations. RStudio currently supports two open source version control systems: <a href="https://git-scm.com/downloads">Git</a> and <a href="https://subversion.apache.org/">Subversion</a>. In these materials, we will focus on Git as a version control system, and we will hook our local repositories up to a remote host, namely <a href="https://github.com/">GitHub</a>. You can find more information about how to activate Git on your system in Section <a href="introduction.html#prerequisites">Prerequisites</a> of Chapter 1.</p>
+<div id="why-use-git" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Why use Git?<a href="good-practices.html#why-use-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Have you ever</p>
+<ul>
+<li>Made changes to code, realized it was a mistake and wanted to revert back?</li>
+<li>Lost code or had a backup that was too old?</li>
+<li>Wanted to submit a change to someone’s code?</li>
+<li>Wanted to share your code, or let other people work on your code?</li>
+</ul>
+<p>Or are you a PhD student working on a manuscript?</p>
+<p><img src="http://www.datacarpentry.org/rr-version-control/fig/phd101212s.png" width="45%" style="display: block; margin: auto;" /></p>
+<p>But you don’t use Git?</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
 <img src="images/i-also-like-to-live-dangerously.jpg" alt="You don't use Version Control?" width="50%" />
 <p class="caption">
 Figure 2.1: You don’t use Version Control?
 </p>
 </div>
-<p>Have you ever:</p>
-<ul>
-<li>Made a change to code, realized it was a mistake and wanted to revert back?</li>
-<li>Lost code or had a backup that was too old?</li>
-<li>Wanted to submit a change to someone else’s code?</li>
-<li>Wanted to share your code, or let other people work on your code?</li>
-</ul>
 <p>In these cases, and probably many others, a version control system should make your life easier (see <a href="https://stackoverflow.com/a/1408464/6103040" class="uri">https://stackoverflow.com/a/1408464/6103040</a>).</p>
-<ul>
-<li>Version control for the researcher: don’t do that, use Git</li>
-</ul>
-<p><img src="http://www.datacarpentry.org/rr-version-control/fig/phd101212s.png" width="45%" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Version control for the data analyst: reproducible workflow</li>
 </ul>

@@ -194,7 +194,7 @@ if (y == 0)
 Strive to limit your code to 80 characters per line. This fits comfortably on your screen with a reasonably sized font. If you find yourself running out of room, this is a good indication that you should encapsulate some of the work in a separate function. To change the margin in RStudio go to Tools -> Global Options -> Code -> Display, and set `Margin column:` to 80.
 
 <center>
-<video width="560" height="315" autoplay> 
+<video width="560" height="315" autoplay loop muted preload="true" poster="images/margin80.png"> 
 <source src="Clips/Change_margin_column.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
@@ -270,7 +270,7 @@ fs::file_create(path = "~/AppData/Roaming/RStudio/templates/default.R")
 # Open the file in RStudio
 usethis::edit_file("~/AppData/Roaming/RStudio/templates/default.R")
 ```
-For example, you can add the following comments to `default.R`.
+For example, you can add the following comments to `default.R`:
 
 ``` r
 ######################################################################
@@ -292,69 +292,81 @@ After the comment section, you should load all required add-on packages using `l
 ### Styler
 
 You can use the package [**styler**](https://github.com/r-lib/styler) to correct your style. It even has RStudio Addins. Once you have installed the package using `install.packages("styler")`, you can format your code according to the [tidyverse style guide](http://style.tidyverse.org/) (or your custom style guide) through the RStudio addin as demonstrated below, or through `R` functions like `style_text()`, `style_file()` or `style_pkg()`. 
+
 <img src="https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif" width="70%" style="display: block; margin: auto;" />
-In RStudio, you can also use the shortcut Ctrl+Shift+A (Windows and Linux) or Shift+Command+A (Mac)to reformat selected code. We will talk about RStudio shortcuts in the next section (\@ref(rstudio)).
+
+In RStudio, you can also use the shortcut Ctrl+Shift+A (Windows and Linux) or Shift+Command+A (Mac) to reformat selected code. We will talk about RStudio shortcuts in the next section (\@ref(rstudio)).
 
 
 ## RStudio {#rstudio}
 
-Download a recent enough version of [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (>= 1.2) and use it!
+Download a recent enough version of the [RStudio](https://www.rstudio.com/products/rstudio/download/#download) IDE  (see [Prerequisites] in Chapter 1 for details). These materials are based on RStudio version 2024.04.2, and we recommend that you use that or any newer version. Once you have installed RStudio, use it!
 
-Learn more about the new features of RStudio at https://rstudio.com/products/rstudio/release-notes/.
+RStudio comes with many tools and features, for example
 
-RStudio features:
+- everything you can expect from a good integrated development environment (IDE)
+- useful keyboard shortcuts. We often use the following shortcuts (Windows or Linux / Mac)
+    1. *Ctrl+Space* / *Command+Space* for auto-completion (better than *Tab*)
+    2. *Ctrl+Up* / *Command+Up* to show and search the command history in a popup
+    3. *Ctrl+Click* / *Command+Click* to see a function's source code
+    3. *Ctrl+Enter* / *Command+Return* to execute current line/selection of code
+    4. *Ctrl+Shift+A* / *Shift+Command+A* to reformat current selection of code
+    4. *Ctrl+Shift+C* / *Shift+Command+C* to comment/uncomment selected lines
+    4. *Ctrl+Shift+K* / *Shift+Command+K* to knit a document (you will need this in Chapter \@ref(tidyverse))
+    4. *Ctrl+Shift+B* / *Shift+Command+B* to build a package, website or book (you will learn how to build a package in Chapter \@ref(packages))
+    4. *Ctrl+Shift+M* / *Shift+Command+M* to insert the pipe operator (we use this shortcut all of the time when working in the [tidyverse](https://www.tidyverse.org/)!)
+    4. *Alt+Shift+K* / *Option+Shift+K* to see more keyboard shortcuts.
+  You can find all keyboard shortcuts by using the keyboard shortcut *Alt+Shift+K* / *Option+Shift+K* and click on *See All Shortcuts* in the upper right corner of the window. You can also find them under the Tools menu `Tools -> Keyboard Shortcuts Help -> See All Shortcuts`, or you can go to [this](https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE) Posit Support website. Finally, you can also change keyboard shortcuts under the Tools menu `Tools -> Modify Keyboard Shortcuts`. 
+- panels (everything is integrated, including Git and a terminal). You can also change the appearance, pane layout, and more under the Tools menu `Tools -> Global Options... -> Appearance/Pane Layout`
 
-- everything you can expect from a good IDE
-- keyboard shortcuts I use
-    1. *Ctrl + Space* (auto-completion, better than *Tab*)
-    2. *Ctrl + Up* (command history & search)
-    3. *Ctrl + Click* (function source code)
-    3. *Ctrl + Enter* (execute line of code)
-    4. *Ctrl + Shift + A* (reformat code)
-    4. *Ctrl + Shift + C* (comment/uncomment selected lines)
-    4. *Ctrl + Shift + K* (knit)
-    4. *Ctrl + Shift + B* (build package, website or book)
-    4. *Ctrl + Shift + M* (pipe)
-    4. *Alt + Shift + K* to see all shortcuts...
-- Panels (everything is integrated, including Git and a terminal)
-- Interactive data importation from files and connections (see [this webinar](https://www.rstudio.com/resources/webinars/importing-data-into-r/))
+<img src="images/RStudio_appearance_and_pane_layout.jpg" width="70%" style="display: block; margin: auto;" />
 
-<img src="images/data-import-environment.png" width="70%" style="display: block; margin: auto;" />
+- interactive data importation from files and connections (see [this webinar](https://www.rstudio.com/resources/webinars/importing-data-into-r/)):
 
-- Use [code diagnostics](https://support.posit.co/hc/en-us/articles/205753617-Code-Diagnostics-in-the-RStudio-IDE):
+<img src="images/data-import-environment.jpg" width="70%" style="display: block; margin: auto;" />
 
-<img src="images/diagnostics.png" width="70%" style="display: block; margin: auto;" />
+- [code diagnostics](https://support.posit.co/hc/en-us/articles/205753617-Code-Diagnostics-in-the-RStudio-IDE) can be enabled and options can be set within the `Tools -> Global Options -> Code -> Diagnostics` editing pane.
+<img src="images/code_diagnostics.jpg" width="70%" style="display: block; margin: auto;" />
+When code diagnostics are enabled, RStudio performs static and dynamic analysis of your `R` code and warns you when it detects problems. RStudio reports any errors or warnings in the left gutter (next to the line number) by a marker and by underlining the position in the code. When you mouse over the marker, a popup with a short explanation will appear.  
+<img src="images/code_diagnostics_examples.jpg" width="70%" style="display: block; margin: auto;" />
 
-- **RStudio Projects**: 
-    - Meaningful structure in one folder
-    - The working directory automatically switches to the project's folder
-    - The *File* tab displays the associated files and folders in the project
-    - History of `R` commands and open files
-    - Any settings associated with the project, such as Git settings, are loaded. Note that you can have a *.Rprofile* file in the project's root directory to enable project-specific settings to be loaded each time people open the project.
+- Another very useful feature of the RStudio IDE is that it includes **RStudio projects**. RStudio projects make it straightforward to divide your work into multiple contexts, and keep all files associated with a single project together - input data, `R` scripts, analytic results, figures, etc.
+The reason why we advise you to work in RStudio projects is that it doesn't rely on absolute file paths (in contrast to setting your working directory using `setwd()`). The chance of `setwd()` working for anyone besides its author is basically 0 %. And having to hand edit one or more paths every time you take over a project can be extremely annoying. RStudio projects solve this issue by making file paths relative. When your RStudio session is running through an RStudio project file (.Rproj), the current working directory points to the root folder where that .Rproj file is saved. In short, the benefits of using RStudio projects are
+    - a meaningful structure in one folder
+    - the working directory automatically switches to the project's folder
+    - the last previously open file is loaded into the Source pane
+    - the **History** tab in the **Environment pane** displays `R` commands executed in previous sessions.
+    - the **Files** tab in the **Files pane** displays the associated files and folders in the project
+    - any settings associated with the project, such as Git settings, are loaded. 
+    Note that you can have a *.Rprofile* file in the project's root directory to enable project-specific settings to be loaded each time someone opens the project.
 
-Read more at https://www.tidyverse.org/articles/2017/12/workflow-vs-script/ and also see chapter [*Efficient set-up*](https://bookdown.org/csgillespie/efficientR/set-up.html) of book *Efficient R programming*.
+You can read more about RStudio projects in [Chapter 8](https://r4ds.had.co.nz/workflow-projects.html) of [*R for Data Science*](https://r4ds.had.co.nz/index.html) by Hadley Wickham and Garrett Grolemund, in [this](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/) `Tidyverse` blog post, and also in Section 2.5 [*RStudio*](https://bookdown.org/csgillespie/efficientR/set-up.html#rstudio) of [*Efficient R programming*](https://bookdown.org/csgillespie/efficientR/) by Colin Gillespie and Robin Lovelace.
 
 ## Version control (Git) {#git}
 
-### Why use Git? You don't use Git?
+A useful feature of RStudio projects is that it enables you to use formal version control. Version control is an important process to back up files, keep track of changes, and simplify collaborations. RStudio currently supports two open source version control systems: [Git](https://git-scm.com/downloads) and [Subversion](https://subversion.apache.org/). In these materials, we will focus on Git as a version control system, and we will hook our local repositories up to a remote host, namely [GitHub](https://github.com/). You can find more information about how to activate Git on your system in Section [Prerequisites] of Chapter 1. 
+
+### Why use Git?
+
+Have you ever
+
+- Made changes to code, realized it was a mistake and wanted to revert back?
+- Lost code or had a backup that was too old?
+- Wanted to submit a change to someone's code?
+- Wanted to share your code, or let other people work on your code?
+
+Or are you a PhD student working on a manuscript?
+
+<img src="http://www.datacarpentry.org/rr-version-control/fig/phd101212s.png" width="45%" style="display: block; margin: auto;" />
+
+But you don't use Git?
 
 <div class="figure" style="text-align: center">
 <img src="images/i-also-like-to-live-dangerously.jpg" alt="You don't use Version Control?" width="50%" />
-<p class="caption">(\#fig:unnamed-chunk-20)You don't use Version Control?</p>
+<p class="caption">(\#fig:unnamed-chunk-23)You don't use Version Control?</p>
 </div>
 
-Have you ever:
-
-- Made a change to code, realized it was a mistake and wanted to revert back?
-- Lost code or had a backup that was too old?
-- Wanted to submit a change to someone else's code?
-- Wanted to share your code, or let other people work on your code?
-
 In these cases, and probably many others, a version control system should make your life easier (see https://stackoverflow.com/a/1408464/6103040).
-
-- Version control for the researcher: don't do that, use Git
-
-<img src="http://www.datacarpentry.org/rr-version-control/fig/phd101212s.png" width="45%" style="display: block; margin: auto;" />
 
 - Version control for the data analyst: reproducible workflow
 
