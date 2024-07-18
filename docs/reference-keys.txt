@@ -99,3 +99,5 @@ fig:unnamed-chunk-20
 code-organization
 styler
 fig:unnamed-chunk-19
+fig:unnamed-chunk-23
+why-use-git
