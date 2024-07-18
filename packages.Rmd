@@ -1,4 +1,4 @@
-# Packages
+# Packages {#packages}
 
 ```{r setup, include=FALSE}
 WORDS_TO_IGNORE <- c("ci", "Codecov", "programmation", "prefered")
