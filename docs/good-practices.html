@@ -177,9 +177,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#git"><i class="fa fa-check"></i><b>2.3</b> Version control (Git)</a>
 <ul>
 <li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git?</a></li>
-<li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#about-git"><i class="fa fa-check"></i><b>2.3.2</b> About Git</a></li>
+<li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#how-to-use-git"><i class="fa fa-check"></i><b>2.3.2</b> How to use Git</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#getting-help"><i class="fa fa-check"></i><b>2.4</b> Getting help</a>
+<li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#when-things-go-wrong"><i class="fa fa-check"></i><b>2.4</b> When things go wrong…</a>
 <ul>
 <li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#help-yourself-learn-how-to-debug"><i class="fa fa-check"></i><b>2.4.1</b> Help yourself, learn how to debug</a></li>
 <li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.2</b> External help</a></li>
@@ -631,73 +631,85 @@ Note that you can have a <em>.Rprofile</em> file in the project’s root directo
 Figure 2.1: You don’t use Version Control?
 </p>
 </div>
-<p>In these cases, and probably many others, a version control system should make your life easier (see <a href="https://stackoverflow.com/a/1408464/6103040" class="uri">https://stackoverflow.com/a/1408464/6103040</a>).</p>
-<ul>
-<li>Version control for the data analyst: reproducible workflow</li>
-</ul>
+In these cases, and probably many others, a version control system should make your life easier (see <a href="https://stackoverflow.com/a/1408464/6103040">this</a> Stack Overflow answer.
+With version control you make your workflow reproducible; something that is not only essential in modern day research, but also saves yourself a lot of frustration:
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/s3JldKoA0zw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 </iframe>
 </center>
-<p>Also, see <a href="https://stackoverflow.com/q/2712421/6103040" class="uri">https://stackoverflow.com/q/2712421/6103040</a>.</p>
-<ul>
-<li><p>Use version control to work from anywhere
-<img src="images/git.svg" width="70%" style="display: block; margin: auto;" /></p></li>
-<li><p>Working with GitHub can be a line on your CV (<a href="https://github.com/blog/2336-invest-in-tools-students-can-grow-with-github-and-rstudio-for-data-science-at-duke-university">read more</a>):</p></li>
-</ul>
+<p>And yes, you should also use version control even if you are mainly working by yourself! See <a href="https://stackoverflow.com/q/2712421/6103040">this</a> Stack Overflow question.
+Moreover, version control is very useful when you want to access your projects from different devices and/or places
+<img src="images/git.svg" width="70%" style="display: block; margin: auto;" />
+Another important aspect is that you need version control to get websites for your packages with <a href="http://pkgdown.r-lib.org/">pkgdown</a>, for your book (like this one!) with <a href="https://bookdown.org/">bookdown</a>, and for your personal webpage with <a href="https://rmarkdown.rstudio.com/rmarkdown_websites.html">R Markdown Websites</a> or <a href="https://bookdown.org/yihui/blogdown/">blogdown</a>.</p>
+<p>Finally, being able to work with GitHub can be a line on your CV (<a href="https://github.com/blog/2336-invest-in-tools-students-can-grow-with-github-and-rstudio-for-data-science-at-duke-university">read more</a>):</p>
 <blockquote>
 <p>A lot of students have said to me later, even first-year undergraduates, that using GitHub has helped them a lot when they went for an internship or a research position interview.</p>
 <p>They are able to say, “Oh, I already have worked with GitHub. I am familiar with it. I know how it works.” So I think they are at least able to put that on their CV and go into a situation where there’s a research or data analysis team and say, “Yeah, sure. I am actually familiar with the same tools that you use.”</p>
 <p>– Mine Cetinkaya-Rundel, Duke University, RStudio</p>
 </blockquote>
-<ul>
-<li>Be able to get websites for your packages with <a href="http://pkgdown.r-lib.org/">pkgdown</a>, for your book (like this one!) with <a href="https://bookdown.org/">bookdown</a>, for your personal webpage with <a href="https://rmarkdown.rstudio.com/rmarkdown_websites.html">R Markdown Websites</a> or <a href="https://bookdown.org/yihui/blogdown/">blogdown</a>.</li>
-</ul>
 </div>
-<div id="about-git" class="section level3 hasAnchor" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> About Git<a href="good-practices.html#about-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="how-to-use-git" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> How to use Git<a href="good-practices.html#how-to-use-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To share your code and collaborate with other, use a Git hosting platform. A Git hosting platform is basically the Google Docs of collaborative coding. The main platforms are</p>
 <ul>
-<li><p>Main Git platforms (share your code, collaborate):</p>
-<ul>
-<li><a href="https://github.com/">GitHub</a>, <a href="https://guides.github.com/activities/hello-world/">documentation</a> (only free for public repositories, now owned by Microsoft)</li>
+<li><a href="https://github.com/">GitHub</a> (only free for public repositories, now owned by Microsoft)</li>
 <li><a href="https://about.gitlab.com/">GitLab</a> (open source &amp; free)</li>
 <li><a href="https://bitbucket.org/">Bitbucket</a> (free when you have less than 5 collaborators)</li>
-<li>any server..</li>
-</ul></li>
-<li><p>4 main commands:</p>
-<ul>
-<li><em>add</em>: add files to be part of the next commit</li>
-<li><em>commit</em>: snapshot of your code at a specified point in time (you can and you should use this even when having no internet connection)</li>
-<li><em>push</em>: merge your local modifications with the main project</li>
-<li><em>pull</em>: update your local project with the latest version of the main project</li>
-</ul></li>
-<li><p>Simple (solo) use of git to prevent merge conflicts:</p>
-<ul>
-<li>after opening a project, always pull</li>
-<li>before closing a project, always commit/push</li>
-</ul></li>
-<li><p>Use git even when you do not have any internet connection! (e.g. on a secure server) Just use commits for version control locally.</p></li>
-<li><p>How to link between an RStudio project and a GitHub repository?</p></li>
+<li>any server.</li>
 </ul>
+<p>As mentioned before, we will focus on GitHub in these materials.
+Once you have created an account on GitHub, the first step is to create a repository. A repository is a folder that contains files, images, sub folders, etc. related to the same project. Hence, it corresponds to an RStudio project. When you are logged into your GitHub account, you can create a new repository by selecting <em>+</em> in the upper-right corner of any page. Select a concise and meaningful name for the repository, and make sure to initialize the repository with a .README file by checking the box. You don’t need to add .gitignore or a license. If you want to, you can also add a short description. Click <em>Create repository</em>.
+Once you have created the Git repository, you need to link it to an RStudio project. To link your repository to an RStudio project, you need to generate an SSH key. Click on your avatar in the upper-right corner and go to <em>Settings</em>. In the menu on the left-hand side, select <em>SSH and GPG keys</em>.
+Now you need to open an RStudio session. Go to <code>Tools -&gt; Global Options... -&gt; Git/SVN</code>, and select <code>Create SSH Key...</code> When you have created a SSH key, select <code>View public key</code> and copy the key to the clipboard.</p>
+<p><img src="images/Create_SSH_key.jpg" width="70%" style="display: block; margin: auto;" /></p>
+<p>Return to GitHub, and add the newly created SSH key to your GitHub account by selecting <em>New SSH key</em>, adding a title (indicating the device the key is used for) and inserting the key under <em>Key</em>. Save the key to your GitHub account by clicking <em>Add SSH key</em>. Please note that you only have to generate an SSH key once for each new device that you link to your GitHub account.</p>
+<p>Now that you have generated an SSH key, you can link your repository to an RStudio project by following these steps:</p>
+<ol style="list-style-type: decimal">
+<li>Go to the repository that you want to link (for example by clicking on your avatar in the upper-right corner, and selecting <em>Your repositories</em> in the drop-down menu).</li>
+<li>Click the <em>Code</em> tab of your repository.</li>
+<li>Above the file list, click the drop-down menu that says <em>&lt;&gt; Code</em>.</li>
+<li>Select the tab called <em>Local</em>.</li>
+<li>Under the section <em>Clone</em>, select <em>SSH</em> (do not use <em>HTTPS</em> or <em>GitHub CLI</em>).</li>
+<li>Copy the URL to the clipboard.</li>
+<li>Go back to your RStudio session and create a new project (<code>File -&gt; New Project...</code> or by clicking the icon in the upper-right corner and selecting <code>New Project...</code>).</li>
+<li>Create the project from a version control repository.</li>
+<li>Select Git to clone a project from a Git repository</li>
+<li>Paste the URL from the clipboard under <code>Repository URL:</code> and select the path were you want to save your project.</li>
+<li>Enter the passphrase that you selected when you generated the SSH key.</li>
+<li>Your GitHub repository will now be cloned (Yeah).</li>
+</ol>
+<p><img src="images/link_repository_to_rstudio.jpg" width="70%" style="display: block; margin: auto;" /></p>
+<p>Instead of following the written steps above, you can also follow the video tutorial below.</p>
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8Q3fYwgyNGQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 </iframe>
 </center>
-<p>For Mac users, you might need to use the terminal for <code>git clone</code>, then create the RStudio project from the existing directory. If you have some permission denied for the public key, you might also need to run <code>ssh-agent -s &amp;&amp; ssh-add &lt;path_to_public_key&gt;</code> (cf. <a href="https://stackoverflow.com/a/30806058/6103040">this SO answer</a>).</p>
+<p>A note for Mac users: you might need to use the terminal for <code>git clone</code>, then create the RStudio project from the existing directory. If you have some permission denied for the public key, you might also need to run <code>ssh-agent -s &amp;&amp; ssh-add &lt;path_to_public_key&gt;</code> (cf. <a href="https://stackoverflow.com/a/30806058/6103040">this</a> Stack Overflow answer).</p>
+<p>When you use Git, you will need the following Git commands</p>
 <ul>
-<li>Help with Git:
-<ul>
-<li><a href="http://happygitwithr.com/">Happy Git and GitHub for the useR</a></li>
-<li><a href="https://education.github.com/git-cheat-sheet-education.pdf">Git cheat sheet</a></li>
-<li><a href="https://github.com/k88hudson/git-flight-rules">When things go wrong</a></li>
-<li><a href="http://ohshitgit.com/">To fix a mistake</a></li>
-<li><a href="https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches">Create a new branch with git and manage branches</a></li>
-</ul></li>
+<li><strong>git add <file></strong>: add a file to your next commit (stage)</li>
+<li><strong>git add -A</strong>: add all new or modified files to be part of the next commit</li>
+<li><strong>commit</strong>: snapshot of your code at a specified point in time (you can and you should use this even when having no internet connection)</li>
+<li><strong>push</strong>: merge your local modifications with the main project</li>
+<li><strong>pull</strong>: update your local project with the latest version of the main project</li>
 </ul>
+<p>To prevent merge conflicts, we advise you to follow these simple rules:</p>
+<ul>
+<li>after opening a project, <strong>always pull</strong></li>
+<li>before closing a project, <strong>always commit/push</strong></li>
+</ul>
+<p>Furthermore, you should use git even when you do not have any internet connection! (e.g. on a secure server) Just use commits for local version control.</p>
+<p>If you have never worked with Git on GitHub (or you need a reminder) we suggest you follow <a href="https://guides.github.com/activities/hello-world/">this</a> tutorial about GitHub essentials. Other helpful websites are
+- <a href="http://happygitwithr.com/">Happy Git and GitHub for the useR</a>
+- <a href="https://education.github.com/git-cheat-sheet-education.pdf">Git cheat sheet</a>
+- <a href="https://github.com/k88hudson/git-flight-rules">When things go wrong</a>
+- <a href="http://ohshitgit.com/">To fix a mistake</a>
+- <a href="https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches">Create a new branch with git and manage branches</a></p>
 </div>
 </div>
-<div id="getting-help" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> Getting help<a href="good-practices.html#getting-help" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="when-things-go-wrong" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> When things go wrong…<a href="good-practices.html#when-things-go-wrong" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGZidjU0ejh0MWRpdm1rM2M5c3pkNWk0Y2NsODV3MGsyMTR1b2N4NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l1KVaj5UcbHwrBMqI/giphy.gif" /></p>
 <div id="help-yourself-learn-how-to-debug" class="section level3 hasAnchor" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> Help yourself, learn how to debug<a href="good-practices.html#help-yourself-learn-how-to-debug" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A basic solution is to print everything, but it’s usually not working well on complex problems. A convenient solution to see all the variables’ states in your code is to place some <code>browser()</code> from where you want to check the variables’ states. To debug functions, <code>debugonce()</code> is also very useful.</p>
@@ -732,6 +744,8 @@ Figure 2.1: You don’t use Version Control?
 <h2>Useful resources<a href="good-practices.html#useful-resources-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><a href="https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/#coverpage">Best Coding Practices for R</a> by Grace Hopper</li>
+<li><a href="https://nceas.github.io/oss-lessons/version-control/4-getting-started-with-git-in-RStudio.html">Using git from RStudio</a> by Julien Brun</li>
+<li><a href="https://docs.posit.co/ide/user/ide/guide/tools/version-control.html">RStudio User Guide - Version Control</a></li>
 </ul>
 
 </div>

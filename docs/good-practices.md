@@ -366,20 +366,17 @@ But you don't use Git?
 <p class="caption">(\#fig:unnamed-chunk-23)You don't use Version Control?</p>
 </div>
 
-In these cases, and probably many others, a version control system should make your life easier (see https://stackoverflow.com/a/1408464/6103040).
-
-- Version control for the data analyst: reproducible workflow
-
+In these cases, and probably many others, a version control system should make your life easier (see [this](https://stackoverflow.com/a/1408464/6103040) Stack Overflow answer.
+With version control you make your workflow reproducible; something that is not only essential in modern day research, but also saves yourself a lot of frustration:
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/s3JldKoA0zw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </center>
-
-Also, see https://stackoverflow.com/q/2712421/6103040.
-
-- Use version control to work from anywhere
+And yes, you should also use version control even if you are mainly working by yourself! See [this](https://stackoverflow.com/q/2712421/6103040) Stack Overflow question.
+Moreover, version control is very useful when you want to access your projects from different devices and/or places
 <img src="images/git.svg" width="70%" style="display: block; margin: auto;" />
+Another important aspect is that you need version control to get websites for your packages with [pkgdown](http://pkgdown.r-lib.org/), for your book (like this one!) with [bookdown](https://bookdown.org/), and for your personal webpage with [R Markdown Websites](https://rmarkdown.rstudio.com/rmarkdown_websites.html) or [blogdown](https://bookdown.org/yihui/blogdown/).
 
-- Working with GitHub can be a line on your CV ([read more](https://github.com/blog/2336-invest-in-tools-students-can-grow-with-github-and-rstudio-for-data-science-at-duke-university)):
+Finally, being able to work with GitHub can be a line on your CV ([read more](https://github.com/blog/2336-invest-in-tools-students-can-grow-with-github-and-rstudio-for-data-science-at-duke-university)):
 
 > A lot of students have said to me later, even first-year undergraduates, that using GitHub has helped them a lot when they went for an internship or a research position interview.
 >
@@ -387,40 +384,66 @@ Also, see https://stackoverflow.com/q/2712421/6103040.
 >
 > -- Mine Cetinkaya-Rundel, Duke University, RStudio
 
-- Be able to get websites for your packages with [pkgdown](http://pkgdown.r-lib.org/), for your book (like this one!) with [bookdown](https://bookdown.org/), for your personal webpage with [R Markdown Websites](https://rmarkdown.rstudio.com/rmarkdown_websites.html) or [blogdown](https://bookdown.org/yihui/blogdown/).
+### How to use Git
 
+To share your code and collaborate with other, use a Git hosting platform. A Git hosting platform is basically the Google Docs of collaborative coding. The main platforms are
 
-### About Git
+- [GitHub](https://github.com/) (only free for public repositories, now owned by Microsoft)
+- [GitLab](https://about.gitlab.com/) (open source & free)
+- [Bitbucket](https://bitbucket.org/) (free when you have less than 5 collaborators)
+- any server.
 
-- Main Git platforms (share your code, collaborate):
-    - [GitHub](https://github.com/), [documentation](https://guides.github.com/activities/hello-world/) (only free for public repositories, now owned by Microsoft)
-    - [GitLab](https://about.gitlab.com/) (open source & free)
-    - [Bitbucket](https://bitbucket.org/) (free when you have less than 5 collaborators)
-    - any server..
+As mentioned before, we will focus on GitHub in these materials.
+Once you have created an account on GitHub, the first step is to create a repository. A repository is a folder that contains files, images, sub folders, etc. related to the same project. Hence, it corresponds to an RStudio project. When you are logged into your GitHub account, you can create a new repository by selecting *+* in the upper-right corner of any page. Select a concise and meaningful name for the repository, and make sure to initialize the repository with a .README file by checking the box. You don't need to add .gitignore or a license. If you want to, you can also add a short description. Click *Create repository*.
+Once you have created the Git repository, you need to link it to an RStudio project. To link your repository to an RStudio project, you need to generate an SSH key. Click on your avatar in the upper-right corner and go to *Settings*. In the menu on the left-hand side, select *SSH and GPG keys*. 
+Now you need to open an RStudio session. Go to `Tools -> Global Options... -> Git/SVN`, and select `Create SSH Key...` When you have created a SSH key, select `View public key` and copy the key to the clipboard. 
 
-- 4 main commands:
-    - *add*: add files to be part of the next commit
-    - *commit*: snapshot of your code at a specified point in time (you can and you should use this even when having no internet connection)
-    - *push*: merge your local modifications with the main project
-    - *pull*: update your local project with the latest version of the main project
+<img src="images/Create_SSH_key.jpg" width="70%" style="display: block; margin: auto;" />
 
+Return to GitHub, and add the newly created SSH key to your GitHub account by selecting *New SSH key*, adding a title (indicating the device the key is used for) and inserting the key under *Key*. Save the key to your GitHub account by clicking *Add SSH key*. Please note that you only have to generate an SSH key once for each new device that you link to your GitHub account.
 
-- Simple (solo) use of git to prevent merge conflicts:
-    - after opening a project, always pull
-    - before closing a project, always commit/push
-    
-- Use git even when you do not have any internet connection! (e.g. on a secure server) Just use commits for version control locally.
+Now that you have generated an SSH key, you can link your repository to an RStudio project by following these steps:
 
-- How to link between an RStudio project and a GitHub repository?
+1. Go to the repository that you want to link (for example by clicking on your avatar in the upper-right corner, and selecting *Your repositories* in the drop-down menu). 
+2. Click the *Code* tab of your repository. 
+3. Above the file list, click the drop-down menu that says *<> Code*.
+4. Select the tab called *Local*.
+5. Under the section *Clone*, select *SSH* (do not use *HTTPS* or *GitHub CLI*).
+6. Copy the URL to the clipboard.
+7. Go back to your RStudio session and create a new project (`File -> New Project...` or by clicking the icon in the upper-right corner and selecting `New Project...`).
+8. Create the project from a version control repository.
+9. Select Git to clone a project from a Git repository
+10. Paste the URL from the clipboard under `Repository URL:` and select the path were you want to save your project. 
+11. Enter the passphrase that you selected when you generated the SSH key.
+12. Your GitHub repository will now be cloned (Yeah).
+
+<img src="images/link_repository_to_rstudio.jpg" width="70%" style="display: block; margin: auto;" />
+
+Instead of following the written steps above, you can also follow the video tutorial below. 
 
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8Q3fYwgyNGQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </center>
 
-For Mac users, you might need to use the terminal for `git clone`, then create the RStudio project from the existing directory. If you have some permission denied for the public key, you might also need to run `ssh-agent -s &&
-ssh-add <path_to_public_key>` (cf. [this SO answer](https://stackoverflow.com/a/30806058/6103040)).
+A note for Mac users: you might need to use the terminal for `git clone`, then create the RStudio project from the existing directory. If you have some permission denied for the public key, you might also need to run `ssh-agent -s &&
+ssh-add <path_to_public_key>` (cf. [this](https://stackoverflow.com/a/30806058/6103040) Stack Overflow answer).
 
-- Help with Git:
+When you use Git, you will need the following Git commands
+
+- **git add <file>**: add a file to your next commit (stage)
+- **git add -A**: add all new or modified files to be part of the next commit
+- **commit**: snapshot of your code at a specified point in time (you can and you should use this even when having no internet connection)
+- **push**: merge your local modifications with the main project
+- **pull**: update your local project with the latest version of the main project
+
+To prevent merge conflicts, we advise you to follow these simple rules:
+
+- after opening a project, **always pull**
+- before closing a project, **always commit/push**
+    
+Furthermore, you should use git even when you do not have any internet connection! (e.g. on a secure server) Just use commits for local version control.
+
+If you have never worked with Git on GitHub (or you need a reminder) we suggest you follow [this](https://guides.github.com/activities/hello-world/) tutorial about GitHub essentials. Other helpful websites are 
     - [Happy Git and GitHub for the useR](http://happygitwithr.com/)
     - [Git cheat sheet](https://education.github.com/git-cheat-sheet-education.pdf)
     - [When things go wrong](https://github.com/k88hudson/git-flight-rules)
@@ -428,7 +451,9 @@ ssh-add <path_to_public_key>` (cf. [this SO answer](https://stackoverflow.com/a/
     - [Create a new branch with git and manage branches](https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches)
 
 
-## Getting help
+## When things go wrong... 
+
+![](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGZidjU0ejh0MWRpdm1rM2M5c3pkNWk0Y2NsODV3MGsyMTR1b2N4NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l1KVaj5UcbHwrBMqI/giphy.gif)
 
 ### Help yourself, learn how to debug
 
@@ -486,3 +511,5 @@ You can also join communities, e.g. [join the French-speaking R community](https
 ## Useful resources {.unnumbered}
 
 - [Best Coding Practices for R](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/#coverpage) by Grace Hopper
+- [Using git from RStudio](https://nceas.github.io/oss-lessons/version-control/4-getting-started-with-git-in-RStudio.html) by Julien Brun
+- [RStudio User Guide - Version Control](https://docs.posit.co/ide/user/ide/guide/tools/version-control.html)
