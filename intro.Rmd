@@ -63,8 +63,6 @@ Most chapters do refer to external resources that you can use to deepen what you
 
 - [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) by Roger D. Peng,
 
-- [Mastering Software Development in R](https://bookdown.org/rdpeng/RProgDA/) by Roger D. Peng, Sean Kross and Brooke Anderson,
-
-- other resources linked from these materials.
+- [Mastering Software Development in R](https://bookdown.org/rdpeng/RProgDA/) by Roger D. Peng, Sean Kross and Brooke Anderson.
 
 
