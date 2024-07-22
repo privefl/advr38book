@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-100463316-5"></script>
 <script>
@@ -181,9 +183,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#when-things-go-wrong"><i class="fa fa-check"></i><b>2.4</b> When things go wrong…</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#help-yourself-learn-how-to-debug"><i class="fa fa-check"></i><b>2.4.1</b> Help yourself, learn how to debug</a></li>
+<li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#first-locate-the-error"><i class="fa fa-check"></i><b>2.4.1</b> First: locate the error</a></li>
 <li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.2</b> External help</a></li>
 </ul></li>
+<li class="chapter" data-level="2.5" data-path="good-practices.html"><a href="good-practices.html#summary"><i class="fa fa-check"></i><b>2.5</b> Summary</a></li>
 <li class="chapter" data-level="" data-path="good-practices.html"><a href="good-practices.html#useful-resources-1"><i class="fa fa-check"></i>Useful resources</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="r-programming.html"><a href="r-programming.html"><i class="fa fa-check"></i><b>3</b> R programming</a>
@@ -685,48 +688,62 @@ Now you need to open an RStudio session. Go to <code>Tools -&gt; Global Options.
 </iframe>
 </center>
 <p>A note for Mac users: you might need to use the terminal for <code>git clone</code>, then create the RStudio project from the existing directory. If you have some permission denied for the public key, you might also need to run <code>ssh-agent -s &amp;&amp; ssh-add &lt;path_to_public_key&gt;</code> (cf. <a href="https://stackoverflow.com/a/30806058/6103040">this</a> Stack Overflow answer).</p>
-<p>When you use Git, you will need the following Git commands</p>
+<p>In RStudio, you will probably use the <em>Environment</em> pane to interact with Git. However, you can also use the terminal in the <em>Console</em> pane. In any case, you will need the following Git commands</p>
 <ul>
-<li><strong>git add <file></strong>: add a file to your next commit (stage)</li>
+<li><strong>git add [file]</strong>: add a file to your next commit (stage)</li>
 <li><strong>git add -A</strong>: add all new or modified files to be part of the next commit</li>
-<li><strong>commit</strong>: snapshot of your code at a specified point in time (you can and you should use this even when having no internet connection)</li>
-<li><strong>push</strong>: merge your local modifications with the main project</li>
-<li><strong>pull</strong>: update your local project with the latest version of the main project</li>
+<li><strong>git commit -m “[commit message]”</strong>: snapshot of your code at a specified point in time (you can and you should use this even when having no internet connection)</li>
+<li><strong>git push</strong>: merge your local modifications with the main project</li>
+<li><strong>git pull</strong>: update your local project with the latest version of the main project</li>
 </ul>
-<p>To prevent merge conflicts, we advise you to follow these simple rules:</p>
+<p>In the <em>Environment</em> pane, the command <em>add</em> is equivalent to marking one or more files with a tick (<i class="far fa-square-check" role="presentation" aria-label="square-check icon"></i>) in the Git tab, while the other three are represented by <img src="images/vcsCommit.png" style="display:inline-block; margin:0"/> Commit, <img src="images/vcsPull.png" style="display:inline-block; margin:0"/> Pull, and <img src="images/vcsPush.png" style="display:inline-block; margin:0"/> Push.</p>
+<p>When collaborating on a project, you and your co-workers may work on the same file simultaneously. If two people edit the same line of code, Git may not be able to resolve the differences automatically, leading to a merge conflict. When this happens, you have to choose (manually) which changes to incorporate in a new commit. To prevent merge conflicts, we advise you to follow these simple rules:</p>
 <ul>
 <li>after opening a project, <strong>always pull</strong></li>
 <li>before closing a project, <strong>always commit/push</strong></li>
 </ul>
-<p>Furthermore, you should use git even when you do not have any internet connection! (e.g. on a secure server) Just use commits for local version control.</p>
-<p>If you have never worked with Git on GitHub (or you need a reminder) we suggest you follow <a href="https://guides.github.com/activities/hello-world/">this</a> tutorial about GitHub essentials. Other helpful websites are
-- <a href="http://happygitwithr.com/">Happy Git and GitHub for the useR</a>
-- <a href="https://education.github.com/git-cheat-sheet-education.pdf">Git cheat sheet</a>
-- <a href="https://github.com/k88hudson/git-flight-rules">When things go wrong</a>
-- <a href="http://ohshitgit.com/">To fix a mistake</a>
-- <a href="https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches">Create a new branch with git and manage branches</a></p>
+<p>Furthermore, you should use git even when you do not have any internet connection (e.g. on a secure server)!</p>
+<p>If you have never worked with Git on GitHub (or you need a reminder) we suggest you follow <a href="https://guides.github.com/activities/hello-world/">this</a> tutorial about GitHub essentials. Other helpful websites are</p>
+<ul>
+<li><a href="http://happygitwithr.com/">Happy Git and GitHub for the useR</a></li>
+<li><a href="https://education.github.com/git-cheat-sheet-education.pdf">Git cheat sheet</a></li>
+<li><a href="https://github.com/k88hudson/git-flight-rules">When things go wrong</a></li>
+<li><a href="http://ohshitgit.com/">To fix a mistake</a></li>
+<li><a href="https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches">Create a new branch with git and manage branches</a></li>
+</ul>
 </div>
 </div>
 <div id="when-things-go-wrong" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> When things go wrong…<a href="good-practices.html#when-things-go-wrong" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGZidjU0ejh0MWRpdm1rM2M5c3pkNWk0Y2NsODV3MGsyMTR1b2N4NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l1KVaj5UcbHwrBMqI/giphy.gif" /></p>
-<div id="help-yourself-learn-how-to-debug" class="section level3 hasAnchor" number="2.4.1">
-<h3><span class="header-section-number">2.4.1</span> Help yourself, learn how to debug<a href="good-practices.html#help-yourself-learn-how-to-debug" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A basic solution is to print everything, but it’s usually not working well on complex problems. A convenient solution to see all the variables’ states in your code is to place some <code>browser()</code> from where you want to check the variables’ states. To debug functions, <code>debugonce()</code> is also very useful.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="good-practices.html#cb16-1" tabindex="-1"></a>my_log <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">log</span>(x <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb16-2"><a href="good-practices.html#cb16-2" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="good-practices.html#cb16-3" tabindex="-1"></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
-<span id="cb16-4"><a href="good-practices.html#cb16-4" tabindex="-1"></a>  <span class="co"># browser()</span></span>
-<span id="cb16-5"><a href="good-practices.html#cb16-5" tabindex="-1"></a>  la <span class="ot">&lt;-</span> <span class="fu">my_log</span>(a) </span>
-<span id="cb16-6"><a href="good-practices.html#cb16-6" tabindex="-1"></a>  lb <span class="ot">&lt;-</span> <span class="fu">my_log</span>(b)</span>
-<span id="cb16-7"><a href="good-practices.html#cb16-7" tabindex="-1"></a>  la <span class="sc">+</span> lb</span>
-<span id="cb16-8"><a href="good-practices.html#cb16-8" tabindex="-1"></a>}</span>
-<span id="cb16-9"><a href="good-practices.html#cb16-9" tabindex="-1"></a><span class="fu">my_fun</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
+<p>You have spent the last three hours writing the best <code>R</code> function. You press <code>Ctrl+Enter</code> (or <code>Command+Return</code>), and</p>
+<pre><code>#&gt; Error in eval(expr, envir, enclos): Something went wrong!</code></pre>
+<p><img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGZidjU0ejh0MWRpdm1rM2M5c3pkNWk0Y2NsODV3MGsyMTR1b2N4NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l1KVaj5UcbHwrBMqI/giphy.gif" />
+Don’t give up! In this section, we will look at some tools that you can use to find and fix problems.</p>
+<div id="first-locate-the-error" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> First: locate the error<a href="good-practices.html#first-locate-the-error" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The first step is to figure out where the error comes from. In some cases, identifying the line of code that causes the error is easy. In other cases, locating the error can be really difficult. A basic solution is to print everything; but that strategy is usually not working well on complex problems. A more robust strategy is needed!
+Start by looking at the error (or warning) message; does it indicate what line or function causes the problem? In the example below, the warning message indicates that <code>log(y)</code> produced <code>NaNs</code>. As <code>log(y)</code> only occurs once, we know that the problem must be in line</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r numberLines"><code class="sourceCode r"><span id="cb17-1"><a href="good-practices.html#cb17-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">0</span>) {</span>
+<span id="cb17-2"><a href="good-practices.html#cb17-2"></a>  </span>
+<span id="cb17-3"><a href="good-practices.html#cb17-3"></a>  y <span class="ot">&lt;-</span> (x <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb17-4"><a href="good-practices.html#cb17-4"></a>  <span class="fu">log</span>(y)</span>
+<span id="cb17-5"><a href="good-practices.html#cb17-5"></a>}</span></code></pre></div>
+<pre><code>#&gt; Warning in log(y): NaNs produced</code></pre>
+<p>A convenient solution to see all the variables’ states in your code is to place some <code>browser()</code> from where you want to check the variables’ states. To debug functions, <code>debugonce()</code> is also very useful.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="good-practices.html#cb19-1" tabindex="-1"></a>my_log <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">log</span>(x <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb19-2"><a href="good-practices.html#cb19-2" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="good-practices.html#cb19-3" tabindex="-1"></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb19-4"><a href="good-practices.html#cb19-4" tabindex="-1"></a>  <span class="co"># browser()</span></span>
+<span id="cb19-5"><a href="good-practices.html#cb19-5" tabindex="-1"></a>  la <span class="ot">&lt;-</span> <span class="fu">my_log</span>(a) </span>
+<span id="cb19-6"><a href="good-practices.html#cb19-6" tabindex="-1"></a>  lb <span class="ot">&lt;-</span> <span class="fu">my_log</span>(b)</span>
+<span id="cb19-7"><a href="good-practices.html#cb19-7" tabindex="-1"></a>  la <span class="sc">+</span> lb</span>
+<span id="cb19-8"><a href="good-practices.html#cb19-8" tabindex="-1"></a>}</span>
+<span id="cb19-9"><a href="good-practices.html#cb19-9" tabindex="-1"></a><span class="fu">my_fun</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>#&gt; Warning in log(x - 1): NaNs produced</code></pre>
 <pre><code>#&gt; [1] NaN</code></pre>
 <p>Try to uncomment <code>browser()</code> or use <code>debugonce(my_fun)</code>:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="good-practices.html#cb19-1" tabindex="-1"></a><span class="fu">debugonce</span>(my_fun)</span>
-<span id="cb19-2"><a href="good-practices.html#cb19-2" tabindex="-1"></a><span class="fu">my_fun</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="good-practices.html#cb22-1" tabindex="-1"></a><span class="fu">debugonce</span>(my_fun)</span>
+<span id="cb22-2"><a href="good-practices.html#cb22-2" tabindex="-1"></a><span class="fu">my_fun</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
 <p>Learn more with <a href="https://bookdown.org/rdpeng/rprogdatascience/debugging.html">this book chapter</a>, <a href="http://adv-r.had.co.nz/Exceptions-Debugging.html">this other book chapter</a>, <a href="https://www.rstudio.com/resources/webinars/debugging-techniques-in-rstudio/">this webinar</a> and <a href="https://support.posit.co/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE">this RStudio article</a>.</p>
 </div>
 <div id="external-help" class="section level3 hasAnchor" number="2.4.2">
@@ -739,6 +756,9 @@ Now you need to open an RStudio session. Go to <code>Tools -&gt; Global Options.
 <p>If you are confident enough with your R skills, you can take the next step and <a href="https://stackoverflow.com/unanswered/tagged/r?tab=newest">answer questions on Stack Overflow</a>. It’s a good way to increase your skills, or just to <a href="https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/">procrastinate while writing a scientific manuscript</a>.</p>
 <p>You can also join communities, e.g. <a href="https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM">join the French-speaking R community</a> or <a href="https://rladies-community-slack.herokuapp.com/">join the R-Ladies community</a> on Slack. These are generally much friendlier and welcoming spaces compared to Stack Overflow.</p>
 </div>
+</div>
+<div id="summary" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Summary<a href="good-practices.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
 <div id="useful-resources-1" class="section level2 unnumbered hasAnchor">
 <h2>Useful resources<a href="good-practices.html#useful-resources-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>

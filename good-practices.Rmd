@@ -435,36 +435,60 @@ Instead of following the written steps above, you can also follow the video tuto
 A note for Mac users: you might need to use the terminal for `git clone`, then create the RStudio project from the existing directory. If you have some permission denied for the public key, you might also need to run `ssh-agent -s &&
 ssh-add <path_to_public_key>` (cf. [this](https://stackoverflow.com/a/30806058/6103040) Stack Overflow answer).
 
-When you use Git, you will need the following Git commands
+In RStudio, you will probably use the *Environment* pane to interact with Git. However, you can also use the terminal in the *Console* pane. In any case, you will need the following Git commands
 
-- **git add <file>**: add a file to your next commit (stage)
+- **git add [file]**: add a file to your next commit (stage)
 - **git add -A**: add all new or modified files to be part of the next commit
-- **commit**: snapshot of your code at a specified point in time (you can and you should use this even when having no internet connection)
-- **push**: merge your local modifications with the main project
-- **pull**: update your local project with the latest version of the main project
+- **git commit -m "[commit message]"**: snapshot of your code at a specified point in time (you can and you should use this even when having no internet connection)
+- **git push**: merge your local modifications with the main project
+- **git pull**: update your local project with the latest version of the main project
 
-To prevent merge conflicts, we advise you to follow these simple rules:
+In the *Environment* pane, the command *add* is equivalent to marking one or more files with a tick (`r shiny::icon("square-check")`) in the Git tab, while the other three are represented by <img src="images/vcsCommit.png" style="display:inline-block; margin:0"/> Commit, <img src="images/vcsPull.png" style="display:inline-block; margin:0"/> Pull, and <img src="images/vcsPush.png" style="display:inline-block; margin:0"/> Push. 
+
+When collaborating on a project, you and your co-workers may work on the same file simultaneously. If two people edit the same line of code, Git may not be able to resolve the differences automatically, leading to a merge conflict. When this happens, you have to choose (manually) which changes to incorporate in a new commit. To prevent merge conflicts, we advise you to follow these simple rules:
 
 - after opening a project, **always pull**
 - before closing a project, **always commit/push**
     
-Furthermore, you should use git even when you do not have any internet connection! (e.g. on a secure server) Just use commits for local version control.
+Furthermore, you should use git even when you do not have any internet connection (e.g. on a secure server)!
 
 If you have never worked with Git on GitHub (or you need a reminder) we suggest you follow [this](https://guides.github.com/activities/hello-world/) tutorial about GitHub essentials. Other helpful websites are 
-    - [Happy Git and GitHub for the useR](http://happygitwithr.com/)
-    - [Git cheat sheet](https://education.github.com/git-cheat-sheet-education.pdf)
-    - [When things go wrong](https://github.com/k88hudson/git-flight-rules)
-    - [To fix a mistake](http://ohshitgit.com/)
-    - [Create a new branch with git and manage branches](https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches)
+
+- [Happy Git and GitHub for the useR](http://happygitwithr.com/)
+- [Git cheat sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+- [When things go wrong](https://github.com/k88hudson/git-flight-rules)
+- [To fix a mistake](http://ohshitgit.com/)
+- [Create a new branch with git and manage branches](https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches)
 
 
 ## When things go wrong... 
 
+You have spent the last three hours writing the best `R` function. You press `Ctrl+Enter` (or `Command+Return`), and
+```{r, echo=FALSE, error=TRUE}
+stop("Something went wrong!")
+```
+
 ![](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGZidjU0ejh0MWRpdm1rM2M5c3pkNWk0Y2NsODV3MGsyMTR1b2N4NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l1KVaj5UcbHwrBMqI/giphy.gif)
 
-### Help yourself, learn how to debug
+Don't give up! In this section, we will look at some tools that you can use to find and fix problems.
 
-A basic solution is to print everything, but it's usually not working well on complex problems. A convenient solution to see all the variables' states in your code is to place some `browser()` from where you want to check the variables' states. To debug functions, `debugonce()` is also very useful.
+### First: locate the error
+
+The first step is to figure out where the error comes from. In some cases, identifying the line of code that causes the error is easy. In other cases, locating the error can be really difficult. A basic solution is to print everything; but that strategy is usually not working well on complex problems. A more robust strategy is needed!
+Start by looking at the error (or warning) message; does it indicate what line or function causes the problem? In the example below, the warning message indicates that `log(y)` produced `NaNs`. As `log(y)` only occurs once, we know that the problem must be in line 3.
+
+```{r, error=TRUE, warning=TRUE, attr.source='.numberLines'}
+for (x in 10:0) {
+  y <- (x - 1)
+  invisible(log(y))
+}
+
+```
+
+You may be able to fix the bug once you have located it.
+In other situations, especially if you are new to `R`, the error (or warning) message may not help you at all. 
+
+ A convenient solution to see all the variables' states in your code is to place some `browser()` from where you want to check the variables' states. To debug functions, `debugonce()` is also very useful.
 
 ```{r, error=TRUE}
 my_log <- function(x) log(x - 1)
@@ -505,6 +529,9 @@ You can ask questions on Stack Overflow (using the tag `r`). You need to [make a
 If you are confident enough with your R skills, you can take the next step and [answer questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). It's a good way to increase your skills, or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).
 
 You can also join communities, e.g. [join the French-speaking R community](https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM) or [join the R-Ladies community](https://rladies-community-slack.herokuapp.com/) on Slack. These are generally much friendlier and welcoming spaces compared to Stack Overflow.
+
+## Summary
+
 
 
 ## Useful resources {.unnumbered}

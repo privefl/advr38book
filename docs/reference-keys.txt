@@ -103,3 +103,5 @@ fig:unnamed-chunk-23
 why-use-git
 how-to-use-git
 when-things-go-wrong
+first-locate-the-error
+summary
