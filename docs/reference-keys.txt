@@ -105,3 +105,4 @@ how-to-use-git
 when-things-go-wrong
 first-locate-the-error
 summary
+second-fix-the-error

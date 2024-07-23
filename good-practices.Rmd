@@ -1,14 +1,16 @@
 # Good practices
 
 ```{r, include=FALSE}
-WORDS_TO_IGNORE <- c("butitsuremakesthingseasiertoread", "addin", "Rproj", "Brun", "Julien", "CLI", "GPG")
+WORDS_TO_IGNORE <- c("butitsuremakesthingseasiertoread", "addin", "Rproj", "Brun", "Julien", "CLI", "GPG", "MRE", "MREs", "Cheatsheets")
 source("knitr-options.R")
 source("spelling-check.R")
 ```
 
-In the following, we will consider some good practices for writing `R` code. But before we dive into that topic, let us explain why code needs to be clean and efficient. First, if you are working in a team, writing efficient and clean code makes it a lot easier for you colleagues to understand, debug and improve it. If you want your colleagues or collaborators to reuse your code, it should be readable and easy to follow. Second, you can spare your future self a lot of frustration by writing clean code from the beginning. By doing that, you won't have to ask yourself _What the hell am I doing in this function?_ 
+In the following, we will consider some good practices for writing `R` code. But before we dive into that topic, let us explain why code needs to be clean and efficient. First, if you are working in a team, writing efficient and clean code makes it a lot easier for you colleagues to understand, debug and improve it. If you want your colleagues or collaborators to reuse your code, it should be readable and easy to follow. Second, you can spare your future self a lot of frustration by writing clean code from the beginning. By doing that, you won't have to ask yourself 
 
-![](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMm03cWxxNnFvdTJxZjU1cnIyN2ptdDdxMjNmcnd1Z3RlZDQ0NDF4NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/11tTNkNy1SdXGg/giphy.gif)
+**What the hell am I doing in this function?** 
+
+![](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnoxczBqbzVtZmtkOWdwZ2YzcXNoaXRwMGd0N21jNTMwcnlwaXE0ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ur8XCl98PfFqEmyNIE/giphy.gif)
 
 ## Coding style
 
@@ -20,7 +22,7 @@ Please make your code readable by following the available style guides. We recom
 
 ### Naming
 
-Be smart with your naming. You won't believe how often we have seen `df <- as.matrix(mtcars)` on Stack Overflow. Use meaningful and concise names for you files, data sets, and functions; you will save yourself a lot of time.
+Be smart with your naming. You won't believe how often we have seen `df <- as.matrix(mtcars)` on Stack Overflow. Use meaningful and concise names for your files, data sets, and functions; you will save yourself a lot of time.
 For example, consider the following piece of code
 ```{r eval=FALSE}
 dat1 <- tidytuesdayR::tt_load("2020-01-14")[[1]]
@@ -281,7 +283,7 @@ After the comment section, you should load all required add-on packages using `l
 
 ### Styler
 
-You can use the package [**styler**](https://github.com/r-lib/styler) to correct your style. It even has RStudio Addins. Once you have installed the package using `install.packages("styler")`, you can format your code according to the [tidyverse style guide](http://style.tidyverse.org/) (or your custom style guide) through the RStudio addin as demonstrated below, or through `R` functions like `style_text()`, `style_file()` or `style_pkg()`. 
+You can use the package [`styler`](https://github.com/r-lib/styler) to correct your style. It even has RStudio Addins. Once you have installed the package using `install.packages("styler")`, you can format your code according to the [tidyverse style guide](http://style.tidyverse.org/) (or your custom style guide) through the RStudio addin as demonstrated below, or through `R` functions like `style_text()`, `style_file()` or `style_pkg()`. 
 
 ```{r, echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif")
@@ -308,7 +310,7 @@ RStudio comes with many tools and features, for example
     4. *Ctrl+Shift+B* / *Shift+Command+B* to build a package, website or book (you will learn how to build a package in Chapter \@ref(packages))
     4. *Ctrl+Shift+M* / *Shift+Command+M* to insert the pipe operator (we use this shortcut all of the time when working in the [tidyverse](https://www.tidyverse.org/)!)
     4. *Alt+Shift+K* / *Option+Shift+K* to see more keyboard shortcuts.
-  You can find all keyboard shortcuts by using the keyboard shortcut *Alt+Shift+K* / *Option+Shift+K* and click on *See All Shortcuts* in the upper right corner of the window. You can also find them under the Tools menu `Tools -> Keyboard Shortcuts Help -> See All Shortcuts`, or you can go to [this](https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE) Posit Support website. Finally, you can also change keyboard shortcuts under the Tools menu `Tools -> Modify Keyboard Shortcuts`. 
+  You can find all keyboard shortcuts by using the keyboard shortcut *Alt+Shift+K* / *Option+Shift+K* and click on *See All Shortcuts* in the upper right corner of the window. You can also find them under the Tools menu `Tools -> Keyboard Shortcuts Help -> See All Shortcuts`, or you can go to [this](https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE) <img src="images/Posit_logo.png" style="display:inline-block; margin:0"/> Support website. Finally, you can also change keyboard shortcuts under the Tools menu `Tools -> Modify Keyboard Shortcuts`. 
 - panels (everything is integrated, including Git and a terminal). You can also change the appearance, pane layout, and more under the Tools menu `Tools -> Global Options... -> Appearance/Pane Layout`
 
 ```{r, echo=FALSE}
@@ -367,7 +369,7 @@ But you don't use Git?
 knitr::include_graphics("images/i-also-like-to-live-dangerously.jpg")
 ```
 
-In these cases, and probably many others, a version control system should make your life easier (see [this](https://stackoverflow.com/a/1408464/6103040) Stack Overflow answer.
+In these cases, and probably many others, a version control system should make your life easier (see [this](https://stackoverflow.com/a/1408464/6103040) Stack Overflow answer).
 With version control you make your workflow reproducible; something that is not only essential in modern day research, but also saves yourself a lot of frustration:
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/s3JldKoA0zw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -470,7 +472,9 @@ stop("Something went wrong!")
 
 ![](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGZidjU0ejh0MWRpdm1rM2M5c3pkNWk0Y2NsODV3MGsyMTR1b2N4NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l1KVaj5UcbHwrBMqI/giphy.gif)
 
-Don't give up! In this section, we will look at some tools that you can use to find and fix problems.
+Don't give up! 
+
+In this section, we will look at some tools that you can use to find and fix problems.
 
 ### First: locate the error
 
@@ -486,53 +490,86 @@ for (x in 10:0) {
 ```
 
 You may be able to fix the bug once you have located it.
-In other situations, especially if you are new to `R`, the error (or warning) message may not help you at all. 
-
- A convenient solution to see all the variables' states in your code is to place some `browser()` from where you want to check the variables' states. To debug functions, `debugonce()` is also very useful.
-
-```{r, error=TRUE}
+In other situations, especially if you are new to `R`, the error (or warning) message may not help you at all. In that case, you may want to investigate all variables to check whether they have the desired type. A convenient way to see all the variables' states in your code is to place use the function `browser()`. `browser()` stops the execution of the expression in the line it was invoked from. You are able to inspect the environment and evaluate `R` expressions in that environment by entering them at the browser prompt. from where you want to check the variables' states. Try running the following code in your own RStudio session.
+```{r, eval=FALSE, attr.source='.numberLines'}
 my_log <- function(x) log(x - 1)
 
 my_fun <- function(a, b) {
-  # browser()
+  browser()
   la <- my_log(a) 
   lb <- my_log(b)
   la + lb
 }
+
 my_fun(1, 0)
 ```
+When you execute line 10, RStudio opens the debug mode. At the top of the console, RStudio now shows a new toolbar that you can use to debug your code:
+```{r, echo=FALSE}
+knitr::include_graphics("images/browser_toolbar.jpg")
+```
+The different buttons execute the following commands:
 
-Try to uncomment `browser()` or use `debugonce(my_fun)`:
+- <img src="images/debugNext.png" style="display:inline-block; margin:0"/> Next : Execute the next line of code
+- <img src="images/debugStepInto.png" style="display:inline-block; margin:0"/> : Step into the current function call
+- <img src="images/debugRemainder.png" style="display:inline-block; margin:0"/> : Execute the remainder of the current function or loop
+- <img src="images/debugContinue.png" style="display:inline-block; margin:0"/> Continue : Continue execution until the next breakpoint is encountered
+- <img src="images/debugStop.png" style="display:inline-block; margin:0"/> Stop : Exit debug mode
 
+Try using the debug mode to locate the error.
+
+One potential problem with `browser()` is that it is a regular function call; you must add the expression to the code you want to debug. However, sometimes you don't have the source file for the code you want to debug. When this is the case, you can use the `R` function `debugonce()` to flag a function for debugging. 
+When flagging a function for debugging with `debugonce()`, the function will enter the debugger the very next time it runs, but not after that (hence the name). Try `debugonce()` to locate the error in `my_fun()`:
 ```{r, eval=FALSE}
 debugonce(my_fun)
+
 my_fun(1, 0)
 ```
+If you want to debug a function every time it is executed, use the function `debug()` instead. When you no longer want to debug the function each time it executes, use `undebug()` on the function. 
 
-Learn more with [this book chapter](https://bookdown.org/rdpeng/rprogdatascience/debugging.html), [this other book chapter](http://adv-r.had.co.nz/Exceptions-Debugging.html), [this webinar](https://www.rstudio.com/resources/webinars/debugging-techniques-in-rstudio/) and [this RStudio article](https://support.posit.co/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE).
+You can read more about debugging in 
 
+- [this](https://support.posit.co/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE) <img src="images/Posit_logo.png" style="display:inline-block; margin:0"/> Support article, 
+- [Chapter 22](https://adv-r.hadley.nz/debugging.html) of **Advanced R** by Hadley Wickham, 
+- [Chapter 18](https://bookdown.org/rdpeng/rprogdatascience/debugging.html) of **R Programming for Data Science** by Roger D. Peng, or 
+- [this](https://posit.co/resources/videos/debugging-techniques-in-rstudio/) <img src="images/Posit_logo.png" style="display:inline-block; margin:0"/> webinar about debugging techniques in RStudio. 
 
-### External help
+### Second: fix the error
 
-Can't remember useful functions? Use [cheat sheets](https://www.rstudio.com/resources/cheatsheets/).
+Once you have located the error, you only have to fix it! 
 
-You can search for specific `R` stuff on https://rseek.org/. You should also read documentations carefully. If you're using a package, search for vignettes and a GitHub repository.
+![](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXIwY3k3MGV2NDJla2lnMTI1N3ljMmZiOGlsMHZvZjE0bm5mNDlidCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NaboQwhxK3gMU/giphy.gif)
 
-You can also use [Stack Overflow](https://stackoverflow.com/). The most common use of Stack Overflow is when you have an error or a question, you google it, and most of the times the first links are Q/A on Stack Overflow.
+Well... Not always...
+
+Fortunately, someone else probably had the same (or a similar) problem before. Try googling the error message to check whether someone already found the answer to your problem. One of the websites that you will see very often when googling errors thrown by or questions related to `R` is Stack Overflow. 
 
 ```{r, out.width="25%", echo=FALSE}
 knitr::include_graphics("images/meme-SO.jpg")
 ```
 
-You can ask questions on Stack Overflow (using the tag `r`). You need to [make a great R reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) if you want your question to be answered. Sometimes, while making this minimal reproducible example, you end up understanding and solving the issue on your own.
+If you cannot find your specific problem on Stack Overflow, you can simply create a new question yourself (using the tag `r`). The only thing you have to keep in mind is that you need to make a good `R` reproducible example if you want your question to be answered. You can read the answers to [this](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) Stack Overflow questions about how to make minimal reproducible examples (MREs). In some cases, you actually end up understanding and solving the issue, while making an MRE.
 
-If you are confident enough with your R skills, you can take the next step and [answer questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). It's a good way to increase your skills, or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).
+Reading the documentations carefully is also always a really good idea. Many `R` packages provide reports or long-form guides, called *vignettes*, that show a workflow solving a specific problem. The `tidyverse`, for example, has a variety of good vignettes (e.g. [this](https://dplyr.tidyverse.org/articles/base.html) article comparing `dplyr` functions to their base `R` equivalents). A large number of `R` packages also have a GitHub repository where you can find additional documentation (see, for example, the GitHub repository for [`tidytuesday`](https://github.com/rfordatascience/tidytuesday)). 
 
-You can also join communities, e.g. [join the French-speaking R community](https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM) or [join the R-Ladies community](https://rladies-community-slack.herokuapp.com/) on Slack. These are generally much friendlier and welcoming spaces compared to Stack Overflow.
+Finally, you can also search for specific `R`-related sites on [https://rseek.org/](https://rseek.org/).
+
+### External help
+
+- You can't remember all the useful functions provided by a package or how to use a specific function? Use <img src="images/Posit_logo.png" style="display:inline-block; margin:0"/> [Cheatsheets](https://posit.co/resources/cheatsheets/). Cheatsheets usually provide very nice overviews of packages and their functions, and they even come in [different languages](https://posit.co/resources/cheatsheets/?type=translations/). 
+
+- If you are confident enough with your R skills, you can take the next step and answer [questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). Answering other people's questions is a good way to increase your skills - or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).
+
+- You can also join communities, e.g. the [French-speaking R community](https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM) on Slack or the [R-Ladies community](https://rladies-community-slack.herokuapp.com/) on Slack. These are generally much friendlier and welcoming spaces compared to Stack Overflow.
 
 ## Summary
 
-
+* Use meaningful and concise names for four files, data sets, and functions.
+* Comment your code and explain *why* you are doing what you are doing.
+* Follow the available style guides (e.g. the [tidyverse style guide](https://style.tidyverse.org/)). You can use the `R` package [`styler`](https://github.com/r-lib/styler) to conveniently correct your style.
+* Use the [RStudio](https://posit.co/download/rstudio-desktop/#download) IDE; It comes with many tools and features (i.e. useful keyboard shortcuts, panels, interactive data importation from files and connections, code diagnostics, and RStudio projects).
+* Use formal version control (Git) even if you are mainly working by yourself!
+* When `R` throws an error, try to locate it using the error message, `browser()` or `debugonce()`.
+* You can get help to fix an error on Stack Overflow.
 
 ## Useful resources {.unnumbered}
 
