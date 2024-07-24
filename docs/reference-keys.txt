@@ -106,3 +106,7 @@ when-things-go-wrong
 first-locate-the-error
 summary
 second-fix-the-error
+common-mistakes-to-avoid
+the-floating-point-error
+summary-1
+fig:unnamed-chunk-22

@@ -1,0 +1,641 @@
+# R programming
+
+```{r, include=FALSE}
+WORDS_TO_IGNORE <- c("overbrace", "underbrace", "Kausal", "Kaluarachchi")
+source("knitr-options.R")
+source("spelling-check.R")
+```
+
+In the following, we will consider base `R` concepts that are important but often overlooked by or unknown to `R` users. We hope that this chapter will help you to better understand `R` as a programming language, to avoid common mistakes, and to write more efficient code. 
+
+Some of the examples used in this chapter are taken from [The R Inferno](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf) by Patrick Burns, who described his materials in the following way:
+
+> If you are using R and you think you're in hell, this is a map for you. 
+>
+> `r tufte::quote_footer('--- Patrick Burns')`
+
+## Common mistakes to avoid
+
+In the first part of this chapter, we will look at some common mistakes and how to avoid them. 
+
+### The floating-point error
+
+In `R`, a real number is represented as a floating-point number. A floating-point number is a positive or negative whole number scaled by an integer exponent of a fixed base. 
+
+![](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2VidmNuNm16aHI5MjRmZGJ4Ym9xamJzcGhkNzdvdHE1NzhyNGQ4dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ghuvaCOI6GOoTX0RmH/giphy.gif)
+
+It is actually not that complicated. For example, 12.568 is a floating-point number in base ten with five digits of precision:
+$$
+12.568 = \underbrace{12568}_\text{whole number} \times {\underbrace{10}_\text{base}}^{\overbrace{-3}^\text{integer exponent}}
+$$
+Base ten is the most convenient base to understand how floating-point numbers are represented. But you can use any base. For example, in base five, 12.568 is represented by
+$$
+12.568 = \underbrace{22241}_\text{whole number} \times {\underbrace{5}_\text{base}}^{\overbrace{-3}^\text{integer exponent}},
+$$
+i.e. a floating-point number with five digits of precision. You can validate that this is indeed the right representation  
+$$
+\begin{align*}
+22241 \times 5^{-3} &= (2 \times 5^{4} + 2 \times 5^{3} + 2 \times 5^{2} + 4 \times 5^{1} + 1 \times 5^{0}) \times 5^{-3}\\
+&= 2 \times 5^{1} + 2 \times 5^{0} + 2 \times 5^{-1} + 4 \times 5^{-2} + 1 \times 5^{-3}\\
+&= 10 + 2 + 0,4 + 0,16 + 0.008\\
+&= 12.568.
+\end{align*}
+$$
+In base two, the representation is more complex:
+$$
+12.568 = \underbrace{1100 1001 0001 0110 1000 0111 0010 1011 0000 0010 0000 1100 0100 1001 1011 1010 011}_\text{whole number} \times {\underbrace{2}_\text{base}}^{\overbrace{-60}^\text{integer exponent}},
+$$
+but it still has the same form; a positive whole number with 64 digits of precision times the base to the power -60. 
+
+Not all real numbers can be represented by a floating-point number with a predefined precision. The base and the number of digits regulate how precisely a floating point number can be represented. For example, you cannot represent 12.568 as a floating-point number with four digits of precision in base ten, five or two. The nearest whole number of 12586 with only four digits of precision is 1257. Hence, the closest we can get to 12.568 using only four digits of precision in base ten is 12.57. Not too bad.
+The nearest whole number of 22241 with only four digits of precision is 2224. Therefore, the closest we can get to 12.568 using only four digits of precision in base five is 12.56. A bit worse than in base ten.
+However, the nearest whole number of 1100100100010110100001110010101100000010000011000100100110111010011 with only four digits of precision in base 2 is 1100. This means that the closest we can get to 12.568 using only four digits of precision in base five is 12. A difference of 0.568 may not be problematic in some cases, but it can be catastrophic in others.
+
+
+`R` uses base 2 with (usually) 53 digits of precision. Hence, all floating-point numbers with more than 53 digits of precision will be represented by the nearest floating-point number with 53 digits of precision. 
+For example, take the real number 0.3. In base two, 0.3 is represented by 0.0100110011001100110011001100... (a number with infinitely many digits of precision). The nearest floating-point number with only 53 digits of precision is 0.299999999999999988897769753748434595763683319091796875, which is the floating-point number `R` uses to represent 0.3. 
+```{r, tidy='styler', echo=FALSE, eval=FALSE, collapse=TRUE}
+sprintf("%.54f", 0.3)
+```
+The binary representation is not perfect, but it is the best approximation `R` has.
+
+When you assign the value 0.3 to an object and print the object to the console afterwards, you will see that `R` returns 0.3:
+```{r, collapse=TRUE}
+x <- 0.3
+x
+```
+So you may think _Why did you bother me with all that talk about floating-point numbers? There is clearly no problem here!_
+
+However, per default, the function `print()` only prints 7 significant digits when printing numeric values.
+```{r, tidy='styler', collapse=TRUE}
+getOption("digits")
+```
+If you increase that number to 22, you can see that 0.3 is actually represented by 0.2999999999999999888978
+```{r, tidy='styler', collapse=TRUE}
+print(x, digits = 22)
+```
+
+This inaccuracy is known as the **floating-point error**, and it is the reason why simple comparisons like the following can fail: 
+```{r, tidy='styler', collapse=TRUE}
+(0.1 + 0.2) == 0.3
+```
+Instead of using `==` to compare two objects, use the base `R` function `all.equal()` to test if two objects are equal up to some tolerance ($1.5\times 10^{-8}$ per default). 
+```{r, tidy='styler', collapse=TRUE}
+all.equal(0.1 + 0.2, 0.3)
+all.equal(0.1 + 0.2, 0.3, tolerance = 0)
+all.equal(0.1 + 0.2, 0.3, tolerance = 1e-16)
+all.equal(0.1 + 0.2, 0.3, tolerance = 1e-15)
+```
+As `all.equal()` returns either `TRUE` or a string with the mean relative difference, you cannot use it directly in `if` expressions. Use `isTRUE(all.equal())` instead:
+```{r, tidy='styler', collapse=TRUE}
+isTRUE(all.equal(0.1 + 0.2, 0.4))
+```
+Alternatively, you can use the `dplyr` function `near()`
+```{r, tidy='styler', collapse=TRUE}
+dplyr::near(0.1 + 0.2, 0.3) 
+dplyr::near(0.1 + 0.2, 0.3, tol = 1e-17) 
+```
+
+
+### Arguments
+
+Another source of mistakes is the use of named and unnamed arguments. 
+```{r, tidy='styler', collapse=TRUE}
+min(-1, 5, 118)
+max(-1, 5, 118)
+mean(-1, 5, 118)
+median(-1, 5, 118)
+```
+
+How to explain the issue with `mean` and `median`? Let us look at the parameters of these functions:
+
+```{r}
+args(max)
+args(mean)
+args(median)
+```
+
+One solution is to always use a vector:
+
+```{r}
+min(c(-1, 5, 118))
+max(c(-1, 5, 118))
+mean(c(-1, 5, 118))
+median(c(-1, 5, 118))
+```
+
+### Others
+
+```{r}
+sample(1:10)
+sample(10)
+sample(10.1)
+```
+
+```{r}
+n <- 10
+1:n-1  ## is (1:n) - 1, so 0:(n - 1)
+1:(n-1)
+seq_len(n - 1)
+1:0
+seq_len(0)  ## prefer using seq_len(n) rather than 1:n (e.g. in for-loops)
+seq_along(5:7)  ## a shortcut for seq_len(length(.))
+```
+
+
+## R base objects
+
+### Types
+
+There are several "atomic" types of data: `logical`, `integer`, `double` and `character` (in this order, see below). There are also `raw` and `complex`, but they are rarely used.
+
+You cannot mix types in an atomic vector, but you can in a list. Coercion will automatically occur when you mix types in a vector:
+
+```{r}
+(a <- FALSE)
+typeof(a)
+
+(b <- 1:10)
+typeof(b)
+c(a, b)  ## FALSE is coerced to an integer -> 0
+
+(c <- 10.5)
+typeof(c)
+(d <- c(b, c))  ## coerced to numeric
+
+c(d, "a")  ## coerced to character
+
+c(list(1), "a")
+
+50 < "7"  ## does "50" < "7"
+```
+
+### Exercise
+
+Use the automatic type coercion to convert this boolean matrix to a numeric one (with 0s and 1s). [What do you need to change in your code to get an integer matrix instead of a numeric one?]
+
+```{r}
+(mat <- matrix(sample(c(TRUE, FALSE), 12, replace = TRUE), nrow = 3))
+```
+
+
+## Base objects and accessors
+
+### Objects
+
+- "atomic" vector: vector of one base type (see above).
+
+- scalar: this doesn't exist, this is a vector of length 1.
+
+- matrices / arrays: **a vector** with some dimensions (attribute).
+
+```{r}
+(vec <- 1:12)
+dim(vec) <- c(3, 4)
+vec
+class(vec)
+dim(vec) <- c(3, 2, 2)
+vec
+class(vec)
+```
+
+- list: vector of elements with possibly different types in it. 
+
+- data.frame: **a list** whose elements have the same lengths, and formatted somewhat as a matrix.
+
+```{r}
+head(iris)
+dim(iris)
+length(iris)  ## a data.frame is also a list
+```
+
+### Accessors
+
+1. The `[` accessor is used to access a subset of the data **with the same class**.
+
+```{r}
+(x <- 1:5)
+x[2:3]
+x[2:8]  ## /!\ no warning
+(y <- matrix(1:12, nrow = 3))
+y[4:9]  ## a matrix is also a vector
+(l <- list(a = 1, b = "I love R", c = matrix(1:6, nrow = 2)))
+l[2:3]
+head(iris)
+head(iris[3:4])
+class(iris[5])
+```
+
+You can also use a logical and character vectors to index these objects. 
+
+```{r}
+(x <- 1:4)
+x[c(FALSE, TRUE, FALSE, TRUE)]
+x[c(FALSE, TRUE)]  ## logical vectors are recycled
+head(iris[c("Petal.Length", "Species")])
+```
+
+2. The `[[` accessor is used to access **a single element**.
+
+```{r}
+(x <- 1:10)
+x[[3]]
+l[[2]]
+iris[["Species"]]
+```
+
+```{r, echo=FALSE, fig.cap="Indexing lists in R. [Source: https://goo.gl/8UkcHq]"}
+knitr::include_graphics("https://pbs.twimg.com/media/DQ5en8XWAAICIaJ.jpg")
+```
+
+3. Beware partial matching
+
+```{r}
+x <- list(aardvark = 1:5)
+x$a
+x[["a"]]
+x[["a", exact = FALSE]]
+```
+
+4. Special use of the `[` accessor for array-like data.
+
+```{r}
+(mat <- matrix(1:12, 3))
+mat[1, ]
+mat[, 1:2]
+mat[1, 1:2]
+mat[1, 1:2, drop = FALSE]
+(two_col_ind <- cbind(c(1, 3, 2), c(1, 4, 2)))
+mat[two_col_ind]
+mat[]
+mat[] <- 2
+mat
+```
+
+If you use arrays with more than two dimensions, simply add an additional comma for every new dimension.
+
+### Exercises
+
+1. Use the dimension attribute to make a function that computes the sums every n elements of a vector. In which order are matrix elements stored? [Which are the special cases that you should consider?]
+
+    ```{r}
+    advr38pkg::sum_every(1:10, 2)
+    ```
+
+2. Compute the means of every numeric columns of the `iris` dataset. Expected result:
+
+    ```{r, echo=FALSE}
+    colMeans(iris[sapply(iris, is.numeric)])
+    ```
+
+3. Convert the following matrix to a vector by replacing (0, 0) -> 0; (0, 1) -> 1; (1, 1) -> 2; (1, 0) -> NA.
+
+    ```{r}
+    mat <- matrix(0, 10, 2); mat[c(5, 8, 9, 12, 15, 16, 17, 19)] <- 1; mat
+    ```
+
+    by using this matrix:
+    
+    ```{r}
+    (decode <- matrix(c(0, NA, 1, 2), 2))
+    ```
+    
+    Start by doing it for one row, then by using `apply()`, finally replace it by a special accessor; what is the benefit?
+    
+    Expected result:
+    
+    ```{r, echo=FALSE}
+    decode[mat + 1]
+    ```
+
+
+## Useful R base functions
+
+In this section, I present some useful R base functions (also see [this comprehensive list in French](https://cran.r-project.org/doc/contrib/Kauffmann_aide_memoire_R.pdf) and [this one in English](https://github.com/peterhurford/adv-r-book-solutions/blob/master/03_vocab/functions.r)):
+
+### General
+
+```{r, eval=FALSE}
+# To get some help
+?topic
+
+# Run code from the example section
+example(sum)
+```
+
+```{r}
+# Structure overview
+str(iris)  ## skimr::skim(iris) is also very useful
+
+# List objects in the environment
+ls()
+
+# Remove objects from the environment
+rm(list = ls())  ## remove all objects in the global environment
+```
+
+```{r}
+# For a particular method, list available implementations for different classes 
+methods(summary)
+# List methods available for a particular class
+methods(class = "lm")
+```
+
+```{r}
+# Call a function with arguments as a list
+(list_of_int <- as.list(1:5))
+do.call('c', list_of_int)
+```
+
+
+### Sequence and vector operations
+
+```{r}
+1:10  ## of type integer
+seq(1, 10, by = 2)  ## of type double
+seq(1, 100, length.out = 10)
+seq_len(5)
+seq_along(21:24)
+rep(1:4, 2)
+rep(1:4, each = 2)
+rep(1:4, 4:1)
+rep_len(1:3, 8)
+replicate(5, rnorm(10))  ## How to use a multiline expression?
+```
+
+```{r}
+sort(c(1, 6, 8, 2, 2))
+order(c(1, 6, 8, 2, 2), c(0, 0, 0, 2, 1))
+rank(c(1, 6, 8, 2, 2))
+rank(c(1, 6, 8, 2, 2), ties.method = "first")
+sort(c("a1", "a2", "a10"))
+gtools::mixedsort(c("a1", "a2", "a10"))  ## not in base, but useful
+which.max(c(1, 5, 3, 6, 2, 0))
+which.min(c(1, 5, 3, 6, 2, 0))
+unique(c(1, NA, 2, 3, 2, NA, 3))
+table(rep(1:4, 4:1))
+table(A = c(1, 1, 1, 2, 2), B = c(1, 2, 1, 2, 1))
+sample(10)
+sample(3:10, 5)
+sample(3:10, 50, replace = TRUE)
+```
+
+```{r}
+round(x <- runif(10, max = 100))  ## 10 random numbers between 0 and 100
+round(x, digits = 2)
+round(x, -1)
+pmin(1:4, 4:1)
+pmax(1:4, 4:1)
+outer(1:4, 1:3, '+')
+expand.grid(param1 = c(5, 50), param2 = c(1, 3, 10))
+```
+
+Also see [this nice Q/A on grouping functions and the *apply family](https://stackoverflow.com/questions/3505701/grouping-functions-tapply-by-aggregate-and-the-apply-family) and [this book chapter about looping](https://bookdown.org/rdpeng/rprogdatascience/loop-functions.html).
+
+### Character operations
+
+```{r}
+paste("I", "am", "me")
+paste0("test", 0)
+paste0("PC", 1:10)
+me <- "Florian"
+glue::glue("I am {me}")  ## not in base, but so useful
+(x <- list.files(pattern = "\\.Rmd$", full.names = TRUE))
+sub("\\.Rmd$", ".pdf", x)
+(y <- sample(letters[1:4], 10, replace = TRUE))
+match(y, letters[1:4])
+y %in% letters[1:2]
+split(1:12, rep(letters[1:3], 4))
+intersect(letters[1:4], letters[3:5])
+union(letters[1:4], letters[3:5])
+setdiff(letters[1:4], letters[3:5])
+```
+
+### Logical operators
+
+```{r, error=TRUE}
+TRUE | stop("will go there")
+TRUE || stop("won't go there")  ## won't evaluate second condition if first one is TRUE
+c(TRUE, FALSE, TRUE, TRUE) & c(FALSE, TRUE, TRUE, FALSE) 
+c(TRUE, FALSE, TRUE, TRUE) && c(FALSE, TRUE, TRUE, FALSE)  ## /!\ no warning in prior R versions
+```
+
+```{r}
+(x <- rnorm(10))
+ifelse(x > 0, x, -x)  # try to find two other equivalents
+```
+
+Beware with `ifelse()` (learn more [there](https://privefl.github.io/blog/On-the-ifelse-function/)), for example 
+
+```{r}
+ifelse(FALSE, 0, 1:5)
+`if`(FALSE, 0, 1:5)
+if (FALSE) 0 else 1:5
+```
+
+### Exercises
+
+1. Use `sample()`, `rep_len()` and `split()` to make a function that randomly splits some indices in a list of `K` groups of indices (like for cross-validation). [Which are the special cases that you should consider?]
+
+    ```{r}
+    advr38pkg::split_ind(1:40, 3)
+    ```
+
+1. Use `replicate()` and `sample()` to get a 95% confidence interval (using bootstrapping) for the mean of the following vector:
+
+    ```{r}
+    set.seed(1)
+    (x <- rnorm(10))
+    mean(x)
+    ```
+   
+    Expected output (approximately): 
+    
+    ```{r, echo=FALSE}
+    quantile(replicate(1e6, mean(sample(x, replace = TRUE))), probs = c(0.025, 0.975))
+    ```
+
+1. Use `match()` and some special accessor to add a column "my_val" to this data `my_mtcars` by putting the corresponding value of the column specified in "my_col". [Can your solution be used for any number of column names?]
+
+    ```{r}
+    my_mtcars <- mtcars[c("mpg", "hp")]
+    my_mtcars$my_col <- sample(c("mpg", "hp"), size = nrow(my_mtcars), replace = TRUE)
+    head(my_mtcars)
+    ```
+
+    Expected result (head):
+    
+    ```{r, echo=FALSE}
+    ind <- cbind(seq_len(nrow(my_mtcars)), 
+                 match(my_mtcars[["my_col"]], names(my_mtcars)))
+    my_mtcars$my_val <- my_mtcars[ind]
+    head(my_mtcars)
+    ```
+
+1. In the following data frame (recall that a data frame is also a list), for the first 3 columns, replace letters by corresponding numbers based on the `code`:
+
+    ```{r}
+    df <- data.frame(
+      id1 = c("a", "f", "a"),
+      id2 = c("b", "e", "e"), 
+      id3 = c("c", "d", "f"),
+      inter = c(7.343, 2.454, 3.234),
+      stringsAsFactors = FALSE
+    )
+    df
+    (code <- setNames(1:6, letters[1:6]))
+    ```
+    
+    Expected result:
+    
+    ```{r, echo=FALSE}
+    df[-4] <- lapply(df[-4], function(col) code[col])
+    df
+    ```
+
+
+## Environments and scoping
+
+Lexical scoping determines where to look for values, not when to look for them. R looks for values when the function is run, not when it’s created. This means that the output of a function can be different depending on objects outside its environment:
+
+```{r}
+h <- function() {
+  x <- 10
+  f <- function() {
+    x + 1
+  }
+  f()
+}
+```
+
+```{r}
+x <- 100
+h()
+```
+
+Variable `x` is not defined inside `f` so R will look at the environment of `f` (where `f` was defined) and then at the parent environment, and so on. Here, the first `x` that is found has value `10`.
+
+Be aware that for functions, packages environments are checked last so that you can redefine functions without noticing.
+
+```{r}
+c <- function(...) paste0(...)
+c(1, 2, 3)
+base::c(1, 2, 3)  ## you need to explicit the package
+rm(c)  ## remove the new function from the environment
+c(1, 2, 3)
+```
+
+You can use the `<<-` operator to change the value of an object in an upper environment:
+
+```{r}
+count1 <- 0
+count2 <- 0
+f <- function(i) {
+  count1 <-  count1 + 1  ## will assign a new (temporary) count1 each time
+  count2 <<- count2 + 1  ## will increment count2 on top
+  i + 1
+}
+sapply(1:10, f)
+c(count1, count2)
+```
+
+Finally, how does `...` work? Basically, you copy and paste what is put in `...`:
+
+```{r}
+f1 <- function(...) {
+  list(...)
+}
+f1(a = 2, b = 3)
+list(a = 2, b = 3)
+```
+
+Learn more about [functions](https://bookdown.org/rdpeng/rprogdatascience/functions.html) and [scoping rules of R](https://bookdown.org/rdpeng/rprogdatascience/scoping-rules-of-r.html) with the [R Programming for Data Science book](https://bookdown.org/rdpeng/rprogdatascience/).
+
+
+## Attributes and classes
+
+Attributes are metadata associated with an object. You can get/set the list of attributes with `attributes()` or one particular attribute with `attr()`.
+
+```{r}
+attributes(iris)
+class(iris)
+attr(iris, "row.names")
+```
+
+You can use `structure()` to create an object and add some arbitrary attributes.
+
+```{r}
+structure(1:10, my_fancy_attribute = "blabla")
+```
+
+There are also some attributes with specific accessor functions to get and set values. For example, use `names(x)`, `dim(x)` and `class(x)` instead of `attr(x, "names")`, `attr(x, "dim")` and `attr(x, "class")`.
+
+***
+
+```{r}
+class(mylm <- lm(Sepal.Length ~ ., data = iris))
+```
+
+I've just fitted a linear model in order to predict the sepal length variable of the `iris` dataset based on the other variables. Using `lm()` gets me an object of class `lm`. What are the methods I can use for this object?
+
+```{r}
+methods(class = class(mylm))
+summary(mylm)
+plot(mylm)
+```
+
+***
+
+R has the easiest way to create a class and to use methods on objects of this class; it is called S3. If you want to know more about the other types of classes, see the [Advanced R book](https://adv-r.hadley.nz/).
+
+```{r}
+agent007 <- list(first = "James", last = "Bond")
+agent007
+```
+
+```{r}
+class(agent007) <- "Person"  ## "agent007" is now an object of class "Person"
+# Just make a function called <method_name>.<class_name>()
+print.Person <- function(x) {
+  print(glue::glue("My name is {x$last}, {x$first} {x$last}."))
+  invisible(x)
+}
+
+agent007
+```
+
+```{r}
+# Constructor of class as simple function
+Person <- function(first, last) {
+  structure(list(first = first, last = last), class = "Person")
+}
+(me <- Person("Florian", "Privé"))
+```
+
+An object can have many classes:
+
+```{r}
+Worker <- function(first, last, job) {
+  obj <- Person(first, last)
+  obj$job <- job
+  class(obj) <- c("Worker", class(obj))
+  obj
+}
+print.Worker <- function(x) {
+  print.Person(x) 
+  print(glue::glue("I am a {x$job}."))
+  invisible(x)
+}
+
+(worker_007 <- Worker("James", "Bond", "secret agent"))
+(worker_me <- Worker("Florian", "Privé", "researcher"))
+```
+
+
+Learn more with the [Advanced R book](https://adv-r.hadley.nz/).
+
+## Summary
+
+## Useful resources {.unnumbered}
+
+- [*Computer Floating-Point Arithmetic and round-off errors*](https://medium.com/@kusal95/computer-floating-point-arithmetic-and-round-off-errors-5c879c480982), article by Kausal Kaluarachchi.
