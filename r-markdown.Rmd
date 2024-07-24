@@ -1,0 +1,11 @@
+# R Markdown {#rmarkdown}
+
+```{r setup, include=FALSE}
+WORDS_TO_IGNORE <- c("dbplyr", "RStudio's")
+source("knitr-options.R")
+source("spelling-check.R")
+```
+
+## What is markdown?
+
+
