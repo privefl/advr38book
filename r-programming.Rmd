@@ -1,7 +1,7 @@
 # R programming
 
 ```{r, include=FALSE}
-WORDS_TO_IGNORE <- c("overbrace", "underbrace", "Kausal", "Kaluarachchi")
+WORDS_TO_IGNORE <- c("overbrace", "underbrace", "Kausal", "Kaluarachchi", "geq")
 source("knitr-options.R")
 source("spelling-check.R")
 ```
@@ -97,54 +97,127 @@ dplyr::near(0.1 + 0.2, 0.3, tol = 1e-17)
 ```
 
 
-### Arguments
+### The `...` argument
 
-Another source of mistakes is the use of named and unnamed arguments. 
+Another source of mistakes often occur in connection to arguments. To illustrate the problem, let us consider a simple example. Assume we have three observations $-1, 5 \text{ and }118$, and we want to find the minimum, maximum, mean, and median in `R`. We know that we can use the functions `min()`, `max()`, `mean()`, and `median()` to obtain the desired numbers, so we run the following code:
 ```{r, tidy='styler', collapse=TRUE}
 min(-1, 5, 118)
 max(-1, 5, 118)
 mean(-1, 5, 118)
 median(-1, 5, 118)
 ```
+The first two numbers are correct, but what is happening with the last two function calls?
 
-How to explain the issue with `mean` and `median`? Let us look at the parameters of these functions:
-
-```{r}
+The problem is that the four functions take different arguments. Let us take a look at the arguments for `max()` first:
+```{r, tidy='styler', collapse=TRUE}
 args(max)
-args(mean)
-args(median)
 ```
+The first argument is `...` (dot dot dot). The three dots represent a special argument that allows functions to take any number of arguments - besides all other specified arguments. This means `...` will take all unnamed arguments passed to the function. In the example above, none of the parameters are specified by name, and `max()` will use $-1, 5 \text{ and }118$ to compute the maximum value. 
 
-One solution is to always use a vector:
+This is different in connection to the function `mean()`:
+```{r, tidy='styler', collapse=TRUE}
+args(mean)
+```
+The first argument is `x`, which is followed by `...`. As all parameters are unnamed in the function call `mean(-1, 5, 118)`, `mean()` takes the first value $-1$ to compute the mean, and passes all other arguments to another function. Therefore, `mean(-1, 5, 118)` returns $-1$. 
 
-```{r}
+In this simple example, one solution is to store all observations in a vector and pass the vector to the functions:
+```{r, tidy='styler', collapse=TRUE}
 min(c(-1, 5, 118))
 max(c(-1, 5, 118))
 mean(c(-1, 5, 118))
 median(c(-1, 5, 118))
 ```
 
+In more complex cases, you have to be more cautious. When a function has `...` as one of its arguments, misspelled or non-existing arguments will simple be passed on and not raise an error. This increases the change of typos or wrong computations to go unnoticed. Furthermore, the argument `...` is greedy, which is why you often have to name all arguments that you want to pass to the function.
+
+```{r, tidy='styler', collapse=TRUE}
+max(c(-1, 5, 118, NA))
+max(c(-1, 5, 118, NA), TRUE)
+max(c(-1, 5, 118, NA), na.rm = TRUE)
+
+```
+
+If you want to know what other arguments `...` represents, you can look in the function documentation. The function `plot()`, for example, takes the arguments `...`. When you read the function documentation (by running `?plot`), you can see that `...` represents *other graphical parameters*, and the documentation refers to the documentation for graphical parameters for details.
+
 ### Others
 
-```{r}
+`R` has many base functions that behave differently than you may expect. One of them is `sample()`. `sample()` creates a sample of a specified size from the elements of the first argument `x` with or without replacement. The most common use of `sample()` is probably to let `x` be a vector:
+```{r, tidy='styler', collapse=TRUE}
 sample(1:10)
+```
+But have you ever tried to pass a single number? Or even a real number?
+```{r, tidy='styler', collapse=TRUE, eval=FALSE}
 sample(10)
 sample(10.1)
 ```
+What do you think `R` returns?
+<details><summary>Show me!</summary>
+```{r, tidy='styler', collapse=TRUE}
+sample(10)
+sample(10.1)
+```
+Did you expect this outcome? In case you are confused, here is the reason why:. 
 
-```{r}
+The first argument of `sample()` is `x`. `x` can either be a vector of one or more elements from which to choose, or a positive integer. If `x` has length one, is numeric and larger than 1, the sampling will take place from the sequence `1:x`. On the other hand, `1:x` generates a vector of real numbers; starting with 1 and increasing with 1 until the upper limit `x` is reached. Hence, when `x` = 10.1, `1:x` is equal to the sequence `1,2,...,10`, and `sample(x)` is equivalent to `sample(1:10)`.  
+
+</details>
+<br>
+This leads us to the next base `R` function with an unexpected behavior; the colon operator `:`. It can be used to generate regular sequences and is equivalent to `seq()` (if `from` and `to` are not factors). Do you know what the output of the following code will be?
+```{r, tidy='styler', collapse=TRUE, eval=FALSE}
 n <- 10
-1:n-1  ## is (1:n) - 1, so 0:(n - 1)
-1:(n-1)
-seq_len(n - 1)
-1:0
-seq_len(0)  ## prefer using seq_len(n) rather than 1:n (e.g. in for-loops)
-seq_along(5:7)  ## a shortcut for seq_len(length(.))
+1:n-1
 ```
 
+<details><summary>Show me!</summary>
+```{r, tidy='styler', collapse=TRUE}
+n <- 10
+1:n-1
+```
+The result is the sequence from 0 to 9; not 1 to 9. To understand why `1:n-1` returns `0,1,...,9`, we take a look at the syntax documentation (`?Syntax`):
 
-## R base objects
+```{r, echo=FALSE}
+knitr::include_graphics("images/syntax_documentation.jpg")
+```
 
+The documentation shows that the colon operator `:` has a higher precedence than the operator `-`. Hence, `1:n` is evaluated first, and `-` is evaluated afterwards (`1:n-1` is equivalent to `(1:n)-1`). To obtain a sequence from 1 to 9, we can change the order of evaluation by using parentheses: 
+```{r, tidy='styler', collapse=TRUE}
+1:(n-1)
+```
+Alternatively, we could use the function `seq_len()` to create a sequence that starts at 1 and with steps of 1 finishes at the number passed to the function. 
+```{r, tidy='styler', collapse=TRUE}
+seq_len(n)
+seq_len(n-1)
+```
+However, there is one crucial difference between `1:n` and `seq_len(n)`, which we will look at in the final example!
+</details>
+<br>
+What does the colon operator return when n is equal to 0?
+```{r, tidy='styler', collapse=TRUE, eval=FALSE}
+n <- 0
+1:n
+```
+
+<details><summary>Show me!</summary>
+```{r, tidy='styler', collapse=TRUE}
+n <- 0
+1:n
+```
+Did you expect the output to be `1, 0`? The colon operator can also generate a sequence from `from` to `to` in steps of -1 (when `to` < `from`). This behavior can be useful in general, but when `:` is used in a for loop it is often undesired. In situations like that, use the function `seq_len()` instead. When zero is passed as an argument, `seq_len` returns a empty integer vector (`integer(0)`):
+```{r, tidy='styler', collapse=TRUE}
+seq_len(0)
+```
+
+`seq_len()` also has a sibling, `seq_along()`, that can be used generate a sequence that is as long as another vector. More precisely, if `x` is a vector of length $\geq$ 1, `seq_along(x)` is a shortcut for `seq_len(length(x))`:
+```{r, tidy='styler', collapse=TRUE}
+seq_along(5:7)
+```
+
+</details>
+<br>
+
+## Data structures
+
+In the following, we will describe some of the data structures provided in `R`. 
 ### Types
 
 There are several "atomic" types of data: `logical`, `integer`, `double` and `character` (in this order, see below). There are also `raw` and `complex`, but they are rarely used.

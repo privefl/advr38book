@@ -110,3 +110,9 @@ common-mistakes-to-avoid
 the-floating-point-error
 summary-1
 fig:unnamed-chunk-22
+fig:unnamed-chunk-24
+the-...-argument
+fig:unnamed-chunk-26
+fig:unnamed-chunk-31
+fig:unnamed-chunk-34
+data-structures
