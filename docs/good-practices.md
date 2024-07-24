@@ -36,12 +36,11 @@ Looking only at this code, do you have any idea what data is stored in `dat1`, `
 
 ``` r
 passwords <- tidytuesdayR::tt_load("2020-01-14")[[1]]
-password_category <- passwords[passwords$category == "animal",]
-password_strength <- passwords[passwords$strength == 7,]
+password_category <- passwords[passwords$category == "animal", ]
+password_strength <- passwords[passwords$strength == 7, ]
 
 get_popular_passwords <- function(tbl, n = 5) {
-  
-  tbl <- tbl[complete.cases(tbl$rank),]
+  tbl <- tbl[complete.cases(tbl$rank), ]
   tbl[tbl$rank <= n, 2]
 }
 ```
@@ -51,14 +50,13 @@ This code is identical to the previous code; except for the names. But it is muc
 # Loading the passwords data
 passwords <- tidytuesdayR::tt_load("2020-01-14")[[1]]
 # Extracting passwords within the category "animal"
-password_category <- passwords[passwords$category == "animal",]
+password_category <- passwords[passwords$category == "animal", ]
 # Extracting passwords with a quality of 7
-password_strength <- passwords[passwords$strength == 7,]
+password_strength <- passwords[passwords$strength == 7, ]
 
 # Function: extracts the n most popular passwords
 get_popular_passwords <- function(tbl, n = 5) {
-  
-  tbl <- tbl[complete.cases(tbl$rank),]
+  tbl <- tbl[complete.cases(tbl$rank), ]
   tbl[tbl$rank <= n, 2]
 }
 ```
@@ -384,7 +382,7 @@ Finally, being able to work with GitHub can be a line on your CV ([read more](ht
 >
 > They are able to say, "Oh, I already have worked with GitHub. I am familiar with it. I know how it works." So I think they are at least able to put that on their CV and go into a situation where there's a research or data analysis team and say, "Yeah, sure. I am actually familiar with the same tools that you use."
 >
-> -- Mine Cetinkaya-Rundel, Duke University, RStudio
+> <footer>--- Mine Cetinkaya-Rundel, Duke University, RStudio</footer>
 
 ### How to use Git
 
@@ -481,9 +479,6 @@ for (x in 10:0) {
   y <- (x - 1)
   invisible(log(y))
 }
-```
-
-```
 #> Warning in log(y): NaNs produced
 ```
 
@@ -495,7 +490,7 @@ my_log <- function(x) log(x - 1)
 
 my_fun <- function(a, b) {
   browser()
-  la <- my_log(a) 
+  la <- my_log(a)
   lb <- my_log(b)
   la + lb
 }

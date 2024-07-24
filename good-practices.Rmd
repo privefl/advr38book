@@ -36,7 +36,7 @@ fct1 <- function(tbl, n = 5) {
 }
 ```
 Looking only at this code, do you have any idea what data is stored in `dat1`, `dat2` and `dat3`? Not really, right? Now imagine, you have 500 lines of code analyzing and visualizing the three different data sets using numerous functions. You would probably get confused about the different data sets and functions quite quick. Now consider the following lines of code
-```{r eval=FALSE}
+```{r eval=FALSE, tidy='styler', collapse=TRUE}
 passwords <- tidytuesdayR::tt_load("2020-01-14")[[1]]
 password_category <- passwords[passwords$category == "animal",]
 password_strength <- passwords[passwords$strength == 7,]
@@ -48,7 +48,7 @@ get_popular_passwords <- function(tbl, n = 5) {
 }
 ```
 This code is identical to the previous code; except for the names. But it is much easier to read and understand. Let us improve the code even more by adding comments.
-```{r eval=FALSE}
+```{r eval=FALSE, tidy='styler', collapse=TRUE}
 # Loading the passwords data
 passwords <- tidytuesdayR::tt_load("2020-01-14")[[1]]
 # Extracting passwords within the category "animal"
@@ -253,7 +253,7 @@ The way the code is organized within a single file significantly impacts the rea
 We suggest to start each file with a comment holding a description of the file, who wrote it,
 and when it was last updated. You may want to set a default template that is used each time you open a new `.R` script. To do this, you have to create a `templates` folder in `AppData/Roaming/RStudio/` and include a `default.R` file with the desired template.
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, tidy='styler', collapse=TRUE}
 # Create a template folder
 fs::dir_create(path = "~/AppData/Roaming/RStudio/templates")
 
@@ -387,7 +387,7 @@ Finally, being able to work with GitHub can be a line on your CV ([read more](ht
 >
 > They are able to say, "Oh, I already have worked with GitHub. I am familiar with it. I know how it works." So I think they are at least able to put that on their CV and go into a situation where there's a research or data analysis team and say, "Yeah, sure. I am actually familiar with the same tools that you use."
 >
-> -- Mine Cetinkaya-Rundel, Duke University, RStudio
+> `r tufte::quote_footer('--- Mine Cetinkaya-Rundel, Duke University, RStudio')`
 
 ### How to use Git
 
@@ -481,7 +481,7 @@ In this section, we will look at some tools that you can use to find and fix pro
 The first step is to figure out where the error comes from. In some cases, identifying the line of code that causes the error is easy. In other cases, locating the error can be really difficult. A basic solution is to print everything; but that strategy is usually not working well on complex problems. A more robust strategy is needed!
 Start by looking at the error (or warning) message; does it indicate what line or function causes the problem? In the example below, the warning message indicates that `log(y)` produced `NaNs`. As `log(y)` only occurs once, we know that the problem must be in line 3.
 
-```{r, error=TRUE, warning=TRUE, attr.source='.numberLines'}
+```{r, error=TRUE, warning=TRUE, attr.source='.numberLines', tidy='styler', collapse=TRUE}
 for (x in 10:0) {
   y <- (x - 1)
   invisible(log(y))
@@ -491,7 +491,7 @@ for (x in 10:0) {
 
 You may be able to fix the bug once you have located it.
 In other situations, especially if you are new to `R`, the error (or warning) message may not help you at all. In that case, you may want to investigate all variables to check whether they have the desired type. A convenient way to see all the variables' states in your code is to place use the function `browser()`. `browser()` stops the execution of the expression in the line it was invoked from. You are able to inspect the environment and evaluate `R` expressions in that environment by entering them at the browser prompt. from where you want to check the variables' states. Try running the following code in your own RStudio session.
-```{r, eval=FALSE, attr.source='.numberLines'}
+```{r, eval=FALSE, attr.source='.numberLines', tidy='styler', collapse=TRUE}
 my_log <- function(x) log(x - 1)
 
 my_fun <- function(a, b) {
