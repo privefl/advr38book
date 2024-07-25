@@ -116,3 +116,7 @@ fig:unnamed-chunk-26
 fig:unnamed-chunk-31
 fig:unnamed-chunk-34
 data-structures
+data-structures-in-r
+rmarkdown
+what-is-markdown
+fig:unnamed-chunk-38

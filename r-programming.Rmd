@@ -1,7 +1,7 @@
 # R programming
 
 ```{r, include=FALSE}
-WORDS_TO_IGNORE <- c("overbrace", "underbrace", "Kausal", "Kaluarachchi", "geq")
+WORDS_TO_IGNORE <- c("overbrace", "underbrace", "Kausal", "Kaluarachchi", "geq", "logi", "typeof", "vec")
 source("knitr-options.R")
 source("spelling-check.R")
 ```
@@ -215,50 +215,105 @@ seq_along(5:7)
 </details>
 <br>
 
-## Data structures
+## Data structures in `R`
 
-In the following, we will describe some of the data structures provided in `R`. 
+`R` provides a number of data structures, i.e. particular ways of organizing data to make their use more effective. These data structures are referred to as objects. In this chapter, we will take a look at the most frequently used objects in `R`. 
+
 ### Types
 
-There are several "atomic" types of data: `logical`, `integer`, `double` and `character` (in this order, see below). There are also `raw` and `complex`, but they are rarely used.
+All `R` objects have a type. `R` supports more than 20 different types (see all of them [here](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects)), but we will only focus on four of six basic (*atomic*) vector types in this section, namely `logical`, `integer`, `double` (often called `numeric`), and `character`.
+Atomic vectors represent the most simple data structure in `R`. They are one dimensional and homogeneous, which means that all contents must be of the same type. Single numbers, such as `12.568`, and strings, such as `Hello world`, are vectors; just of length 1. 
+The fact that all components of an atomic vectors must be of the same type means that they are often coerced to different types during operations. `R` objects are coerced according to the following precedence:
 
-You cannot mix types in an atomic vector, but you can in a list. Coercion will automatically occur when you mix types in a vector:
+- `logical` : Logical vectors have the lowest precedence. Whenever a logical vector is combined with a vector of another type, the logical vector will be turned into the other type. 
+- `integer` : Integer vectors have the second lowest precedence. Combining an integer vector with a vector of type `double` or `character`, will result in a vector of type `double` or `character`, respectively.
+- `double` : Vectors of type `double` have the second highest precedence. They will only change type when they are combined with a vector of type `character`.
+- `character` : Character vectors are never coerced. When you combine two or more vectors, one of them being of type `character`, the resulting vector will be of type `character` as well. 
 
-```{r}
-(a <- FALSE)
-typeof(a)
+In most situations, you do not have to worry about coercion, as `R` usually coerces the relevant objects automatically. However, some functions may not be able to coerce objects (due to the precedence). In those cases, `R` returns an error. Let us consider some examples. We define four vectors, one of each type:
 
-(b <- 1:10)
-typeof(b)
-c(a, b)  ## FALSE is coerced to an integer -> 0
+```{r, tidy='styler', collapse=TRUE}
+(logi_vec <- FALSE)
+typeof(logi_vec)
 
-(c <- 10.5)
-typeof(c)
-(d <- c(b, c))  ## coerced to numeric
+(int_vec <- 1:10)
+typeof(int_vec)
 
-c(d, "a")  ## coerced to character
+(dbl_vec <- c(2.5, 12.568))
+typeof(dbl_vec)
 
-c(list(1), "a")
+(char_vec <- c("abc"))
+typeof(char_vec)
 
-50 < "7"  ## does "50" < "7"
 ```
 
-### Exercise
+What is the type of each of the resulting vectors below?
+```{r, tidy='styler', collapse=TRUE, eval=FALSE}
+c(logi_vec, int_vec)
 
-Use the automatic type coercion to convert this boolean matrix to a numeric one (with 0s and 1s). [What do you need to change in your code to get an integer matrix instead of a numeric one?]
+c(int_vec, dbl_vec)
 
-```{r}
+c(logi_vec, char_vec)
+```
+
+<details><summary>Show me!</summary>
+```{r, tidy='styler', collapse=TRUE, attr.source='.numberLines'}
+typeof(c(logi_vec, int_vec))
+
+typeof(c(int_vec, dbl_vec))
+
+typeof(c(logi_vec, char_vec))
+```
+
+Line 1: The logical vector `logi_vec` is coerced to an integer vector (`FALSE` is coerced to `0`), and the resulting vector is of type `integer`.
+Line 3: The integer vector `int_vec` is coerced to a double vector, which is why `c(int_vec, dbl_vec)` is of type `double`. 
+Line 5: The logical vector `logi_vec` is coerced to a character vector, and the result is a vector of type `character`.
+</details>
+<br>
+
+What is the result of the following operations? Is `R` able to coerce the objects into the required type, or will it return an error?
+```{r, tidy='styler', collapse=TRUE, eval=FALSE}
+logi_vec < char_vec
+
+min(int_vec, dbl_vec)
+
+logi_vec + char_vec
+```
+
+<details><summary>Show me!</summary>
+```{r, tidy='styler', collapse=TRUE, attr.source='.numberLines', error=TRUE}
+logi_vec < char_vec
+
+min(int_vec, dbl_vec)
+
+logi_vec + char_vec
+```
+
+Line 1: The logical vector `logi_vec` is coerced to a character vector. The operator `<` is able to compare strings (using lexicographic orders), and as `F` comes after `a` in the alphabet, the comparison returns `FALSE`.
+Line 3: The integer vector `int_vec` is coerced to a double vector, and `min(int_vec, dbl_vec)` returns `1`. 
+Line 5: The logical vector `logi_vec` can be coerced to a character vector, but `char_vec` cannot be coreced to a integer or double vector. As `+` is only implemented for numeric or complex vectors, `R` returns an error.
+</details>
+<br>
+
+
+### Exercise {.unnumbered}
+
+1. Why is the default missing value, NA, a logical vector? 
+2. How can you use the automatic type coercion to convert this boolean matrix to a numeric one (with 0s and 1s)?
+```{r, tidy='styler', collapse=TRUE}
 (mat <- matrix(sample(c(TRUE, FALSE), 12, replace = TRUE), nrow = 3))
 ```
+3. What do you need to change in the code above to obtain an integer matrix immediately?
 
 
-## Base objects and accessors
+### Objects and attributes
 
-### Objects
+In the previous section, we have introduced the most simple data structure in `R`: atomic vectors. Recall that atomic vectors are one dimensional and homogeneous, which means that all components must be of the same base type (`logical`, `integer`, `double`, or `character`). `R` provides another one-dimensional data structure; generic vectors, better known as lists. The important difference between atomic vectors and generic vectors/lists is that lists can contain different types, i.e. lists are heterogeneous.
 
-- "atomic" vector: vector of one base type (see above).
+All vectors (i.e. atomic and generic) can have one or more *attributes*. Attributes are name-value pairs that attach metadata to an object. They can be accessed and modified with `attributes()` (to get a list of all attributes) and `attr()` (to access individual components). By adding specific attributes to vectors, we obtain other important data structures like matrices, arrays, and data frames. 
 
-- scalar: this doesn't exist, this is a vector of length 1.
+Two-dimensional matrices and multi-dimensional arrays are obtained with the dimensions attribute
+
 
 - matrices / arrays: **a vector** with some dimensions (attribute).
 
@@ -272,7 +327,6 @@ vec
 class(vec)
 ```
 
-- list: vector of elements with possibly different types in it. 
 
 - data.frame: **a list** whose elements have the same lengths, and formatted somewhat as a matrix.
 
