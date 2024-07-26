@@ -120,3 +120,8 @@ data-structures-in-r
 rmarkdown
 what-is-markdown
 fig:unnamed-chunk-38
+fig:unnamed-chunk-48
+objects-and-attributes
+exercise-2
+fig:unnamed-chunk-50
+exercises-3

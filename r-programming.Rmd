@@ -1,7 +1,7 @@
 # R programming
 
 ```{r, include=FALSE}
-WORDS_TO_IGNORE <- c("overbrace", "underbrace", "Kausal", "Kaluarachchi", "geq", "logi", "typeof", "vec")
+WORDS_TO_IGNORE <- c("overbrace", "underbrace", "Kausal", "Kaluarachchi", "geq", "logi", "typeof", "vec", "labelling")
 source("knitr-options.R")
 source("spelling-check.R")
 ```
@@ -296,7 +296,7 @@ Line 5: The logical vector `logi_vec` can be coerced to a character vector, but 
 <br>
 
 
-### Exercise {.unnumbered}
+#### Exercises {.unnumbered}
 
 1. Why is the default missing value, NA, a logical vector? 
 2. How can you use the automatic type coercion to convert this boolean matrix to a numeric one (with 0s and 1s)?
@@ -312,129 +312,239 @@ In the previous section, we have introduced the most simple data structure in `R
 
 All vectors (i.e. atomic and generic) can have one or more *attributes*. Attributes are name-value pairs that attach metadata to an object. They can be accessed and modified with `attributes()` (to get a list of all attributes) and `attr()` (to access individual components). By adding specific attributes to vectors, we obtain other important data structures like matrices, arrays, and data frames. 
 
-Two-dimensional matrices and multi-dimensional arrays are obtained with the dimensions attribute
-
-
-- matrices / arrays: **a vector** with some dimensions (attribute).
-
-```{r}
+Two-dimensional matrices and multi-dimensional arrays are obtained from atomic vectors by adding the dimensions attribute `dim`:
+```{r, tidy='styler', collapse=TRUE}
+# Defining an atomic vector
 (vec <- 1:12)
+attributes(vec)
+
+# Modifying the attribute 'dim'
 dim(vec) <- c(3, 4)
 vec
+attributes(vec)
 class(vec)
+
+# Modifying the attribute 'dim' once more
 dim(vec) <- c(3, 2, 2)
 vec
+attributes(vec)
 class(vec)
 ```
+Instead of modifying the attribute using the function `dim()`, you can simple use the functions `matrix()` or `array()`:
+```{r, tidy='styler', collapse=TRUE}
+# Defining a matrix
+(mat <- matrix(1:12, ncol = 4, nrow = 3))
+attributes(mat)
+dim(mat)
 
-
-- data.frame: **a list** whose elements have the same lengths, and formatted somewhat as a matrix.
-
-```{r}
-head(iris)
-dim(iris)
-length(iris)  ## a data.frame is also a list
+# Defining a 3-dimensional array
+(arry <- array(1:12, c(3, 2, 2)))
+attributes(arry)
+dim(arry)
 ```
+
+Data frames are similar to matrices in that they are two-dimensional structures. However, data frames are based on generic vectors, i.e. a data frame is a list of equal-length vectors.
+```{r, tidy='styler', collapse=TRUE}
+a <- c(1, 2, 3)
+b <- c(12.568, 12.569, 12.57)
+y <- c(TRUE, FALSE, TRUE)
+z <- c("a", "b", "c")
+
+(df <- data.frame(a, b, y, z))
+```
+Because of their definition, data frames share properties of both the matrix and the list. For instance, the dimension of a data frame correspond to the dimension  of a matrix (number of observations, i.e. the length of the atomic vectors, times the number of variables, i.e. the length of the list). But the length of a data frame is equal to the length of the list; not the total number of observations as for matrices:
+```{r, tidy='styler', collapse=TRUE}
+dim(df)
+length(df)
+```
+Another important difference between matrices and data frames is that, per default, data frames have three attributes, whereas matrices only have one:
+```{r, tidy='styler', collapse=TRUE}
+attributes(df)
+```
+These attributes are
+
+- `names`, labelling the variables 
+- `class`, a vector of character strings giving the names of the classes which the object inherits from
+- `row.names`, labelling the cases 
+
+The `names` attribute labels the individual elements of a vector or list. You can name a vector in three ways: 
+
+- when creating it 
+```{r, tidy='styler', collapse=TRUE}
+(a <- c(a = 1, b = 2, c = 3))
+```
+- by modifying an existing vector's `names` attribute using `names<-`
+```{r, tidy='styler', collapse=TRUE}
+b <- 1:3
+names(b) <- c("a", "b", "c")
+b
+```
+- or by creating a modified copy of a vector using `setNames`
+```{r, tidy='styler', collapse=TRUE}
+setNames(1:3, c("a", "b", "c"))
+```
+
+The `class` attribute helps `R` to apply the correct function to an object. When a generic function (such as `summary()`) is applied to an object with a `class` attribute (for example `data.frame`) `R` tries to find the class-specific function (e.g. `summary.data.frame()`). If the class-specific function is available, it is applied to the object. If the class name does not produce a suitable function, the default function (e.g. `summary.default()`) is used. 
+
+The `row.names` attribute is similar to the `names` attribute, but instead of labelling the variables it labels the observations/cases/rows. 
+
+Besides `dim`, `names`, `class`, and `row.names`, `R` also provides some other attributes that we will not discuss here. 
+We want to note, however, that you can define your own attributes using the function structure:
+```{r, tidy='styler', collapse=TRUE}
+x <- structure(1:10, my_own_attr = "Hello world!")
+attributes(x)
+```
+
+In most cases, you should not simply remove an attribute from an object, unless you know what you are doing. Otherwise you may end up with very strange results. For example, if you remove the attribute `levels` from a factor, `R` will no longer be able to perform simple operations on that factor:
+```{r, tidy='styler', collapse=TRUE, error=TRUE}
+(x <- sample(c("a", "b", "c"), 12, replace = TRUE))
+y <- factor(x)
+attributes(y)
+
+attr(y, "levels") <- NULL
+y
+```
+And if you remove the attribute `class`, the factor is turned into an atomic vector
+```{r, tidy='styler', collapse=TRUE, error=TRUE}
+
+y <- factor(x)
+attributes(y)
+
+unclass(y)
+```
+
+If you remove the only attribute (`class`) from a date vector, the result is a numeric vector representing the number of days since 1970-01-01
+```{r, tidy='styler', collapse=TRUE, error=TRUE}
+(today <- Sys.Date())
+attributes(today)
+unclass(today)
+```
+#### Exercise {.unnumbered}
+
+1. Define a simple function that takes two arguments (first_name and last_name) and that returns an object of class "Person".
+
 
 ### Accessors
 
-1. The `[` accessor is used to access a subset of the data **with the same class**.
+In the previous section, we have seen how we can adding attributes to vectors in order to obtain other important data structures like matrices, arrays, and data frames. Furthermore, we mentioned that two-dimensional matrices and multi-dimensional arrays are based on atomic vectors, while data frames are obtained from generic vectors/lists.
+We will now see that the choice of vector type (atomic vs. generic) has an effect on the accessibility of elements. 
 
-```{r}
-(x <- 1:5)
-x[2:3]
-x[2:8]  ## /!\ no warning
-(y <- matrix(1:12, nrow = 3))
-y[4:9]  ## a matrix is also a vector
-(l <- list(a = 1, b = "I love R", c = matrix(1:6, nrow = 2)))
-l[2:3]
-head(iris)
-head(iris[3:4])
-class(iris[5])
-```
+For two-dimensional matrices, multi-dimensional arrays and data frames, elements can be accessed in different ways. 
 
-You can also use a logical and character vectors to index these objects. 
+Data frames can be subsetted like a one-dimensional structure (where it behaves like a list), or a two-dimensional structure (where it behaves like a matrix).
 
-```{r}
-(x <- 1:4)
-x[c(FALSE, TRUE, FALSE, TRUE)]
-x[c(FALSE, TRUE)]  ## logical vectors are recycled
-head(iris[c("Petal.Length", "Species")])
-```
-
-2. The `[[` accessor is used to access **a single element**.
-
-```{r}
-(x <- 1:10)
-x[[3]]
-l[[2]]
-iris[["Species"]]
-```
-
-```{r, echo=FALSE, fig.cap="Indexing lists in R. [Source: https://goo.gl/8UkcHq]"}
-knitr::include_graphics("https://pbs.twimg.com/media/DQ5en8XWAAICIaJ.jpg")
-```
-
-3. Beware partial matching
-
-```{r}
-x <- list(aardvark = 1:5)
-x$a
-x[["a"]]
-x[["a", exact = FALSE]]
-```
-
-4. Special use of the `[` accessor for array-like data.
-
-```{r}
-(mat <- matrix(1:12, 3))
-mat[1, ]
-mat[, 1:2]
-mat[1, 1:2]
-mat[1, 1:2, drop = FALSE]
-(two_col_ind <- cbind(c(1, 3, 2), c(1, 4, 2)))
-mat[two_col_ind]
-mat[]
-mat[] <- 2
-mat
-```
-
-If you use arrays with more than two dimensions, simply add an additional comma for every new dimension.
-
-### Exercises
-
-1. Use the dimension attribute to make a function that computes the sums every n elements of a vector. In which order are matrix elements stored? [Which are the special cases that you should consider?]
-
-    ```{r}
-    advr38pkg::sum_every(1:10, 2)
-    ```
-
-2. Compute the means of every numeric columns of the `iris` dataset. Expected result:
-
-    ```{r, echo=FALSE}
-    colMeans(iris[sapply(iris, is.numeric)])
-    ```
-
-3. Convert the following matrix to a vector by replacing (0, 0) -> 0; (0, 1) -> 1; (1, 1) -> 2; (1, 0) -> NA.
-
-    ```{r}
-    mat <- matrix(0, 10, 2); mat[c(5, 8, 9, 12, 15, 16, 17, 19)] <- 1; mat
-    ```
-
-    by using this matrix:
+1. The `[` accessor can be used on vectors, matrices, arrays, lists and data frames to extract or replace subsets of the data **with the same class**.
+    ```{r, tidy='styler', collapse=TRUE}
+    (x <- 1:5)
+    x[2:3]
+    x[2:8]
     
-    ```{r}
+    (y <- matrix(1:12, nrow = 3))
+    y[4:9]
+    
+    (l <- list(a = 2:3, b = "toto", c = runif(10)))
+    l[2:3]
+    ```
+    What does *with the same class* mean? It means that the class of the resulting subset is the same as the     object that was subsetted with `[`. That means, when you subset a vector with the `[` accessor, the         subset is a vector as well. When you subset a list with the `[` accessor, the result is a list: Even if     you only select a single entry of the list.
+    
+    The index object can be numeric, logical, character, or empty:
+    ```{r, tidy='styler', collapse=TRUE}
+    x[c(FALSE, TRUE, FALSE, TRUE, FALSE)]
+    x[c(FALSE, TRUE)]
+    
+    y[]
+    
+    l[c("a", "c")]
+    l[c(FALSE, TRUE)]
+    ```
+
+    Besides using a single vector to subset matrices, arrays and data frames, you can also specify several      indices to `[` to obtain two-dimensional subsets. An empty index indicates that all entries in that         dimension are selected:
+    ```{r, tidy='styler', collapse=TRUE}
+    y[2:3]
+    y[2:3, ]
+    y[, 2:3]
+    y[2, 3]
+    ```
+    Matrices and arrays can also be indexed via a numeric matrix with one column for each dimension. Each       row of the index matrix then selects a single element of the array:
+    ```{r, tidy='styler', collapse=TRUE}
+    two_col_ind <- cbind(c(1, 3, 2), c(1, 4, 2))
+    y[two_col_ind]
+    ```
+
+2. The `[[` and the `$` accessor are both operators to access or replace **a single element**. However, while `[[` can be used on vectors, matrices, arrays, lists and data frames, the `$` accessor does only work on lists and data frames. 
+    ```{r, tidy='styler', collapse=TRUE, error=TRUE}
+    x[[3]]
+    l[[2]]
+    l[["c"]]
+    l$c
+    
+    names(x) <- letters[1:5]
+    x
+    x$e
+    ```
+    You can see that for the atomic vector `x`, `x[3]` and `x[[3]]` result in the same output; a vector of      length one. But for the list `l`, the `[` accessor returns a list with one entry, while `[[` returns a      matrix. You can think of a list as a pepper pot, each entry of the list being a sachet of pepper. The       `[` accessor extracts the desired sachets, but they are still contained within the pot. The `[[`            accessor takes the desired sachets out of the pot.
+
+    ```{r, echo=FALSE, fig.cap="Indexing lists in R. [Source: https://goo.gl/8UkcHq]"}
+    knitr::include_graphics("https://pbs.twimg.com/media/DQ5en8XWAAICIaJ.jpg")
+    ```
+
+    Besides the fact that the `$` accessor cannot be used on atomic vectors, matrices or arrays, the main       difference between `[[` and `$` is that `$` does not allow computed indices:
+    ```{r, tidy='styler', collapse=TRUE, error=TRUE}
+    l[[2 - 1]]
+    l$(2-1)
+    ```
+
+Before we move on to some exercises, we have two more comments. 
+
+1. Per default, the `[[` accessor only extracts columns if their column names match one of the strings provided in a character vector exactly. That means, if you want to extract a list entry named `aaakv` using `[[a]]`, the result will be `NULL`:
+    ```{r, tidy='styler', collapse=TRUE}
+    names(l) <- c("aaakv", "b", "c")
+    l
+    
+    l$a
+    l[["a"]]
+    ```
+    To allow for partial matching, use `exact = FALSE`:
+    ```{r, tidy='styler', collapse=TRUE}
+    l[["a", exact = FALSE]]
+    ```
+
+2. Per default, the `[` accessor coerces the result to the lowest possible dimension. For example, if you extract a single row from a matrix using `[`, the result will be a vector:
+    ```{r, tidy='styler', collapse=TRUE}
+    y
+    y[1,]
+    ```
+    To change this behavior, set `drop = FALSE`
+    ```{r, tidy='styler', collapse=TRUE}
+    y[1, , drop = FALSE]
+    ```
+
+
+### Exercises {.unnumbered}
+
+1. In which order are matrix elements stored? 
+2. Use the dimension attribute to make a function that computes the sum of every n successive elements of a vector. <br>
+Ex: 1 2 3 4 5 6 7 8 9 10 -> expected outcome: 3 7 11 15 19<br>
+[Which are the special cases that you should consider?]
+3. Convert the following matrix to a vector by using this replacement rule for rows:<br>
+  (0, 0) -> 0<br>
+  (0, 1) -> 1<br>
+  (1, 1) -> 2<br>
+  (1, 0) -> NA<br>
+    ```{r, tidy='styler', collapse=TRUE}
+    mat <- matrix(0, 10, 2) 
+    mat[c(5, 8, 9, 12, 15, 16, 17, 19)] <- 1
+    mat
+    ```
+    You have to use the following matrix to do so:
+    ```{r, tidy='styler', collapse=TRUE}
     (decode <- matrix(c(0, NA, 1, 2), 2))
     ```
-    
-    Start by doing it for one row, then by using `apply()`, finally replace it by a special accessor; what is the benefit?
-    
+    Start by doing it for one row, then by using `apply()`. Finally, replace it by a special accessor. 
     Expected result:
-    
-    ```{r, echo=FALSE}
+    ```{r, echo=FALSE, tidy='styler', collapse=TRUE}
     decode[mat + 1]
     ```
-
 
 ## Useful R base functions
 
@@ -762,6 +872,8 @@ print.Worker <- function(x) {
 Learn more with the [Advanced R book](https://adv-r.hadley.nz/).
 
 ## Summary
+
+Data frames can be subsetted like a one-dimensional structure (where it behaves like a list), or a two-dimensional structure (where it behaves like a matrix).
 
 ## Useful resources {.unnumbered}
 
