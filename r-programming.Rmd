@@ -1,7 +1,7 @@
 # R programming
 
 ```{r, include=FALSE}
-WORDS_TO_IGNORE <- c("overbrace", "underbrace", "Kausal", "Kaluarachchi", "geq", "logi", "typeof", "vec", "labelling")
+WORDS_TO_IGNORE <- c("overbrace", "underbrace", "Kausal", "Kaluarachchi", "geq", "logi", "typeof", "vec", "labelling", "xy", "cran", "Florian's", "ifelse", "Vectorize", "setminus", "lexing")
 source("knitr-options.R")
 source("spelling-check.R")
 ```
@@ -215,6 +215,300 @@ seq_along(5:7)
 </details>
 <br>
 
+## Useful `R` functions
+
+Now that you have seen common mistakes in `R` and learned how to avoid them, we will take a look at some useful base `R` functions. Some of them may be known to you, but we still recommend that you inspect the list.
+
+### General {.unnumbered}
+
+- `?topic` : Open the documentation on a topic (typically a function or data set) in the **Files** pane. Equivalent to `help(topic)`.
+- `example(topic)` : Run all R code from the *Examples* section of `R`'s online help. 
+- `str(object)` : Compactly display the structure of an `R` object. Alternative to `summary()`. 
+    ```{r, tidy='styler', collapse=TRUE}
+    str(iris) 
+    ```
+- `ls()` : List the names of the objects in the environment.
+- `rm(list = ls())` : Remove all objects from the environment.
+- `methods(generic.function)` : List all available implementations of a generic function (see the next Section [Data structures in `R`] for details on methods).
+- `methods(class = [class])` : List all available methods implemented for a particular class (see the next Section [Data structures in `R`] for details on methods).
+- `do.call(fct, args)` : Call a function `fct` with a list of arguments. 
+    ```{r, tidy='styler', collapse=TRUE}
+    
+    (list_of_int <- as.list(1:5))
+    do.call('c', list_of_int)
+    do.call('rbind', list_of_int)
+    ```
+
+### Sequence and vector operations {.unnumbered}
+
+- `seq(from, to)` : Generate regular sequences (see also the previous section [Common mistakes to avoid]). Can be used in different ways: By specifying `by`(the increment of the sequence), `length.out` (the desired length of the sequence), or `along.with` (taking the length from the length of this argument). Note that
+`seq_len(length.out)` is a shortcut for `seq(from = 1, to = length.out, by = 1)`, and that
+`seg_along(along.with)` is a shortcut for `seq(from = 1, to = length(along.with), by = 1)`.
+    ```{r, tidy='styler', collapse=TRUE}
+    seq(1, 10, by = 2)
+    seq(1, 100, length.out = 10)
+    
+    seq(from = 1, to = 5, by = 1)
+    seq_len(5)
+    
+    seq_along(21:24)
+    seq(from = 1, to = length(21:24), by = 1)
+    ```
+- `rep(x)` : Replicate the values in `x`. Can be used in different ways: By specifying `times` (the number of times to repeat each element or the whole vector), `length.out` (the desired length of the output vector), or `each` (the number of times each element of `x` is repeated). Note that
+`rep_len(x, length.out)` is a shortcut for `rep(x, length.out = length.out)`, and that
+`rep.int(x, times)` is a shortcut for `rep(x, times = times)`.
+    ```{r, tidy='styler', collapse=TRUE}
+    rep(1:4, times = 2)
+    rep.int(1:4, 2)
+    rep(1:4, times = 4:1)
+    rep(1:4, length.out = 6)
+    rep_len(1:4, 6)
+    rep(1:4, each = 2)
+    ```
+- `replicate(n, expr)` : Repeated evaluation of an expression. Wrapper for the common use of `sapply`. 
+    ```{r, tidy='styler', collapse=TRUE}
+    replicate(5, rnorm(10))
+    ```
+    If you unsure about how to use the different \*apply functions in `R`, we recommend to take a look at [this](https://stackoverflow.com/questions/3505701/grouping-functions-tapply-by-aggregate-and-the-apply-family) nice Q/A on grouping functions and the \*apply family on Stack Overflow, along with [Chapter 16](https://bookdown.org/rdpeng/rprogdatascience/loop-functions.html) from the book *R Programming for Data Science* by Roger Peng about looping.
+- `sort(x)` : Sort or order a vector or factor into ascending or descending order. 
+- `order(x)` : Get a permutation that rearranges `x` into ascending or descending order. In the case of ties in the first vector, values in the second are used to break the ties.
+    ```{r, tidy='styler', collapse=TRUE}
+    order(c(1, 6, 8, 2, 2))
+    order(c(1, 6, 8, 2, 2), c(0, 0, 0, 2, 1))
+    ```
+- `rank(x)` : Get the sample ranks of the values in a vector `x`.
+    ```{r, tidy='styler', collapse=TRUE}
+    rank(c(1, 6, 8, 2, 2))
+    rank(c(1, 6, 8, 2, 2), ties.method = "first")
+    ```
+- `which.min(x)` and `which.max()` : Determine the index of the minimum or maximum of a numeric vector `x`. 
+- `unique(x)` : Remove duplicated elements/rows from a vector, data frame or array like `x`. 
+- `table(...)` : Build a contingency table of the counts of each combination of factor levels.
+    ```{r, tidy='styler', collapse=TRUE}
+    table(rep(1:4, 4:1))
+    table(A = c(1, 1, 1, 2, 2), B = c(1, 2, 1, 2, 1))
+    ```
+- `sample()` : Take a sample of the specified size from the elements of `x` either with or without replacement. Note `sample(x)` is a shortcut for `sample(1:x, size = x)`, when `x` has length one, is numeric and positive. 
+    ```{r, tidy='styler', collapse=TRUE}
+    sample(10)
+    sample(3:10, 5)
+    sample(3:10, 50, replace = TRUE)
+    ```
+- `round(x)` : Round the value in the first argument to the specified number of decimal places. Rounding to a negative number of digits means rounding to a power of ten, i.e.
+    ```{r, tidy='styler', collapse=TRUE}
+    round(12.568, -1)
+    round(12.568, -2)
+    ```
+- `pmin()` and `pmax()` : Return the regular or parallel maxima and minima of the input values. 
+    ```{r, tidy='styler', collapse=TRUE}
+    (a <- 1:4)
+    (b <- 5:2)
+    pmin(a, b)
+    pmax(a, b)
+    ```
+- `outer(X, Y, fun)` : Compute the outer product of the arrays `X` and `Y` using the function `fun`. The result is an array of dimension `c(dim(X), dim(Y))` where each element $A_{xy}$ is equal to $fun(X_x, Y_y)$.
+    ```{r, tidy='styler', collapse=TRUE}
+    outer(1:4, 1:3, '+')
+    ```
+- `expand.grid()` : Create a data frame from all combinations of the supplied vectors or factors.
+    ```{r, tidy='styler', collapse=TRUE}
+    expand.grid(a, b)
+    ```
+- `match()` : Return a vector of positions of (first) matches of the first argument in the second argument
+    ```{r, tidy='styler', collapse=TRUE}
+    (y <- sample(20:25, 10, replace = TRUE))
+    match(y, 20:25)
+    ```
+- `%in%` : Return a logical vector indicating if there is a match or not for the left operand.
+    ```{r, tidy='styler', collapse=TRUE}
+    y %in% 20:22
+    ```
+- `intersect(x, y)` : Perform set intersection ($x \cap y$).
+    ```{r, tidy='styler', collapse=TRUE}
+    intersect(c("a", "b", "c", "d"), c("c", "d", "e"))
+    ```
+- `union(x, y)` : Perform set union ($x \cup y$).
+    ```{r, tidy='styler', collapse=TRUE}
+    union(c("a", "b", "c", "d"), c("c", "d", "e"))
+    ```
+- `setdiff(x, y)` : Perform set asymmetric difference ($x \setminus y$).
+    ```{r, tidy='styler', collapse=TRUE}
+    setdiff(c("a", "b", "c", "d"), c("c", "d", "e"))
+    ```
+
+### Character operations {.unnumbered}
+
+- `paste()` : Concatenate vectors after converting to character. To separate the different terms with a special character string, specify the argument `sep`. To separate the results with a character string, specify the argument `collapse`. Note that `paste0(...)` is equivalent to `paste(..., sep = "")`.
+    ```{r, tidy='styler', collapse=TRUE}
+    paste("I", "am", "me")
+    paste0("I", "am", "me")
+    paste0("PC", 1:5)
+    paste0("PC", 1:5, collapse = " + ")
+    ```
+- `list.files(path, pattern)` : Produce a character vector of the names if files or directories in the names directory. If `pattern` is specified, only file names with match the regular expression defined in `pattern` will be returned. 
+    ```{r, tidy='styler', collapse=TRUE}
+    list.files(pattern = "\\.Rmd$", full.names = TRUE)
+    ```
+- `sub(pattern, replacement, x)` : Perform replacement of the first match
+    ```{r, tidy='styler', collapse=TRUE}
+    sub("James", "Mr.", "James Bond")
+    ```
+- `split(x, f)` :  Divide the data in the vector `x` into the groups defined by `f`.  
+    ```{r, tidy='styler', collapse=TRUE}
+    split(1:12, rep(letters[1:3], 4))
+    ```
+
+### Logical operators {.unnumbered}
+
+- `|` : Logical OR. Performs element-wise comparisons in much the same was as arithmetic operators. 
+    ```{r, tidy='styler', collapse=TRUE, error=TRUE}
+    TRUE | stop("Both conditions are evaluated")
+    ```
+- `||` : Logical OR. Evaluation is performed left to right, proceeding only until the result is determined. Hence, if the first condition is `TRUE`, the second condition is not evaluated. 
+    ```{r, tidy='styler', collapse=TRUE, error=TRUE}
+    TRUE || stop("The first condiciton is TRUE, therefore the second condition is not evaluated...")
+    
+    FALSE || stop("The first condiciton is FALSE, therefore the second condition is evaluated...")
+    ```
+    Important note: `||` can only be used with vectors holding one element. Using vectors of more than one element in `||` will return an error in newer `R` versions. However, in `R` versions < 4.3.0, using vectors of more than one element in `||` will simply evaluate the first element and not raise a warning!
+    ```{r, tidy='styler', collapse=TRUE, error=TRUE}
+    c(TRUE, FALSE, TRUE, TRUE) || c(FALSE, TRUE, TRUE, FALSE)
+    ```
+- `&` : Logical AND. Performs element-wise comparisons in much the same was as arithmetic operators.
+    ```{r, tidy='styler', collapse=TRUE}
+    c(TRUE, FALSE, TRUE, TRUE) & c(FALSE, TRUE, TRUE, FALSE) 
+    ```
+- `&&` : Logical AND. Evaluation is performed left to right, proceeding only until the result is determined. Hence, if the first condition is `FALSE`, the second condition is not evaluated.
+    ```{r, tidy='styler', collapse=TRUE, error=TRUE}
+    FALSE && stop("The first condiciton is FALSE, therefore the second condition is not evaluated...")
+    
+    TRUE && stop("The first condiciton is TRUE, therefore the second condition is evaluated...")
+    ```
+    Important note: `&&` can only be used with vectors holding one element. Using vectors of more than one      element in `&&` will return an error in newer `R` versions. However, in `R` versions < 4.3.0, using         vectors of more than one element in `&&` will simply evaluate the first element and not raise a warning!
+    ```{r, tidy='styler', collapse=TRUE, error=TRUE}
+    c(TRUE, FALSE, TRUE, TRUE) && c(FALSE, TRUE, TRUE, FALSE) 
+    ```
+- `ifelse(test, yes, no)` : Conditional element selection. `yes` will be evaluated if and only if any element of `test` is `TRUE`, and analogously for `no`. 
+    ```{r, tidy='styler', collapse=TRUE}
+    round(x <- rnorm(10), digits = 5)
+    ifelse(x > 0, x, -x)
+    ```
+    `ifelse()` can be used to handle special cases in a vectorized way, or it can be used to construct a        vector by doing element-wise comparisons of two vectors. `ifelse()` is **NOT** a shortcut for an if-else     statement! `ifelse()` always returns a vector of the same length and attributes as the condition. Hence,     if the length of the input vector is one, `ifelse()` only returns the first element of the returning        vector:
+    ```{r, tidy='styler', collapse=TRUE}
+    ifelse(FALSE, 0, 1:5)
+    ```
+    If the input is of type `integer`, `ifelse()` returns a vector of type integer:
+    ```{r, tidy='styler', collapse=TRUE}
+    ifelse(1, Sys.Date() , 0)
+    ```
+    If you want a more compact way of writing a standard if-else statement, you can use the function            ``if`()`:
+    ```{r, tidy='styler', collapse=TRUE}
+    `if`(FALSE, 0, 1:5)
+    `if`(TRUE, Sys.Date(), 1:5)
+    ```
+    In simple cases, however, the standard if-else statement can also be written very compact:
+    ```{r, tidy='styler', collapse=TRUE}
+    if (FALSE) 0 else 1:5
+    ```
+    To learn more about the behavior of `ifelse()` and why it is easily misunderstood, read Florian's
+    blog post [*On the ifelse function*](https://privefl.github.io/blog/On-the-ifelse-function/).
+
+You can find many other useful base `R` functions in [this](https://github.com/peterhurford/adv-r-book-solutions/blob/master/03_vocab/functions.r) GitHub repository or in [this](https://cran.r-project.org/doc/contrib/Kauffmann_aide_memoire_R.pdf) french documentation on cran.
+
+### Useful non-base R functions {.unnumbered}
+
+The following functions are not part of base `R`, but they are still very useful:
+
+- `skimr::skim(data.frame)` : Quickly provide a broad overview of a data frame. Alternative to `summary()`. 
+    ```{r, tidy='styler', collapse=TRUE}
+    skimr::skim(iris)
+    ```
+- `glue::glue()` : Format and interpolate a string. Expressions enclosed by braces are evaluated as `R` code.
+    ```{r, tidy='styler', collapse=TRUE}
+    me <- "Florian"
+    glue::glue("I am {me}")
+    ```
+- `gtools::mixedsort(x)` : Sort character strings containing embedded numbers so that the numbers are numerically sorted rather than sorted by character value.
+
+    ```{r, tidy='styler', collapse=TRUE}
+    sort(c("a1", "a2", "a10"))
+    gtools::mixedsort(c("a1", "a2", "a10"))
+    ```
+
+- `dplyr::case_when()` : Vectorize multiple `ifelse()` statements. Each case is evaluated sequentially and the first match for each element determines the corresponding value in the output vector.
+    ```{r, tidy='styler', collapse=TRUE}
+    round(x <- c(runif(20, min = 15.0, max = 50.0), NA), digits = 4)
+    dplyr::case_when(x < 16.0 ~ "Severely Underweight",
+                     x <= 18.4 ~ "Underweight",
+                     x <= 24.9 ~ "Normal",
+                     x <= 29.9 ~ "Overweight",
+                     x <= 34.9 ~ "Moderate Obese",
+                     x <= 39.9 ~ "Severely Obese",
+                     x >= 40.0 ~ "Morbidly Obese",
+                     .default = as.character(NA))
+    ```
+
+### Exercises {.unnumbered}
+
+1. Use `sample()`, `rep_len()` and `split()` to make a function that randomly splits some indices in a list of `K` groups of indices (like for cross-validation). [Which are the special cases that you should consider?]
+
+    ```{r}
+    advr38pkg::split_ind(1:40, 3)
+    ```
+
+1. Use `replicate()` and `sample()` to get a 95% confidence interval (using bootstrapping) for the mean of the following vector:
+
+    ```{r}
+    set.seed(1)
+    (x <- rnorm(10))
+    mean(x)
+    ```
+   
+    Expected output (approximately): 
+    
+    ```{r, echo=FALSE}
+    quantile(replicate(1e6, mean(sample(x, replace = TRUE))), probs = c(0.025, 0.975))
+    ```
+
+1. Use `match()` and some special accessor to add a column "my_val" to the data `my_mtcars` by putting the corresponding value of the column specified in "my_col". [Can your solution be used for any number of column names?]
+
+    ```{r}
+    my_mtcars <- mtcars[c("mpg", "hp")]
+    my_mtcars$my_col <- sample(c("mpg", "hp"), size = nrow(my_mtcars), replace = TRUE)
+    head(my_mtcars)
+    ```
+
+    Expected result (head):
+    
+    ```{r, echo=FALSE}
+    ind <- cbind(seq_len(nrow(my_mtcars)), 
+                 match(my_mtcars[["my_col"]], names(my_mtcars)))
+    my_mtcars$my_val <- my_mtcars[ind]
+    head(my_mtcars)
+    ```
+
+1. In the following data frame (recall that a data frame is also a list), for the first 3 columns, replace letters by corresponding numbers based on the `code`:
+
+    ```{r}
+    df <- data.frame(
+      id1 = c("a", "f", "a"),
+      id2 = c("b", "e", "e"), 
+      id3 = c("c", "d", "f"),
+      inter = c(7.343, 2.454, 3.234),
+      stringsAsFactors = FALSE
+    )
+    df
+    (code <- setNames(1:6, letters[1:6]))
+    ```
+    
+    Expected result:
+    
+    ```{r, echo=FALSE}
+    df[-4] <- lapply(df[-4], function(col) code[col])
+    df
+    ```
+
+
 ## Data structures in `R`
 
 `R` provides a number of data structures, i.e. particular ways of organizing data to make their use more effective. These data structures are referred to as objects. In this chapter, we will take a look at the most frequently used objects in `R`. 
@@ -310,7 +604,7 @@ Line 5: The logical vector `logi_vec` can be coerced to a character vector, but 
 
 In the previous section, we have introduced the most simple data structure in `R`: atomic vectors. Recall that atomic vectors are one dimensional and homogeneous, which means that all components must be of the same base type (`logical`, `integer`, `double`, or `character`). `R` provides another one-dimensional data structure; generic vectors, better known as lists. The important difference between atomic vectors and generic vectors/lists is that lists can contain different types, i.e. lists are heterogeneous.
 
-All vectors (i.e. atomic and generic) can have one or more *attributes*. Attributes are name-value pairs that attach metadata to an object. They can be accessed and modified with `attributes()` (to get a list of all attributes) and `attr()` (to access individual components). By adding specific attributes to vectors, we obtain other important data structures like matrices, arrays, and data frames. 
+All vectors (i.e. atomic and generic) can have one or more *attributes*. Attributes are name-value pairs that attach metadata to an object. They can be accessed and modified with `attributes()` (to get a list of all attributes) and `attr()` (to access a particular component). By adding specific attributes to vectors, we obtain other important data structures like matrices, arrays, and data frames. 
 
 Two-dimensional matrices and multi-dimensional arrays are obtained from atomic vectors by adding the dimensions attribute `dim`:
 ```{r, tidy='styler', collapse=TRUE}
@@ -384,15 +678,49 @@ b
 setNames(1:3, c("a", "b", "c"))
 ```
 
-The `class` attribute helps `R` to apply the correct function to an object. When a generic function (such as `summary()`) is applied to an object with a `class` attribute (for example `data.frame`) `R` tries to find the class-specific function (e.g. `summary.data.frame()`). If the class-specific function is available, it is applied to the object. If the class name does not produce a suitable function, the default function (e.g. `summary.default()`) is used. 
+The `class` attribute helps `R` to apply the correct function to an object. When a generic function (such as `summary()`) is applied to an object with a `class` attribute (for example `data.frame`) `R` tries to find the class-specific function (e.g. `summary.data.frame()`). A class-specific function is called method. If the class-specific function is available, it is applied to the object. If the class name does not produce a suitable function, the default function (e.g. `summary.default()`) is used. 
+Please note that an object can have many classes. In that case, `R` will go through all classes, one at a time, and use the first method that is available. For example, when applying a function `fct()` on the object `tbl` specified below, `R` will look for the function `fct.tbl_df()` first. If the function exists, it will be applied. If not, `R` will look for the function `fct.tbl()`. If `fct.tbl()` is defined, it will be applied to `tbl`. Otherwise, `R` will look for the function `fct.data.frame()`. If the function exists, it will be applied. If not, `R` will apply `fct.default()`.
+```{r, tidy='styler', collapse=TRUE}
+tbl <- tibble::tibble(first = "James", last = "Bond")
+class(tbl)
+```
+
+If you want to find all methods that can be used on an object of a particular class, use `methods(class = [class])`, i.e.
+```{r, tidy='styler', collapse=TRUE}
+methods(class = "data.frame")
+```
 
 The `row.names` attribute is similar to the `names` attribute, but instead of labelling the variables it labels the observations/cases/rows. 
 
-Besides `dim`, `names`, `class`, and `row.names`, `R` also provides some other attributes that we will not discuss here. 
+Besides `dim`, `names`, `class`, and `row.names`, `R` also provides some other attributes that we will not discuss here.
 We want to note, however, that you can define your own attributes using the function structure:
 ```{r, tidy='styler', collapse=TRUE}
 x <- structure(1:10, my_own_attr = "Hello world!")
 attributes(x)
+```
+If you simply want to define your own class, however, it is easier to use the function `class()` directly on the object:
+```{r, tidy='styler', collapse=TRUE}
+(agent007 <- list(first = "James", last = "Bond"))
+class(agent007) <- "Person"
+
+attr(agent007, "class")
+```
+Once you have created your own class, you can define class-specific functions as described above. A class-specific function is simply a function called `<method_name>.<class_name>()` For the object `agent007` of class `Person`, we may want to define a special `print`function: 
+```{r, tidy='styler', collapse=TRUE}
+print.Person <- function(x) {
+  print(glue::glue("My name is {x$last}, {x$first} {x$last}."))
+  invisible(x)
+}
+
+agent007
+```
+Once the method has been defined, each object of class `Person` will be printed in that way (unless we specifically ask `R` to use the default method):
+```{r, tidy='styler', collapse=TRUE}
+(me <- list(first = "Florian", last = "Privé"))
+class(me) <- "Person"
+
+me
+print.default(me)
 ```
 
 In most cases, you should not simply remove an attribute from an object, unless you know what you are doing. Otherwise you may end up with very strange results. For example, if you remove the attribute `levels` from a factor, `R` will no longer be able to perform simple operations on that factor:
@@ -489,7 +817,7 @@ Data frames can be subsetted like a one-dimensional structure (where it behaves 
     ```
 
     Besides the fact that the `$` accessor cannot be used on atomic vectors, matrices or arrays, the main       difference between `[[` and `$` is that `$` does not allow computed indices:
-    ```{r, tidy='styler', collapse=TRUE, error=TRUE}
+    ```{r, collapse=TRUE, error=TRUE}
     l[[2 - 1]]
     l$(2-1)
     ```
@@ -546,194 +874,101 @@ Ex: 1 2 3 4 5 6 7 8 9 10 -> expected outcome: 3 7 11 15 19<br>
     decode[mat + 1]
     ```
 
-## Useful R base functions
-
-In this section, I present some useful R base functions (also see [this comprehensive list in French](https://cran.r-project.org/doc/contrib/Kauffmann_aide_memoire_R.pdf) and [this one in English](https://github.com/peterhurford/adv-r-book-solutions/blob/master/03_vocab/functions.r)):
-
-### General
-
-```{r, eval=FALSE}
-# To get some help
-?topic
-
-# Run code from the example section
-example(sum)
-```
-
-```{r}
-# Structure overview
-str(iris)  ## skimr::skim(iris) is also very useful
-
-# List objects in the environment
-ls()
-
-# Remove objects from the environment
-rm(list = ls())  ## remove all objects in the global environment
-```
-
-```{r}
-# For a particular method, list available implementations for different classes 
-methods(summary)
-# List methods available for a particular class
-methods(class = "lm")
-```
-
-```{r}
-# Call a function with arguments as a list
-(list_of_int <- as.list(1:5))
-do.call('c', list_of_int)
-```
-
-
-### Sequence and vector operations
-
-```{r}
-1:10  ## of type integer
-seq(1, 10, by = 2)  ## of type double
-seq(1, 100, length.out = 10)
-seq_len(5)
-seq_along(21:24)
-rep(1:4, 2)
-rep(1:4, each = 2)
-rep(1:4, 4:1)
-rep_len(1:3, 8)
-replicate(5, rnorm(10))  ## How to use a multiline expression?
-```
-
-```{r}
-sort(c(1, 6, 8, 2, 2))
-order(c(1, 6, 8, 2, 2), c(0, 0, 0, 2, 1))
-rank(c(1, 6, 8, 2, 2))
-rank(c(1, 6, 8, 2, 2), ties.method = "first")
-sort(c("a1", "a2", "a10"))
-gtools::mixedsort(c("a1", "a2", "a10"))  ## not in base, but useful
-which.max(c(1, 5, 3, 6, 2, 0))
-which.min(c(1, 5, 3, 6, 2, 0))
-unique(c(1, NA, 2, 3, 2, NA, 3))
-table(rep(1:4, 4:1))
-table(A = c(1, 1, 1, 2, 2), B = c(1, 2, 1, 2, 1))
-sample(10)
-sample(3:10, 5)
-sample(3:10, 50, replace = TRUE)
-```
-
-```{r}
-round(x <- runif(10, max = 100))  ## 10 random numbers between 0 and 100
-round(x, digits = 2)
-round(x, -1)
-pmin(1:4, 4:1)
-pmax(1:4, 4:1)
-outer(1:4, 1:3, '+')
-expand.grid(param1 = c(5, 50), param2 = c(1, 3, 10))
-```
-
-Also see [this nice Q/A on grouping functions and the *apply family](https://stackoverflow.com/questions/3505701/grouping-functions-tapply-by-aggregate-and-the-apply-family) and [this book chapter about looping](https://bookdown.org/rdpeng/rprogdatascience/loop-functions.html).
-
-### Character operations
-
-```{r}
-paste("I", "am", "me")
-paste0("test", 0)
-paste0("PC", 1:10)
-me <- "Florian"
-glue::glue("I am {me}")  ## not in base, but so useful
-(x <- list.files(pattern = "\\.Rmd$", full.names = TRUE))
-sub("\\.Rmd$", ".pdf", x)
-(y <- sample(letters[1:4], 10, replace = TRUE))
-match(y, letters[1:4])
-y %in% letters[1:2]
-split(1:12, rep(letters[1:3], 4))
-intersect(letters[1:4], letters[3:5])
-union(letters[1:4], letters[3:5])
-setdiff(letters[1:4], letters[3:5])
-```
-
-### Logical operators
-
-```{r, error=TRUE}
-TRUE | stop("will go there")
-TRUE || stop("won't go there")  ## won't evaluate second condition if first one is TRUE
-c(TRUE, FALSE, TRUE, TRUE) & c(FALSE, TRUE, TRUE, FALSE) 
-c(TRUE, FALSE, TRUE, TRUE) && c(FALSE, TRUE, TRUE, FALSE)  ## /!\ no warning in prior R versions
-```
-
-```{r}
-(x <- rnorm(10))
-ifelse(x > 0, x, -x)  # try to find two other equivalents
-```
-
-Beware with `ifelse()` (learn more [there](https://privefl.github.io/blog/On-the-ifelse-function/)), for example 
-
-```{r}
-ifelse(FALSE, 0, 1:5)
-`if`(FALSE, 0, 1:5)
-if (FALSE) 0 else 1:5
-```
-
-### Exercises
-
-1. Use `sample()`, `rep_len()` and `split()` to make a function that randomly splits some indices in a list of `K` groups of indices (like for cross-validation). [Which are the special cases that you should consider?]
-
-    ```{r}
-    advr38pkg::split_ind(1:40, 3)
-    ```
-
-1. Use `replicate()` and `sample()` to get a 95% confidence interval (using bootstrapping) for the mean of the following vector:
-
-    ```{r}
-    set.seed(1)
-    (x <- rnorm(10))
-    mean(x)
-    ```
-   
-    Expected output (approximately): 
-    
-    ```{r, echo=FALSE}
-    quantile(replicate(1e6, mean(sample(x, replace = TRUE))), probs = c(0.025, 0.975))
-    ```
-
-1. Use `match()` and some special accessor to add a column "my_val" to this data `my_mtcars` by putting the corresponding value of the column specified in "my_col". [Can your solution be used for any number of column names?]
-
-    ```{r}
-    my_mtcars <- mtcars[c("mpg", "hp")]
-    my_mtcars$my_col <- sample(c("mpg", "hp"), size = nrow(my_mtcars), replace = TRUE)
-    head(my_mtcars)
-    ```
-
-    Expected result (head):
-    
-    ```{r, echo=FALSE}
-    ind <- cbind(seq_len(nrow(my_mtcars)), 
-                 match(my_mtcars[["my_col"]], names(my_mtcars)))
-    my_mtcars$my_val <- my_mtcars[ind]
-    head(my_mtcars)
-    ```
-
-1. In the following data frame (recall that a data frame is also a list), for the first 3 columns, replace letters by corresponding numbers based on the `code`:
-
-    ```{r}
-    df <- data.frame(
-      id1 = c("a", "f", "a"),
-      id2 = c("b", "e", "e"), 
-      id3 = c("c", "d", "f"),
-      inter = c(7.343, 2.454, 3.234),
-      stringsAsFactors = FALSE
-    )
-    df
-    (code <- setNames(1:6, letters[1:6]))
-    ```
-    
-    Expected result:
-    
-    ```{r, echo=FALSE}
-    df[-4] <- lapply(df[-4], function(col) code[col])
-    df
-    ```
-
 
 ## Environments and scoping
 
-Lexical scoping determines where to look for values, not when to look for them. R looks for values when the function is run, not when it’s created. This means that the output of a function can be different depending on objects outside its environment:
+The final section of this chapter is about environments and scoping. These concepts may be confusing in the beginning; if you are still puzzled about environments and scoping at the end of this section, don't get frustrated. We will provide some references to other materials that you can read at the end of this section.
+
+Let us start with environments. Environments associate a set of names to a set of environments. You can think of an environment as a list, but with four important exceptions:
+
+1. Every name in an environment is unique.
+2. The names in an environment are not ordered.
+3. Every environment has a parent environment.
+4. Environments have reference semantics.
+
+Let us take a closer look at exception 3: *Every environment has a parent environment*. 
+
+Scoping is the set of rules that determines how `R` finds the value associated with a name. The set of rules implemented automatically at the language level is *lexical scoping* . The *lexical* in lexical scoping comes from the computer science term *lexing*, which is the process of breaking down a string into meaningful pieces that the programming language can understand. 
+In short, `R`'s lexical scoping follows these four primary rules;
+
+- Dynamic lookup: 
+
+In `R`, dynamic lookup focuses on where to look for values, not when to look for them. In other words, `R` looks for values when the function is run, not when the function is created. For example, defining the following function won't throw and error; even if `x` has not been defined yet:
+```{r eval=FALSE, tidy='styler', collapse=TRUE}
+fct <- function() {x + 1}
+```
+But once we call `fct()`, `R` tries to look for `x` and returns an error, if `x` does not exist:
+```{r eval=FALSE, tidy='styler', collapse=TRUE, error=TRUE}
+fct()
+```
+
+
+- A fresh start:
+
+Every time a function is called, a new environment is created to host its execution. This means that each invocation is completely independent of all prior invocations:
+```{r eval=FALSE, tidy='styler', collapse=TRUE}
+fct <- function() {
+  if (!exists("x")) x <- 1 else x <- x + 1
+  x
+}
+
+fct()
+fct()
+```
+
+
+- Functions versus variables:
+
+Whenever a function and a non-function in two different environments share the same name, `R` ignores non-function objects when looking for that value:  
+```{r eval=FALSE, tidy='styler', collapse=TRUE}
+f1 <- function(x) x + 10
+
+f2 <- function() {
+  
+  f1 <- 30
+  f1(f1)
+}
+
+f2()
+```
+
+- Name masking
+
+Name masking is the basic principle of lexical scoping. It controls that names defined inside a function mask names defined outside that function. 
+
+
+
+The four rules defining `R`'s lexical scoping also means that output of a function may depend on the objects defined outside of the function:
+```{r eval=FALSE, tidy='styler', collapse=TRUE, error=TRUE}
+x <- 15
+fct()
+
+x <- 10
+fct()
+```
+Conversely, lexical scoping can also lead to a function being independent of the objects outside of the function:
+```{r eval=FALSE, tidy='styler', collapse=TRUE}
+fct <- function() {
+  x <- 5
+  x + 1
+}
+
+x <- 15
+fct()
+```
+We generally want to avoid this behavior, as it can lead to errors and misunderstandings. Furthermore, lexical scoping may lead to erroneous outputs. For example, if you make a spelling mistake in your code and write `y` instead of `z` in the body of the function, the output will not be as expected:
+```{r eval=FALSE, tidy='styler', collapse=TRUE}
+fct <- function(x, z) {
+  x^y # instead of x^z
+}
+
+x <- 2
+y <- 3
+z <- x + y
+fct(x, z)
+```
+
+This means that the output of a function can be different depending on objects outside its environment:
 
 ```{r}
 h <- function() {
@@ -788,88 +1023,7 @@ list(a = 2, b = 3)
 
 Learn more about [functions](https://bookdown.org/rdpeng/rprogdatascience/functions.html) and [scoping rules of R](https://bookdown.org/rdpeng/rprogdatascience/scoping-rules-of-r.html) with the [R Programming for Data Science book](https://bookdown.org/rdpeng/rprogdatascience/).
 
-
-## Attributes and classes
-
-Attributes are metadata associated with an object. You can get/set the list of attributes with `attributes()` or one particular attribute with `attr()`.
-
-```{r}
-attributes(iris)
-class(iris)
-attr(iris, "row.names")
-```
-
-You can use `structure()` to create an object and add some arbitrary attributes.
-
-```{r}
-structure(1:10, my_fancy_attribute = "blabla")
-```
-
-There are also some attributes with specific accessor functions to get and set values. For example, use `names(x)`, `dim(x)` and `class(x)` instead of `attr(x, "names")`, `attr(x, "dim")` and `attr(x, "class")`.
-
-***
-
-```{r}
-class(mylm <- lm(Sepal.Length ~ ., data = iris))
-```
-
-I've just fitted a linear model in order to predict the sepal length variable of the `iris` dataset based on the other variables. Using `lm()` gets me an object of class `lm`. What are the methods I can use for this object?
-
-```{r}
-methods(class = class(mylm))
-summary(mylm)
-plot(mylm)
-```
-
-***
-
-R has the easiest way to create a class and to use methods on objects of this class; it is called S3. If you want to know more about the other types of classes, see the [Advanced R book](https://adv-r.hadley.nz/).
-
-```{r}
-agent007 <- list(first = "James", last = "Bond")
-agent007
-```
-
-```{r}
-class(agent007) <- "Person"  ## "agent007" is now an object of class "Person"
-# Just make a function called <method_name>.<class_name>()
-print.Person <- function(x) {
-  print(glue::glue("My name is {x$last}, {x$first} {x$last}."))
-  invisible(x)
-}
-
-agent007
-```
-
-```{r}
-# Constructor of class as simple function
-Person <- function(first, last) {
-  structure(list(first = first, last = last), class = "Person")
-}
-(me <- Person("Florian", "Privé"))
-```
-
-An object can have many classes:
-
-```{r}
-Worker <- function(first, last, job) {
-  obj <- Person(first, last)
-  obj$job <- job
-  class(obj) <- c("Worker", class(obj))
-  obj
-}
-print.Worker <- function(x) {
-  print.Person(x) 
-  print(glue::glue("I am a {x$job}."))
-  invisible(x)
-}
-
-(worker_007 <- Worker("James", "Bond", "secret agent"))
-(worker_me <- Worker("Florian", "Privé", "researcher"))
-```
-
-
-Learn more with the [Advanced R book](https://adv-r.hadley.nz/).
+http://adv-r.had.co.nz/Functions.html#lexical-scoping
 
 ## Summary
 

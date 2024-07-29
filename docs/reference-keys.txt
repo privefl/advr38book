@@ -125,3 +125,10 @@ objects-and-attributes
 exercise-2
 fig:unnamed-chunk-50
 exercises-3
+fig:unnamed-chunk-71
+useful-r-functions
+fig:unnamed-chunk-73
+fig:unnamed-chunk-79
+non-base-r-functions
+tab:unnamed-chunk-60
+fig:unnamed-chunk-99
