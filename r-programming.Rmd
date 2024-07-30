@@ -96,6 +96,9 @@ dplyr::near(0.1 + 0.2, 0.3)
 dplyr::near(0.1 + 0.2, 0.3, tol = 1e-17) 
 ```
 
+```{r, tidy='styler', collapse=TRUE, echo=FALSE}
+rm(list = ls())
+```
 
 ### The `...` argument
 
@@ -138,6 +141,10 @@ max(c(-1, 5, 118, NA), na.rm = TRUE)
 ```
 
 If you want to know what other arguments `...` represents, you can look in the function documentation. The function `plot()`, for example, takes the arguments `...`. When you read the function documentation (by running `?plot`), you can see that `...` represents *other graphical parameters*, and the documentation refers to the documentation for graphical parameters for details.
+
+```{r, tidy='styler', collapse=TRUE, echo=FALSE}
+rm(list = ls())
+```
 
 ### Others
 
@@ -215,6 +222,10 @@ seq_along(5:7)
 </details>
 <br>
 
+```{r, tidy='styler', collapse=TRUE, echo=FALSE}
+rm(list = ls())
+```
+
 ## Useful `R` functions
 
 Now that you have seen common mistakes in `R` and learned how to avoid them, we will take a look at some useful base `R` functions. Some of them may be known to you, but we still recommend that you inspect the list.
@@ -233,7 +244,6 @@ Now that you have seen common mistakes in `R` and learned how to avoid them, we 
 - `methods(class = [class])` : List all available methods implemented for a particular class (see the next Section [Data structures in `R`] for details on methods).
 - `do.call(fct, args)` : Call a function `fct` with a list of arguments. 
     ```{r, tidy='styler', collapse=TRUE}
-    
     (list_of_int <- as.list(1:5))
     do.call('c', list_of_int)
     do.call('rbind', list_of_int)
@@ -447,6 +457,10 @@ The following functions are not part of base `R`, but they are still very useful
                      x >= 40.0 ~ "Morbidly Obese",
                      .default = as.character(NA))
     ```
+
+```{r, tidy='styler', collapse=TRUE, echo=FALSE}
+rm(list = ls())
+```
 
 ### Exercises {.unnumbered}
 
@@ -847,6 +861,9 @@ Before we move on to some exercises, we have two more comments.
     y[1, , drop = FALSE]
     ```
 
+```{r, tidy='styler', collapse=TRUE, echo=FALSE}
+rm(list = ls())
+```
 
 ### Exercises {.unnumbered}
 
@@ -879,34 +896,69 @@ Ex: 1 2 3 4 5 6 7 8 9 10 -> expected outcome: 3 7 11 15 19<br>
 
 The final section of this chapter is about environments and scoping. These concepts may be confusing in the beginning; if you are still puzzled about environments and scoping at the end of this section, don't get frustrated. We will provide some references to other materials that you can read at the end of this section.
 
-Let us start with environments. Environments associate a set of names to a set of environments. You can think of an environment as a list, but with four important exceptions:
+Let us dive right into it: <br>
+Environments associate a set of names with a set of values. You can think of an environment as a list, but with four important exceptions:
 
 1. Every name in an environment is unique.
 2. The names in an environment are not ordered.
 3. Every environment has a parent environment.
 4. Environments have reference semantics.
 
-Let us take a closer look at exception 3: *Every environment has a parent environment*. 
+Let us take a closer look at exception 3: *Every environment has a parent environment*. <br>
+One environment doesn't follow that rule: the *empty* environment. The empty environment is the ultimate ancestor of all other environments. All other environments have parents. Most environments have grandparents (the parent's parent), and the ancestors of an environment include all parent environments up to the empty environment. When `R` is looking for a variable, it will start looking for that variable inside the current environment. If `R` cannot find the variable in the current environment, it will look in the parent environment. If the variable doesn't exist in the parent environment either, `R` will look in the parent environment of the parent, and so on. Let us consider an example to make this point clearer.
+```{r, tidy='styler', collapse=TRUE}
+h <- function() {
+  x <- 10
+  f <- function() {
+    x + 1
+  }
+  f()
+}
 
-Scoping is the set of rules that determines how `R` finds the value associated with a name. The set of rules implemented automatically at the language level is *lexical scoping* . The *lexical* in lexical scoping comes from the computer science term *lexing*, which is the process of breaking down a string into meaningful pieces that the programming language can understand. 
+x <- 100
+h()
+```
+To evaluate the function `h()` above, `R` needs to evaluate the function `f()`. The function `f()` simply returns `x + 1`. But in order to compute `x + 1`, `R` needs to find the value associated with the name `x`. `R` will start looking in the current environment; the function body of `f()`: 
+```{r eval=FALSE, tidy='styler', collapse=TRUE}
+f <- function() {
+  x + 1
+}
+```
+`x` is not defined in the body of `f()`, hence `R` will look for the variable in the parent environment. The parent environment of `f()` is `h()` (as `f()` is defined inside of `h()`): 
+```{r eval=FALSE, tidy='styler', collapse=TRUE, attr.source='.numberLines'}
+h <- function() {
+  x <- 10
+  f <- function() {
+    x + 1
+  }
+  f()
+}
+```
+`x` is associated with the value 10 in line 2. Therefore, `R` takes that value to compute `x + 1`, and `h()` returns 11. 
+
+```{r, tidy='styler', collapse=TRUE, echo=FALSE}
+rm(list = ls())
+```
+
+The principle that `R` will look for a name in the parent environment if it is not found in the current environment is what is called *lexical scoping*. 
+More precisely: Lexical scoping is the set of rules that determines how `R` finds the value associated with a name. The *lexical* in lexical scoping comes from the computer science term *lexing*, which is the process of breaking down a string into meaningful pieces that the programming language can understand. 
 In short, `R`'s lexical scoping follows these four primary rules;
 
 - Dynamic lookup: 
 
 In `R`, dynamic lookup focuses on where to look for values, not when to look for them. In other words, `R` looks for values when the function is run, not when the function is created. For example, defining the following function won't throw and error; even if `x` has not been defined yet:
-```{r eval=FALSE, tidy='styler', collapse=TRUE}
+```{r, tidy='styler', collapse=TRUE}
 fct <- function() {x + 1}
 ```
 But once we call `fct()`, `R` tries to look for `x` and returns an error, if `x` does not exist:
-```{r eval=FALSE, tidy='styler', collapse=TRUE, error=TRUE}
+```{r, tidy='styler', collapse=TRUE, error=TRUE}
 fct()
 ```
-
 
 - A fresh start:
 
 Every time a function is called, a new environment is created to host its execution. This means that each invocation is completely independent of all prior invocations:
-```{r eval=FALSE, tidy='styler', collapse=TRUE}
+```{r, tidy='styler', collapse=TRUE}
 fct <- function() {
   if (!exists("x")) x <- 1 else x <- x + 1
   x
@@ -916,11 +968,22 @@ fct()
 fct()
 ```
 
+You are, however, able to circumvent this using the super assignment `<<-`. Super assignment never creates a variable in the current environment, but modifies an existing variable found in a parent environment. If the variable is not found in a parent environment, super assignment will create one in the global environment: 
+```{r, tidy='styler', collapse=TRUE}
+fct <- function() {
+  if (!exists("x")) x <<- 1 else x <<- x + 1
+  x
+}
+
+fct()
+fct()
+fct()
+```
 
 - Functions versus variables:
 
 Whenever a function and a non-function in two different environments share the same name, `R` ignores non-function objects when looking for that value:  
-```{r eval=FALSE, tidy='styler', collapse=TRUE}
+```{r, tidy='styler', collapse=TRUE}
 f1 <- function(x) x + 10
 
 f2 <- function() {
@@ -932,14 +995,14 @@ f2 <- function() {
 f2()
 ```
 
-- Name masking
+- Name masking:
 
-Name masking is the basic principle of lexical scoping. It controls that names defined inside a function mask names defined outside that function. 
+Name masking is the basic principle of lexical scoping. It controls that names defined inside a function mask names defined outside that function. Name masking is related closely to the third exception *Every environment has a parent environment* mentioned in connection to environments in the beginning of this section. 
 
+The four rules defining `R`'s lexical scoping have some implications that may be confusing at first. As mentioned above, the output of a function may depend on the objects defined outside of the function:
+```{r, tidy='styler', collapse=TRUE, error=TRUE}
+fct <- function() {x + 1}
 
-
-The four rules defining `R`'s lexical scoping also means that output of a function may depend on the objects defined outside of the function:
-```{r eval=FALSE, tidy='styler', collapse=TRUE, error=TRUE}
 x <- 15
 fct()
 
@@ -947,7 +1010,7 @@ x <- 10
 fct()
 ```
 Conversely, lexical scoping can also lead to a function being independent of the objects outside of the function:
-```{r eval=FALSE, tidy='styler', collapse=TRUE}
+```{r, tidy='styler', collapse=TRUE}
 fct <- function() {
   x <- 5
   x + 1
@@ -957,7 +1020,7 @@ x <- 15
 fct()
 ```
 We generally want to avoid this behavior, as it can lead to errors and misunderstandings. Furthermore, lexical scoping may lead to erroneous outputs. For example, if you make a spelling mistake in your code and write `y` instead of `z` in the body of the function, the output will not be as expected:
-```{r eval=FALSE, tidy='styler', collapse=TRUE}
+```{r, tidy='styler', collapse=TRUE}
 fct <- function(x, z) {
   x^y # instead of x^z
 }
@@ -968,67 +1031,51 @@ z <- x + y
 fct(x, z)
 ```
 
-This means that the output of a function can be different depending on objects outside its environment:
-
-```{r}
-h <- function() {
-  x <- 10
-  f <- function() {
-    x + 1
-  }
-  f()
-}
-```
-
-```{r}
-x <- 100
-h()
-```
-
-Variable `x` is not defined inside `f` so R will look at the environment of `f` (where `f` was defined) and then at the parent environment, and so on. Here, the first `x` that is found has value `10`.
-
-Be aware that for functions, packages environments are checked last so that you can redefine functions without noticing.
-
-```{r}
+Another potential problem to be aware of is that you can accidentally redefine functions without noticing:
+```{r, tidy='styler', collapse=TRUE}
 c <- function(...) paste0(...)
 c(1, 2, 3)
-base::c(1, 2, 3)  ## you need to explicit the package
-rm(c)  ## remove the new function from the environment
+```
+The function `c()` defined above will mask the base `R` function `c()` combining values into a vector (`R` will look for the name `c` in the current environment first). If this happens, you need to tell `R` to look for the original function in the package that includes that function in order to use it, i.e.:
+```{r, tidy='styler', collapse=TRUE}
+base::c(1, 2, 3) 
+```
+Fortunately, you can easily remove the duplicated function from the current environment with `rm()`, as `R` will start looking for the name in the current environment. When calling the function `c()` afterwards, the name `c` is no longer defined in the current environment, and `R` will look for the name in the parent environments:
+```{r, tidy='styler', collapse=TRUE}
+rm(c)
 c(1, 2, 3)
 ```
 
-You can use the `<<-` operator to change the value of an object in an upper environment:
+If you are still confused about environments and scoping, we recommend you take a look at these other materials:
 
-```{r}
-count1 <- 0
-count2 <- 0
-f <- function(i) {
-  count1 <-  count1 + 1  ## will assign a new (temporary) count1 each time
-  count2 <<- count2 + 1  ## will increment count2 on top
-  i + 1
-}
-sapply(1:10, f)
-c(count1, count2)
-```
-
-Finally, how does `...` work? Basically, you copy and paste what is put in `...`:
-
-```{r}
-f1 <- function(...) {
-  list(...)
-}
-f1(a = 2, b = 3)
-list(a = 2, b = 3)
-```
-
-Learn more about [functions](https://bookdown.org/rdpeng/rprogdatascience/functions.html) and [scoping rules of R](https://bookdown.org/rdpeng/rprogdatascience/scoping-rules-of-r.html) with the [R Programming for Data Science book](https://bookdown.org/rdpeng/rprogdatascience/).
-
-http://adv-r.had.co.nz/Functions.html#lexical-scoping
+- [Chapter 6 *Functions*](https://adv-r.hadley.nz/functions.html) of *Advanced R* by Hadley Wickham. 
+- [Chapter 7 *Environments*](https://adv-r.hadley.nz/environments.html) of *Advanced R* by Hadley Wickham. 
+- [Chapter 15 *Scoping Rules of R*](https://bookdown.org/rdpeng/rprogdatascience/scoping-rules-of-r.html) of *R Programming for Data Science* by Roger Peng. This chapter also comes with video versions of [Section 15.1](https://www.youtube.com/watch?v=ujdm01Vsrmo) and [Section 15.3](https://www.youtube.com/watch?v=yYzPhtF6--A).
 
 ## Summary
 
-Data frames can be subsetted like a one-dimensional structure (where it behaves like a list), or a two-dimensional structure (where it behaves like a matrix).
+- Real numbers are represented as floating-point numbers, which can lead to floating-point errors. Use `all.equal()` or `dplyr::near()` instead of `==` to test if two objects are equal.
+- `...` is a special argument that allows functions to take any number if arguments. `...` is greedy and any misspelled or non-existing arguments will be passed on without raising an error. 
+- The function `sample()` can be used with a vector, a single number, or even a real number. Internally, `sample()` turns any (real) number `x` into a sequence starting with 1 and increasing with 1 until the upper limit `x` is reached. 
+- The colon operator `from:to` can be used to generate sequences staring from `from` and ending with `to` in steps of 1 or -1 (similar to `seq()`).
+- All `R` objects have a type.
+- The four most common types of a basic (atomic) vector are `logical`, `integer`, `double`, and `character`. 
+- Atomic vectors are one-dimensional and homogeneous (i.e. all contents must be of the same type).
+- Generic vectors (or lists) are one-dimensional and heterogeneous (i.e. they can contain different types).
+- Two-dimensional matrices and multi-dimensional arrays are obtained from atomic vectors by adding the attribute `dim`. 
+- Data frames are generic vectors whose contents are equal-length vectors.
+- Per default, data frames have three attributes: `names`, `class`, and `row.names`.
+- `R` has class-specific functions, called methods.
+- You can define your own attributes using the function `structure()`. 
+- Data frames can be subsetted like a one-dimensional structure (where it behaves like a list), or a two-dimensional structure (where it behaves like a matrix).
+- The `[` accessor can be used on vectors, matrices, arrays, lists and data frames to extract or replace subsets of the data with the same class.
+- The `[[` accessor can be used on vectors, matrices, arrays, lists and data frames to access or replace a single element.
+- The `$` accessor can be used on lists and data frames to access or replace single elements.
+- Environments associate a set of names with a set of values.
+- If a name is not found in the current environment, `R` will look for the name in the parent environments.
+- Lexical scoping is the set of rules that determines how `R` finds the value associated with a name, and it can be quite confusing...
 
 ## Useful resources {.unnumbered}
 
 - [*Computer Floating-Point Arithmetic and round-off errors*](https://medium.com/@kusal95/computer-floating-point-arithmetic-and-round-off-errors-5c879c480982), article by Kausal Kaluarachchi.
+- [Chapter 14 *Functions*](https://bookdown.org/rdpeng/rprogdatascience/functions.html) of *R Programming for Data Science* by Roger Peng.
