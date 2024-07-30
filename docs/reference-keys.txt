@@ -134,3 +134,5 @@ tab:unnamed-chunk-60
 fig:unnamed-chunk-99
 tab:unnamed-chunk-63
 fig:unnamed-chunk-103
+r-markdown-basics
+summary-2
