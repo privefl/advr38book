@@ -312,7 +312,7 @@ RStudio comes with many tools and features, for example
     3. *Ctrl+Enter* / *Command+Return* to execute current line/selection of code
     4. *Ctrl+Shift+A* / *Shift+Command+A* to reformat current selection of code
     4. *Ctrl+Shift+C* / *Shift+Command+C* to comment/uncomment selected lines
-    4. *Ctrl+Shift+K* / *Shift+Command+K* to knit a document (you will need this in Chapter \@ref(tidyverse))
+    4. *Ctrl+Shift+K* / *Shift+Command+K* to knit a document (you will need this in Chapter \@ref(rmarkdown))
     4. *Ctrl+Shift+B* / *Shift+Command+B* to build a package, website or book (you will learn how to build a package in Chapter \@ref(packages))
     4. *Ctrl+Shift+M* / *Shift+Command+M* to insert the pipe operator (we use this shortcut all of the time when working in the [tidyverse](https://www.tidyverse.org/)!)
     4. *Alt+Shift+K* / *Option+Shift+K* to see more keyboard shortcuts.
@@ -334,9 +334,9 @@ When code diagnostics are enabled, RStudio performs static and dynamic analysis 
 The reason why we advise you to work in RStudio projects is that it doesn't rely on absolute file paths (in contrast to setting your working directory using `setwd()`). The chance of `setwd()` working for anyone besides its author is basically 0 %. And having to hand edit one or more paths every time you take over a project can be extremely annoying. RStudio projects solve this issue by making file paths relative. When your RStudio session is running through an RStudio project file (.Rproj), the current working directory points to the root folder where that .Rproj file is saved. In short, the benefits of using RStudio projects are
     - a meaningful structure in one folder
     - the working directory automatically switches to the project's folder
-    - the last previously open file is loaded into the Source pane
+    - the last previously open file is loaded into the **Source pane**
     - the **History** tab in the **Environment pane** displays `R` commands executed in previous sessions.
-    - the **Files** tab in the **Files pane** displays the associated files and folders in the project
+    - the **Files** tab in the **Output pane** displays the associated files and folders in the project
     - any settings associated with the project, such as Git settings, are loaded. 
     Note that you can have a *.Rprofile* file in the project's root directory to enable project-specific settings to be loaded each time someone opens the project.
 
