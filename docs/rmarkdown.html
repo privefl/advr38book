@@ -265,6 +265,7 @@
             <section class="normal" id="section-">
 <div id="rmarkdown" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> R Markdown<a href="rmarkdown.html#rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="images/rmarkdown.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>When writing package documentations with <code>roxygen2</code>, building websites for <code>R</code> packages with <code>pkgdown</code>, or building a personal website, you will not be able to get past R Markdown. R Markdown is rightly used everywhere; Indeed, these materials are written in R Markdown.</p>
 <p>But what is R Markdown? R Markdown is a file format for making reproducible, dynamic documents with <code>R</code>. A single R Markdown file can be used to save and execute code, and to generate high quality reports that can be shared with an audience. An R Markdown document is written in Markdown and contains plain text and embedded <code>R</code> code and results. In this chapter, we will take a closer look at R Markdown.</p>
 <div id="what-is-markdown" class="section level2 unnumbered hasAnchor">
@@ -287,6 +288,30 @@ Converting an R Markdown document to a specific output format requires two steps
 </div>
 <div id="r-markdown-basics" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> R Markdown basics<a href="rmarkdown.html#r-markdown-basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that we have established what R Markdown is and what it can be used for, let us look at what a R Markdown document looks like. To create a new R Markdown document, you can either</p>
+<ul>
+<li>Go to File -&gt; New File -&gt; R Markdown…</li>
+<li>Click on <img src="images/blankFileIcon.png" style="display:inline-block; margin:0"/> in the RStudio menu (above the <strong>Source pane</strong> and select <img src="images/newRMarkdownDoc.png" style="display:inline-block; margin:0"/> R Markdown…</li>
+<li>Create a new text document <img src="images/newTextDoc.png" style="display:inline-block; margin:0"/> and save this file with the extension <em>.Rmd</em>, i.e. [file_name].Rmd.</li>
+<li>Click on <img src="images/blankFileIcon.png" style="display:inline-block; margin:0"/> New Blank File in the <strong>Files</strong> tab of the <strong>Output pane</strong> and select <img src="images/newRMarkdownDoc.png" style="display:inline-block; margin:0"/> R Markdown… to create a file in the current directory.</li>
+</ul>
+<center>
+<video width="560" height="315" autoplay loop muted preload="true">
+<source src="Clips/Open_R_Markdown_document.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</center>
+<p>Once you have opened</p>
+<p><img src="images/RMarkdownDocument.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>The document contains three important types of content:</p>
+<ol style="list-style-type: decimal">
+<li>The document starts with an (optional) YAML header surrounded by a line of three hyphens <code>---</code>. This is where you can specify metadata about the document and rendering instructions. Some commonly used YAML metadata options are:
+<ul>
+<li><code>title</code> : A descriptive main title.</li>
+<li></li>
+</ul></li>
+<li>Following the metadata is the body of</li>
+</ol>
 </div>
 <div id="summary-2" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Summary<a href="rmarkdown.html#summary-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -297,6 +322,8 @@ Converting an R Markdown document to a specific output format requires two steps
 <li><a href="https://rmarkdown.rstudio.com/authoring_quick_tour.html">R Markdown Quick Tour</a></li>
 <li><a href="https://rmarkdown.rstudio.com/articles_intro.html">Introduction to R Markdown</a> by Garrett Grolemund</li>
 <li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a> by Yihui Xie, J. J. Allaire and Garrett Grolemund</li>
+<li><a href="https://privefl.github.io/R-presentation/rmarkdown.html">{R Markdown}</a>, a presentation by Florian Privé and Julyan Arbel.</li>
+<li><a href="https://r4ds.had.co.nz/r-markdown.html">Chapter 27 <em>R Markdown</em></a> of <a href="http://r4ds.had.co.nz/">R for Data Science</a> by Hadley Wickham and Garrett Grolemund.</li>
 </ul>
 
 </div>
