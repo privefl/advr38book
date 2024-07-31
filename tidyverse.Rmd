@@ -12,8 +12,6 @@ For learning how to do data analysis from importing data and tidying it to analy
 
 ## Program 
 
-1. [my {R Markdown} presentation](https://privefl.github.io/R-presentation/rmarkdown.html) (also see https://r4ds.had.co.nz/r-markdown.html)
-
 1. [my {ggplot2} presentation](https://privefl.github.io/R-presentation/ggplot2.html) + exercises from [data visualization with {ggplot2}](http://r4ds.had.co.nz/data-visualisation.html)
 
 1. [tibbles](https://r4ds.had.co.nz/tibbles.html)
