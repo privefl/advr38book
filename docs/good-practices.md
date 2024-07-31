@@ -327,7 +327,7 @@ RStudio comes with many tools and features, for example
 
 - [code diagnostics](https://support.posit.co/hc/en-us/articles/205753617-Code-Diagnostics-in-the-RStudio-IDE) can be enabled and options can be set within the `Tools -> Global Options -> Code -> Diagnostics` editing pane.
 <img src="images/code_diagnostics.jpg" width="70%" style="display: block; margin: auto;" />
-When code diagnostics are enabled, RStudio performs static and dynamic analysis of your `R` code and warns you when it detects problems. RStudio reports any errors or warnings in the left gutter (next to the line number) by a marker and by underlining the position in the code. When you mouse over the marker, a popup with a short explanation will appear.  
+When code diagnostics are enabled, RStudio performs static and dynamic analysis of your `R` code and warns you when it detects problems. RStudio reports any errors or warnings in the left gutter (next to the line number) by a marker (<img src="images/error.png" style="display:inline-block; margin:0"/>, <img src="images/info.png" style="display:inline-block; margin:0"/>, <img src="images/warning.png" style="display:inline-block; margin:0"/>) and by underlining the position in the code. When you mouse over the marker, a popup with a short explanation will appear.  
 <img src="images/code_diagnostics_examples.jpg" width="70%" style="display: block; margin: auto;" />
 
 - Another very useful feature of the RStudio IDE is that it includes **RStudio projects**. RStudio projects make it straightforward to divide your work into multiple contexts, and keep all files associated with a single project together - input data, `R` scripts, analytic results, figures, etc.
