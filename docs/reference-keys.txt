@@ -136,3 +136,4 @@ tab:unnamed-chunk-63
 fig:unnamed-chunk-103
 r-markdown-basics
 summary-2
+producing-a-complete-report

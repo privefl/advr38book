@@ -65,6 +65,70 @@
 </script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
   
@@ -158,8 +222,14 @@
 <ul>
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#what-is-markdown"><i class="fa fa-check"></i>What is Markdown?</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#adding-r-to-markdown"><i class="fa fa-check"></i>Adding <code>R</code> to Markdown</a></li>
-<li class="chapter" data-level="4.1" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown-basics"><i class="fa fa-check"></i><b>4.1</b> R Markdown basics</a></li>
-<li class="chapter" data-level="4.2" data-path="rmarkdown.html"><a href="rmarkdown.html#summary-2"><i class="fa fa-check"></i><b>4.2</b> Summary</a></li>
+<li class="chapter" data-level="4.1" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown-basics"><i class="fa fa-check"></i><b>4.1</b> R Markdown basics</a>
+<ul>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#the-yaml-header"><i class="fa fa-check"></i>The YAML header</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-code-chunks"><i class="fa fa-check"></i><code>R</code> code chunks</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#plain-text-with-simple-text-formatting"><i class="fa fa-check"></i>Plain text with simple text formatting</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="rmarkdown.html"><a href="rmarkdown.html#producing-a-complete-report"><i class="fa fa-check"></i><b>4.2</b> Producing a complete report</a></li>
+<li class="chapter" data-level="4.3" data-path="rmarkdown.html"><a href="rmarkdown.html#summary-2"><i class="fa fa-check"></i><b>4.3</b> Summary</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#useful-resources-3"><i class="fa fa-check"></i>Useful resources</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>5</b> Data analysis with the tidyverse</a>
@@ -265,7 +335,7 @@
             <section class="normal" id="section-">
 <div id="rmarkdown" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> R Markdown<a href="rmarkdown.html#rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><img src="images/rmarkdown.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="images/rmarkdown.png" width="25%" style="display: block; margin: auto;" /></p>
 <p>When writing package documentations with <code>roxygen2</code>, building websites for <code>R</code> packages with <code>pkgdown</code>, or building a personal website, you will not be able to get past R Markdown. R Markdown is rightly used everywhere; Indeed, these materials are written in R Markdown.</p>
 <p>But what is R Markdown? R Markdown is a file format for making reproducible, dynamic documents with <code>R</code>. A single R Markdown file can be used to save and execute code, and to generate high quality reports that can be shared with an audience. An R Markdown document is written in Markdown and contains plain text and embedded <code>R</code> code and results. In this chapter, we will take a closer look at R Markdown.</p>
 <div id="what-is-markdown" class="section level2 unnumbered hasAnchor">
@@ -291,8 +361,8 @@ Converting an R Markdown document to a specific output format requires two steps
 <p>Now that we have established what R Markdown is and what it can be used for, let us look at what a R Markdown document looks like. To create a new R Markdown document, you can either</p>
 <ul>
 <li>Go to File -&gt; New File -&gt; R Markdown…</li>
-<li>Click on <img src="images/blankFileIcon.png" style="display:inline-block; margin:0"/> in the RStudio menu (above the <strong>Source pane</strong> and select <img src="images/newRMarkdownDoc.png" style="display:inline-block; margin:0"/> R Markdown…</li>
-<li>Create a new text document <img src="images/newTextDoc.png" style="display:inline-block; margin:0"/> and save this file with the extension <em>.Rmd</em>, i.e. [file_name].Rmd.</li>
+<li>Click on <img src="images/blankFileIcon.png" style="display:inline-block; margin:0"/> in the upper-left corner of the RStudio menu (above the <strong>Source pane</strong> and select <img src="images/newRMarkdownDoc.png" style="display:inline-block; margin:0"/> R Markdown…</li>
+<li>Open a blank text document <img src="images/newTextDoc.png" style="display:inline-block; margin:0"/> and save this file with the extension <em>.Rmd</em>, i.e. [file_name].Rmd.</li>
 <li>Click on <img src="images/blankFileIcon.png" style="display:inline-block; margin:0"/> New Blank File in the <strong>Files</strong> tab of the <strong>Output pane</strong> and select <img src="images/newRMarkdownDoc.png" style="display:inline-block; margin:0"/> R Markdown… to create a file in the current directory.</li>
 </ul>
 <center>
@@ -301,20 +371,383 @@ Converting an R Markdown document to a specific output format requires two steps
 Your browser does not support the video tag.
 </video>
 </center>
-<p>Once you have opened</p>
+<p>Using options one and two will open a pop-up window that looks like this:</p>
+<p><img src="images/RMarkdownPopup.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>If you want to create an empty document without any pre-defined options, click on <code>Create Empty Document</code> in the lower-left corner. You can also create an HTML, PDF, or Word document, presentations (ioslides, Slidy, Beamer or PowerPoint), interactive Shiny documents or presentations, or open R Markdown templates using the menu to the left and the suggested default output formats. Finally, you can specify a title, author and date. Once you have selected the desired output format and updated the title, author and date, select <code>OK</code>. RStudio will now open an R Markdown document that looks similar to the one shown below:</p>
 <p><img src="images/RMarkdownDocument.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>The document contains three important types of content:</p>
 <ol style="list-style-type: decimal">
-<li>The document starts with an (optional) YAML header surrounded by a line of three hyphens <code>---</code>. This is where you can specify metadata about the document and rendering instructions. Some commonly used YAML metadata options are:
-<ul>
-<li><code>title</code> : A descriptive main title.</li>
-<li></li>
-</ul></li>
-<li>Following the metadata is the body of</li>
+<li>An (optional) YAML header</li>
+<li>Chunks of R code</li>
+<li>Text mixed with simple text formatting</li>
 </ol>
+<p>In the following, we will explore each component in more detail.</p>
+<div id="the-yaml-header" class="section level3 unnumbered hasAnchor">
+<h3>The YAML header<a href="rmarkdown.html#the-yaml-header" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An R Markdown document starts with an (optional) YAML header surrounded by a line of three hyphens <code>---</code>. This is where you can specify (or update) metadata about the document and rendering instructions. When you create an R Markdown file using the pop-up window shown in Figure <span class="math inline">\(\ref{fig:pop-up}\)</span>, RStudio writes the YAML header for you. However, you can still update the existing options or add other metadata. Some commonly used YAML metadata options are:</p>
+<ul>
+<li><p><code>title</code> : A descriptive main title.</p></li>
+<li><p><code>author</code> : Name of the author(s). You can use lists for multiple authors and for adding other metadata, for example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rmarkdown.html#cb1-1" tabindex="-1"></a>author<span class="sc">:</span></span>
+<span id="cb1-2"><a href="rmarkdown.html#cb1-2" tabindex="-1"></a>  <span class="sc">-</span> Name_1</span>
+<span id="cb1-3"><a href="rmarkdown.html#cb1-3" tabindex="-1"></a>  <span class="sc">-</span> Name_2</span>
+<span id="cb1-4"><a href="rmarkdown.html#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="rmarkdown.html#cb1-5" tabindex="-1"></a>author<span class="sc">:</span></span>
+<span id="cb1-6"><a href="rmarkdown.html#cb1-6" tabindex="-1"></a>  <span class="sc">-</span> name<span class="sc">:</span> Name_1</span>
+<span id="cb1-7"><a href="rmarkdown.html#cb1-7" tabindex="-1"></a>  <span class="sc">-</span> affiliation<span class="sc">:</span> University of Somewhere</span>
+<span id="cb1-8"><a href="rmarkdown.html#cb1-8" tabindex="-1"></a>  <span class="sc">-</span> name<span class="sc">:</span> Name_2</span>
+<span id="cb1-9"><a href="rmarkdown.html#cb1-9" tabindex="-1"></a>  <span class="sc">-</span> affiliation<span class="sc">:</span> Uiversity of Somewhere <span class="cf">else</span></span></code></pre></div></li>
+<li><p><code>date</code> : The date shown in the document. You can write a date or execute <code>R</code> code to update the date automatically.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rmarkdown.html#cb2-1" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;`r format(Sys.time(), &#39;%d %B, %Y&#39;)`&quot;</span></span>
+<span id="cb2-2"><a href="rmarkdown.html#cb2-2" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;`r lubridate::today()`&quot;</span></span></code></pre></div></li>
+<li><p><code>abstract</code> : A summary of the analyses. Multiple paragraphs can be specified but they must be indented and preceded by <code>|</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rmarkdown.html#cb3-1" tabindex="-1"></a>abstract<span class="sc">:</span> <span class="er">|</span></span>
+<span id="cb3-2"><a href="rmarkdown.html#cb3-2" tabindex="-1"></a>  The first paragraph of this abstract.</span>
+<span id="cb3-3"><a href="rmarkdown.html#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="rmarkdown.html#cb3-4" tabindex="-1"></a>  The second paragraph of the abstract.</span></code></pre></div></li>
+<li><p><code>output</code> : Document specific YAML options. The first option specified here needs to be the document type (e.g. <code>html_document</code> in the example above). A full list of supported document types can be found in colored box at the end of this section. Each output format can be accompanied with several format options. All these format options must be indented, e.g.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rmarkdown.html#cb4-1" tabindex="-1"></a>output<span class="sc">:</span></span>
+<span id="cb4-2"><a href="rmarkdown.html#cb4-2" tabindex="-1"></a>  html_document<span class="sc">:</span></span>
+<span id="cb4-3"><a href="rmarkdown.html#cb4-3" tabindex="-1"></a>    toc<span class="sc">:</span> true</span></code></pre></div>
+<p>Some of the most commonly used document specific options are:</p>
+<ul>
+<li><code>toc</code> : true/false to show table of contents.</li>
+<li><code>toc_debth</code> : A number determining how many subheadings will be visible in the table of contents. Defaults to three.</li>
+<li><code>toc_float</code> : true/false determining whether the table of contents stays visible when scrolling down.</li>
+<li><code>theme</code> : The overall look of the document. You can see a list of available R Markdown Themes in <a href="https://rstudio4edu.github.io/rstudio4edu-book/rmd-themes.html">Appendix F <em>R Markdown Themes</em></a> of <em>rstudio4edu</em> by Desirée De Leon and Alison Hill, or in the <a href="https://www.datadreaming.org/posts/2018-04-11-r-markdown-theme-gallery/2018-04-11-r-markdown-theme-gallery">R Markdown Theme Gallery</a> created by Andrew Zieffler.</li>
+</ul></li>
+</ul>
+<div class="warning" style="background-color:#76aada; color: #59463f; border-left: solid #32597c 4px; border-radius: 4px; padding:0.7em;">
+<span>
+<p style="margin-top:1em; text-align:center">
+<b>Supported document types:</b>
+</p>
+<p style="margin-left:1em;">
+<ul>
+<li>beamer_presentation</li>
+<li>context_document</li>
+<li>github_document</li>
+<li>html_document</li>
+<li>ioslides_presentation</li>
+<li>latex_document</li>
+<li>md_document</li>
+<li>odt_document</li>
+<li>pdf_document</li>
+<li>powerpoint_presentation</li>
+<li>rtf_document</li>
+<li>slidy_presentation</li>
+<li>word_document
+<br><br>
+Other extension packages provide more output formats. However, if you want to use an output format from an extension package, you have to include the package name in the YAML header:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rmarkdown.html#cb5-1" tabindex="-1"></a>output<span class="sc">:</span> tufte<span class="sc">::</span>tufte_html</span></code></pre></div>
+</p>
+<p></span></p>
 </div>
-<div id="summary-2" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Summary<a href="rmarkdown.html#summary-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="r-code-chunks" class="section level3 unnumbered hasAnchor">
+<h3><code>R</code> code chunks<a href="rmarkdown.html#r-code-chunks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Following the metadata is the body of the R Markdown file. The second important type of content is found in the body; namely chunks of <code>R</code> code surrounded by <code>```{r}</code> and <code>```</code>. Following the three <code>```</code>in the beginning is <code>{r}</code>. This tells Markdown that the code chunk contains <code>R</code> code. Besides <code>R</code>, <code>knitr</code>can execute code written in Python, SQL, Bash, Rcpp, Stan, JavaScript and CSS. Simply replace <code>{r}</code> at the top of the code chunk with the name of the desired language.
+You can insert a chunk in three different ways:</p>
+<ul>
+<li>By manually typing the chunk delimiters <code>```{r}</code> and <code>```</code></li>
+<li>By clicking the insert button icon <img src="images/insertChunk.png" style="display:inline-block; margin:0"/> in the editor toolbar at the top of the <strong>Source pane</strong></li>
+<li>or by using the keyboard shortcut <em>Ctrl+Alt+I</em> / <em>Command+Option+I</em>.
+<br>
+Even though you are working within an R Markdown document, you can still execute current line/selection of code in a code chunk using the keyboard shortcut <em>Ctrl+Enter</em> / <em>Command+Return</em>. If you want to run all code in a chunk, you can click <img src="images/executeCurrentChunk.png" style="display:inline-block; margin:0"/> in the upper-right corner of the code chunk or use the shortcut <em>Ctrl+Shift+Enter</em> / <em>Command+Shift+Return</em>.
+When you run code in a chunk, the output is displayed in the console as usual, and all objects are stored in the current environment. However, RStudio will also show the output below the code chunk:</li>
+</ul>
+<p><img src="images/currentChunkOutput.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>You can customise the chunk output with options by specifying them in the chunk header <code>```{r}</code>. <code>knitr</code> provides almost 60 options that you can use to customise code chunks. The most important options are:</p>
+<ul>
+<li><code>eval</code> : Whether to evaluate the code and include its results. Defaults to <code>TRUE</code>.</li>
+<li><code>echo</code> : Whether to display code along with its results. Defaults to <code>TRUE</code>.</li>
+<li><code>include</code> : Whether to show the code and its results in the final document. Defaults to <code>TRUE</code>. This is used for setup code.</li>
+<li><code>warning</code> : Whether to display warnings. Defaults to <code>TRUE</code>.</li>
+<li><code>error</code> : Whether to display errors. Defaults to <code>FALSE</code>.</li>
+<li><code>message</code> : Whether to display messages. Defaults to <code>TRUE</code>.</li>
+<li><code>tidy</code> : Whether to reformat code in a tidy way when displaying it. Defaults to <code>FALSE</code>.</li>
+<li><code>collapse</code> : Whether to merge text output and source code into a single code block in the output. Defaults to <code>FALSE</code>.</li>
+<li><code>results</code> : Controls how to display the text results. Defaults to <code>markup</code>.</li>
+<li><code>cache</code> : Whether to cache results for future renders. Defaults to <code>FALSE</code>.</li>
+<li><code>comment</code> : Comment character to preface results with. Defaults to <code>##</code>.</li>
+<li><code>fig.width</code> : Width in inches for plots created in chunk. Defaults to 7.</li>
+<li><code>fig.height</code> : Height in inches for plots created in chunk. Defaults to 7.</li>
+<li><code>fig.align</code> : The alignment of plots. Defaults to <code>default</code>, i.e. no alignment adjustments are made.</li>
+</ul>
+<p>You can find all options in the package documentation for <a href="https://yihui.org/knitr/options/">knitr</a>.</p>
+</div>
+<div id="plain-text-with-simple-text-formatting" class="section level3 unnumbered hasAnchor">
+<h3>Plain text with simple text formatting<a href="rmarkdown.html#plain-text-with-simple-text-formatting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+The last important type of content often constitutes most of the body of an R Markdown file: plain text mixed with simple text formatting. In the following, we will provide a quick overview over the most commonly used R Markdown syntax:
+<table>
+<tr>
+<th>
+Syntax
+</th>
+<th>
+Output
+</th>
+</tr>
+<tr>
+<td>
+plain text
+</td>
+<td>
+plain text
+</td>
+</tr>
+<tr>
+<td>
+*italics* or _italics_
+</td>
+<td>
+<em>italics</em>
+</td>
+</tr>
+<tr>
+<td>
+**bold** or __bold__
+</td>
+<td>
+<strong>bold</strong>
+</td>
+</tr>
+<tr>
+<td>
+subscipt~2~
+</td>
+<td>
+subscipt<sub>2</sub>
+</td>
+</tr>
+<tr>
+<td>
+superscript^2^
+</td>
+<td>
+superscript<sup>2</sup>
+</td>
+</tr>
+<tr>
+<td>
+~~strikethrough~~
+</td>
+<td>
+<del>strikethrough</del>
+</td>
+</tr>
+<tr>
+<td>
+endash: --
+</td>
+<td>
+endash: –
+</td>
+</tr>
+<tr>
+<td>
+emdash: ---
+</td>
+<td>
+emdash: —
+</td>
+</tr>
+<tr>
+<td>
+inline <code>R</code> code: <code>` `2.5` `</code>
+</td>
+<td>
+inline <code>R</code> code: 2.5
+</td>
+</tr>
+<tr>
+<td>
+inline equation: $A = \pi \times r^{2}$
+</td>
+<td>
+inline equation: <span class="math inline">\(A = \pi \times r^{2}\)</span>
+</td>
+</tr>
+<tr>
+<td>
+image: ! [optional caption text] (path/to/image.png)
+</td>
+<td>
+image: <img src="images/rstudio.png" alt="optional caption text" />
+</td>
+</tr>
+<tr>
+<td>
+[link](<a href="https://rmarkdown.rstudio.com/" class="uri">https://rmarkdown.rstudio.com/</a>)
+</td>
+<td>
+<a href="https://rmarkdown.rstudio.com/">link</a>
+</td>
+</tr>
+<tr>
+<td>
+# 1st level header
+</td>
+<td>
+<strong><font size ="6"> 1st level header </font></strong>
+</td>
+</tr>
+<tr>
+<td>
+## 2nd level header
+</td>
+<td>
+<strong><font size ="5"> 2nd level header </font></strong>
+</td>
+</tr>
+<tr>
+<td>
+### 3rd level header
+</td>
+<td>
+<strong><font size ="4"> 3rd level header </font></strong>
+</td>
+</tr>
+<tr>
+<td>
+#### 4th level header
+</td>
+<td>
+<strong><font size ="3"> 4th level header </font></strong>
+</td>
+</tr>
+<tr>
+<td>
+##### 5th level header
+</td>
+<td>
+<strong><font size ="2"> 5th level header </font></strong>
+</td>
+</tr>
+<tr>
+<td>
+###### 6th level header
+</td>
+<td>
+<strong><font size ="1"> 6th level header </font></strong>
+</td>
+</tr>
+<tr>
+<td>
+Unordered lists are made with <strong>* </strong>, <strong>-</strong> or <strong>+</strong> :
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+* Bullet list item 1<br />
+* Bullet list item 2<br />
+
+<p style="text-indent: 20px;">
+* Item 2a
+</p>
+<p style="text-indent: 20px;">
+* Item 2b
+</p>
+</td>
+<td>
+<ul>
+<li>Bullet list item 1
+<ul>
+<li>Bullet list item 2
+<ul>
+<li>Item 2a<br />
+</li>
+<li>Item 2b<br />
+
+</td>
+</tr>
+<tr>
+<td>
+Ordered lists are made with numbers:
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+1. Numbered list item 1<br />
+1. Item 2. The numbers are incremented automatically in the output<br />
+
+<p style="text-indent: 20px;">
+1. Item 2a
+</p>
+<p style="text-indent: 20px;">
+1. Item 2b
+</p>
+</td>
+<td></li>
+</ul></li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Numbered list item 1<br />
+</li>
+<li>Item 2. The numbers are incremented automatically in the output
+<ol style="list-style-type: decimal">
+<li>Item 2a</li>
+<li>Item 2b
+</td>
+</tr>
+<tr>
+<td>
+&gt; block quote
+</td>
+<td>
+<blockquote>
+block quote
+</blockquote>
+</td>
+</tr>
+<tr>
+<td>
+First Header | Second Header<br />
+----------------- | -----------------<br />
+Content Cell | Content Cell<br />
+Content Cell | Content Cell</li>
+</ol></li>
+</ol></li>
+</ul>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th>First Header</th>
+<th>Second Header</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+<tr class="even">
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+</tbody>
+</table>
+</tr>
+<tr>
+</table>
+<p>Finally, you can start a new paragraph by ending a line with four spaces,<br />
+and you can insert a horizontal rule (or insert a slide break) with three or more asterisks (***) or dashes (---)</p>
+<hr>
+<p>You can find a similar list in the article <a href="https://rmarkdown.rstudio.com/authoring_basics.html"><strong>Markdown Basics</strong></a> on the <code>RMarkdown</code> website.</p>
+</div>
+</div>
+<div id="producing-a-complete-report" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Producing a complete report<a href="rmarkdown.html#producing-a-complete-report" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="summary-2" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Summary<a href="rmarkdown.html#summary-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
 <div id="useful-resources-3" class="section level2 unnumbered hasAnchor">
 <h2>Useful resources<a href="rmarkdown.html#useful-resources-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -388,6 +821,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
