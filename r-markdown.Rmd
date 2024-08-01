@@ -296,7 +296,7 @@ The last important type of content often constitutes most of the body of an R Ma
   <tr>
     <td>
     First Header  \| Second Header    
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- \| \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-    
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-    
 Content Cell  \| Content Cell    
 Content Cell  \| Content Cell
 </td>
