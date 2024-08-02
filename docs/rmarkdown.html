@@ -179,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#git"><i class="fa fa-check"></i><b>2.3</b> Version control (Git)</a>
 <ul>
 <li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git?</a></li>
-<li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#how-to-use-git"><i class="fa fa-check"></i><b>2.3.2</b> How to use Git</a></li>
+<li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#github"><i class="fa fa-check"></i><b>2.3.2</b> How to use Git</a></li>
 <li class="chapter" data-level="" data-path="good-practices.html"><a href="good-practices.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#when-things-go-wrong"><i class="fa fa-check"></i><b>2.4</b> When things go wrong…</a>
@@ -359,7 +359,7 @@ Converting an R Markdown document to a specific output format requires two steps
 <p>Now that we have established what R Markdown is and what it can be used for, let us look at what a R Markdown document looks like. To create a new R Markdown document, you can either</p>
 <ul>
 <li>Go to File -&gt; New File -&gt; R Markdown…</li>
-<li>Click on <img src="images/blankFileIcon.png" style="display:inline-block; margin:0"/> in the upper-left corner of the RStudio menu (above the <strong>Source pane</strong> and select <img src="images/newRMarkdownDoc.png" style="display:inline-block; margin:0"/> R Markdown…</li>
+<li>Click on <img src="images/blankFileIcon.png" style="display:inline-block; margin:0"/> in the upper-left corner of the RStudio menu (above the <strong>Source pane</strong>) and select <img src="images/newRMarkdownDoc.png" style="display:inline-block; margin:0"/> R Markdown…</li>
 <li>Open a blank text document <img src="images/newTextDoc.png" style="display:inline-block; margin:0"/> and save this file with the extension <em>.Rmd</em>, i.e. [file_name].Rmd.</li>
 <li>Click on <img src="images/blankFileIcon.png" style="display:inline-block; margin:0"/> New Blank File in the <strong>Files</strong> tab of the <strong>Output pane</strong> and select <img src="images/newRMarkdownDoc.png" style="display:inline-block; margin:0"/> R Markdown… to create a file in the current directory.</li>
 </ul>
@@ -460,7 +460,7 @@ You can insert a chunk in three different ways:</p>
 <p>Even though you are working within an R Markdown document, you can still execute current line/selection of code in a code chunk using the keyboard shortcut <em>Ctrl+Enter</em> / <em>Command+Return</em>. If you want to run all code in a chunk, you can click <img src="images/executeCurrentChunk.png" style="display:inline-block; margin:0"/> in the upper-right corner of the code chunk or use the shortcut <em>Ctrl+Shift+Enter</em> / <em>Command+Shift+Return</em>.
 When you run code in a chunk, the output is displayed in the console as usual, and all objects are stored in the current environment. However, RStudio will also show the output below the code chunk:</p>
 <p><img src="images/currentChunkOutput.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>You can customise the chunk output with options by specifying them in the chunk header <code>```{r}</code>. <code>knitr</code> provides almost 60 options that you can use to customise code chunks. The most important options are:</p>
+<p>You can customise the chunk output with options specified in the chunk header <code>```{r}</code>. <code>knitr</code> provides almost 60 options that you can use to customise code chunks. The most important options are:</p>
 <ul>
 <li><code>eval</code> : Whether to evaluate the code and include its results. Defaults to <code>TRUE</code>.</li>
 <li><code>echo</code> : Whether to display code along with its results. Defaults to <code>TRUE</code>.</li>
@@ -733,13 +733,49 @@ and you can insert a horizontal rule (or insert a slide break) with three or mor
 </div>
 <div id="producing-a-complete-report" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Producing a complete report<a href="rmarkdown.html#producing-a-complete-report" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To generate a complete report containing all text, code and results, either</p>
+<ul>
+<li><p>run the <code>render()</code> command specifying the name of the file you want to render:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rmarkdown.html#cb6-1" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">&quot;my_file.Rmd&quot;</span>, <span class="at">output_format =</span> <span class="st">&quot;html_document&quot;</span>)</span></code></pre></div></li>
+<li><p>use the knit button (<img src="images/knitDocument.png" style="display:inline-block; margin:0"/> <code>Knit</code>) at the top of the <strong>Source pane</strong></p></li>
+<li><p>or use the keyboard shortcut <em>Ctrl+Shift+K</em> / <em>Shift+Command+K</em>.</p></li>
+</ul>
+<p>In addition to rendering the file, the knit button and the keyboard shortcut also show a preview of the output in the <strong>Output pane</strong>.<br />
+All three methods generate a self-contained file that you can share with others in the directory of the input file.</p>
 <div id="exercise-2" class="section level3 unnumbered hasAnchor">
 <h3>Exercise<a href="rmarkdown.html#exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong><font size ="4">Make your own website with R Markdown</font></strong></p>
+<p>This exercise is based on the exercise from Section <a href="good-practices.html#git">2.3</a>. You need an R Studio project cloned from Florian Privé’s GitHub repository <a href="https://github.com/privefl/rmarkdown-website-template">rmarkdown-website-template</a> to do this exercise. If you haven’t cloned the repository, go back to Section <a href="good-practices.html#github">2.3.2</a> and go through the exercise <strong>Fork a repository</strong> before you continue with this exercise.</p>
+<ol style="list-style-type: decimal">
+<li><p>Open the R Studio project that is linked to the GitHub repository [YOURGITHUBNAME].github.io (where [YOURGITHUBNAME] represents your GitHub username).</p></li>
+<li><p>Build the website by running <code>rmarkdown::render_site(encoding = "UTF-8")</code> or by using the keyboard shortcut <em>Ctrl+Shift+B</em> / <em>Shift+Command+B</em>.</p></li>
+<li><p>Commit and push all new or updated files to your GitHub repository. The first time you build the website, a full directory (<code>site_libs/</code>) is created. Trying to add all the files from this directory to a commit can make RStudio freeze. If this happens, restart R Studio and run <code>rm .git/index.lock</code> in the terminal of R Studio (the terminal is part of the <strong>Console pane</strong>). Afterwards, run <code>git add .</code> in the terminal; This will add all new files for you to commit (you can see all the added files in the Git panel of the <strong>Environments pane</strong> after refreshing it).</p></li>
+<li><p>Change the content of your website by modifying <code>_site.yml</code>, <code>index.Rmd</code>, <code>about.Rmd</code>, <code>cv.Rmd</code> and <code>CV.pdf</code>.</p></li>
+<li><p>Build your website again (see Step 2) and commit &amp; push everything to the GitHub repository.</p></li>
+<li><p>At any point, you can preview your website locally by rendering your site and opening the generated HTML files in your Web Browser. You can also see your website at https://YOURGITHUBNAME.github.io/.</p></li>
+</ol>
+<p>If you need some inspiration, here are some websites created with R Markdown:</p>
+<ul>
+<li><a href="https://andreashandel.github.io/MADAcourse/">Modern Applied Data Analysis (MADA)</a></li>
+<li><a href="https://www.lucymcgowan.com/">Lucy D’Agostino McGowan’s</a> personal website</li>
+<li><a href="https://r-in-grenoble.github.io/">The R user group in Grenoble</a></li>
+</ul>
+<p>And to learn more about what pages should be included on your website, read <a href="https://www.animateyour.science/post/how-to-use-videos-on-your-personal-scientist-website">this</a> blog post by <a href="https://www.animateyour.science/">Animate Your Science</a>.</p>
 </div>
 </div>
 <div id="summary-2" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Summary<a href="rmarkdown.html#summary-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>R Markdown is a file format for making reproducible, dynamics documents with <code>R</code>.</li>
+<li>An R Markdown document is written in Markdown and contains plain text and embedded <code>R</code> code along with results.</li>
+<li>The typical extension for an R Markdown file is <em>.Rmd</em>.</li>
+<li>To open a new R Markdown document, go to File -&gt; New File -&gt; R Markdown… or click on <img src="images/blankFileIcon.png" style="display:inline-block; margin:0"/> in the upper-left corner of the RStudio menu and select <img src="images/newRMarkdownDoc.png" style="display:inline-block; margin:0"/> R Markdown… . R Studio will launch a wizard that you can use to pre-populate the file with useful content.</li>
+<li>An R Markdown document starts with an (optional) YAML header where you can specify (or update) metadata about the document and rendering instructions.</li>
+<li>The body of an R Markdown file can contain <code>R</code> code chunks surrounded by <code>```{r}</code> and <code>```</code></li>
+<li>You can customise the chunk output with options specified in the chunk header <code>```{r}</code>.</li>
+<li>The plain text in an R Markdown file can be formatted with R Markdown syntax.</li>
+<li>To generate a complete report containing all text, code and results, use the knit button (<img src="images/knitDocument.png" style="display:inline-block; margin:0"/> <code>Knit</code>) at the top of the <strong>Source pane</strong> or the keyboard shortcut <em>Ctrl+Shift+K</em> / <em>Shift+Command+K</em>.</li>
+</ul>
 </div>
 <div id="useful-resources-3" class="section level2 unnumbered hasAnchor">
 <h2>Useful resources<a href="rmarkdown.html#useful-resources-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -749,6 +785,7 @@ and you can insert a horizontal rule (or insert a slide break) with three or mor
 <li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a> by Yihui Xie, J. J. Allaire and Garrett Grolemund</li>
 <li><a href="https://privefl.github.io/R-presentation/rmarkdown.html">{R Markdown}</a>, a presentation by Florian Privé and Julyan Arbel.</li>
 <li><a href="https://r4ds.had.co.nz/r-markdown.html">Chapter 27 <strong>R Markdown</strong></a> of <a href="http://r4ds.had.co.nz/">R for Data Science</a> by Hadley Wickham and Garrett Grolemund.</li>
+<li><a href="https://garrettgman.github.io/rmarkdown/rmarkdown_websites.html">R Markdown Websites</a></li>
 </ul>
 
 </div>

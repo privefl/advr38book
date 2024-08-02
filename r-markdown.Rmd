@@ -1,7 +1,7 @@
 # R Markdown {#rmarkdown}
 
 ```{r setup, include=FALSE}
-WORDS_TO_IGNORE <- c("Allaire", "Gruber", "Gruber's", "MacFarlane", "md", "pandoc", "Rmd", "rmarkdown", "Yihui", "Julyan", "Arbel", "Beamer", "ioslides", "Slidy", "De", "Desirée", "edu", "rstudio", "Zieffler", "customise", "emdash", "endash", "strikethrough", "subscipt", "nd", "th")
+WORDS_TO_IGNORE <- c("Allaire", "Gruber", "Gruber's", "MacFarlane", "md", "pandoc", "Rmd", "rmarkdown", "Yihui", "Julyan", "Arbel", "Beamer", "ioslides", "Slidy", "De", "Desirée", "edu", "rstudio", "Zieffler", "customise", "emdash", "endash", "strikethrough", "subscipt", "nd", "th", "Privé's", "YOURGITHUBNAME", "D'Agostino", "MADA")
 source("knitr-options.R")
 source("spelling-check.R")
 ```
@@ -40,7 +40,7 @@ The only drawback of using R Markdown is that help is not always available throu
 Now that we have established what R Markdown is and what it can be used for, let us look at what a R Markdown document looks like. To create a new R Markdown document, you can either
 
 - Go to File -> New File -> R Markdown...
-- Click on <img src="images/blankFileIcon.png" style="display:inline-block; margin:0"/> in the upper-left corner of the RStudio menu (above the **Source pane** and select <img src="images/newRMarkdownDoc.png" style="display:inline-block; margin:0"/> R Markdown...
+- Click on <img src="images/blankFileIcon.png" style="display:inline-block; margin:0"/> in the upper-left corner of the RStudio menu (above the **Source pane**) and select <img src="images/newRMarkdownDoc.png" style="display:inline-block; margin:0"/> R Markdown...
 - Open a blank text document <img src="images/newTextDoc.png" style="display:inline-block; margin:0"/> and save this file with the extension *.Rmd*, i.e. [file_name].Rmd. 
 - Click on <img src="images/blankFileIcon.png" style="display:inline-block; margin:0"/> New Blank File in the **Files** tab of the **Output pane** and select <img src="images/newRMarkdownDoc.png" style="display:inline-block; margin:0"/> R Markdown... to create a file in the current directory.
 
@@ -154,7 +154,7 @@ When you run code in a chunk, the output is displayed in the console as usual, a
 knitr::include_graphics("images/currentChunkOutput.png")
 ```
     
-You can customise the chunk output with options by specifying them in the chunk header ` ```{r} `. `knitr` provides almost 60 options that you can use to customise code chunks. The most important options are:
+You can customise the chunk output with options specified in the chunk header ` ```{r} `. `knitr` provides almost 60 options that you can use to customise code chunks. The most important options are:
 
 * `eval` : Whether to evaluate the code and include its results. Defaults to `TRUE`.
 * `echo` : Whether to display code along with its results. Defaults to `TRUE`.
@@ -311,14 +311,55 @@ You can find a similar list in the article [**Markdown Basics**](https://rmarkdo
 
 ## Producing a complete report
 
+To generate a complete report containing all text, code and results, either
+
+* run the `render()` command specifying the name of the file you want to render:
+    ```{r, eval=FALSE, tidy='styler', collapse=TRUE}
+    rmarkdown::render("my_file.Rmd", output_format = "html_document")
+    ```
+* use the knit button (<img src="images/knitDocument.png" style="display:inline-block; margin:0"/> `Knit`) at the top of the **Source pane**
+* or use the keyboard shortcut *Ctrl+Shift+K* / *Shift+Command+K*.
+
+In addition to rendering the file, the knit button and the keyboard shortcut also show a preview of the output in the **Output pane**.    
+All three methods generate a self-contained file that you can share with others in the directory of the input file. 
 
 ### Exercise {.unnumbered}
 
 **<font size ="4">Make your own website with R Markdown</font>**
 
+This exercise is based on the exercise from Section \@ref(git). You need an R Studio project cloned from Florian Privé's GitHub repository [rmarkdown-website-template](https://github.com/privefl/rmarkdown-website-template) to do this exercise. If you haven't cloned the repository, go back to Section \@ref(github) and go through the exercise **Fork a repository** before you continue with this exercise.
+
+1. Open the R Studio project that is linked to the GitHub repository [YOURGITHUBNAME].github.io (where [YOURGITHUBNAME] represents your GitHub username).
+
+2. Build the website by running `rmarkdown::render_site(encoding = "UTF-8")` or by using the keyboard shortcut *Ctrl+Shift+B* / *Shift+Command+B*.
+
+3. Commit and push all new or updated files to your GitHub repository. The first time you build the website, a full directory (`site_libs/`) is created. Trying to add all the files from this directory to a commit can make RStudio freeze. If this happens, restart R Studio and run `rm .git/index.lock` in the terminal of R Studio (the terminal is part of the **Console pane**). Afterwards, run `git add .` in the terminal; This will add all new files for you to commit (you can see all the added files in the Git panel of the **Environments pane** after refreshing it).
+
+4. Change the content of your website by modifying `_site.yml`, `index.Rmd`, `about.Rmd`, `cv.Rmd` and `CV.pdf`.
+
+5. Build your website again (see Step 2) and commit & push everything to the GitHub repository.
+
+6. At any point, you can preview your website locally by rendering your site and opening the generated HTML files in your Web Browser. You can also see your website at  https&#58;//YOURGITHUBNAME.github.io/.
+
+If you need some inspiration, here are some websites created with R Markdown:
+
+- [Modern Applied Data Analysis (MADA)](https://andreashandel.github.io/MADAcourse/)
+- [Lucy D'Agostino McGowan's](https://www.lucymcgowan.com/) personal website
+- [The R user group in Grenoble](https://r-in-grenoble.github.io/)
+
+And to learn more about what pages should be included on your website, read [this](https://www.animateyour.science/post/how-to-use-videos-on-your-personal-scientist-website) blog post by [Animate Your Science](https://www.animateyour.science/).
+
 ## Summary
 
-
+* R Markdown is a file format for making reproducible, dynamics documents with `R`.
+* An R Markdown document is written in Markdown and contains plain text and embedded `R` code along with results.
+* The typical extension for an R Markdown file is *.Rmd*.
+* To open a new R Markdown document, go to File -> New File -> R Markdown... or click on <img src="images/blankFileIcon.png" style="display:inline-block; margin:0"/> in the upper-left corner of the RStudio menu and select <img src="images/newRMarkdownDoc.png" style="display:inline-block; margin:0"/> R Markdown... . R Studio will launch a wizard that you can use to pre-populate the file with useful content. 
+* An R Markdown document starts with an (optional) YAML header where you can specify (or update) metadata about the document and rendering instructions.
+* The body of an R Markdown file can contain `R` code chunks surrounded by ` ```{r} ` and ` ``` `
+* You can customise the chunk output with options specified in the chunk header ` ```{r} `.
+* The plain text in an R Markdown file can be formatted with R Markdown syntax.
+* To generate a complete report containing all text, code and results, use the knit button (<img src="images/knitDocument.png" style="display:inline-block; margin:0"/> `Knit`) at the top of the **Source pane** or the keyboard shortcut *Ctrl+Shift+K* / *Shift+Command+K*.
 
 ## Useful resources {.unnumbered}
 
@@ -327,3 +368,4 @@ You can find a similar list in the article [**Markdown Basics**](https://rmarkdo
 - [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire and Garrett Grolemund
 - [{R Markdown}](https://privefl.github.io/R-presentation/rmarkdown.html), a presentation by Florian Privé and Julyan Arbel. 
 - [Chapter 27 **R Markdown**](https://r4ds.had.co.nz/r-markdown.html) of [R for Data Science](http://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund. 
+- [R Markdown Websites](https://garrettgman.github.io/rmarkdown/rmarkdown_websites.html)
