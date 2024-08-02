@@ -23,7 +23,7 @@
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2024-07-10" />
+<meta name="date" content="2024-08-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -180,6 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git?</a></li>
 <li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#how-to-use-git"><i class="fa fa-check"></i><b>2.3.2</b> How to use Git</a></li>
+<li class="chapter" data-level="" data-path="good-practices.html"><a href="good-practices.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#when-things-go-wrong"><i class="fa fa-check"></i><b>2.4</b> When things go wrong…</a>
 <ul>
@@ -220,15 +221,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>4</b> R Markdown</a>
 <ul>
-<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#what-is-markdown"><i class="fa fa-check"></i>What is Markdown?</a></li>
-<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#adding-r-to-markdown"><i class="fa fa-check"></i>Adding <code>R</code> to Markdown</a></li>
 <li class="chapter" data-level="4.1" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown-basics"><i class="fa fa-check"></i><b>4.1</b> R Markdown basics</a>
 <ul>
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#the-yaml-header"><i class="fa fa-check"></i>The YAML header</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-code-chunks"><i class="fa fa-check"></i><code>R</code> code chunks</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#plain-text-with-simple-text-formatting"><i class="fa fa-check"></i>Plain text with simple text formatting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="rmarkdown.html"><a href="rmarkdown.html#producing-a-complete-report"><i class="fa fa-check"></i><b>4.2</b> Producing a complete report</a></li>
+<li class="chapter" data-level="4.2" data-path="rmarkdown.html"><a href="rmarkdown.html#producing-a-complete-report"><i class="fa fa-check"></i><b>4.2</b> Producing a complete report</a>
+<ul>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#exercise-2"><i class="fa fa-check"></i>Exercise</a></li>
+</ul></li>
 <li class="chapter" data-level="4.3" data-path="rmarkdown.html"><a href="rmarkdown.html#summary-2"><i class="fa fa-check"></i><b>4.3</b> Summary</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#useful-resources-3"><i class="fa fa-check"></i>Useful resources</a></li>
 </ul></li>
@@ -258,7 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="performance.html"><a href="performance.html#vectorization"><i class="fa fa-check"></i><b>6.3</b> Vectorization</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="performance.html"><a href="performance.html#exercise-1"><i class="fa fa-check"></i><b>6.3.1</b> Exercise</a></li>
+<li class="chapter" data-level="6.3.1" data-path="performance.html"><a href="performance.html#exercise-3"><i class="fa fa-check"></i><b>6.3.1</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="performance.html"><a href="performance.html#Rcpp"><i class="fa fa-check"></i><b>6.4</b> Rcpp</a></li>
 <li class="chapter" data-level="6.5" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>6.5</b> Linear algebra</a>
@@ -338,14 +340,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/rmarkdown.png" width="25%" style="display: block; margin: auto;" /></p>
 <p>When writing package documentations with <code>roxygen2</code>, building websites for <code>R</code> packages with <code>pkgdown</code>, or building a personal website, you will not be able to get past R Markdown. R Markdown is rightly used everywhere; Indeed, these materials are written in R Markdown.</p>
 <p>But what is R Markdown? R Markdown is a file format for making reproducible, dynamic documents with <code>R</code>. A single R Markdown file can be used to save and execute code, and to generate high quality reports that can be shared with an audience. An R Markdown document is written in Markdown and contains plain text and embedded <code>R</code> code and results. In this chapter, we will take a closer look at R Markdown.</p>
-<div id="what-is-markdown" class="section level2 unnumbered hasAnchor">
-<h2>What is Markdown?<a href="rmarkdown.html#what-is-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong><font size ="4">What is Markdown?</font></strong></p>
 <p>Markdown is a simple markup language with plain text formatting syntax. And what is a markup language? It is a text-encoding system: A set of symbols is inserted in a text document to control its structure, formatting, etc. You probably know HTML; the standard markup language for creating Web pages.
 The extension of a Markdown file is typically <em>.md</em>, but a Markdown document can be converted to many formats (including HTML, PDF, and MS_Word). The original version of Markdown was created by John Gruber in 2004; completely independent of <code>R</code>. John Gruber’s aim was to create a markup language that was easy to read and easy to write. He may have overshot the target; The original version of Markdown was often found overly simple and not suitable to write highly technical documents.</p>
 <p>Fortunately, two years later, John MacFarlane created the universal document converter <a href="https://pandoc.org/index.html">pandoc</a>. In this connection, the Markdown syntax was significantly enriched, making Markdown an excellent authoring framework for data science.</p>
-</div>
-<div id="adding-r-to-markdown" class="section level2 unnumbered hasAnchor">
-<h2>Adding <code>R</code> to Markdown<a href="rmarkdown.html#adding-r-to-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong><font size ="4">Adding <code>R</code> to Markdown</font></strong></p>
 <p><strong>R Markdown</strong> is an extension of the markdown syntax that enables <code>R</code> code to be embedded in the document. The typical extension for an R Markdown file is <em>.Rmd</em>.
 Converting an R Markdown document to a specific output format requires two steps:</p>
 <ol style="list-style-type: decimal">
@@ -355,7 +354,6 @@ Converting an R Markdown document to a specific output format requires two steps
 <p>Fortunately, we don’t have to perform these steps every time we want to render an R Markdown document. The package <code>rmarkdown</code>, which is automatically installed and loaded in RStudio, provides a function that performs the processing steps for you; the function is called <code>render()</code>. Moreover, RStudio has a <em>Knit</em> button (<img src="images/knitDocument.png" style="display:inline-block; margin:0"/>) at the top of the <strong>Source pane</strong> that enables you to render an .Rmd file and preview it with a single click (or keyboard shortcut <em>Ctrl+Shift+K</em> / <em>Shift+Command+K</em>).</p>
 <p><img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDRhZjUxemN1dTlxaXVoajczZHU5MjVwZGZ1NWRxemhobDFqdWZlbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MdW35zYHmaNsltKHaM/giphy.gif" /></p>
 <p>The only drawback of using R Markdown is that help is not always available through the <code>help()</code> function. R Markdown integrates a variety of R packages and external tools; making it difficult to provide help for everything. Instead, you should consider the <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference Guide</a>, the <a href="https://rstudio.github.io/cheatsheets/html/rmarkdown.html">R Markdown Cheat Sheet</a> (an older version can be found <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">here</a>), and the <a href="https://rmarkdown.rstudio.com/index.html">rmarkdown website</a>, which is also made with R Markdown (of course).</p>
-</div>
 <div id="r-markdown-basics" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> R Markdown basics<a href="rmarkdown.html#r-markdown-basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that we have established what R Markdown is and what it can be used for, let us look at what a R Markdown document looks like. To create a new R Markdown document, you can either</p>
@@ -372,7 +370,12 @@ Your browser does not support the video tag.
 </video>
 </center>
 <p>Using options one and two will open a pop-up window that looks like this:</p>
-<p><img src="images/RMarkdownPopup.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pop-up"></span>
+<img src="images/RMarkdownPopup.png" alt="How to create an R Markdown file" width="70%" />
+<p class="caption">
+Figure 4.1: How to create an R Markdown file
+</p>
+</div>
 <p>If you want to create an empty document without any pre-defined options, click on <code>Create Empty Document</code> in the lower-left corner. You can also create an HTML, PDF, or Word document, presentations (ioslides, Slidy, Beamer or PowerPoint), interactive Shiny documents or presentations, or open R Markdown templates using the menu to the left and the suggested default output formats. Finally, you can specify a title, author and date. Once you have selected the desired output format and updated the title, author and date, select <code>OK</code>. RStudio will now open an R Markdown document that looks similar to the one shown below:</p>
 <p><img src="images/RMarkdownDocument.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>The document contains three important types of content:</p>
@@ -384,7 +387,7 @@ Your browser does not support the video tag.
 <p>In the following, we will explore each component in more detail.</p>
 <div id="the-yaml-header" class="section level3 unnumbered hasAnchor">
 <h3>The YAML header<a href="rmarkdown.html#the-yaml-header" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>An R Markdown document starts with an (optional) YAML header surrounded by a line of three hyphens <code>---</code>. This is where you can specify (or update) metadata about the document and rendering instructions. When you create an R Markdown file using the pop-up window shown in Figure <span class="math inline">\(\ref{fig:pop-up}\)</span>, RStudio writes the YAML header for you. However, you can still update the existing options or add other metadata. Some commonly used YAML metadata options are:</p>
+<p>An R Markdown document starts with an (optional) YAML header surrounded by a line of three hyphens <code>---</code>. This is where you can specify (or update) metadata about the document and rendering instructions. When you create an R Markdown file using the wizard shown in Figure <a href="rmarkdown.html#fig:pop-up">4.1</a>, RStudio writes the YAML header for you. However, you can still update the existing options or add other metadata. Some commonly used YAML metadata options are:</p>
 <ul>
 <li><p><code>title</code> : A descriptive main title.</p></li>
 <li><p><code>author</code> : Name of the author(s). You can use lists for multiple authors and for adding other metadata, for example:</p>
@@ -452,11 +455,10 @@ You can insert a chunk in three different ways:</p>
 <ul>
 <li>By manually typing the chunk delimiters <code>```{r}</code> and <code>```</code></li>
 <li>By clicking the insert button icon <img src="images/insertChunk.png" style="display:inline-block; margin:0"/> in the editor toolbar at the top of the <strong>Source pane</strong></li>
-<li>or by using the keyboard shortcut <em>Ctrl+Alt+I</em> / <em>Command+Option+I</em>.
-<br>
-Even though you are working within an R Markdown document, you can still execute current line/selection of code in a code chunk using the keyboard shortcut <em>Ctrl+Enter</em> / <em>Command+Return</em>. If you want to run all code in a chunk, you can click <img src="images/executeCurrentChunk.png" style="display:inline-block; margin:0"/> in the upper-right corner of the code chunk or use the shortcut <em>Ctrl+Shift+Enter</em> / <em>Command+Shift+Return</em>.
-When you run code in a chunk, the output is displayed in the console as usual, and all objects are stored in the current environment. However, RStudio will also show the output below the code chunk:</li>
+<li>or by using the keyboard shortcut <em>Ctrl+Alt+I</em> / <em>Command+Option+I</em>.</li>
 </ul>
+<p>Even though you are working within an R Markdown document, you can still execute current line/selection of code in a code chunk using the keyboard shortcut <em>Ctrl+Enter</em> / <em>Command+Return</em>. If you want to run all code in a chunk, you can click <img src="images/executeCurrentChunk.png" style="display:inline-block; margin:0"/> in the upper-right corner of the code chunk or use the shortcut <em>Ctrl+Shift+Enter</em> / <em>Command+Shift+Return</em>.
+When you run code in a chunk, the output is displayed in the console as usual, and all objects are stored in the current environment. However, RStudio will also show the output below the code chunk:</p>
 <p><img src="images/currentChunkOutput.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>You can customise the chunk output with options by specifying them in the chunk header <code>```{r}</code>. <code>knitr</code> provides almost 60 options that you can use to customise code chunks. The most important options are:</p>
 <ul>
@@ -555,7 +557,7 @@ emdash: —
 </tr>
 <tr>
 <td>
-inline <code>R</code> code: <code>` `2.5` `</code>
+inline <code>R</code> code: <code>`</code> r mean(1:4) <code>`</code>
 </td>
 <td>
 inline <code>R</code> code: 2.5
@@ -635,21 +637,14 @@ image: <img src="images/rstudio.png" alt="optional caption text" />
 </tr>
 <tr>
 <td>
-Unordered lists are made with <strong>* </strong>, <strong>-</strong> or <strong>+</strong> :
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
 * Bullet list item 1<br />
-* Bullet list item 2<br />
+- Bullet list item 2<br />
 
 <p style="text-indent: 20px;">
-* Item 2a
++ Item 2a
 </p>
 <p style="text-indent: 20px;">
-* Item 2b
++ Item 2b
 </p>
 </td>
 <td>
@@ -662,13 +657,6 @@ Unordered lists are made with <strong>* </strong>, <strong>-</strong> or <strong
 </li>
 <li>Item 2b<br />
 
-</td>
-</tr>
-<tr>
-<td>
-Ordered lists are made with numbers:
-</td>
-<td>
 </td>
 </tr>
 <tr>
@@ -708,7 +696,7 @@ block quote
 <tr>
 <td>
 First Header | Second Header<br />
------------------ | -----------------<br />
+-----------------|-----------------<br />
 Content Cell | Content Cell<br />
 Content Cell | Content Cell</li>
 </ol></li>
@@ -745,6 +733,10 @@ and you can insert a horizontal rule (or insert a slide break) with three or mor
 </div>
 <div id="producing-a-complete-report" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Producing a complete report<a href="rmarkdown.html#producing-a-complete-report" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-2" class="section level3 unnumbered hasAnchor">
+<h3>Exercise<a href="rmarkdown.html#exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong><font size ="4">Make your own website with R Markdown</font></strong></p>
+</div>
 </div>
 <div id="summary-2" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Summary<a href="rmarkdown.html#summary-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -756,7 +748,7 @@ and you can insert a horizontal rule (or insert a slide break) with three or mor
 <li><a href="https://rmarkdown.rstudio.com/articles_intro.html">Introduction to R Markdown</a> by Garrett Grolemund</li>
 <li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a> by Yihui Xie, J. J. Allaire and Garrett Grolemund</li>
 <li><a href="https://privefl.github.io/R-presentation/rmarkdown.html">{R Markdown}</a>, a presentation by Florian Privé and Julyan Arbel.</li>
-<li><a href="https://r4ds.had.co.nz/r-markdown.html">Chapter 27 <em>R Markdown</em></a> of <a href="http://r4ds.had.co.nz/">R for Data Science</a> by Hadley Wickham and Garrett Grolemund.</li>
+<li><a href="https://r4ds.had.co.nz/r-markdown.html">Chapter 27 <strong>R Markdown</strong></a> of <a href="http://r4ds.had.co.nz/">R for Data Science</a> by Hadley Wickham and Garrett Grolemund.</li>
 </ul>
 
 </div>

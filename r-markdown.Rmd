@@ -14,14 +14,14 @@ When writing package documentations with `roxygen2`, building websites for `R` p
 
 But what is R Markdown? R Markdown is a file format for making reproducible, dynamic documents with `R`. A single R Markdown file can be used to save and execute code, and to generate high quality reports that can be shared with an audience. An R Markdown document is written in Markdown and contains plain text and embedded `R` code and results. In this chapter, we will take a closer look at R Markdown.
 
-## What is Markdown? {.unnumbered}
+**<font size ="4">What is Markdown?</font>**
 
 Markdown is a simple markup language with plain text formatting syntax. And what is a markup language? It is a text-encoding system: A set of symbols is inserted in a text document to control its structure, formatting, etc. You probably know HTML; the standard markup language for creating Web pages. 
 The extension of a Markdown file is typically *.md*, but a Markdown document can be converted to many formats (including HTML, PDF, and MS_Word). The original version of Markdown was created by John Gruber in 2004; completely independent of `R`. John Gruber's aim was to create a markup language that was easy to read and easy to write. He may have overshot the target; The original version of Markdown was often found overly simple and not suitable to write highly technical documents. 
 
 Fortunately, two years later, John MacFarlane created the universal document converter [pandoc](https://pandoc.org/index.html). In this connection, the Markdown syntax was significantly enriched, making Markdown an excellent authoring framework for data science. 
 
-## Adding `R` to Markdown {.unnumbered}
+**<font size ="4">Adding `R` to Markdown</font>**
 
 **R Markdown** is an extension of the markdown syntax that enables `R` code to be embedded in the document.  The typical extension for an R Markdown file is *.Rmd*. 
 Converting an R Markdown document to a specific output format requires two steps:
@@ -53,7 +53,7 @@ Your browser does not support the video tag.
 
 Using options one and two will open a pop-up window that looks like this:
 
-```{r pop-up, echo=FALSE, fig.cap=""}
+```{r pop-up, echo=FALSE, fig.cap="How to create an R Markdown file"}
 knitr::include_graphics("images/RMarkdownPopup.png")
 ```
 
@@ -73,7 +73,7 @@ In the following, we will explore each component in more detail.
 
 ### The YAML header {.unnumbered}
 
-An R Markdown document starts with an (optional) YAML header surrounded by a line of three hyphens `---`. This is where you can specify (or update) metadata about the document and rendering instructions. When you create an R Markdown file using the pop-up window shown in Figure \ref{fig:pop-up}, RStudio writes the YAML header for you. However, you can still update the existing options or add other metadata. Some commonly used YAML metadata options are:
+An R Markdown document starts with an (optional) YAML header surrounded by a line of three hyphens `---`. This is where you can specify (or update) metadata about the document and rendering instructions. When you create an R Markdown file using the wizard shown in Figure \@ref(fig:pop-up), RStudio writes the YAML header for you. However, you can still update the existing options or add other metadata. Some commonly used YAML metadata options are:
 
 - `title` : A descriptive main title. 
 - `author` : Name of the author(s). You can use lists for multiple authors and for adding other metadata, for example:
@@ -146,7 +146,7 @@ You can insert a chunk in three different ways:
 - By manually typing the chunk delimiters  ` ```{r} ` and ` ``` `
 - By clicking the insert button icon <img src="images/insertChunk.png" style="display:inline-block; margin:0"/> in the editor toolbar at the top of the **Source pane**
 - or by using the keyboard shortcut *Ctrl+Alt+I* / *Command+Option+I*.
-<br>
+
 Even though you are working within an R Markdown document, you can still execute current line/selection of code in a code chunk using the keyboard shortcut  *Ctrl+Enter* / *Command+Return*. If you want to run all code in a chunk, you can click <img src="images/executeCurrentChunk.png" style="display:inline-block; margin:0"/> in the upper-right corner of the code chunk or use the shortcut *Ctrl+Shift+Enter* / *Command+Shift+Return*. 
 When you run code in a chunk, the output is displayed in the console as usual, and all objects are stored in the current environment. However, RStudio will also show the        output below the code chunk: 
     
@@ -214,7 +214,7 @@ The last important type of content often constitutes most of the body of an R Ma
     <td>emdash: ---</td>
   </tr>
   <tr>
-    <td>inline `R` code: `` ` ``r mean(1:4)`` ` `` </td>
+    <td>inline `R` code: `` ` `` r mean(1:4) `` ` `` </td>
     <td>inline `R` code: `r mean(1:4)`</td>
   </tr>
   <tr>
@@ -254,26 +254,18 @@ The last important type of content often constitutes most of the body of an R Ma
     <td>**<font size ="1"> 6th level header  </font>**</td>
   </tr>
   <tr>
-    <td>Unordered lists are made with **\* **, **-** or **+** :</td>
-    <td></td>
-  </tr>
-  <tr>
     <td>
-    \* Bullet list item 1     
-    \* Bullet list item 2    
-    <p style="text-indent: 20px;">\* Item 2a</p>
-    <p style="text-indent: 20px;">\* Item 2b</p>  
+    \* Bullet list item 1    
+    \- Bullet list item 2    
+    <p style="text-indent: 20px;">\+ Item 2a</p>
+    <p style="text-indent: 20px;">\+ Item 2b</p>  
     </td>
     <td>
     * Bullet list item 1
-    * Bullet list item 2
-        * Item 2a    
-        * Item 2b    
+    - Bullet list item 2
+        + Item 2a    
+        + Item 2b    
     </td>
-  </tr>
-  <tr>
-    <td>Ordered lists are made with numbers:</td>
-    <td></td>
   </tr>
   <tr>
     <td>
@@ -283,6 +275,7 @@ The last important type of content often constitutes most of the body of an R Ma
     <p style="text-indent: 20px;">1\. Item 2b</p>
     </td>
     <td>
+    \newline
     1. Numbered list item 1     
     1. Item 2. The numbers are incremented automatically in the output
         1. Item 2a
@@ -319,6 +312,10 @@ You can find a similar list in the article [**Markdown Basics**](https://rmarkdo
 ## Producing a complete report
 
 
+### Exercise {.unnumbered}
+
+**<font size ="4">Make your own website with R Markdown</font>**
+
 ## Summary
 
 
@@ -329,4 +326,4 @@ You can find a similar list in the article [**Markdown Basics**](https://rmarkdo
 - [Introduction to R Markdown](https://rmarkdown.rstudio.com/articles_intro.html) by Garrett Grolemund
 - [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire and Garrett Grolemund
 - [{R Markdown}](https://privefl.github.io/R-presentation/rmarkdown.html), a presentation by Florian Privé and Julyan Arbel. 
-- [Chapter 27 *R Markdown*](https://r4ds.had.co.nz/r-markdown.html) of [R for Data Science](http://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund. 
+- [Chapter 27 **R Markdown**](https://r4ds.had.co.nz/r-markdown.html) of [R for Data Science](http://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund. 
