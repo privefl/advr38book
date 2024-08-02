@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Advanced R</title>
   <meta name="description" content="This document contains all the materials used in connection to the PhD course about Advanced R held first at the doctoral school of Grenoble, France, and afterwards at the Graduate School of Health, Aarhus University, Denmark." />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Advanced R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2024-07-10" />
+<meta name="date" content="2024-08-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-100463316-5"></script>
 <script>
@@ -63,6 +65,70 @@
 </script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
   
@@ -93,9 +159,9 @@
 </ul></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#content"><i class="fa fa-check"></i><b>1.2</b> Content</a></li>
-<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#useful-resources"><i class="fa fa-check"></i><b>1.3</b> Useful resources</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#content"><i class="fa fa-check"></i>Content</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#useful-resources"><i class="fa fa-check"></i>Useful resources</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="good-practices.html"><a href="good-practices.html"><i class="fa fa-check"></i><b>2</b> Good practices</a>
 <ul>
@@ -106,129 +172,148 @@
 <li class="chapter" data-level="2.1.3" data-path="good-practices.html"><a href="good-practices.html#indenting"><i class="fa fa-check"></i><b>2.1.3</b> Indenting</a></li>
 <li class="chapter" data-level="2.1.4" data-path="good-practices.html"><a href="good-practices.html#long-lines"><i class="fa fa-check"></i><b>2.1.4</b> Long lines</a></li>
 <li class="chapter" data-level="2.1.5" data-path="good-practices.html"><a href="good-practices.html#other"><i class="fa fa-check"></i><b>2.1.5</b> Other</a></li>
+<li class="chapter" data-level="2.1.6" data-path="good-practices.html"><a href="good-practices.html#code-organization"><i class="fa fa-check"></i><b>2.1.6</b> Code organization</a></li>
+<li class="chapter" data-level="2.1.7" data-path="good-practices.html"><a href="good-practices.html#styler"><i class="fa fa-check"></i><b>2.1.7</b> Styler</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a></li>
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#git"><i class="fa fa-check"></i><b>2.3</b> Version control (Git)</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git-you-dont-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git? You don’t use Git?</a></li>
-<li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#about-git"><i class="fa fa-check"></i><b>2.3.2</b> About Git</a></li>
+<li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git?</a></li>
+<li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#how-to-use-git"><i class="fa fa-check"></i><b>2.3.2</b> How to use Git</a></li>
+<li class="chapter" data-level="" data-path="good-practices.html"><a href="good-practices.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#getting-help"><i class="fa fa-check"></i><b>2.4</b> Getting help</a>
+<li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#when-things-go-wrong"><i class="fa fa-check"></i><b>2.4</b> When things go wrong…</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#help-yourself-learn-how-to-debug"><i class="fa fa-check"></i><b>2.4.1</b> Help yourself, learn how to debug</a></li>
-<li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.2</b> External help</a></li>
+<li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#first-locate-the-error"><i class="fa fa-check"></i><b>2.4.1</b> First: locate the error</a></li>
+<li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#second-fix-the-error"><i class="fa fa-check"></i><b>2.4.2</b> Second: fix the error</a></li>
+<li class="chapter" data-level="2.4.3" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.3</b> External help</a></li>
 </ul></li>
+<li class="chapter" data-level="2.5" data-path="good-practices.html"><a href="good-practices.html#summary"><i class="fa fa-check"></i><b>2.5</b> Summary</a></li>
+<li class="chapter" data-level="" data-path="good-practices.html"><a href="good-practices.html#useful-resources-1"><i class="fa fa-check"></i>Useful resources</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="r-programming.html"><a href="r-programming.html"><i class="fa fa-check"></i><b>3</b> R programming</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="r-programming.html"><a href="r-programming.html#common-mistakes"><i class="fa fa-check"></i><b>3.1</b> Common mistakes</a>
+<li class="chapter" data-level="3.1" data-path="r-programming.html"><a href="r-programming.html#common-mistakes-to-avoid"><i class="fa fa-check"></i><b>3.1</b> Common mistakes to avoid</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="r-programming.html"><a href="r-programming.html#equality"><i class="fa fa-check"></i><b>3.1.1</b> Equality</a></li>
-<li class="chapter" data-level="3.1.2" data-path="r-programming.html"><a href="r-programming.html#arguments"><i class="fa fa-check"></i><b>3.1.2</b> Arguments</a></li>
+<li class="chapter" data-level="3.1.1" data-path="r-programming.html"><a href="r-programming.html#the-floating-point-error"><i class="fa fa-check"></i><b>3.1.1</b> The floating-point error</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-programming.html"><a href="r-programming.html#the-...-argument"><i class="fa fa-check"></i><b>3.1.2</b> The <code>...</code> argument</a></li>
 <li class="chapter" data-level="3.1.3" data-path="r-programming.html"><a href="r-programming.html#others"><i class="fa fa-check"></i><b>3.1.3</b> Others</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="r-programming.html"><a href="r-programming.html#r-base-objects"><i class="fa fa-check"></i><b>3.2</b> R base objects</a>
+<li class="chapter" data-level="3.2" data-path="r-programming.html"><a href="r-programming.html#useful-r-functions"><i class="fa fa-check"></i><b>3.2</b> Useful <code>R</code> functions</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="r-programming.html"><a href="r-programming.html#types"><i class="fa fa-check"></i><b>3.2.1</b> Types</a></li>
-<li class="chapter" data-level="3.2.2" data-path="r-programming.html"><a href="r-programming.html#exercise"><i class="fa fa-check"></i><b>3.2.2</b> Exercise</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#general"><i class="fa fa-check"></i>General</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#sequence-and-vector-operations"><i class="fa fa-check"></i>Sequence and vector operations</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#character-operations"><i class="fa fa-check"></i>Character operations</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#logical-operators"><i class="fa fa-check"></i>Logical operators</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#useful-non-base-r-functions"><i class="fa fa-check"></i>Useful non-base R functions</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="r-programming.html"><a href="r-programming.html#base-objects-and-accessors"><i class="fa fa-check"></i><b>3.3</b> Base objects and accessors</a>
+<li class="chapter" data-level="3.3" data-path="r-programming.html"><a href="r-programming.html#data-structures-in-r"><i class="fa fa-check"></i><b>3.3</b> Data structures in <code>R</code></a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="r-programming.html"><a href="r-programming.html#objects"><i class="fa fa-check"></i><b>3.3.1</b> Objects</a></li>
-<li class="chapter" data-level="3.3.2" data-path="r-programming.html"><a href="r-programming.html#accessors"><i class="fa fa-check"></i><b>3.3.2</b> Accessors</a></li>
-<li class="chapter" data-level="3.3.3" data-path="r-programming.html"><a href="r-programming.html#exercises"><i class="fa fa-check"></i><b>3.3.3</b> Exercises</a></li>
+<li class="chapter" data-level="3.3.1" data-path="r-programming.html"><a href="r-programming.html#types"><i class="fa fa-check"></i><b>3.3.1</b> Types</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-programming.html"><a href="r-programming.html#objects-and-attributes"><i class="fa fa-check"></i><b>3.3.2</b> Objects and attributes</a></li>
+<li class="chapter" data-level="3.3.3" data-path="r-programming.html"><a href="r-programming.html#accessors"><i class="fa fa-check"></i><b>3.3.3</b> Accessors</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="r-programming.html"><a href="r-programming.html#useful-r-base-functions"><i class="fa fa-check"></i><b>3.4</b> Useful R base functions</a>
-<ul>
-<li class="chapter" data-level="3.4.1" data-path="r-programming.html"><a href="r-programming.html#general"><i class="fa fa-check"></i><b>3.4.1</b> General</a></li>
-<li class="chapter" data-level="3.4.2" data-path="r-programming.html"><a href="r-programming.html#sequence-and-vector-operations"><i class="fa fa-check"></i><b>3.4.2</b> Sequence and vector operations</a></li>
-<li class="chapter" data-level="3.4.3" data-path="r-programming.html"><a href="r-programming.html#character-operations"><i class="fa fa-check"></i><b>3.4.3</b> Character operations</a></li>
-<li class="chapter" data-level="3.4.4" data-path="r-programming.html"><a href="r-programming.html#logical-operators"><i class="fa fa-check"></i><b>3.4.4</b> Logical operators</a></li>
-<li class="chapter" data-level="3.4.5" data-path="r-programming.html"><a href="r-programming.html#exercises-1"><i class="fa fa-check"></i><b>3.4.5</b> Exercises</a></li>
+<li class="chapter" data-level="3.4" data-path="r-programming.html"><a href="r-programming.html#environments-and-scoping"><i class="fa fa-check"></i><b>3.4</b> Environments and scoping</a></li>
+<li class="chapter" data-level="3.5" data-path="r-programming.html"><a href="r-programming.html#summary-1"><i class="fa fa-check"></i><b>3.5</b> Summary</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#useful-resources-2"><i class="fa fa-check"></i>Useful resources</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="r-programming.html"><a href="r-programming.html#environments-and-scoping"><i class="fa fa-check"></i><b>3.5</b> Environments and scoping</a></li>
-<li class="chapter" data-level="3.6" data-path="r-programming.html"><a href="r-programming.html#attributes-and-classes"><i class="fa fa-check"></i><b>3.6</b> Attributes and classes</a></li>
+<li class="chapter" data-level="4" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>4</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown-basics"><i class="fa fa-check"></i><b>4.1</b> R Markdown basics</a>
+<ul>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#the-yaml-header"><i class="fa fa-check"></i>The YAML header</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-code-chunks"><i class="fa fa-check"></i><code>R</code> code chunks</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#plain-text-with-simple-text-formatting"><i class="fa fa-check"></i>Plain text with simple text formatting</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> Data analysis with the tidyverse</a>
+<li class="chapter" data-level="4.2" data-path="rmarkdown.html"><a href="rmarkdown.html#producing-a-complete-report"><i class="fa fa-check"></i><b>4.2</b> Producing a complete report</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="tidyverse.html"><a href="tidyverse.html#program"><i class="fa fa-check"></i><b>4.1</b> Program</a></li>
-<li class="chapter" data-level="4.2" data-path="tidyverse.html"><a href="tidyverse.html#other-chapters-from-this-book"><i class="fa fa-check"></i><b>4.2</b> Other chapters from this book</a></li>
-<li class="chapter" data-level="4.3" data-path="tidyverse.html"><a href="tidyverse.html#other-resources"><i class="fa fa-check"></i><b>4.3</b> Other resources</a></li>
-<li class="chapter" data-level="4.4" data-path="tidyverse.html"><a href="tidyverse.html#other-tidy-packages"><i class="fa fa-check"></i><b>4.4</b> Other “tidy” packages</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#exercise-2"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>5</b> Performance</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="performance.html"><a href="performance.html#rs-memory-management"><i class="fa fa-check"></i><b>5.1</b> R’s memory management</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="performance.html"><a href="performance.html#understanding-binding-basics"><i class="fa fa-check"></i><b>5.1.1</b> Understanding binding basics</a></li>
-<li class="chapter" data-level="5.1.2" data-path="performance.html"><a href="performance.html#copy-on-modify"><i class="fa fa-check"></i><b>5.1.2</b> Copy-on-modify</a></li>
-<li class="chapter" data-level="5.1.3" data-path="performance.html"><a href="performance.html#copy-on-modify-what-about-inside-functions"><i class="fa fa-check"></i><b>5.1.3</b> Copy-on-modify: what about inside functions?</a></li>
-<li class="chapter" data-level="5.1.4" data-path="performance.html"><a href="performance.html#lists"><i class="fa fa-check"></i><b>5.1.4</b> Lists</a></li>
-<li class="chapter" data-level="5.1.5" data-path="performance.html"><a href="performance.html#copy-on-modify-for-lists"><i class="fa fa-check"></i><b>5.1.5</b> Copy-on-modify for lists?</a></li>
-<li class="chapter" data-level="5.1.6" data-path="performance.html"><a href="performance.html#data-frames"><i class="fa fa-check"></i><b>5.1.6</b> Data frames</a></li>
+<li class="chapter" data-level="4.3" data-path="rmarkdown.html"><a href="rmarkdown.html#summary-2"><i class="fa fa-check"></i><b>4.3</b> Summary</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#useful-resources-3"><i class="fa fa-check"></i>Useful resources</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="performance.html"><a href="performance.html#early-advice"><i class="fa fa-check"></i><b>5.2</b> Early advice</a>
+<li class="chapter" data-level="5" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>5</b> Data analysis with the tidyverse</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="performance.html"><a href="performance.html#never-grow-a-vector"><i class="fa fa-check"></i><b>5.2.1</b> NEVER GROW A VECTOR</a></li>
-<li class="chapter" data-level="5.2.2" data-path="performance.html"><a href="performance.html#use-the-right-function"><i class="fa fa-check"></i><b>5.2.2</b> Use the right function</a></li>
-<li class="chapter" data-level="5.2.3" data-path="performance.html"><a href="performance.html#do-not-try-to-optimize-everything"><i class="fa fa-check"></i><b>5.2.3</b> Do not try to optimize everything</a></li>
+<li class="chapter" data-level="5.1" data-path="tidyverse.html"><a href="tidyverse.html#program"><i class="fa fa-check"></i><b>5.1</b> Program</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyverse.html"><a href="tidyverse.html#other-chapters-from-this-book"><i class="fa fa-check"></i><b>5.2</b> Other chapters from this book</a></li>
+<li class="chapter" data-level="5.3" data-path="tidyverse.html"><a href="tidyverse.html#other-resources"><i class="fa fa-check"></i><b>5.3</b> Other resources</a></li>
+<li class="chapter" data-level="5.4" data-path="tidyverse.html"><a href="tidyverse.html#other-tidy-packages"><i class="fa fa-check"></i><b>5.4</b> Other “tidy” packages</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="performance.html"><a href="performance.html#vectorization"><i class="fa fa-check"></i><b>5.3</b> Vectorization</a>
+<li class="chapter" data-level="6" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>6</b> Performance</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="performance.html"><a href="performance.html#exercise-1"><i class="fa fa-check"></i><b>5.3.1</b> Exercise</a></li>
+<li class="chapter" data-level="6.1" data-path="performance.html"><a href="performance.html#rs-memory-management"><i class="fa fa-check"></i><b>6.1</b> R’s memory management</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="performance.html"><a href="performance.html#understanding-binding-basics"><i class="fa fa-check"></i><b>6.1.1</b> Understanding binding basics</a></li>
+<li class="chapter" data-level="6.1.2" data-path="performance.html"><a href="performance.html#copy-on-modify"><i class="fa fa-check"></i><b>6.1.2</b> Copy-on-modify</a></li>
+<li class="chapter" data-level="6.1.3" data-path="performance.html"><a href="performance.html#copy-on-modify-what-about-inside-functions"><i class="fa fa-check"></i><b>6.1.3</b> Copy-on-modify: what about inside functions?</a></li>
+<li class="chapter" data-level="6.1.4" data-path="performance.html"><a href="performance.html#lists"><i class="fa fa-check"></i><b>6.1.4</b> Lists</a></li>
+<li class="chapter" data-level="6.1.5" data-path="performance.html"><a href="performance.html#copy-on-modify-for-lists"><i class="fa fa-check"></i><b>6.1.5</b> Copy-on-modify for lists?</a></li>
+<li class="chapter" data-level="6.1.6" data-path="performance.html"><a href="performance.html#data-frames"><i class="fa fa-check"></i><b>6.1.6</b> Data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="performance.html"><a href="performance.html#Rcpp"><i class="fa fa-check"></i><b>5.4</b> Rcpp</a></li>
-<li class="chapter" data-level="5.5" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.5</b> Linear algebra</a>
+<li class="chapter" data-level="6.2" data-path="performance.html"><a href="performance.html#early-advice"><i class="fa fa-check"></i><b>6.2</b> Early advice</a>
 <ul>
-<li class="chapter" data-level="5.5.1" data-path="performance.html"><a href="performance.html#exercises-2"><i class="fa fa-check"></i><b>5.5.1</b> Exercises</a></li>
+<li class="chapter" data-level="6.2.1" data-path="performance.html"><a href="performance.html#never-grow-a-vector"><i class="fa fa-check"></i><b>6.2.1</b> NEVER GROW A VECTOR</a></li>
+<li class="chapter" data-level="6.2.2" data-path="performance.html"><a href="performance.html#use-the-right-function"><i class="fa fa-check"></i><b>6.2.2</b> Use the right function</a></li>
+<li class="chapter" data-level="6.2.3" data-path="performance.html"><a href="performance.html#do-not-try-to-optimize-everything"><i class="fa fa-check"></i><b>6.2.3</b> Do not try to optimize everything</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#algorithms-data-structures"><i class="fa fa-check"></i><b>5.6</b> Algorithms &amp; data structures</a></li>
-<li class="chapter" data-level="5.7" data-path="performance.html"><a href="performance.html#exos"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
-<li class="chapter" data-level="5.8" data-path="performance.html"><a href="performance.html#parallel-computing"><i class="fa fa-check"></i><b>5.8</b> Parallel computing</a></li>
+<li class="chapter" data-level="6.3" data-path="performance.html"><a href="performance.html#vectorization"><i class="fa fa-check"></i><b>6.3</b> Vectorization</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="performance.html"><a href="performance.html#exercise-3"><i class="fa fa-check"></i><b>6.3.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a>
+<li class="chapter" data-level="6.4" data-path="performance.html"><a href="performance.html#Rcpp"><i class="fa fa-check"></i><b>6.4</b> Rcpp</a></li>
+<li class="chapter" data-level="6.5" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>6.5</b> Linear algebra</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#resources"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
-<li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#project-exercise"><i class="fa fa-check"></i><b>6.2</b> Project exercise</a></li>
-<li class="chapter" data-level="6.3" data-path="packages.html"><a href="packages.html#pkg-start"><i class="fa fa-check"></i><b>6.3</b> Quick start</a></li>
-<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>6.4</b> Basic stuff</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="packages.html"><a href="packages.html#description-file"><i class="fa fa-check"></i><b>6.4.1</b> <em>DESCRIPTION</em> file</a></li>
-<li class="chapter" data-level="6.4.2" data-path="packages.html"><a href="packages.html#r-code"><i class="fa fa-check"></i><b>6.4.2</b> R code</a></li>
-<li class="chapter" data-level="6.4.3" data-path="packages.html"><a href="packages.html#documentation"><i class="fa fa-check"></i><b>6.4.3</b> Documentation</a></li>
-<li class="chapter" data-level="6.4.4" data-path="packages.html"><a href="packages.html#namespace-file"><i class="fa fa-check"></i><b>6.4.4</b> <em>NAMESPACE</em> file</a></li>
+<li class="chapter" data-level="6.5.1" data-path="performance.html"><a href="performance.html#exercises-3"><i class="fa fa-check"></i><b>6.5.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.5</b> Good practices</a>
-<ul>
-<li class="chapter" data-level="6.5.1" data-path="packages.html"><a href="packages.html#pkg-tests"><i class="fa fa-check"></i><b>6.5.1</b> Testing</a></li>
-<li class="chapter" data-level="6.5.2" data-path="packages.html"><a href="packages.html#pkg-ci"><i class="fa fa-check"></i><b>6.5.2</b> Continuous checking</a></li>
-<li class="chapter" data-level="6.5.3" data-path="packages.html"><a href="packages.html#pkgdown"><i class="fa fa-check"></i><b>6.5.3</b> Pkgdown</a></li>
+<li class="chapter" data-level="6.6" data-path="performance.html"><a href="performance.html#algorithms-data-structures"><i class="fa fa-check"></i><b>6.6</b> Algorithms &amp; data structures</a></li>
+<li class="chapter" data-level="6.7" data-path="performance.html"><a href="performance.html#exos"><i class="fa fa-check"></i><b>6.7</b> Exercises</a></li>
+<li class="chapter" data-level="6.8" data-path="performance.html"><a href="performance.html#parallel-computing"><i class="fa fa-check"></i><b>6.8</b> Parallel computing</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#more"><i class="fa fa-check"></i><b>6.6</b> More</a>
+<li class="chapter" data-level="7" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>7</b> Packages</a>
 <ul>
-<li class="chapter" data-level="6.6.1" data-path="packages.html"><a href="packages.html#rcpp"><i class="fa fa-check"></i><b>6.6.1</b> Rcpp</a></li>
-<li class="chapter" data-level="6.6.2" data-path="packages.html"><a href="packages.html#ignore-files"><i class="fa fa-check"></i><b>6.6.2</b> Ignore files</a></li>
-<li class="chapter" data-level="6.6.3" data-path="packages.html"><a href="packages.html#the-inst-directory"><i class="fa fa-check"></i><b>6.6.3</b> The <code>inst/</code> directory</a></li>
-<li class="chapter" data-level="6.6.4" data-path="packages.html"><a href="packages.html#pkg-data"><i class="fa fa-check"></i><b>6.6.4</b> External data</a></li>
+<li class="chapter" data-level="7.1" data-path="packages.html"><a href="packages.html#resources"><i class="fa fa-check"></i><b>7.1</b> Resources</a></li>
+<li class="chapter" data-level="7.2" data-path="packages.html"><a href="packages.html#project-exercise"><i class="fa fa-check"></i><b>7.2</b> Project exercise</a></li>
+<li class="chapter" data-level="7.3" data-path="packages.html"><a href="packages.html#pkg-start"><i class="fa fa-check"></i><b>7.3</b> Quick start</a></li>
+<li class="chapter" data-level="7.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>7.4</b> Basic stuff</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="packages.html"><a href="packages.html#description-file"><i class="fa fa-check"></i><b>7.4.1</b> <em>DESCRIPTION</em> file</a></li>
+<li class="chapter" data-level="7.4.2" data-path="packages.html"><a href="packages.html#r-code"><i class="fa fa-check"></i><b>7.4.2</b> R code</a></li>
+<li class="chapter" data-level="7.4.3" data-path="packages.html"><a href="packages.html#documentation"><i class="fa fa-check"></i><b>7.4.3</b> Documentation</a></li>
+<li class="chapter" data-level="7.4.4" data-path="packages.html"><a href="packages.html#namespace-file"><i class="fa fa-check"></i><b>7.4.4</b> <em>NAMESPACE</em> file</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="packages.html"><a href="packages.html#release-on-cran"><i class="fa fa-check"></i><b>6.7</b> Release on CRAN</a></li>
+<li class="chapter" data-level="7.5" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>7.5</b> Good practices</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="packages.html"><a href="packages.html#pkg-tests"><i class="fa fa-check"></i><b>7.5.1</b> Testing</a></li>
+<li class="chapter" data-level="7.5.2" data-path="packages.html"><a href="packages.html#pkg-ci"><i class="fa fa-check"></i><b>7.5.2</b> Continuous checking</a></li>
+<li class="chapter" data-level="7.5.3" data-path="packages.html"><a href="packages.html#pkgdown"><i class="fa fa-check"></i><b>7.5.3</b> Pkgdown</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>7</b> Shiny</a>
+<li class="chapter" data-level="7.6" data-path="packages.html"><a href="packages.html#more"><i class="fa fa-check"></i><b>7.6</b> More</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="shiny.html"><a href="shiny.html#example"><i class="fa fa-check"></i><b>7.1</b> Example</a></li>
-<li class="chapter" data-level="7.2" data-path="shiny.html"><a href="shiny.html#datacamp-course"><i class="fa fa-check"></i><b>7.2</b> DataCamp course</a></li>
-<li class="chapter" data-level="7.3" data-path="shiny.html"><a href="shiny.html#other-resources-1"><i class="fa fa-check"></i><b>7.3</b> Other resources</a></li>
+<li class="chapter" data-level="7.6.1" data-path="packages.html"><a href="packages.html#rcpp"><i class="fa fa-check"></i><b>7.6.1</b> Rcpp</a></li>
+<li class="chapter" data-level="7.6.2" data-path="packages.html"><a href="packages.html#ignore-files"><i class="fa fa-check"></i><b>7.6.2</b> Ignore files</a></li>
+<li class="chapter" data-level="7.6.3" data-path="packages.html"><a href="packages.html#the-inst-directory"><i class="fa fa-check"></i><b>7.6.3</b> The <code>inst/</code> directory</a></li>
+<li class="chapter" data-level="7.6.4" data-path="packages.html"><a href="packages.html#pkg-data"><i class="fa fa-check"></i><b>7.6.4</b> External data</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="project.html"><a href="project.html"><i class="fa fa-check"></i><b>8</b> Project</a>
+<li class="chapter" data-level="7.7" data-path="packages.html"><a href="packages.html#release-on-cran"><i class="fa fa-check"></i><b>7.7</b> Release on CRAN</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>8</b> Shiny</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="project.html"><a href="project.html#what-is-tidy-tuesday"><i class="fa fa-check"></i><b>8.1</b> What is Tidy Tuesday?</a></li>
-<li class="chapter" data-level="8.2" data-path="project.html"><a href="project.html#tidy-thursday"><i class="fa fa-check"></i><b>8.2</b> Tidy Thursday</a>
+<li class="chapter" data-level="8.1" data-path="shiny.html"><a href="shiny.html#example"><i class="fa fa-check"></i><b>8.1</b> Example</a></li>
+<li class="chapter" data-level="8.2" data-path="shiny.html"><a href="shiny.html#datacamp-course"><i class="fa fa-check"></i><b>8.2</b> DataCamp course</a></li>
+<li class="chapter" data-level="8.3" data-path="shiny.html"><a href="shiny.html#other-resources-1"><i class="fa fa-check"></i><b>8.3</b> Other resources</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="project.html"><a href="project.html"><i class="fa fa-check"></i><b>9</b> Project</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="project.html"><a href="project.html#choose-a-dataset"><i class="fa fa-check"></i><b>8.2.1</b> Choose a dataset</a></li>
-<li class="chapter" data-level="8.2.2" data-path="project.html"><a href="project.html#visualize-the-data"><i class="fa fa-check"></i><b>8.2.2</b> Visualize the data</a></li>
-<li class="chapter" data-level="8.2.3" data-path="project.html"><a href="project.html#compilation-of-tweets"><i class="fa fa-check"></i><b>8.2.3</b> Compilation of tweets</a></li>
-<li class="chapter" data-level="8.2.4" data-path="project.html"><a href="project.html#example-1"><i class="fa fa-check"></i><b>8.2.4</b> Example</a></li>
-<li class="chapter" data-level="8.2.5" data-path="project.html"><a href="project.html#presentation"><i class="fa fa-check"></i><b>8.2.5</b> Presentation</a></li>
+<li class="chapter" data-level="9.1" data-path="project.html"><a href="project.html#what-is-tidy-tuesday"><i class="fa fa-check"></i><b>9.1</b> What is Tidy Tuesday?</a></li>
+<li class="chapter" data-level="9.2" data-path="project.html"><a href="project.html#tidy-thursday"><i class="fa fa-check"></i><b>9.2</b> Tidy Thursday</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="project.html"><a href="project.html#choose-a-dataset"><i class="fa fa-check"></i><b>9.2.1</b> Choose a dataset</a></li>
+<li class="chapter" data-level="9.2.2" data-path="project.html"><a href="project.html#visualize-the-data"><i class="fa fa-check"></i><b>9.2.2</b> Visualize the data</a></li>
+<li class="chapter" data-level="9.2.3" data-path="project.html"><a href="project.html#compilation-of-tweets"><i class="fa fa-check"></i><b>9.2.3</b> Compilation of tweets</a></li>
+<li class="chapter" data-level="9.2.4" data-path="project.html"><a href="project.html#example-1"><i class="fa fa-check"></i><b>9.2.4</b> Example</a></li>
+<li class="chapter" data-level="9.2.5" data-path="project.html"><a href="project.html#presentation"><i class="fa fa-check"></i><b>9.2.5</b> Presentation</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -254,43 +339,43 @@
 <h1 class="title">Advanced R</h1>
 <h2 class="subtitle"><em>PhD course offered by the Graduate School of Health, Aarhus University</em></h2>
 <p class="author"><em>Florian Privé</em></p>
-<p class="date"><em>2024-07-10</em></p>
+<p class="date"><em>2024-08-02</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered hasAnchor">
 <h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This book is based on materials originally developed for the doctoral school of Grenoble, France. It is now used as the main course material for the PhD course <strong>Advanced R</strong> offered by the Graduate School of Health, Aarhus University, Denmark.
-The main aim of this book is to give the reader a greater understanding of the R language, and to enable them to produce more clean, sophisticated and efficient R code. The reader will learn about packages and tools to simplify their coding life, about data analysis and visualization, and about best practices when coding in R.
+The main aim of this book is to give the reader a greater understanding of the <code>R</code> language, and to enable them to produce more clean, sophisticated and efficient <code>R</code> code. The reader will learn about packages and tools to simplify their coding life, about data analysis and visualization, and about best practices when coding in <code>R</code>.
 After studying these materials, the reader should be able to</p>
 <ul>
 <li>use RStudio with a better setup to be more efficient</li>
 <li>use Git as a version control system to track file changes</li>
-<li>understand how to write better and simpler code in R</li>
+<li>understand how to write better and simpler code in <code>R</code></li>
 <li>manipulate and visualize data with the tidyverse and R Markdown</li>
-<li>produce efficient R code</li>
-<li>develop an R package.</li>
+<li>produce efficient <code>R</code> code</li>
+<li>develop an <code>R</code> package.</li>
 </ul>
 <div id="how-to-read-this-book" class="section level2 unnumbered hasAnchor">
 <h2>How to read this book<a href="index.html#how-to-read-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Readers are recommended to have a basic understanding of R and some experience writing R code. You should, for example, be able to create variables, define functions, implement loops and subset objects such as vectors and data frames.
-If you are new to R, you can take a look at Garrett Grolemund’s <a href="https://rstudio-education.github.io/hopr/">Hands-On Programming with R</a> (2014), a book that uses hands-on examples to teach you how to program in R. Some other useful resources are</p>
+<p>Readers are recommended to have a basic understanding of <code>R</code> and some experience writing <code>R</code> code. You should, for example, be able to create variables, define functions, implement loops and subset objects such as vectors and data frames.
+If you are new to <code>R</code>, you can take a look at Garrett Grolemund’s <a href="https://rstudio-education.github.io/hopr/">Hands-On Programming with R</a> (2014), a book that uses hands-on examples to teach you how to program in <code>R</code>. Some other useful resources are</p>
 <ul>
-<li><a href="https://rladiessydney.org/courses/ryouwithme/01-basicbasics-0/">Basic Basics</a>, a lesson unit from <a href="https://rladiessydney.org/">R-Ladies Sydney</a> providing an opinionated tour of RStudio for new users and a step-by-step guide to installing and using R packages.</li>
-<li><a href="https://posit.co/resources/videos/a-gentle-introduction-to-tidy-statistics-in-r/">A Gentle Introduction to Tidy Statistics in R</a> (Thomas Mock, 2019), a one-hour free video webinar about how to get started quickly with basics of research statistics in R.</li>
-<li><a href="https://posit.cloud/learn/recipes">Posit Recipes</a>, a collection of R code snippets and instructions featuring up-to-date best practices for coding in R.</li>
-<li><a href="https://www.rstudio.com/tags/essentials/">The RStudio Essentials Series</a>, a webinar series about how to program and manage R projects using RStudio’s tools. These videos will also help you learn good development practices.</li>
+<li><a href="https://rladiessydney.org/courses/ryouwithme/01-basicbasics-0/">Basic Basics</a>, a lesson unit from <a href="https://rladiessydney.org/">R-Ladies Sydney</a> providing an opinionated tour of RStudio for new users and a step-by-step guide to installing and using <code>R</code> packages.</li>
+<li><a href="https://posit.co/resources/videos/a-gentle-introduction-to-tidy-statistics-in-r/">A Gentle Introduction to Tidy Statistics in R</a> (Thomas Mock, 2019), a one-hour free video webinar about how to get started quickly with basics of research statistics in <code>R</code>.</li>
+<li><a href="https://posit.cloud/learn/recipes">Posit Recipes</a>, a collection of <code>R</code> code snippets and instructions featuring up-to-date best practices for coding in <code>R</code>.</li>
+<li><a href="https://www.rstudio.com/tags/essentials/">The RStudio Essentials Series</a>, a webinar series about how to program and manage <code>R</code> projects using RStudio’s tools. These videos will also help you learn good development practices.</li>
 </ul>
 <p>Finally, posit also provides some very useful <a href="https://posit.co/resources/cheatsheets/">cheatsheets</a>, for example about the <a href="https://rstudio.github.io/cheatsheets/html/rstudio-ide.html">RStudio IDE</a>, that you may find helpful.</p>
 <p>In total, this book consists of eight chapters. The first chapter is a short introduction covering prerequisites, content and other useful resources. The following six chapters are theoretical and cover the following topics</p>
 <ul>
 <li>Good practices</li>
-<li>Advanced R programming</li>
+<li>Advanced <code>R</code> programming</li>
 <li>Data analysis with the tidyverse</li>
 <li>Code performance</li>
-<li>How to make an R package</li>
+<li>How to make an <code>R</code> package</li>
 <li>Introduction to Shiny Apps.</li>
 </ul>
 <p>The final chapter is an opportunity for the reader to apply the new theory using real data from <a href="https://github.com/rfordatascience/tidytuesday/blob/master/README.md">Tidy Tuesday</a>.</p>
-<p>You do not need to read through the materials from beginning to end. We have tried to make each chapter as self-contained as possible, and the reader should be able to only read the parts that are most interesting or relevant.</p>
+<p>The reader does not need to read through the materials from beginning to end. We have tried to make each chapter as self-contained as possible, and the reader should be able to only read the parts that are most interesting or relevant.</p>
 </div>
 <div id="about-the-author" class="section level2 unnumbered hasAnchor">
 <h2>About the Author<a href="index.html#about-the-author" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -299,7 +384,7 @@ If you are new to R, you can take a look at Garrett Grolemund’s <a href="https
 <div id="license" class="section level2 unnumbered hasAnchor">
 <h2>License<a href="index.html#license" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This material is licensed under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>.</p>
-<p><img src="images/new_hexsticker.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="images/new_hexsticker.png" width="80%" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
@@ -363,6 +448,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

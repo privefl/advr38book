@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Project | Advanced R Course</title>
-  <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <title>Chapter 9 Project | Advanced R</title>
+  <meta name="description" content="This document contains all the materials used in connection to the PhD course about Advanced R held first at the doctoral school of Grenoble, France, and afterwards at the Graduate School of Health, Aarhus University, Denmark." />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Project | Advanced R Course" />
+  <meta property="og:title" content="Chapter 9 Project | Advanced R" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="https://privefl.github.io/advr38book//images/hexsticker.png" />
-  <meta property="og:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
+  <meta property="og:image" content="https://privefl.github.io/advr38book//images/new_hexsticker.png" />
+  <meta property="og:description" content="This document contains all the materials used in connection to the PhD course about Advanced R held first at the doctoral school of Grenoble, France, and afterwards at the Graduate School of Health, Aarhus University, Denmark." />
   <meta name="github-repo" content="privefl/advr38book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Project | Advanced R Course" />
+  <meta name="twitter:title" content="Chapter 9 Project | Advanced R" />
   <meta name="twitter:site" content="@privefl" />
-  <meta name="twitter:description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="twitter:image" content="https://privefl.github.io/advr38book//images/hexsticker.png" />
+  <meta name="twitter:description" content="This document contains all the materials used in connection to the PhD course about Advanced R held first at the doctoral school of Grenoble, France, and afterwards at the Graduate School of Health, Aarhus University, Denmark." />
+  <meta name="twitter:image" content="https://privefl.github.io/advr38book//images/new_hexsticker.png" />
 
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2023-08-22" />
+<meta name="date" content="2024-08-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/twitter-widget-0.0.1/widgets.js"></script>
+<link href="libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-100463316-5"></script>
 <script>
@@ -66,7 +67,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -129,6 +130,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -146,16 +151,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./index.html">Advanced R Course</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
 <ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-read-this-book"><i class="fa fa-check"></i>How to read this book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the Author</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#author"><i class="fa fa-check"></i>Author</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#content"><i class="fa fa-check"></i><b>1.2</b> Content</a></li>
-<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#useful-resources"><i class="fa fa-check"></i><b>1.3</b> Useful resources</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#content"><i class="fa fa-check"></i>Content</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#useful-resources"><i class="fa fa-check"></i>Useful resources</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="good-practices.html"><a href="good-practices.html"><i class="fa fa-check"></i><b>2</b> Good practices</a>
 <ul>
@@ -166,129 +172,148 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1.3" data-path="good-practices.html"><a href="good-practices.html#indenting"><i class="fa fa-check"></i><b>2.1.3</b> Indenting</a></li>
 <li class="chapter" data-level="2.1.4" data-path="good-practices.html"><a href="good-practices.html#long-lines"><i class="fa fa-check"></i><b>2.1.4</b> Long lines</a></li>
 <li class="chapter" data-level="2.1.5" data-path="good-practices.html"><a href="good-practices.html#other"><i class="fa fa-check"></i><b>2.1.5</b> Other</a></li>
+<li class="chapter" data-level="2.1.6" data-path="good-practices.html"><a href="good-practices.html#code-organization"><i class="fa fa-check"></i><b>2.1.6</b> Code organization</a></li>
+<li class="chapter" data-level="2.1.7" data-path="good-practices.html"><a href="good-practices.html#styler"><i class="fa fa-check"></i><b>2.1.7</b> Styler</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a></li>
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#git"><i class="fa fa-check"></i><b>2.3</b> Version control (Git)</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git-you-dont-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git? You don’t use Git?</a></li>
-<li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#about-git"><i class="fa fa-check"></i><b>2.3.2</b> About Git</a></li>
+<li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git?</a></li>
+<li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#how-to-use-git"><i class="fa fa-check"></i><b>2.3.2</b> How to use Git</a></li>
+<li class="chapter" data-level="" data-path="good-practices.html"><a href="good-practices.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#getting-help"><i class="fa fa-check"></i><b>2.4</b> Getting help</a>
+<li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#when-things-go-wrong"><i class="fa fa-check"></i><b>2.4</b> When things go wrong…</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#help-yourself-learn-how-to-debug"><i class="fa fa-check"></i><b>2.4.1</b> Help yourself, learn how to debug</a></li>
-<li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.2</b> External help</a></li>
+<li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#first-locate-the-error"><i class="fa fa-check"></i><b>2.4.1</b> First: locate the error</a></li>
+<li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#second-fix-the-error"><i class="fa fa-check"></i><b>2.4.2</b> Second: fix the error</a></li>
+<li class="chapter" data-level="2.4.3" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.3</b> External help</a></li>
 </ul></li>
+<li class="chapter" data-level="2.5" data-path="good-practices.html"><a href="good-practices.html#summary"><i class="fa fa-check"></i><b>2.5</b> Summary</a></li>
+<li class="chapter" data-level="" data-path="good-practices.html"><a href="good-practices.html#useful-resources-1"><i class="fa fa-check"></i>Useful resources</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="r-programming.html"><a href="r-programming.html"><i class="fa fa-check"></i><b>3</b> R programming</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="r-programming.html"><a href="r-programming.html#common-mistakes"><i class="fa fa-check"></i><b>3.1</b> Common mistakes</a>
+<li class="chapter" data-level="3.1" data-path="r-programming.html"><a href="r-programming.html#common-mistakes-to-avoid"><i class="fa fa-check"></i><b>3.1</b> Common mistakes to avoid</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="r-programming.html"><a href="r-programming.html#equality"><i class="fa fa-check"></i><b>3.1.1</b> Equality</a></li>
-<li class="chapter" data-level="3.1.2" data-path="r-programming.html"><a href="r-programming.html#arguments"><i class="fa fa-check"></i><b>3.1.2</b> Arguments</a></li>
+<li class="chapter" data-level="3.1.1" data-path="r-programming.html"><a href="r-programming.html#the-floating-point-error"><i class="fa fa-check"></i><b>3.1.1</b> The floating-point error</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-programming.html"><a href="r-programming.html#the-...-argument"><i class="fa fa-check"></i><b>3.1.2</b> The <code>...</code> argument</a></li>
 <li class="chapter" data-level="3.1.3" data-path="r-programming.html"><a href="r-programming.html#others"><i class="fa fa-check"></i><b>3.1.3</b> Others</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="r-programming.html"><a href="r-programming.html#r-base-objects"><i class="fa fa-check"></i><b>3.2</b> R base objects</a>
+<li class="chapter" data-level="3.2" data-path="r-programming.html"><a href="r-programming.html#useful-r-functions"><i class="fa fa-check"></i><b>3.2</b> Useful <code>R</code> functions</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="r-programming.html"><a href="r-programming.html#types"><i class="fa fa-check"></i><b>3.2.1</b> Types</a></li>
-<li class="chapter" data-level="3.2.2" data-path="r-programming.html"><a href="r-programming.html#exercise"><i class="fa fa-check"></i><b>3.2.2</b> Exercise</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#general"><i class="fa fa-check"></i>General</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#sequence-and-vector-operations"><i class="fa fa-check"></i>Sequence and vector operations</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#character-operations"><i class="fa fa-check"></i>Character operations</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#logical-operators"><i class="fa fa-check"></i>Logical operators</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#useful-non-base-r-functions"><i class="fa fa-check"></i>Useful non-base R functions</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="r-programming.html"><a href="r-programming.html#base-objects-and-accessors"><i class="fa fa-check"></i><b>3.3</b> Base objects and accessors</a>
+<li class="chapter" data-level="3.3" data-path="r-programming.html"><a href="r-programming.html#data-structures-in-r"><i class="fa fa-check"></i><b>3.3</b> Data structures in <code>R</code></a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="r-programming.html"><a href="r-programming.html#objects"><i class="fa fa-check"></i><b>3.3.1</b> Objects</a></li>
-<li class="chapter" data-level="3.3.2" data-path="r-programming.html"><a href="r-programming.html#accessors"><i class="fa fa-check"></i><b>3.3.2</b> Accessors</a></li>
-<li class="chapter" data-level="3.3.3" data-path="r-programming.html"><a href="r-programming.html#exercises"><i class="fa fa-check"></i><b>3.3.3</b> Exercises</a></li>
+<li class="chapter" data-level="3.3.1" data-path="r-programming.html"><a href="r-programming.html#types"><i class="fa fa-check"></i><b>3.3.1</b> Types</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-programming.html"><a href="r-programming.html#objects-and-attributes"><i class="fa fa-check"></i><b>3.3.2</b> Objects and attributes</a></li>
+<li class="chapter" data-level="3.3.3" data-path="r-programming.html"><a href="r-programming.html#accessors"><i class="fa fa-check"></i><b>3.3.3</b> Accessors</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="r-programming.html"><a href="r-programming.html#useful-r-base-functions"><i class="fa fa-check"></i><b>3.4</b> Useful R base functions</a>
-<ul>
-<li class="chapter" data-level="3.4.1" data-path="r-programming.html"><a href="r-programming.html#general"><i class="fa fa-check"></i><b>3.4.1</b> General</a></li>
-<li class="chapter" data-level="3.4.2" data-path="r-programming.html"><a href="r-programming.html#sequence-and-vector-operations"><i class="fa fa-check"></i><b>3.4.2</b> Sequence and vector operations</a></li>
-<li class="chapter" data-level="3.4.3" data-path="r-programming.html"><a href="r-programming.html#character-operations"><i class="fa fa-check"></i><b>3.4.3</b> Character operations</a></li>
-<li class="chapter" data-level="3.4.4" data-path="r-programming.html"><a href="r-programming.html#logical-operators"><i class="fa fa-check"></i><b>3.4.4</b> Logical operators</a></li>
-<li class="chapter" data-level="3.4.5" data-path="r-programming.html"><a href="r-programming.html#exercises-1"><i class="fa fa-check"></i><b>3.4.5</b> Exercises</a></li>
+<li class="chapter" data-level="3.4" data-path="r-programming.html"><a href="r-programming.html#environments-and-scoping"><i class="fa fa-check"></i><b>3.4</b> Environments and scoping</a></li>
+<li class="chapter" data-level="3.5" data-path="r-programming.html"><a href="r-programming.html#summary-1"><i class="fa fa-check"></i><b>3.5</b> Summary</a></li>
+<li class="chapter" data-level="" data-path="r-programming.html"><a href="r-programming.html#useful-resources-2"><i class="fa fa-check"></i>Useful resources</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="r-programming.html"><a href="r-programming.html#environments-and-scoping"><i class="fa fa-check"></i><b>3.5</b> Environments and scoping</a></li>
-<li class="chapter" data-level="3.6" data-path="r-programming.html"><a href="r-programming.html#attributes-and-classes"><i class="fa fa-check"></i><b>3.6</b> Attributes and classes</a></li>
+<li class="chapter" data-level="4" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>4</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown-basics"><i class="fa fa-check"></i><b>4.1</b> R Markdown basics</a>
+<ul>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#the-yaml-header"><i class="fa fa-check"></i>The YAML header</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-code-chunks"><i class="fa fa-check"></i><code>R</code> code chunks</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#plain-text-with-simple-text-formatting"><i class="fa fa-check"></i>Plain text with simple text formatting</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> Data analysis with the tidyverse</a>
+<li class="chapter" data-level="4.2" data-path="rmarkdown.html"><a href="rmarkdown.html#producing-a-complete-report"><i class="fa fa-check"></i><b>4.2</b> Producing a complete report</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="tidyverse.html"><a href="tidyverse.html#program"><i class="fa fa-check"></i><b>4.1</b> Program</a></li>
-<li class="chapter" data-level="4.2" data-path="tidyverse.html"><a href="tidyverse.html#other-chapters-from-this-book"><i class="fa fa-check"></i><b>4.2</b> Other chapters from this book</a></li>
-<li class="chapter" data-level="4.3" data-path="tidyverse.html"><a href="tidyverse.html#other-resources"><i class="fa fa-check"></i><b>4.3</b> Other resources</a></li>
-<li class="chapter" data-level="4.4" data-path="tidyverse.html"><a href="tidyverse.html#other-tidy-packages"><i class="fa fa-check"></i><b>4.4</b> Other “tidy” packages</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#exercise-2"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>5</b> Performance</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="performance.html"><a href="performance.html#rs-memory-management"><i class="fa fa-check"></i><b>5.1</b> R’s memory management</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="performance.html"><a href="performance.html#understanding-binding-basics"><i class="fa fa-check"></i><b>5.1.1</b> Understanding binding basics</a></li>
-<li class="chapter" data-level="5.1.2" data-path="performance.html"><a href="performance.html#copy-on-modify"><i class="fa fa-check"></i><b>5.1.2</b> Copy-on-modify</a></li>
-<li class="chapter" data-level="5.1.3" data-path="performance.html"><a href="performance.html#copy-on-modify-what-about-inside-functions"><i class="fa fa-check"></i><b>5.1.3</b> Copy-on-modify: what about inside functions?</a></li>
-<li class="chapter" data-level="5.1.4" data-path="performance.html"><a href="performance.html#lists"><i class="fa fa-check"></i><b>5.1.4</b> Lists</a></li>
-<li class="chapter" data-level="5.1.5" data-path="performance.html"><a href="performance.html#copy-on-modify-for-lists"><i class="fa fa-check"></i><b>5.1.5</b> Copy-on-modify for lists?</a></li>
-<li class="chapter" data-level="5.1.6" data-path="performance.html"><a href="performance.html#data-frames"><i class="fa fa-check"></i><b>5.1.6</b> Data frames</a></li>
+<li class="chapter" data-level="4.3" data-path="rmarkdown.html"><a href="rmarkdown.html#summary-2"><i class="fa fa-check"></i><b>4.3</b> Summary</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#useful-resources-3"><i class="fa fa-check"></i>Useful resources</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="performance.html"><a href="performance.html#early-advice"><i class="fa fa-check"></i><b>5.2</b> Early advice</a>
+<li class="chapter" data-level="5" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>5</b> Data analysis with the tidyverse</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="performance.html"><a href="performance.html#never-grow-a-vector"><i class="fa fa-check"></i><b>5.2.1</b> NEVER GROW A VECTOR</a></li>
-<li class="chapter" data-level="5.2.2" data-path="performance.html"><a href="performance.html#use-the-right-function"><i class="fa fa-check"></i><b>5.2.2</b> Use the right function</a></li>
-<li class="chapter" data-level="5.2.3" data-path="performance.html"><a href="performance.html#do-not-try-to-optimize-everything"><i class="fa fa-check"></i><b>5.2.3</b> Do not try to optimize everything</a></li>
+<li class="chapter" data-level="5.1" data-path="tidyverse.html"><a href="tidyverse.html#program"><i class="fa fa-check"></i><b>5.1</b> Program</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyverse.html"><a href="tidyverse.html#other-chapters-from-this-book"><i class="fa fa-check"></i><b>5.2</b> Other chapters from this book</a></li>
+<li class="chapter" data-level="5.3" data-path="tidyverse.html"><a href="tidyverse.html#other-resources"><i class="fa fa-check"></i><b>5.3</b> Other resources</a></li>
+<li class="chapter" data-level="5.4" data-path="tidyverse.html"><a href="tidyverse.html#other-tidy-packages"><i class="fa fa-check"></i><b>5.4</b> Other “tidy” packages</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="performance.html"><a href="performance.html#vectorization"><i class="fa fa-check"></i><b>5.3</b> Vectorization</a>
+<li class="chapter" data-level="6" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>6</b> Performance</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="performance.html"><a href="performance.html#exercise-1"><i class="fa fa-check"></i><b>5.3.1</b> Exercise</a></li>
+<li class="chapter" data-level="6.1" data-path="performance.html"><a href="performance.html#rs-memory-management"><i class="fa fa-check"></i><b>6.1</b> R’s memory management</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="performance.html"><a href="performance.html#understanding-binding-basics"><i class="fa fa-check"></i><b>6.1.1</b> Understanding binding basics</a></li>
+<li class="chapter" data-level="6.1.2" data-path="performance.html"><a href="performance.html#copy-on-modify"><i class="fa fa-check"></i><b>6.1.2</b> Copy-on-modify</a></li>
+<li class="chapter" data-level="6.1.3" data-path="performance.html"><a href="performance.html#copy-on-modify-what-about-inside-functions"><i class="fa fa-check"></i><b>6.1.3</b> Copy-on-modify: what about inside functions?</a></li>
+<li class="chapter" data-level="6.1.4" data-path="performance.html"><a href="performance.html#lists"><i class="fa fa-check"></i><b>6.1.4</b> Lists</a></li>
+<li class="chapter" data-level="6.1.5" data-path="performance.html"><a href="performance.html#copy-on-modify-for-lists"><i class="fa fa-check"></i><b>6.1.5</b> Copy-on-modify for lists?</a></li>
+<li class="chapter" data-level="6.1.6" data-path="performance.html"><a href="performance.html#data-frames"><i class="fa fa-check"></i><b>6.1.6</b> Data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="performance.html"><a href="performance.html#Rcpp"><i class="fa fa-check"></i><b>5.4</b> Rcpp</a></li>
-<li class="chapter" data-level="5.5" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>5.5</b> Linear algebra</a>
+<li class="chapter" data-level="6.2" data-path="performance.html"><a href="performance.html#early-advice"><i class="fa fa-check"></i><b>6.2</b> Early advice</a>
 <ul>
-<li class="chapter" data-level="5.5.1" data-path="performance.html"><a href="performance.html#exercises-2"><i class="fa fa-check"></i><b>5.5.1</b> Exercises</a></li>
+<li class="chapter" data-level="6.2.1" data-path="performance.html"><a href="performance.html#never-grow-a-vector"><i class="fa fa-check"></i><b>6.2.1</b> NEVER GROW A VECTOR</a></li>
+<li class="chapter" data-level="6.2.2" data-path="performance.html"><a href="performance.html#use-the-right-function"><i class="fa fa-check"></i><b>6.2.2</b> Use the right function</a></li>
+<li class="chapter" data-level="6.2.3" data-path="performance.html"><a href="performance.html#do-not-try-to-optimize-everything"><i class="fa fa-check"></i><b>6.2.3</b> Do not try to optimize everything</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="performance.html"><a href="performance.html#algorithms-data-structures"><i class="fa fa-check"></i><b>5.6</b> Algorithms &amp; data structures</a></li>
-<li class="chapter" data-level="5.7" data-path="performance.html"><a href="performance.html#exos"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
-<li class="chapter" data-level="5.8" data-path="performance.html"><a href="performance.html#parallel-computing"><i class="fa fa-check"></i><b>5.8</b> Parallel computing</a></li>
+<li class="chapter" data-level="6.3" data-path="performance.html"><a href="performance.html#vectorization"><i class="fa fa-check"></i><b>6.3</b> Vectorization</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="performance.html"><a href="performance.html#exercise-3"><i class="fa fa-check"></i><b>6.3.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a>
+<li class="chapter" data-level="6.4" data-path="performance.html"><a href="performance.html#Rcpp"><i class="fa fa-check"></i><b>6.4</b> Rcpp</a></li>
+<li class="chapter" data-level="6.5" data-path="performance.html"><a href="performance.html#linear-algebra"><i class="fa fa-check"></i><b>6.5</b> Linear algebra</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#resources"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
-<li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#project-exercise"><i class="fa fa-check"></i><b>6.2</b> Project exercise</a></li>
-<li class="chapter" data-level="6.3" data-path="packages.html"><a href="packages.html#pkg-start"><i class="fa fa-check"></i><b>6.3</b> Quick start</a></li>
-<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>6.4</b> Basic stuff</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="packages.html"><a href="packages.html#description-file"><i class="fa fa-check"></i><b>6.4.1</b> <em>DESCRIPTION</em> file</a></li>
-<li class="chapter" data-level="6.4.2" data-path="packages.html"><a href="packages.html#r-code"><i class="fa fa-check"></i><b>6.4.2</b> R code</a></li>
-<li class="chapter" data-level="6.4.3" data-path="packages.html"><a href="packages.html#documentation"><i class="fa fa-check"></i><b>6.4.3</b> Documentation</a></li>
-<li class="chapter" data-level="6.4.4" data-path="packages.html"><a href="packages.html#namespace-file"><i class="fa fa-check"></i><b>6.4.4</b> <em>NAMESPACE</em> file</a></li>
+<li class="chapter" data-level="6.5.1" data-path="performance.html"><a href="performance.html#exercises-3"><i class="fa fa-check"></i><b>6.5.1</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.5</b> Good practices</a>
-<ul>
-<li class="chapter" data-level="6.5.1" data-path="packages.html"><a href="packages.html#pkg-tests"><i class="fa fa-check"></i><b>6.5.1</b> Testing</a></li>
-<li class="chapter" data-level="6.5.2" data-path="packages.html"><a href="packages.html#pkg-ci"><i class="fa fa-check"></i><b>6.5.2</b> Continuous checking</a></li>
-<li class="chapter" data-level="6.5.3" data-path="packages.html"><a href="packages.html#pkgdown"><i class="fa fa-check"></i><b>6.5.3</b> Pkgdown</a></li>
+<li class="chapter" data-level="6.6" data-path="performance.html"><a href="performance.html#algorithms-data-structures"><i class="fa fa-check"></i><b>6.6</b> Algorithms &amp; data structures</a></li>
+<li class="chapter" data-level="6.7" data-path="performance.html"><a href="performance.html#exos"><i class="fa fa-check"></i><b>6.7</b> Exercises</a></li>
+<li class="chapter" data-level="6.8" data-path="performance.html"><a href="performance.html#parallel-computing"><i class="fa fa-check"></i><b>6.8</b> Parallel computing</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="packages.html"><a href="packages.html#more"><i class="fa fa-check"></i><b>6.6</b> More</a>
+<li class="chapter" data-level="7" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>7</b> Packages</a>
 <ul>
-<li class="chapter" data-level="6.6.1" data-path="packages.html"><a href="packages.html#rcpp"><i class="fa fa-check"></i><b>6.6.1</b> Rcpp</a></li>
-<li class="chapter" data-level="6.6.2" data-path="packages.html"><a href="packages.html#ignore-files"><i class="fa fa-check"></i><b>6.6.2</b> Ignore files</a></li>
-<li class="chapter" data-level="6.6.3" data-path="packages.html"><a href="packages.html#the-inst-directory"><i class="fa fa-check"></i><b>6.6.3</b> The <code>inst/</code> directory</a></li>
-<li class="chapter" data-level="6.6.4" data-path="packages.html"><a href="packages.html#pkg-data"><i class="fa fa-check"></i><b>6.6.4</b> External data</a></li>
+<li class="chapter" data-level="7.1" data-path="packages.html"><a href="packages.html#resources"><i class="fa fa-check"></i><b>7.1</b> Resources</a></li>
+<li class="chapter" data-level="7.2" data-path="packages.html"><a href="packages.html#project-exercise"><i class="fa fa-check"></i><b>7.2</b> Project exercise</a></li>
+<li class="chapter" data-level="7.3" data-path="packages.html"><a href="packages.html#pkg-start"><i class="fa fa-check"></i><b>7.3</b> Quick start</a></li>
+<li class="chapter" data-level="7.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>7.4</b> Basic stuff</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="packages.html"><a href="packages.html#description-file"><i class="fa fa-check"></i><b>7.4.1</b> <em>DESCRIPTION</em> file</a></li>
+<li class="chapter" data-level="7.4.2" data-path="packages.html"><a href="packages.html#r-code"><i class="fa fa-check"></i><b>7.4.2</b> R code</a></li>
+<li class="chapter" data-level="7.4.3" data-path="packages.html"><a href="packages.html#documentation"><i class="fa fa-check"></i><b>7.4.3</b> Documentation</a></li>
+<li class="chapter" data-level="7.4.4" data-path="packages.html"><a href="packages.html#namespace-file"><i class="fa fa-check"></i><b>7.4.4</b> <em>NAMESPACE</em> file</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="packages.html"><a href="packages.html#release-on-cran"><i class="fa fa-check"></i><b>6.7</b> Release on CRAN</a></li>
+<li class="chapter" data-level="7.5" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>7.5</b> Good practices</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="packages.html"><a href="packages.html#pkg-tests"><i class="fa fa-check"></i><b>7.5.1</b> Testing</a></li>
+<li class="chapter" data-level="7.5.2" data-path="packages.html"><a href="packages.html#pkg-ci"><i class="fa fa-check"></i><b>7.5.2</b> Continuous checking</a></li>
+<li class="chapter" data-level="7.5.3" data-path="packages.html"><a href="packages.html#pkgdown"><i class="fa fa-check"></i><b>7.5.3</b> Pkgdown</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>7</b> Shiny</a>
+<li class="chapter" data-level="7.6" data-path="packages.html"><a href="packages.html#more"><i class="fa fa-check"></i><b>7.6</b> More</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="shiny.html"><a href="shiny.html#example"><i class="fa fa-check"></i><b>7.1</b> Example</a></li>
-<li class="chapter" data-level="7.2" data-path="shiny.html"><a href="shiny.html#datacamp-course"><i class="fa fa-check"></i><b>7.2</b> DataCamp course</a></li>
-<li class="chapter" data-level="7.3" data-path="shiny.html"><a href="shiny.html#other-resources-1"><i class="fa fa-check"></i><b>7.3</b> Other resources</a></li>
+<li class="chapter" data-level="7.6.1" data-path="packages.html"><a href="packages.html#rcpp"><i class="fa fa-check"></i><b>7.6.1</b> Rcpp</a></li>
+<li class="chapter" data-level="7.6.2" data-path="packages.html"><a href="packages.html#ignore-files"><i class="fa fa-check"></i><b>7.6.2</b> Ignore files</a></li>
+<li class="chapter" data-level="7.6.3" data-path="packages.html"><a href="packages.html#the-inst-directory"><i class="fa fa-check"></i><b>7.6.3</b> The <code>inst/</code> directory</a></li>
+<li class="chapter" data-level="7.6.4" data-path="packages.html"><a href="packages.html#pkg-data"><i class="fa fa-check"></i><b>7.6.4</b> External data</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="project.html"><a href="project.html"><i class="fa fa-check"></i><b>8</b> Project</a>
+<li class="chapter" data-level="7.7" data-path="packages.html"><a href="packages.html#release-on-cran"><i class="fa fa-check"></i><b>7.7</b> Release on CRAN</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>8</b> Shiny</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="project.html"><a href="project.html#what-is-tidy-tuesday"><i class="fa fa-check"></i><b>8.1</b> What is Tidy Tuesday?</a></li>
-<li class="chapter" data-level="8.2" data-path="project.html"><a href="project.html#tidy-thursday"><i class="fa fa-check"></i><b>8.2</b> Tidy Thursday</a>
+<li class="chapter" data-level="8.1" data-path="shiny.html"><a href="shiny.html#example"><i class="fa fa-check"></i><b>8.1</b> Example</a></li>
+<li class="chapter" data-level="8.2" data-path="shiny.html"><a href="shiny.html#datacamp-course"><i class="fa fa-check"></i><b>8.2</b> DataCamp course</a></li>
+<li class="chapter" data-level="8.3" data-path="shiny.html"><a href="shiny.html#other-resources-1"><i class="fa fa-check"></i><b>8.3</b> Other resources</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="project.html"><a href="project.html"><i class="fa fa-check"></i><b>9</b> Project</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="project.html"><a href="project.html#choose-a-dataset"><i class="fa fa-check"></i><b>8.2.1</b> Choose a dataset</a></li>
-<li class="chapter" data-level="8.2.2" data-path="project.html"><a href="project.html#visualize-the-data"><i class="fa fa-check"></i><b>8.2.2</b> Visualize the data</a></li>
-<li class="chapter" data-level="8.2.3" data-path="project.html"><a href="project.html#compilation-of-tweets"><i class="fa fa-check"></i><b>8.2.3</b> Compilation of tweets</a></li>
-<li class="chapter" data-level="8.2.4" data-path="project.html"><a href="project.html#example-1"><i class="fa fa-check"></i><b>8.2.4</b> Example</a></li>
-<li class="chapter" data-level="8.2.5" data-path="project.html"><a href="project.html#presentation"><i class="fa fa-check"></i><b>8.2.5</b> Presentation</a></li>
+<li class="chapter" data-level="9.1" data-path="project.html"><a href="project.html#what-is-tidy-tuesday"><i class="fa fa-check"></i><b>9.1</b> What is Tidy Tuesday?</a></li>
+<li class="chapter" data-level="9.2" data-path="project.html"><a href="project.html#tidy-thursday"><i class="fa fa-check"></i><b>9.2</b> Tidy Thursday</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="project.html"><a href="project.html#choose-a-dataset"><i class="fa fa-check"></i><b>9.2.1</b> Choose a dataset</a></li>
+<li class="chapter" data-level="9.2.2" data-path="project.html"><a href="project.html#visualize-the-data"><i class="fa fa-check"></i><b>9.2.2</b> Visualize the data</a></li>
+<li class="chapter" data-level="9.2.3" data-path="project.html"><a href="project.html#compilation-of-tweets"><i class="fa fa-check"></i><b>9.2.3</b> Compilation of tweets</a></li>
+<li class="chapter" data-level="9.2.4" data-path="project.html"><a href="project.html#example-1"><i class="fa fa-check"></i><b>9.2.4</b> Example</a></li>
+<li class="chapter" data-level="9.2.5" data-path="project.html"><a href="project.html#presentation"><i class="fa fa-check"></i><b>9.2.5</b> Presentation</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -302,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced R Course</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced R</a>
           </h1>
         </div>
 
@@ -310,15 +335,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="project" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Project<a href="project.html#project" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="project" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Project<a href="project.html#project" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Either</p>
 <ul>
 <li><p>have some idea about new functions you want to create and share, and make it as a new R package,</p></li>
 <li><p>explore, visualize, and analyze some data (cf. hereinafter).</p></li>
 </ul>
-<div id="what-is-tidy-tuesday" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> What is Tidy Tuesday?<a href="project.html#what-is-tidy-tuesday" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-is-tidy-tuesday" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> What is Tidy Tuesday?<a href="project.html#what-is-tidy-tuesday" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="images/tt_logo.jpg" width="60%" style="display: block; margin: auto;" /></p>
 <ul>
 <li><p>A weekly data project from <a href="https://www.rfordatasci.com/">the R4DS community</a>.</p></li>
@@ -332,8 +357,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>And share their own version on Twitter (with <a href="https://twitter.com/search?q=%23tidytuesday&amp;src=typed_query">the hashtag #TidyTuesday</a>).</p></li>
 </ol>
 </div>
-<div id="tidy-thursday" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> Tidy Thursday<a href="project.html#tidy-thursday" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="tidy-thursday" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Tidy Thursday<a href="project.html#tidy-thursday" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Our own mini-version of Tidy Tuesday!</p>
 <ol style="list-style-type: decimal">
 <li><p>Join in teams of 2 (or 3).</p></li>
@@ -342,27 +367,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Apply things you have learned in this course, and try to learn new things with our help and Google’s help.</p></li>
 <li><p>Share the resulting plot(s) and the code with the rest on Friday with a short presentation talking about challenges and conclusions from the plot.</p></li>
 </ol>
-<div id="choose-a-dataset" class="section level3 hasAnchor" number="8.2.1">
-<h3><span class="header-section-number">8.2.1</span> Choose a dataset<a href="project.html#choose-a-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="choose-a-dataset" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Choose a dataset<a href="project.html#choose-a-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Install the {tidytuesdayR} package:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="project.html#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidytuesdayR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="project.html#cb259-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidytuesdayR&quot;</span>)</span></code></pre></div>
 <p>Some interesting datasets:</p>
 <ul>
 <li><a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-07-27/readme.md">Olympic medals</a></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="project.html#cb2-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2021-07-27&#39;</span>)[[<span class="st">&quot;olympics&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="project.html#cb260-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2021-07-27&#39;</span>)[[<span class="st">&quot;olympics&quot;</span>]]</span></code></pre></div>
 <ul>
 <li><a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-20/readme.md">Netflix titles</a></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="project.html#cb3-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2021-04-20&#39;</span>)[[<span class="st">&quot;netflix_titles&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="project.html#cb261-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2021-04-20&#39;</span>)[[<span class="st">&quot;netflix_titles&quot;</span>]]</span></code></pre></div>
 <ul>
 <li><a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md">Spotify songs</a></li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="project.html#cb4-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2020-01-21&#39;</span>)[[<span class="st">&quot;spotify_songs&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="project.html#cb262-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2020-01-21&#39;</span>)[[<span class="st">&quot;spotify_songs&quot;</span>]]</span></code></pre></div>
 <p>If you do not like any of these, you can also choose from all the previous tidy Tuesday datasets <a href="https://github.com/rfordatascience/tidytuesday#datasets">here</a>.</p>
 </div>
-<div id="visualize-the-data" class="section level3 hasAnchor" number="8.2.2">
-<h3><span class="header-section-number">8.2.2</span> Visualize the data<a href="project.html#visualize-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="visualize-the-data" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Visualize the data<a href="project.html#visualize-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Come up with a question, or an interesting thing to learn from the data.</p>
 <p>You can get inspired by looking at other participants on Twitter:</p>
 <ul>
@@ -371,49 +396,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Remember that the code is always available at the author’s github page.</p>
 </div>
-<div id="compilation-of-tweets" class="section level3 hasAnchor" number="8.2.3">
-<h3><span class="header-section-number">8.2.3</span> Compilation of tweets<a href="project.html#compilation-of-tweets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="compilation-of-tweets" class="section level3 hasAnchor" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> Compilation of tweets<a href="project.html#compilation-of-tweets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <iframe src="https://nsgrantham.shinyapps.io/tidytuesdayrocks/?showcase=0" width="672" height="400px" data-external="1">
 </iframe>
 </div>
-<div id="example-1" class="section level3 hasAnchor" number="8.2.4">
-<h3><span class="header-section-number">8.2.4</span> Example<a href="project.html#example-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-1" class="section level3 hasAnchor" number="9.2.4">
+<h3><span class="header-section-number">9.2.4</span> Example<a href="project.html#example-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Someone tried the recreate a plot using the <strong>Netflix dataset</strong>:</p>
-<blockquote class="twitter-tweet" data-width="550" data-lang="en" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">In today&#39;s <a href="https://twitter.com/hashtag/TidyTuesday?src=hash&amp;ref_src=twsrc%5Etfw">#TidyTuesday</a> I looked at Netflix movies, specifically checking out movie duration over time. <a href="https://twitter.com/hashtag/Rstats?src=hash&amp;ref_src=twsrc%5Etfw">#Rstats</a> <a href="https://t.co/PeVIhpAsSy">https://t.co/PeVIhpAsSy</a> <a href="https://t.co/2TOZ9nFKQP">pic.twitter.com/2TOZ9nFKQP</a></p>&mdash; Marieke (@marieke_k_jones) <a href="https://twitter.com/marieke_k_jones/status/1384560097821614081?ref_src=twsrc%5Etfw">April 20, 2021</a></blockquote>
-
 <p><br></p>
 <p>Clara’s (quick) version:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="project.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2"><a href="project.html#cb5-2" tabindex="-1"></a>netflix_titles <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2021-04-20&#39;</span>)[[<span class="st">&quot;netflix_titles&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="project.html#cb263-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb263-2"><a href="project.html#cb263-2" tabindex="-1"></a>netflix_titles <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2021-04-20&#39;</span>)[[<span class="st">&quot;netflix_titles&quot;</span>]]</span></code></pre></div>
 <pre><code>## 
 ##  Downloading file 1 of 1: `netflix_titles.csv`</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="project.html#cb7-1" tabindex="-1"></a>netflix_titles <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="project.html#cb7-2" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&quot;Movie&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="project.html#cb7-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duration =</span> <span class="fu">as.numeric</span>(<span class="fu">str_extract</span>(duration, <span class="st">&quot;(</span><span class="sc">\\</span><span class="st">d)+&quot;</span>)),</span>
-<span id="cb7-4"><a href="project.html#cb7-4" tabindex="-1"></a>         <span class="at">cat =</span> <span class="fu">map_chr</span>(listed_in, <span class="sc">~</span><span class="fu">str_split</span>(.x, <span class="st">&quot;, &quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]),</span>
-<span id="cb7-5"><a href="project.html#cb7-5" tabindex="-1"></a>         <span class="at">cat =</span> <span class="fu">case_when</span>(</span>
-<span id="cb7-6"><a href="project.html#cb7-6" tabindex="-1"></a>    cat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Horror Movies&quot;</span>, <span class="st">&quot;Thrillers&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Horror Movies &amp; Thrillers&quot;</span>,</span>
-<span id="cb7-7"><a href="project.html#cb7-7" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> cat)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-8"><a href="project.html#cb7-8" tabindex="-1"></a>  <span class="fu">group_by</span>(release_year, cat) <span class="sc">%&gt;%</span></span>
-<span id="cb7-9"><a href="project.html#cb7-9" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_duration =</span> <span class="fu">mean</span>(duration)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-10"><a href="project.html#cb7-10" tabindex="-1"></a>  <span class="fu">filter</span>(cat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Action &amp; Adventure&quot;</span>, <span class="st">&quot;Children &amp; Family Movies&quot;</span>,</span>
-<span id="cb7-11"><a href="project.html#cb7-11" tabindex="-1"></a>                    <span class="st">&quot;Comedies&quot;</span>, <span class="st">&quot;Documentaries&quot;</span>, <span class="st">&quot;Dramas&quot;</span>, </span>
-<span id="cb7-12"><a href="project.html#cb7-12" tabindex="-1"></a>                    <span class="st">&quot;Horror Movies &amp; Thrillers&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-13"><a href="project.html#cb7-13" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> release_year, <span class="at">y =</span> mean_duration, <span class="at">color =</span> cat)) <span class="sc">+</span></span>
-<span id="cb7-14"><a href="project.html#cb7-14" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb7-15"><a href="project.html#cb7-15" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1980</span>, <span class="dv">2020</span>)) <span class="sc">+</span></span>
-<span id="cb7-16"><a href="project.html#cb7-16" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">160</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">50</span>,<span class="dv">150</span>, <span class="dv">25</span>)) <span class="sc">+</span></span>
-<span id="cb7-17"><a href="project.html#cb7-17" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cat) <span class="sc">+</span></span>
-<span id="cb7-18"><a href="project.html#cb7-18" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb7-19"><a href="project.html#cb7-19" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb7-20"><a href="project.html#cb7-20" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, </span>
-<span id="cb7-21"><a href="project.html#cb7-21" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb7-22"><a href="project.html#cb7-22" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Children&#39;s movies and Dramas decrease in duration over time&quot;</span>, </span>
-<span id="cb7-23"><a href="project.html#cb7-23" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Average movie duration (min)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="project.html#cb265-1" tabindex="-1"></a>netflix_titles <span class="sc">%&gt;%</span></span>
+<span id="cb265-2"><a href="project.html#cb265-2" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&quot;Movie&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb265-3"><a href="project.html#cb265-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duration =</span> <span class="fu">as.numeric</span>(<span class="fu">str_extract</span>(duration, <span class="st">&quot;(</span><span class="sc">\\</span><span class="st">d)+&quot;</span>)),</span>
+<span id="cb265-4"><a href="project.html#cb265-4" tabindex="-1"></a>         <span class="at">cat =</span> <span class="fu">map_chr</span>(listed_in, <span class="sc">~</span><span class="fu">str_split</span>(.x, <span class="st">&quot;, &quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]),</span>
+<span id="cb265-5"><a href="project.html#cb265-5" tabindex="-1"></a>         <span class="at">cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb265-6"><a href="project.html#cb265-6" tabindex="-1"></a>    cat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Horror Movies&quot;</span>, <span class="st">&quot;Thrillers&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Horror Movies &amp; Thrillers&quot;</span>,</span>
+<span id="cb265-7"><a href="project.html#cb265-7" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> cat)) <span class="sc">%&gt;%</span></span>
+<span id="cb265-8"><a href="project.html#cb265-8" tabindex="-1"></a>  <span class="fu">group_by</span>(release_year, cat) <span class="sc">%&gt;%</span></span>
+<span id="cb265-9"><a href="project.html#cb265-9" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_duration =</span> <span class="fu">mean</span>(duration)) <span class="sc">%&gt;%</span></span>
+<span id="cb265-10"><a href="project.html#cb265-10" tabindex="-1"></a>  <span class="fu">filter</span>(cat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Action &amp; Adventure&quot;</span>, <span class="st">&quot;Children &amp; Family Movies&quot;</span>,</span>
+<span id="cb265-11"><a href="project.html#cb265-11" tabindex="-1"></a>                    <span class="st">&quot;Comedies&quot;</span>, <span class="st">&quot;Documentaries&quot;</span>, <span class="st">&quot;Dramas&quot;</span>, </span>
+<span id="cb265-12"><a href="project.html#cb265-12" tabindex="-1"></a>                    <span class="st">&quot;Horror Movies &amp; Thrillers&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb265-13"><a href="project.html#cb265-13" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> release_year, <span class="at">y =</span> mean_duration, <span class="at">color =</span> cat)) <span class="sc">+</span></span>
+<span id="cb265-14"><a href="project.html#cb265-14" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb265-15"><a href="project.html#cb265-15" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1980</span>, <span class="dv">2020</span>)) <span class="sc">+</span></span>
+<span id="cb265-16"><a href="project.html#cb265-16" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">160</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">50</span>,<span class="dv">150</span>, <span class="dv">25</span>)) <span class="sc">+</span></span>
+<span id="cb265-17"><a href="project.html#cb265-17" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cat) <span class="sc">+</span></span>
+<span id="cb265-18"><a href="project.html#cb265-18" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb265-19"><a href="project.html#cb265-19" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb265-20"><a href="project.html#cb265-20" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, </span>
+<span id="cb265-21"><a href="project.html#cb265-21" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb265-22"><a href="project.html#cb265-22" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Children&#39;s movies and Dramas decrease in duration over time&quot;</span>, </span>
+<span id="cb265-23"><a href="project.html#cb265-23" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Average movie duration (min)&quot;</span>)</span></code></pre></div>
 <p><img src="presentation_project_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="presentation" class="section level3 hasAnchor" number="8.2.5">
-<h3><span class="header-section-number">8.2.5</span> Presentation<a href="project.html#presentation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="presentation" class="section level3 hasAnchor" number="9.2.5">
+<h3><span class="header-section-number">9.2.5</span> Presentation<a href="project.html#presentation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Make a short (5-10 min) presentation; you can simply make an HTML from RMarkdown, push to GitHub and we can preview it on <a href="http://htmlpreview.github.io/" class="uri">http://htmlpreview.github.io/</a>.</p>
 <p>What you can present:</p>
 <ul>
@@ -501,6 +524,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
