@@ -384,7 +384,7 @@ Finally, being able to work with GitHub can be a line on your CV ([read more](ht
 >
 > <footer>--- Mine Cetinkaya-Rundel, Duke University, RStudio</footer>
 
-### How to use Git
+### How to use Git {#github}
 
 To share your code and collaborate with other, use a Git hosting platform. A Git hosting platform is basically the Google Docs of collaborative coding. The main platforms are
 
@@ -455,16 +455,16 @@ If you have never worked with Git on GitHub (or you need a reminder) we suggest 
 
 ### Exercise {.unnumbered}
 
-**<font size ="4"> Fork a repository  </font>**
+**<font size ="4">Fork a repository</font>**
 
-Go to [this](https://github.com/privefl/rmarkdown-website-template) GitHub repository created by Florian Privé. Fork the repository by opening the drop-down menu named <i class="fa-solid fa-code-fork"></i> `Fork` in the upper-right corner of the main page of the repository and selecting `+ Create a new fork`:
+1. Go to [this](https://github.com/privefl/rmarkdown-website-template) GitHub repository created by Florian Privé. Fork the repository by opening the drop-down menu named <i class="fa-solid fa-code-fork"></i> `Fork` in the upper-right corner of the main page of the repository and selecting `+ Create a new fork`:
 
-<img src="images/forkGitHubRepo.png" width="70%" style="display: block; margin: auto;" />
+    <img src="images/forkGitHubRepo.png" width="70%" style="display: block; margin: auto;" />
 
-Once you have forked the repository, open the settings (<i class="fa-solid fa-gear"></i> `Settings`), and change the repository name to [YOURGITHUBNAME].github.io (note that [YOURGITHUBNAME] should be replaced by your GitHub username).
+2. Once you have forked the repository, open the settings (<i class="fa-solid fa-gear"></i> `Settings`), and change the repository name to [YOURGITHUBNAME].github.io (note that [YOURGITHUBNAME] should be replaced by your GitHub username).
 
-Now follow the steps mentioned above to link your repository to an RStudio project.
-<br>
+3. Now follow the steps mentioned above to link your repository to an RStudio project.
+
 We will work on this RStudio project in Chapter \@ref(rmarkdown).
 
 You can find GitHub's documentation on forking a repository [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#forking-a-repository).
