@@ -327,7 +327,7 @@ All three methods generate a self-contained file that you can share with others 
 
 **<font size ="4">Make your own website with R Markdown</font>**
 
-This exercise is based on the exercise from Section \@ref(git). You need an R Studio project cloned from Florian Privé's GitHub repository [rmarkdown-website-template](https://github.com/privefl/rmarkdown-website-template) to do this exercise. If you haven't cloned the repository, go back to Section \@ref(github) and go through the exercise **Fork a repository** before you continue with this exercise.
+This exercise is based on the exercise from Section \@ref(git). You need an R Studio project cloned from Florian Privé's GitHub repository [rmarkdown-website-template](https://github.com/privefl/rmarkdown-website-template) to do this exercise. If you haven't cloned the repository, go back to Section \@ref(git) and go through the exercise **Fork a repository** before you continue with this exercise.
 
 1. Open the R Studio project that is linked to the GitHub repository [YOURGITHUBNAME].github.io (where [YOURGITHUBNAME] represents your GitHub username).
 

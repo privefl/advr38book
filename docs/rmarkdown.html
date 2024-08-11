@@ -23,7 +23,7 @@
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2024-08-02" />
+<meta name="date" content="2024-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -179,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#git"><i class="fa fa-check"></i><b>2.3</b> Version control (Git)</a>
 <ul>
 <li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git?</a></li>
-<li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#github"><i class="fa fa-check"></i><b>2.3.2</b> How to use Git</a></li>
+<li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#how-to-use-git"><i class="fa fa-check"></i><b>2.3.2</b> How to use Git</a></li>
 <li class="chapter" data-level="" data-path="good-practices.html"><a href="good-practices.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#when-things-go-wrong"><i class="fa fa-check"></i><b>2.4</b> When things go wrong…</a>
@@ -391,27 +391,27 @@ Figure 4.1: How to create an R Markdown file
 <ul>
 <li><p><code>title</code> : A descriptive main title.</p></li>
 <li><p><code>author</code> : Name of the author(s). You can use lists for multiple authors and for adding other metadata, for example:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rmarkdown.html#cb1-1" tabindex="-1"></a>author<span class="sc">:</span></span>
-<span id="cb1-2"><a href="rmarkdown.html#cb1-2" tabindex="-1"></a>  <span class="sc">-</span> Name_1</span>
-<span id="cb1-3"><a href="rmarkdown.html#cb1-3" tabindex="-1"></a>  <span class="sc">-</span> Name_2</span>
-<span id="cb1-4"><a href="rmarkdown.html#cb1-4" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="rmarkdown.html#cb1-5" tabindex="-1"></a>author<span class="sc">:</span></span>
-<span id="cb1-6"><a href="rmarkdown.html#cb1-6" tabindex="-1"></a>  <span class="sc">-</span> name<span class="sc">:</span> Name_1</span>
-<span id="cb1-7"><a href="rmarkdown.html#cb1-7" tabindex="-1"></a>  <span class="sc">-</span> affiliation<span class="sc">:</span> University of Somewhere</span>
-<span id="cb1-8"><a href="rmarkdown.html#cb1-8" tabindex="-1"></a>  <span class="sc">-</span> name<span class="sc">:</span> Name_2</span>
-<span id="cb1-9"><a href="rmarkdown.html#cb1-9" tabindex="-1"></a>  <span class="sc">-</span> affiliation<span class="sc">:</span> Uiversity of Somewhere <span class="cf">else</span></span></code></pre></div></li>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="rmarkdown.html#cb146-1" tabindex="-1"></a>author<span class="sc">:</span></span>
+<span id="cb146-2"><a href="rmarkdown.html#cb146-2" tabindex="-1"></a>  <span class="sc">-</span> Name_1</span>
+<span id="cb146-3"><a href="rmarkdown.html#cb146-3" tabindex="-1"></a>  <span class="sc">-</span> Name_2</span>
+<span id="cb146-4"><a href="rmarkdown.html#cb146-4" tabindex="-1"></a></span>
+<span id="cb146-5"><a href="rmarkdown.html#cb146-5" tabindex="-1"></a>author<span class="sc">:</span></span>
+<span id="cb146-6"><a href="rmarkdown.html#cb146-6" tabindex="-1"></a>  <span class="sc">-</span> name<span class="sc">:</span> Name_1</span>
+<span id="cb146-7"><a href="rmarkdown.html#cb146-7" tabindex="-1"></a>  <span class="sc">-</span> affiliation<span class="sc">:</span> University of Somewhere</span>
+<span id="cb146-8"><a href="rmarkdown.html#cb146-8" tabindex="-1"></a>  <span class="sc">-</span> name<span class="sc">:</span> Name_2</span>
+<span id="cb146-9"><a href="rmarkdown.html#cb146-9" tabindex="-1"></a>  <span class="sc">-</span> affiliation<span class="sc">:</span> Uiversity of Somewhere <span class="cf">else</span></span></code></pre></div></li>
 <li><p><code>date</code> : The date shown in the document. You can write a date or execute <code>R</code> code to update the date automatically.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rmarkdown.html#cb2-1" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;`r format(Sys.time(), &#39;%d %B, %Y&#39;)`&quot;</span></span>
-<span id="cb2-2"><a href="rmarkdown.html#cb2-2" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;`r lubridate::today()`&quot;</span></span></code></pre></div></li>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="rmarkdown.html#cb147-1" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;`r format(Sys.time(), &#39;%d %B, %Y&#39;)`&quot;</span></span>
+<span id="cb147-2"><a href="rmarkdown.html#cb147-2" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;`r lubridate::today()`&quot;</span></span></code></pre></div></li>
 <li><p><code>abstract</code> : A summary of the analyses. Multiple paragraphs can be specified but they must be indented and preceded by <code>|</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rmarkdown.html#cb3-1" tabindex="-1"></a>abstract<span class="sc">:</span> <span class="er">|</span></span>
-<span id="cb3-2"><a href="rmarkdown.html#cb3-2" tabindex="-1"></a>  The first paragraph of this abstract.</span>
-<span id="cb3-3"><a href="rmarkdown.html#cb3-3" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="rmarkdown.html#cb3-4" tabindex="-1"></a>  The second paragraph of the abstract.</span></code></pre></div></li>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="rmarkdown.html#cb148-1" tabindex="-1"></a>abstract<span class="sc">:</span> <span class="er">|</span></span>
+<span id="cb148-2"><a href="rmarkdown.html#cb148-2" tabindex="-1"></a>  The first paragraph of this abstract.</span>
+<span id="cb148-3"><a href="rmarkdown.html#cb148-3" tabindex="-1"></a></span>
+<span id="cb148-4"><a href="rmarkdown.html#cb148-4" tabindex="-1"></a>  The second paragraph of the abstract.</span></code></pre></div></li>
 <li><p><code>output</code> : Document specific YAML options. The first option specified here needs to be the document type (e.g. <code>html_document</code> in the example above). A full list of supported document types can be found in colored box at the end of this section. Each output format can be accompanied with several format options. All these format options must be indented, e.g.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rmarkdown.html#cb4-1" tabindex="-1"></a>output<span class="sc">:</span></span>
-<span id="cb4-2"><a href="rmarkdown.html#cb4-2" tabindex="-1"></a>  html_document<span class="sc">:</span></span>
-<span id="cb4-3"><a href="rmarkdown.html#cb4-3" tabindex="-1"></a>    toc<span class="sc">:</span> true</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="rmarkdown.html#cb149-1" tabindex="-1"></a>output<span class="sc">:</span></span>
+<span id="cb149-2"><a href="rmarkdown.html#cb149-2" tabindex="-1"></a>  html_document<span class="sc">:</span></span>
+<span id="cb149-3"><a href="rmarkdown.html#cb149-3" tabindex="-1"></a>    toc<span class="sc">:</span> true</span></code></pre></div>
 <p>Some of the most commonly used document specific options are:</p>
 <ul>
 <li><code>toc</code> : true/false to show table of contents.</li>
@@ -443,7 +443,7 @@ Figure 4.1: How to create an R Markdown file
 <br><br>
 Other extension packages provide more output formats. However, if you want to use an output format from an extension package, you have to include the package name in the YAML header:</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rmarkdown.html#cb5-1" tabindex="-1"></a>output<span class="sc">:</span> tufte<span class="sc">::</span>tufte_html</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="rmarkdown.html#cb150-1" tabindex="-1"></a>output<span class="sc">:</span> tufte<span class="sc">::</span>tufte_html</span></code></pre></div>
 </p>
 <p></span></p>
 </div>
@@ -736,7 +736,7 @@ and you can insert a horizontal rule (or insert a slide break) with three or mor
 <p>To generate a complete report containing all text, code and results, either</p>
 <ul>
 <li><p>run the <code>render()</code> command specifying the name of the file you want to render:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rmarkdown.html#cb6-1" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">&quot;my_file.Rmd&quot;</span>, <span class="at">output_format =</span> <span class="st">&quot;html_document&quot;</span>)</span></code></pre></div></li>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="rmarkdown.html#cb151-1" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">&quot;my_file.Rmd&quot;</span>, <span class="at">output_format =</span> <span class="st">&quot;html_document&quot;</span>)</span></code></pre></div></li>
 <li><p>use the knit button (<img src="images/knitDocument.png" style="display:inline-block; margin:0"/> <code>Knit</code>) at the top of the <strong>Source pane</strong></p></li>
 <li><p>or use the keyboard shortcut <em>Ctrl+Shift+K</em> / <em>Shift+Command+K</em>.</p></li>
 </ul>
@@ -745,7 +745,7 @@ All three methods generate a self-contained file that you can share with others 
 <div id="exercise-2" class="section level3 unnumbered hasAnchor">
 <h3>Exercise<a href="rmarkdown.html#exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong><font size ="4">Make your own website with R Markdown</font></strong></p>
-<p>This exercise is based on the exercise from Section <a href="good-practices.html#git">2.3</a>. You need an R Studio project cloned from Florian Privé’s GitHub repository <a href="https://github.com/privefl/rmarkdown-website-template">rmarkdown-website-template</a> to do this exercise. If you haven’t cloned the repository, go back to Section <a href="good-practices.html#github">2.3.2</a> and go through the exercise <strong>Fork a repository</strong> before you continue with this exercise.</p>
+<p>This exercise is based on the exercise from Section <a href="good-practices.html#git">2.3</a>. You need an R Studio project cloned from Florian Privé’s GitHub repository <a href="https://github.com/privefl/rmarkdown-website-template">rmarkdown-website-template</a> to do this exercise. If you haven’t cloned the repository, go back to Section <a href="good-practices.html#git">2.3</a> and go through the exercise <strong>Fork a repository</strong> before you continue with this exercise.</p>
 <ol style="list-style-type: decimal">
 <li><p>Open the R Studio project that is linked to the GitHub repository [YOURGITHUBNAME].github.io (where [YOURGITHUBNAME] represents your GitHub username).</p></li>
 <li><p>Build the website by running <code>rmarkdown::render_site(encoding = "UTF-8")</code> or by using the keyboard shortcut <em>Ctrl+Shift+B</em> / <em>Shift+Command+B</em>.</p></li>
