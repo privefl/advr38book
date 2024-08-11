@@ -23,7 +23,7 @@
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2024-08-02" />
+<meta name="date" content="2024-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -179,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#git"><i class="fa fa-check"></i><b>2.3</b> Version control (Git)</a>
 <ul>
 <li class="chapter" data-level="2.3.1" data-path="good-practices.html"><a href="good-practices.html#why-use-git"><i class="fa fa-check"></i><b>2.3.1</b> Why use Git?</a></li>
-<li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#github"><i class="fa fa-check"></i><b>2.3.2</b> How to use Git</a></li>
+<li class="chapter" data-level="2.3.2" data-path="good-practices.html"><a href="good-practices.html#how-to-use-git"><i class="fa fa-check"></i><b>2.3.2</b> How to use Git</a></li>
 <li class="chapter" data-level="" data-path="good-practices.html"><a href="good-practices.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#when-things-go-wrong"><i class="fa fa-check"></i><b>2.4</b> When things go wrong…</a>
@@ -413,7 +413,7 @@ Most infix operators (<code>==</code>, <code>+</code>, <code>-</code>, <code>&lt
 <span id="cb4-9"><a href="good-practices.html#cb4-9" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">:</span> <span class="dv">10</span></span>
 <span id="cb4-10"><a href="good-practices.html#cb4-10" tabindex="-1"></a>base <span class="sc">::</span> sum</span>
 <span id="cb4-11"><a href="good-practices.html#cb4-11" tabindex="-1"></a>? mean</span></code></pre></div>
-<p>Always put a space after a comma, and never before (just like in regular English).</p>
+<p>Always put a space after a comma, and never before (just like in regular English):</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="good-practices.html#cb5-1" tabindex="-1"></a><span class="co"># Good</span></span>
 <span id="cb5-2"><a href="good-practices.html#cb5-2" tabindex="-1"></a>x[, <span class="dv">1</span>]</span>
 <span id="cb5-3"><a href="good-practices.html#cb5-3" tabindex="-1"></a></span>
@@ -445,7 +445,7 @@ Most infix operators (<code>==</code>, <code>+</code>, <code>-</code>, <code>&lt
 <span id="cb8-4"><a href="good-practices.html#cb8-4" tabindex="-1"></a><span class="co"># Unfortunate</span></span>
 <span id="cb8-5"><a href="good-practices.html#cb8-5" tabindex="-1"></a><span class="cf">function</span> (x) {}</span>
 <span id="cb8-6"><a href="good-practices.html#cb8-6" tabindex="-1"></a><span class="cf">function</span>(x){}</span></code></pre></div>
-<p>Finally, the pipe <code>%&gt;%</code> should always have a space before it, and it is usually followed by a new line.</p>
+<p>Finally, the pipe <code>%&gt;%</code> should always have a space before it, and it is usually followed by a new line:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="good-practices.html#cb9-1" tabindex="-1"></a><span class="co"># Good</span></span>
 <span id="cb9-2"><a href="good-practices.html#cb9-2" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
 <span id="cb9-3"><a href="good-practices.html#cb9-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
@@ -656,7 +656,7 @@ With version control you make your workflow reproducible; something that is not 
 </center>
 <p>And yes, you should also use version control even if you are mainly working by yourself! See <a href="https://stackoverflow.com/q/2712421/6103040">this</a> Stack Overflow question.
 Moreover, version control is very useful when you want to access your projects from different devices and/or places
-<img src="images/git.svg" width="70%" style="display: block; margin: auto;" />
+<img src="images/Remote_repository.png" width="70%" style="display: block; margin: auto;" />
 Another important aspect is that you need version control to get websites for your packages with <a href="http://pkgdown.r-lib.org/">pkgdown</a>, for your book (like this one!) with <a href="https://bookdown.org/">bookdown</a>, and for your personal webpage with <a href="https://rmarkdown.rstudio.com/rmarkdown_websites.html">R Markdown Websites</a> or <a href="https://bookdown.org/yihui/blogdown/">blogdown</a>.</p>
 <p>Finally, being able to work with GitHub can be a line on your CV (<a href="https://github.com/blog/2336-invest-in-tools-students-can-grow-with-github-and-rstudio-for-data-science-at-duke-university">read more</a>):</p>
 <blockquote>
@@ -667,8 +667,8 @@ Another important aspect is that you need version control to get websites for yo
 </footer>
 </blockquote>
 </div>
-<div id="github" class="section level3 hasAnchor" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> How to use Git<a href="good-practices.html#github" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="how-to-use-git" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> How to use Git<a href="good-practices.html#how-to-use-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To share your code and collaborate with other, use a Git hosting platform. A Git hosting platform is basically the Google Docs of collaborative coding. The main platforms are</p>
 <ul>
 <li><a href="https://github.com/">GitHub</a> (only free for public repositories, now owned by Microsoft)</li>
@@ -695,7 +695,7 @@ Now you need to open an RStudio session. Go to <code>Tools -&gt; Global Options.
 <li>Select Git to clone a project from a Git repository</li>
 <li>Paste the URL from the clipboard under <code>Repository URL:</code> and select the path were you want to save your project.</li>
 <li>Enter the passphrase that you selected when you generated the SSH key.</li>
-<li>Your GitHub repository will now be cloned (Yeah).</li>
+<li>Your GitHub repository will now be cloned 🥳.</li>
 </ol>
 <p><img src="images/link_repository_to_rstudio.jpg" width="70%" style="display: block; margin: auto;" /></p>
 <p>Instead of following the written steps above, you can also follow the video tutorial below.</p>
@@ -896,6 +896,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

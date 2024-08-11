@@ -94,7 +94,7 @@ x <- 1 : 10
 base :: sum
 ? mean
 ```
-Always put a space after a comma, and never before (just like in regular English).
+Always put a space after a comma, and never before (just like in regular English):
 ```{r, eval=FALSE}
 
 # Good
@@ -135,7 +135,7 @@ function(x) {}
 function (x) {}
 function(x){}
 ```
-Finally, the pipe ` %>%` should always have a space before it, and it is usually followed by a new line. 
+Finally, the pipe ` %>%` should always have a space before it, and it is usually followed by a new line: 
 ```{r, eval=FALSE}
 # Good
 iris %>%
@@ -377,7 +377,7 @@ With version control you make your workflow reproducible; something that is not 
 And yes, you should also use version control even if you are mainly working by yourself! See [this](https://stackoverflow.com/q/2712421/6103040) Stack Overflow question.
 Moreover, version control is very useful when you want to access your projects from different devices and/or places
 ```{r, echo=FALSE}
-knitr::include_graphics("images/git.svg")
+knitr::include_graphics("images/Remote_repository.png")
 ```
 Another important aspect is that you need version control to get websites for your packages with [pkgdown](http://pkgdown.r-lib.org/), for your book (like this one!) with [bookdown](https://bookdown.org/), and for your personal webpage with [R Markdown Websites](https://rmarkdown.rstudio.com/rmarkdown_websites.html) or [blogdown](https://bookdown.org/yihui/blogdown/).
 
@@ -422,7 +422,7 @@ Now that you have generated an SSH key, you can link your repository to an RStud
 9. Select Git to clone a project from a Git repository
 10. Paste the URL from the clipboard under `Repository URL:` and select the path were you want to save your project. 
 11. Enter the passphrase that you selected when you generated the SSH key.
-12. Your GitHub repository will now be cloned (Yeah).
+12. Your GitHub repository will now be cloned `r emo::ji("partying_face")`.
 
 ```{r, echo=FALSE}
 knitr::include_graphics("images/link_repository_to_rstudio.jpg")

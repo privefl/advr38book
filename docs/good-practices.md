@@ -92,7 +92,7 @@ x <- 1 : 10
 base :: sum
 ? mean
 ```
-Always put a space after a comma, and never before (just like in regular English).
+Always put a space after a comma, and never before (just like in regular English):
 
 ``` r
 # Good
@@ -136,7 +136,7 @@ function(x) {}
 function (x) {}
 function(x){}
 ```
-Finally, the pipe ` %>%` should always have a space before it, and it is usually followed by a new line. 
+Finally, the pipe ` %>%` should always have a space before it, and it is usually followed by a new line: 
 
 ``` r
 # Good
@@ -373,7 +373,7 @@ With version control you make your workflow reproducible; something that is not 
 </center>
 And yes, you should also use version control even if you are mainly working by yourself! See [this](https://stackoverflow.com/q/2712421/6103040) Stack Overflow question.
 Moreover, version control is very useful when you want to access your projects from different devices and/or places
-<img src="images/git.svg" width="70%" style="display: block; margin: auto;" />
+<img src="images/Remote_repository.png" width="70%" style="display: block; margin: auto;" />
 Another important aspect is that you need version control to get websites for your packages with [pkgdown](http://pkgdown.r-lib.org/), for your book (like this one!) with [bookdown](https://bookdown.org/), and for your personal webpage with [R Markdown Websites](https://rmarkdown.rstudio.com/rmarkdown_websites.html) or [blogdown](https://bookdown.org/yihui/blogdown/).
 
 Finally, being able to work with GitHub can be a line on your CV ([read more](https://github.com/blog/2336-invest-in-tools-students-can-grow-with-github-and-rstudio-for-data-science-at-duke-university)):
@@ -384,7 +384,7 @@ Finally, being able to work with GitHub can be a line on your CV ([read more](ht
 >
 > <footer>--- Mine Cetinkaya-Rundel, Duke University, RStudio</footer>
 
-### How to use Git {#github}
+### How to use Git
 
 To share your code and collaborate with other, use a Git hosting platform. A Git hosting platform is basically the Google Docs of collaborative coding. The main platforms are
 
@@ -415,7 +415,7 @@ Now that you have generated an SSH key, you can link your repository to an RStud
 9. Select Git to clone a project from a Git repository
 10. Paste the URL from the clipboard under `Repository URL:` and select the path were you want to save your project. 
 11. Enter the passphrase that you selected when you generated the SSH key.
-12. Your GitHub repository will now be cloned (Yeah).
+12. Your GitHub repository will now be cloned 🥳.
 
 <img src="images/link_repository_to_rstudio.jpg" width="70%" style="display: block; margin: auto;" />
 
