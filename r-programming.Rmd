@@ -603,7 +603,6 @@ Line 5: The logical vector `logi_vec` can be coerced to a character vector, but 
 </details>
 <br>
 
-
 #### Exercises {.unnumbered}
 
 1. Why is the default missing value, NA, a logical vector? 
@@ -871,7 +870,11 @@ rm(list = ls())
 2. Use the dimension attribute to make a function that computes the sum of every n successive elements of a vector. <br>
 Ex: 1 2 3 4 5 6 7 8 9 10 -> expected outcome: 3 7 11 15 19<br>
 [Which are the special cases that you should consider?]
-3. Convert the following matrix to a vector by using this replacement rule for rows:<br>
+3. Compute the means of every numeric column of the dataset `iris`. Expected result:
+    ```{r, echo=FALSE}
+    colMeans(iris[sapply(iris, is.numeric)])
+    ```
+4. Convert the following matrix to a vector by using this replacement rule for rows:<br>
   (0, 0) -> 0<br>
   (0, 1) -> 1<br>
   (1, 1) -> 2<br>

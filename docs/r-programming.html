@@ -23,7 +23,7 @@
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2024-08-02" />
+<meta name="date" content="2024-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -456,7 +456,7 @@ For example, take the real number 0.3. In base two, 0.3 is represented by 0.0100
 <h3><span class="header-section-number">3.1.3</span> Others<a href="r-programming.html#others" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>R</code> has many base functions that behave differently than you may expect. One of them is <code>sample()</code>. <code>sample()</code> creates a sample of a specified size from the elements of the first argument <code>x</code> with or without replacement. The most common use of <code>sample()</code> is probably to let <code>x</code> be a vector:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="r-programming.html#cb32-1" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb32-2"><a href="r-programming.html#cb32-2" tabindex="-1"></a><span class="co">#&gt;  [1]  7  1  4  5  9 10  6  2  8  3</span></span></code></pre></div>
+<span id="cb32-2"><a href="r-programming.html#cb32-2" tabindex="-1"></a><span class="co">#&gt;  [1]  1  4 10  7  8  5  6  9  3  2</span></span></code></pre></div>
 <p>But have you ever tried to pass a single number? Or even a real number?</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="r-programming.html#cb33-1" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">10</span>)</span>
 <span id="cb33-2"><a href="r-programming.html#cb33-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="fl">10.1</span>)</span></code></pre></div>
@@ -466,9 +466,9 @@ What do you think <code>R</code> returns?
 Show me!
 </summary>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="r-programming.html#cb34-1" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">10</span>)</span>
-<span id="cb34-2"><a href="r-programming.html#cb34-2" tabindex="-1"></a><span class="co">#&gt;  [1]  4  1  9 10  5  2  3  8  6  7</span></span>
+<span id="cb34-2"><a href="r-programming.html#cb34-2" tabindex="-1"></a><span class="co">#&gt;  [1]  7  9  6  3  5 10  1  4  2  8</span></span>
 <span id="cb34-3"><a href="r-programming.html#cb34-3" tabindex="-1"></a><span class="fu">sample</span>(<span class="fl">10.1</span>)</span>
-<span id="cb34-4"><a href="r-programming.html#cb34-4" tabindex="-1"></a><span class="co">#&gt;  [1]  7  2  1  9  6  4  8  3 10  5</span></span></code></pre></div>
+<span id="cb34-4"><a href="r-programming.html#cb34-4" tabindex="-1"></a><span class="co">#&gt;  [1]  7  6  9  8  5  4  1 10  2  3</span></span></code></pre></div>
 <p>Did you expect this outcome? In case you are confused, here is the reason why:.</p>
 <p>The first argument of <code>sample()</code> is <code>x</code>. <code>x</code> can either be a vector of one or more elements from which to choose, or a positive integer. If <code>x</code> has length one, is numeric and larger than 1, the sampling will take place from the sequence <code>1:x</code>. On the other hand, <code>1:x</code> generates a vector of real numbers; starting with 1 and increasing with 1 until the upper limit <code>x</code> is reached. Hence, when <code>x</code> = 10.1, <code>1:x</code> is equal to the sequence <code>1,2,...,10</code>, and <code>sample(x)</code> is equivalent to <code>sample(1:10)</code>.</p>
 </details>
@@ -600,17 +600,17 @@ Show me!
 <span id="cb46-12"><a href="r-programming.html#cb46-12" tabindex="-1"></a><span class="co">#&gt; [1] 1 1 2 2 3 3 4 4</span></span></code></pre></div></li>
 <li><p><code>replicate(n, expr)</code> : Repeated evaluation of an expression. Wrapper for the common use of <code>sapply</code>.</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="r-programming.html#cb47-1" tabindex="-1"></a><span class="fu">replicate</span>(<span class="dv">5</span>, <span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
-<span id="cb47-2"><a href="r-programming.html#cb47-2" tabindex="-1"></a><span class="co">#&gt;             [,1]        [,2]        [,3]       [,4]          [,5]</span></span>
-<span id="cb47-3"><a href="r-programming.html#cb47-3" tabindex="-1"></a><span class="co">#&gt;  [1,] -0.2137641 -0.33482913  0.01317355  2.1168093 -1.0386667079</span></span>
-<span id="cb47-4"><a href="r-programming.html#cb47-4" tabindex="-1"></a><span class="co">#&gt;  [2,]  0.2132059 -0.39934511  0.22732965 -0.7241349 -0.0007338907</span></span>
-<span id="cb47-5"><a href="r-programming.html#cb47-5" tabindex="-1"></a><span class="co">#&gt;  [3,]  0.9942222 -1.08117242  1.91675189 -0.7839425  0.6109477473</span></span>
-<span id="cb47-6"><a href="r-programming.html#cb47-6" tabindex="-1"></a><span class="co">#&gt;  [4,]  0.9314650  0.58866427 -0.56980952 -1.9777097  0.6653603052</span></span>
-<span id="cb47-7"><a href="r-programming.html#cb47-7" tabindex="-1"></a><span class="co">#&gt;  [5,]  0.4939355 -0.02659821 -0.08172405 -0.3950500  0.8306496720</span></span>
-<span id="cb47-8"><a href="r-programming.html#cb47-8" tabindex="-1"></a><span class="co">#&gt;  [6,]  1.8354801 -2.73083428 -0.63126573 -1.5544160 -0.7794000686</span></span>
-<span id="cb47-9"><a href="r-programming.html#cb47-9" tabindex="-1"></a><span class="co">#&gt;  [7,] -0.1241919  0.48626554 -0.57951419 -1.7200626 -1.0396806535</span></span>
-<span id="cb47-10"><a href="r-programming.html#cb47-10" tabindex="-1"></a><span class="co">#&gt;  [8,]  2.0144211  0.54500302 -1.01475421  0.1406198 -0.6773584293</span></span>
-<span id="cb47-11"><a href="r-programming.html#cb47-11" tabindex="-1"></a><span class="co">#&gt;  [9,]  0.8703505 -0.54712566  0.22947368 -0.5373826 -0.2668049769</span></span>
-<span id="cb47-12"><a href="r-programming.html#cb47-12" tabindex="-1"></a><span class="co">#&gt; [10,]  0.7716181 -0.51681776 -1.03578752 -2.0493810  0.6123288305</span></span></code></pre></div>
+<span id="cb47-2"><a href="r-programming.html#cb47-2" tabindex="-1"></a><span class="co">#&gt;             [,1]        [,2]       [,3]         [,4]       [,5]</span></span>
+<span id="cb47-3"><a href="r-programming.html#cb47-3" tabindex="-1"></a><span class="co">#&gt;  [1,]  0.3928537 -0.28373537  0.6690147 -0.650373793 -0.3839297</span></span>
+<span id="cb47-4"><a href="r-programming.html#cb47-4" tabindex="-1"></a><span class="co">#&gt;  [2,]  0.2514292  0.86957892  0.6551130  0.361207095  0.6028730</span></span>
+<span id="cb47-5"><a href="r-programming.html#cb47-5" tabindex="-1"></a><span class="co">#&gt;  [3,]  0.6713821 -1.65644374 -1.9156641  2.305896261  0.6995976</span></span>
+<span id="cb47-6"><a href="r-programming.html#cb47-6" tabindex="-1"></a><span class="co">#&gt;  [4,]  0.1868415 -0.05759736  0.3311115 -0.125503883 -0.5702729</span></span>
+<span id="cb47-7"><a href="r-programming.html#cb47-7" tabindex="-1"></a><span class="co">#&gt;  [5,]  0.1417200 -0.43984380  0.6116932 -0.245779027 -0.4344933</span></span>
+<span id="cb47-8"><a href="r-programming.html#cb47-8" tabindex="-1"></a><span class="co">#&gt;  [6,]  0.3102932  1.49345583 -0.9004550  1.013470122 -0.1555287</span></span>
+<span id="cb47-9"><a href="r-programming.html#cb47-9" tabindex="-1"></a><span class="co">#&gt;  [7,]  0.5783831 -0.50611405  1.1593167  0.005964447  0.1692015</span></span>
+<span id="cb47-10"><a href="r-programming.html#cb47-10" tabindex="-1"></a><span class="co">#&gt;  [8,] -0.4707181  0.15526396  1.0061900 -0.177206689 -1.1037162</span></span>
+<span id="cb47-11"><a href="r-programming.html#cb47-11" tabindex="-1"></a><span class="co">#&gt;  [9,]  0.7146127 -0.54928444  1.0485541 -3.124126916  0.5782964</span></span>
+<span id="cb47-12"><a href="r-programming.html#cb47-12" tabindex="-1"></a><span class="co">#&gt; [10,] -0.7992643  0.40618243 -1.9363785 -2.345459946  0.4681703</span></span></code></pre></div>
 <p>If you unsure about how to use the different *apply functions in <code>R</code>, we recommend to take a look at <a href="https://stackoverflow.com/questions/3505701/grouping-functions-tapply-by-aggregate-and-the-apply-family">this</a> nice Q/A on grouping functions and the *apply family on Stack Overflow, along with <a href="https://bookdown.org/rdpeng/rprogdatascience/loop-functions.html">Chapter 16</a> from the book <em>R Programming for Data Science</em> by Roger Peng about looping.</p></li>
 <li><p><code>sort(x)</code> : Sort or order a vector or factor into ascending or descending order.</p></li>
 <li><p><code>order(x)</code> : Get a permutation that rearranges <code>x</code> into ascending or descending order. In the case of ties in the first vector, values in the second are used to break the ties.</p>
@@ -637,12 +637,12 @@ Show me!
 <span id="cb50-9"><a href="r-programming.html#cb50-9" tabindex="-1"></a><span class="co">#&gt;   2 1 1</span></span></code></pre></div></li>
 <li><p><code>sample()</code> : Take a sample of the specified size from the elements of <code>x</code> either with or without replacement. Note <code>sample(x)</code> is a shortcut for <code>sample(1:x, size = x)</code>, when <code>x</code> has length one, is numeric and positive.</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="r-programming.html#cb51-1" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">10</span>)</span>
-<span id="cb51-2"><a href="r-programming.html#cb51-2" tabindex="-1"></a><span class="co">#&gt;  [1]  2  7 10  6  3  4  8  5  1  9</span></span>
+<span id="cb51-2"><a href="r-programming.html#cb51-2" tabindex="-1"></a><span class="co">#&gt;  [1]  7  2  4  3 10  8  6  5  9  1</span></span>
 <span id="cb51-3"><a href="r-programming.html#cb51-3" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>)</span>
-<span id="cb51-4"><a href="r-programming.html#cb51-4" tabindex="-1"></a><span class="co">#&gt; [1] 10  3  9  7  6</span></span>
+<span id="cb51-4"><a href="r-programming.html#cb51-4" tabindex="-1"></a><span class="co">#&gt; [1]  4  5  9 10  7</span></span>
 <span id="cb51-5"><a href="r-programming.html#cb51-5" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">50</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb51-6"><a href="r-programming.html#cb51-6" tabindex="-1"></a><span class="co">#&gt;  [1]  8  6  6  6  3  3  4  6  5 10  6  6  3  5  9 10  7  8  5  9  5  6  9  9  6  8  7 10</span></span>
-<span id="cb51-7"><a href="r-programming.html#cb51-7" tabindex="-1"></a><span class="co">#&gt; [29]  9  9  3  7  3  8  9 10 10  5  4 10  7  3 10 10  3  9  3  8  4  4</span></span></code></pre></div></li>
+<span id="cb51-6"><a href="r-programming.html#cb51-6" tabindex="-1"></a><span class="co">#&gt;  [1]  4  3  4  8  4  6  3 10  5  6  9  8  9  8  9 10  4  5  8  8  6  4  5  9  5  5  4 10</span></span>
+<span id="cb51-7"><a href="r-programming.html#cb51-7" tabindex="-1"></a><span class="co">#&gt; [29]  6  4  4  9 10  5  7 10  4  7  9  5  8  3  7  7  8 10  4 10  8  9</span></span></code></pre></div></li>
 <li><p><code>round(x)</code> : Round the value in the first argument to the specified number of decimal places. Rounding to a negative number of digits means rounding to a power of ten, i.e.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="r-programming.html#cb52-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">12.568</span>, <span class="sc">-</span><span class="dv">1</span>)</span>
 <span id="cb52-2"><a href="r-programming.html#cb52-2" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
@@ -685,12 +685,12 @@ Show me!
 <span id="cb55-18"><a href="r-programming.html#cb55-18" tabindex="-1"></a><span class="co">#&gt; 16    4    2</span></span></code></pre></div></li>
 <li><p><code>match()</code> : Return a vector of positions of (first) matches of the first argument in the second argument</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="r-programming.html#cb56-1" tabindex="-1"></a>(y <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">20</span><span class="sc">:</span><span class="dv">25</span>, <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb56-2"><a href="r-programming.html#cb56-2" tabindex="-1"></a><span class="co">#&gt;  [1] 22 23 23 23 20 20 22 21 22 23</span></span>
+<span id="cb56-2"><a href="r-programming.html#cb56-2" tabindex="-1"></a><span class="co">#&gt;  [1] 23 22 25 23 24 21 21 22 21 21</span></span>
 <span id="cb56-3"><a href="r-programming.html#cb56-3" tabindex="-1"></a><span class="fu">match</span>(y, <span class="dv">20</span><span class="sc">:</span><span class="dv">25</span>)</span>
-<span id="cb56-4"><a href="r-programming.html#cb56-4" tabindex="-1"></a><span class="co">#&gt;  [1] 3 4 4 4 1 1 3 2 3 4</span></span></code></pre></div></li>
+<span id="cb56-4"><a href="r-programming.html#cb56-4" tabindex="-1"></a><span class="co">#&gt;  [1] 4 3 6 4 5 2 2 3 2 2</span></span></code></pre></div></li>
 <li><p><code>%in%</code> : Return a logical vector indicating if there is a match or not for the left operand.</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="r-programming.html#cb57-1" tabindex="-1"></a>y <span class="sc">%in%</span> <span class="dv">20</span><span class="sc">:</span><span class="dv">22</span></span>
-<span id="cb57-2"><a href="r-programming.html#cb57-2" tabindex="-1"></a><span class="co">#&gt;  [1]  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE</span></span></code></pre></div></li>
+<span id="cb57-2"><a href="r-programming.html#cb57-2" tabindex="-1"></a><span class="co">#&gt;  [1] FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</span></span></code></pre></div></li>
 <li><p><code>intersect(x, y)</code> : Perform set intersection (<span class="math inline">\(x \cap y\)</span>).</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="r-programming.html#cb58-1" tabindex="-1"></a><span class="fu">intersect</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>))</span>
 <span id="cb58-2"><a href="r-programming.html#cb58-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;c&quot; &quot;d&quot;</span></span></code></pre></div></li>
@@ -765,22 +765,22 @@ Show me!
 <span id="cb70-2"><a href="r-programming.html#cb70-2" tabindex="-1"></a><span class="co">#&gt; Error in c(TRUE, FALSE, TRUE, TRUE) &amp;&amp; c(FALSE, TRUE, TRUE, FALSE): &#39;length = 4&#39; in coercion to &#39;logical(1)&#39;</span></span></code></pre></div></li>
 <li><p><code>ifelse(test, yes, no)</code> : Conditional element selection. <code>yes</code> will be evaluated if and only if any element of <code>test</code> is <code>TRUE</code>, and analogously for <code>no</code>.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="r-programming.html#cb71-1" tabindex="-1"></a><span class="fu">round</span>(x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="at">digits =</span> <span class="dv">5</span>)</span>
-<span id="cb71-2"><a href="r-programming.html#cb71-2" tabindex="-1"></a><span class="co">#&gt;  [1] -0.62237 -2.11477 -1.08648 -0.04178  0.52057 -0.35016 -0.68793  2.03323  1.19948</span></span>
-<span id="cb71-3"><a href="r-programming.html#cb71-3" tabindex="-1"></a><span class="co">#&gt; [10]  2.13036</span></span>
+<span id="cb71-2"><a href="r-programming.html#cb71-2" tabindex="-1"></a><span class="co">#&gt;  [1]  0.70391 -1.22172 -1.30070 -1.79076 -0.32089 -0.59589 -1.96258 -0.94710 -1.26792</span></span>
+<span id="cb71-3"><a href="r-programming.html#cb71-3" tabindex="-1"></a><span class="co">#&gt; [10]  0.33669</span></span>
 <span id="cb71-4"><a href="r-programming.html#cb71-4" tabindex="-1"></a><span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, x, <span class="sc">-</span>x)</span>
-<span id="cb71-5"><a href="r-programming.html#cb71-5" tabindex="-1"></a><span class="co">#&gt;  [1] 0.62237228 2.11477455 1.08648101 0.04178032 0.52056874 0.35015672 0.68792714</span></span>
-<span id="cb71-6"><a href="r-programming.html#cb71-6" tabindex="-1"></a><span class="co">#&gt;  [8] 2.03322928 1.19948409 2.13036243</span></span></code></pre></div>
+<span id="cb71-5"><a href="r-programming.html#cb71-5" tabindex="-1"></a><span class="co">#&gt;  [1] 0.7039097 1.2217232 1.3007019 1.7907566 0.3208909 0.5958931 1.9625804 0.9471048</span></span>
+<span id="cb71-6"><a href="r-programming.html#cb71-6" tabindex="-1"></a><span class="co">#&gt;  [9] 1.2679200 0.3366922</span></span></code></pre></div>
 <p><code>ifelse()</code> can be used to handle special cases in a vectorized way, or it can be used to construct a vector by doing element-wise comparisons of two vectors. <code>ifelse()</code> is <strong>NOT</strong> a shortcut for an if-else statement! <code>ifelse()</code> always returns a vector of the same length and attributes as the condition. Hence, if the length of the input vector is one, <code>ifelse()</code> only returns the first element of the returning vector:</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="r-programming.html#cb72-1" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="cn">FALSE</span>, <span class="dv">0</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
 <span id="cb72-2"><a href="r-programming.html#cb72-2" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
 <p>If the input is of type <code>integer</code>, <code>ifelse()</code> returns a vector of type integer:</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="r-programming.html#cb73-1" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="dv">1</span>, <span class="fu">Sys.Date</span>(), <span class="dv">0</span>)</span>
-<span id="cb73-2"><a href="r-programming.html#cb73-2" tabindex="-1"></a><span class="co">#&gt; [1] 19937</span></span></code></pre></div>
+<span id="cb73-2"><a href="r-programming.html#cb73-2" tabindex="-1"></a><span class="co">#&gt; [1] 19946</span></span></code></pre></div>
 <p>If you want a more compact way of writing a standard if-else statement, you can use the function `<code>if</code>()`:</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="r-programming.html#cb74-1" tabindex="-1"></a><span class="st">`</span><span class="at">if</span><span class="st">`</span>(<span class="cn">FALSE</span>, <span class="dv">0</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
 <span id="cb74-2"><a href="r-programming.html#cb74-2" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span>
 <span id="cb74-3"><a href="r-programming.html#cb74-3" tabindex="-1"></a><span class="st">`</span><span class="at">if</span><span class="st">`</span>(<span class="cn">TRUE</span>, <span class="fu">Sys.Date</span>(), <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
-<span id="cb74-4"><a href="r-programming.html#cb74-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-08-02&quot;</span></span></code></pre></div>
+<span id="cb74-4"><a href="r-programming.html#cb74-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-08-11&quot;</span></span></code></pre></div>
 <p>In simple cases, however, the standard if-else statement can also be written very compact:</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="r-programming.html#cb75-1" tabindex="-1"></a><span class="cf">if</span> (<span class="cn">FALSE</span>) <span class="dv">0</span> <span class="cf">else</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
 <span id="cb75-2"><a href="r-programming.html#cb75-2" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code></pre></div>
@@ -963,8 +963,8 @@ blog post <a href="https://privefl.github.io/blog/On-the-ifelse-function/"><em>O
 <span id="cb78-4"><a href="r-programming.html#cb78-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;a1&quot;  &quot;a2&quot;  &quot;a10&quot;</span></span></code></pre></div></li>
 <li><p><code>dplyr::case_when()</code> : Vectorize multiple <code>ifelse()</code> statements. Each case is evaluated sequentially and the first match for each element determines the corresponding value in the output vector.</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="r-programming.html#cb79-1" tabindex="-1"></a><span class="fu">round</span>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">runif</span>(<span class="dv">20</span>, <span class="at">min =</span> <span class="fl">15.0</span>, <span class="at">max =</span> <span class="fl">50.0</span>), <span class="cn">NA</span>), <span class="at">digits =</span> <span class="dv">4</span>)</span>
-<span id="cb79-2"><a href="r-programming.html#cb79-2" tabindex="-1"></a><span class="co">#&gt;  [1] 18.6896 28.0028 28.4398 42.5129 16.7395 17.1008 32.8503 46.6088 39.0607 24.8481</span></span>
-<span id="cb79-3"><a href="r-programming.html#cb79-3" tabindex="-1"></a><span class="co">#&gt; [11] 40.4280 21.4198 49.5247 22.8092 41.6943 29.2037 21.4294 48.1395 19.8273 24.3863</span></span>
+<span id="cb79-2"><a href="r-programming.html#cb79-2" tabindex="-1"></a><span class="co">#&gt;  [1] 41.8143 41.4457 47.5710 23.6829 43.1721 37.6931 25.2496 41.4163 31.6804 38.3665</span></span>
+<span id="cb79-3"><a href="r-programming.html#cb79-3" tabindex="-1"></a><span class="co">#&gt; [11] 40.8478 26.4275 15.7107 48.0819 29.2380 26.7016 38.6566 38.7260 43.1882 40.2686</span></span>
 <span id="cb79-4"><a href="r-programming.html#cb79-4" tabindex="-1"></a><span class="co">#&gt; [21]      NA</span></span>
 <span id="cb79-5"><a href="r-programming.html#cb79-5" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">case_when</span>(x <span class="sc">&lt;</span> <span class="fl">16.0</span> <span class="sc">~</span> <span class="st">&quot;Severely Underweight&quot;</span>,</span>
 <span id="cb79-6"><a href="r-programming.html#cb79-6" tabindex="-1"></a>  x <span class="sc">&lt;=</span> <span class="fl">18.4</span> <span class="sc">~</span> <span class="st">&quot;Underweight&quot;</span>,</span>
@@ -975,11 +975,13 @@ blog post <a href="https://privefl.github.io/blog/On-the-ifelse-function/"><em>O
 <span id="cb79-11"><a href="r-programming.html#cb79-11" tabindex="-1"></a>  x <span class="sc">&gt;=</span> <span class="fl">40.0</span> <span class="sc">~</span> <span class="st">&quot;Morbidly Obese&quot;</span>,</span>
 <span id="cb79-12"><a href="r-programming.html#cb79-12" tabindex="-1"></a>  <span class="at">.default =</span> <span class="fu">as.character</span>(<span class="cn">NA</span>)</span>
 <span id="cb79-13"><a href="r-programming.html#cb79-13" tabindex="-1"></a>)</span>
-<span id="cb79-14"><a href="r-programming.html#cb79-14" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;Normal&quot;         &quot;Overweight&quot;     &quot;Overweight&quot;     &quot;Morbidly Obese&quot; &quot;Underweight&quot;   </span></span>
-<span id="cb79-15"><a href="r-programming.html#cb79-15" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;Underweight&quot;    &quot;Moderate Obese&quot; &quot;Morbidly Obese&quot; &quot;Severely Obese&quot; &quot;Normal&quot;        </span></span>
-<span id="cb79-16"><a href="r-programming.html#cb79-16" tabindex="-1"></a><span class="co">#&gt; [11] &quot;Morbidly Obese&quot; &quot;Normal&quot;         &quot;Morbidly Obese&quot; &quot;Normal&quot;         &quot;Morbidly Obese&quot;</span></span>
-<span id="cb79-17"><a href="r-programming.html#cb79-17" tabindex="-1"></a><span class="co">#&gt; [16] &quot;Overweight&quot;     &quot;Normal&quot;         &quot;Morbidly Obese&quot; &quot;Normal&quot;         &quot;Normal&quot;        </span></span>
-<span id="cb79-18"><a href="r-programming.html#cb79-18" tabindex="-1"></a><span class="co">#&gt; [21] NA</span></span></code></pre></div></li>
+<span id="cb79-14"><a href="r-programming.html#cb79-14" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;Morbidly Obese&quot;       &quot;Morbidly Obese&quot;       &quot;Morbidly Obese&quot;      </span></span>
+<span id="cb79-15"><a href="r-programming.html#cb79-15" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;Normal&quot;               &quot;Morbidly Obese&quot;       &quot;Severely Obese&quot;      </span></span>
+<span id="cb79-16"><a href="r-programming.html#cb79-16" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;Overweight&quot;           &quot;Morbidly Obese&quot;       &quot;Moderate Obese&quot;      </span></span>
+<span id="cb79-17"><a href="r-programming.html#cb79-17" tabindex="-1"></a><span class="co">#&gt; [10] &quot;Severely Obese&quot;       &quot;Morbidly Obese&quot;       &quot;Overweight&quot;          </span></span>
+<span id="cb79-18"><a href="r-programming.html#cb79-18" tabindex="-1"></a><span class="co">#&gt; [13] &quot;Severely Underweight&quot; &quot;Morbidly Obese&quot;       &quot;Overweight&quot;          </span></span>
+<span id="cb79-19"><a href="r-programming.html#cb79-19" tabindex="-1"></a><span class="co">#&gt; [16] &quot;Overweight&quot;           &quot;Severely Obese&quot;       &quot;Severely Obese&quot;      </span></span>
+<span id="cb79-20"><a href="r-programming.html#cb79-20" tabindex="-1"></a><span class="co">#&gt; [19] &quot;Morbidly Obese&quot;       &quot;Morbidly Obese&quot;       NA</span></span></code></pre></div></li>
 </ul>
 </div>
 <div id="exercises" class="section level3 unnumbered hasAnchor">
@@ -988,13 +990,13 @@ blog post <a href="https://privefl.github.io/blog/On-the-ifelse-function/"><em>O
 <li><p>Use <code>sample()</code>, <code>rep_len()</code> and <code>split()</code> to make a function that randomly splits some indices in a list of <code>K</code> groups of indices (like for cross-validation). [Which are the special cases that you should consider?]</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="r-programming.html#cb80-1" tabindex="-1"></a>advr38pkg<span class="sc">::</span><span class="fu">split_ind</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>#&gt; $`1`
-#&gt;  [1]  6  9 11 14 15 17 18 22 23 27 28 31 34 35
+#&gt;  [1] 12 13 14 15 16 17 18 22 28 29 30 32 38 40
 #&gt; 
 #&gt; $`2`
-#&gt;  [1]  2  3  5  8 13 19 21 26 33 36 37 38 39
+#&gt;  [1]  4  5  6  7 10 11 19 24 26 27 31 34 37
 #&gt; 
 #&gt; $`3`
-#&gt;  [1]  1  4  7 10 12 16 20 24 25 29 30 32 40</code></pre></li>
+#&gt;  [1]  1  2  3  8  9 20 21 23 25 33 35 36 39</code></pre></li>
 <li><p>Use <code>replicate()</code> and <code>sample()</code> to get a 95% confidence interval (using bootstrapping) for the mean of the following vector:</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="r-programming.html#cb82-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb82-2"><a href="r-programming.html#cb82-2" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>))</span></code></pre></div>
@@ -1369,12 +1371,12 @@ We want to note, however, that you can define your own attributes using the func
 <span id="cb116-12"><a href="r-programming.html#cb116-12" tabindex="-1"></a><span class="co">#&gt; [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</span></span></code></pre></div>
 <p>If you remove the only attribute (<code>class</code>) from a date vector, the result is a numeric vector representing the number of days since 1970-01-01</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="r-programming.html#cb117-1" tabindex="-1"></a>(today <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>())</span>
-<span id="cb117-2"><a href="r-programming.html#cb117-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-08-02&quot;</span></span>
+<span id="cb117-2"><a href="r-programming.html#cb117-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-08-11&quot;</span></span>
 <span id="cb117-3"><a href="r-programming.html#cb117-3" tabindex="-1"></a><span class="fu">attributes</span>(today)</span>
 <span id="cb117-4"><a href="r-programming.html#cb117-4" tabindex="-1"></a><span class="co">#&gt; $class</span></span>
 <span id="cb117-5"><a href="r-programming.html#cb117-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Date&quot;</span></span>
 <span id="cb117-6"><a href="r-programming.html#cb117-6" tabindex="-1"></a><span class="fu">unclass</span>(today)</span>
-<span id="cb117-7"><a href="r-programming.html#cb117-7" tabindex="-1"></a><span class="co">#&gt; [1] 19937</span></span></code></pre></div>
+<span id="cb117-7"><a href="r-programming.html#cb117-7" tabindex="-1"></a><span class="co">#&gt; [1] 19946</span></span></code></pre></div>
 <div id="exercise-1" class="section level4 unnumbered hasAnchor">
 <h4>Exercise<a href="r-programming.html#exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
@@ -1539,30 +1541,33 @@ Figure 3.1: Indexing lists in R. [Source: <a href="https://goo.gl/8UkcHq" class=
 <li><p>Use the dimension attribute to make a function that computes the sum of every n successive elements of a vector. <br>
 Ex: 1 2 3 4 5 6 7 8 9 10 -&gt; expected outcome: 3 7 11 15 19<br>
 [Which are the special cases that you should consider?]</p></li>
+<li><p>Compute the means of every numeric column of the dataset <code>iris</code>. Expected result:</p>
+<pre><code>#&gt; Sepal.Length  Sepal.Width Petal.Length  Petal.Width 
+#&gt;     5.843333     3.057333     3.758000     1.199333</code></pre></li>
 <li><p>Convert the following matrix to a vector by using this replacement rule for rows:<br>
 (0, 0) -&gt; 0<br>
 (0, 1) -&gt; 1<br>
 (1, 1) -&gt; 2<br>
 (1, 0) -&gt; NA<br></p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="r-programming.html#cb128-1" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
-<span id="cb128-2"><a href="r-programming.html#cb128-2" tabindex="-1"></a>mat[<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">19</span>)] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb128-3"><a href="r-programming.html#cb128-3" tabindex="-1"></a>mat</span>
-<span id="cb128-4"><a href="r-programming.html#cb128-4" tabindex="-1"></a><span class="co">#&gt;       [,1] [,2]</span></span>
-<span id="cb128-5"><a href="r-programming.html#cb128-5" tabindex="-1"></a><span class="co">#&gt;  [1,]    0    0</span></span>
-<span id="cb128-6"><a href="r-programming.html#cb128-6" tabindex="-1"></a><span class="co">#&gt;  [2,]    0    1</span></span>
-<span id="cb128-7"><a href="r-programming.html#cb128-7" tabindex="-1"></a><span class="co">#&gt;  [3,]    0    0</span></span>
-<span id="cb128-8"><a href="r-programming.html#cb128-8" tabindex="-1"></a><span class="co">#&gt;  [4,]    0    0</span></span>
-<span id="cb128-9"><a href="r-programming.html#cb128-9" tabindex="-1"></a><span class="co">#&gt;  [5,]    1    1</span></span>
-<span id="cb128-10"><a href="r-programming.html#cb128-10" tabindex="-1"></a><span class="co">#&gt;  [6,]    0    1</span></span>
-<span id="cb128-11"><a href="r-programming.html#cb128-11" tabindex="-1"></a><span class="co">#&gt;  [7,]    0    1</span></span>
-<span id="cb128-12"><a href="r-programming.html#cb128-12" tabindex="-1"></a><span class="co">#&gt;  [8,]    1    0</span></span>
-<span id="cb128-13"><a href="r-programming.html#cb128-13" tabindex="-1"></a><span class="co">#&gt;  [9,]    1    1</span></span>
-<span id="cb128-14"><a href="r-programming.html#cb128-14" tabindex="-1"></a><span class="co">#&gt; [10,]    0    0</span></span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="r-programming.html#cb129-1" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
+<span id="cb129-2"><a href="r-programming.html#cb129-2" tabindex="-1"></a>mat[<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">19</span>)] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb129-3"><a href="r-programming.html#cb129-3" tabindex="-1"></a>mat</span>
+<span id="cb129-4"><a href="r-programming.html#cb129-4" tabindex="-1"></a><span class="co">#&gt;       [,1] [,2]</span></span>
+<span id="cb129-5"><a href="r-programming.html#cb129-5" tabindex="-1"></a><span class="co">#&gt;  [1,]    0    0</span></span>
+<span id="cb129-6"><a href="r-programming.html#cb129-6" tabindex="-1"></a><span class="co">#&gt;  [2,]    0    1</span></span>
+<span id="cb129-7"><a href="r-programming.html#cb129-7" tabindex="-1"></a><span class="co">#&gt;  [3,]    0    0</span></span>
+<span id="cb129-8"><a href="r-programming.html#cb129-8" tabindex="-1"></a><span class="co">#&gt;  [4,]    0    0</span></span>
+<span id="cb129-9"><a href="r-programming.html#cb129-9" tabindex="-1"></a><span class="co">#&gt;  [5,]    1    1</span></span>
+<span id="cb129-10"><a href="r-programming.html#cb129-10" tabindex="-1"></a><span class="co">#&gt;  [6,]    0    1</span></span>
+<span id="cb129-11"><a href="r-programming.html#cb129-11" tabindex="-1"></a><span class="co">#&gt;  [7,]    0    1</span></span>
+<span id="cb129-12"><a href="r-programming.html#cb129-12" tabindex="-1"></a><span class="co">#&gt;  [8,]    1    0</span></span>
+<span id="cb129-13"><a href="r-programming.html#cb129-13" tabindex="-1"></a><span class="co">#&gt;  [9,]    1    1</span></span>
+<span id="cb129-14"><a href="r-programming.html#cb129-14" tabindex="-1"></a><span class="co">#&gt; [10,]    0    0</span></span></code></pre></div>
 <p>You have to use the following matrix to do so:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="r-programming.html#cb129-1" tabindex="-1"></a>(decode <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>))</span>
-<span id="cb129-2"><a href="r-programming.html#cb129-2" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
-<span id="cb129-3"><a href="r-programming.html#cb129-3" tabindex="-1"></a><span class="co">#&gt; [1,]    0    1</span></span>
-<span id="cb129-4"><a href="r-programming.html#cb129-4" tabindex="-1"></a><span class="co">#&gt; [2,]   NA    2</span></span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="r-programming.html#cb130-1" tabindex="-1"></a>(decode <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>))</span>
+<span id="cb130-2"><a href="r-programming.html#cb130-2" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
+<span id="cb130-3"><a href="r-programming.html#cb130-3" tabindex="-1"></a><span class="co">#&gt; [1,]    0    1</span></span>
+<span id="cb130-4"><a href="r-programming.html#cb130-4" tabindex="-1"></a><span class="co">#&gt; [2,]   NA    2</span></span></code></pre></div>
 <p>Start by doing it for one row, then by using <code>apply()</code>. Finally, replace it by a special accessor.
 Expected result:</p>
 <pre><code>#&gt;  [1]  0  1  0  0  2  1  1 NA  2  0</code></pre></li>
@@ -1582,29 +1587,29 @@ Environments associate a set of names with a set of values. You can think of an 
 </ol>
 <p>Let us take a closer look at exception 3: <em>Every environment has a parent environment</em>. <br>
 One environment doesn’t follow that rule: the <em>empty</em> environment. The empty environment is the ultimate ancestor of all other environments. All other environments have parents. Most environments have grandparents (the parent’s parent), and the ancestors of an environment include all parent environments up to the empty environment. When <code>R</code> is looking for a variable, it will start looking for that variable inside the current environment. If <code>R</code> cannot find the variable in the current environment, it will look in the parent environment. If the variable doesn’t exist in the parent environment either, <code>R</code> will look in the parent environment of the parent, and so on. Let us consider an example to make this point clearer.</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="r-programming.html#cb131-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb131-2"><a href="r-programming.html#cb131-2" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb131-3"><a href="r-programming.html#cb131-3" tabindex="-1"></a>  f <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb131-4"><a href="r-programming.html#cb131-4" tabindex="-1"></a>    x <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb131-5"><a href="r-programming.html#cb131-5" tabindex="-1"></a>  }</span>
-<span id="cb131-6"><a href="r-programming.html#cb131-6" tabindex="-1"></a>  <span class="fu">f</span>()</span>
-<span id="cb131-7"><a href="r-programming.html#cb131-7" tabindex="-1"></a>}</span>
-<span id="cb131-8"><a href="r-programming.html#cb131-8" tabindex="-1"></a></span>
-<span id="cb131-9"><a href="r-programming.html#cb131-9" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb131-10"><a href="r-programming.html#cb131-10" tabindex="-1"></a><span class="fu">h</span>()</span>
-<span id="cb131-11"><a href="r-programming.html#cb131-11" tabindex="-1"></a><span class="co">#&gt; [1] 11</span></span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="r-programming.html#cb132-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb132-2"><a href="r-programming.html#cb132-2" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb132-3"><a href="r-programming.html#cb132-3" tabindex="-1"></a>  f <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb132-4"><a href="r-programming.html#cb132-4" tabindex="-1"></a>    x <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb132-5"><a href="r-programming.html#cb132-5" tabindex="-1"></a>  }</span>
+<span id="cb132-6"><a href="r-programming.html#cb132-6" tabindex="-1"></a>  <span class="fu">f</span>()</span>
+<span id="cb132-7"><a href="r-programming.html#cb132-7" tabindex="-1"></a>}</span>
+<span id="cb132-8"><a href="r-programming.html#cb132-8" tabindex="-1"></a></span>
+<span id="cb132-9"><a href="r-programming.html#cb132-9" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb132-10"><a href="r-programming.html#cb132-10" tabindex="-1"></a><span class="fu">h</span>()</span>
+<span id="cb132-11"><a href="r-programming.html#cb132-11" tabindex="-1"></a><span class="co">#&gt; [1] 11</span></span></code></pre></div>
 <p>To evaluate the function <code>h()</code> above, <code>R</code> needs to evaluate the function <code>f()</code>. The function <code>f()</code> simply returns <code>x + 1</code>. But in order to compute <code>x + 1</code>, <code>R</code> needs to find the value associated with the name <code>x</code>. <code>R</code> will start looking in the current environment; the function body of <code>f()</code>:</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="r-programming.html#cb132-1" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb132-2"><a href="r-programming.html#cb132-2" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb132-3"><a href="r-programming.html#cb132-3" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="r-programming.html#cb133-1" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb133-2"><a href="r-programming.html#cb133-2" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb133-3"><a href="r-programming.html#cb133-3" tabindex="-1"></a>}</span></code></pre></div>
 <p><code>x</code> is not defined in the body of <code>f()</code>, hence <code>R</code> will look for the variable in the parent environment. The parent environment of <code>f()</code> is <code>h()</code> (as <code>f()</code> is defined inside of <code>h()</code>):</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode numberSource r numberLines"><code class="sourceCode r"><span id="cb133-1"><a href="r-programming.html#cb133-1"></a>h <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb133-2"><a href="r-programming.html#cb133-2"></a>  x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb133-3"><a href="r-programming.html#cb133-3"></a>  f <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb133-4"><a href="r-programming.html#cb133-4"></a>    x <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb133-5"><a href="r-programming.html#cb133-5"></a>  }</span>
-<span id="cb133-6"><a href="r-programming.html#cb133-6"></a>  <span class="fu">f</span>()</span>
-<span id="cb133-7"><a href="r-programming.html#cb133-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode numberSource r numberLines"><code class="sourceCode r"><span id="cb134-1"><a href="r-programming.html#cb134-1"></a>h <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb134-2"><a href="r-programming.html#cb134-2"></a>  x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb134-3"><a href="r-programming.html#cb134-3"></a>  f <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb134-4"><a href="r-programming.html#cb134-4"></a>    x <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb134-5"><a href="r-programming.html#cb134-5"></a>  }</span>
+<span id="cb134-6"><a href="r-programming.html#cb134-6"></a>  <span class="fu">f</span>()</span>
+<span id="cb134-7"><a href="r-programming.html#cb134-7"></a>}</span></code></pre></div>
 <p><code>x</code> is associated with the value 10 in line 2. Therefore, <code>R</code> takes that value to compute <code>x + 1</code>, and <code>h()</code> returns 11.</p>
 <p>The principle that <code>R</code> will look for a name in the parent environment if it is not found in the current environment is what is called <em>lexical scoping</em>.
 More precisely: Lexical scoping is the set of rules that determines how <code>R</code> finds the value associated with a name. The <em>lexical</em> in lexical scoping comes from the computer science term <em>lexing</em>, which is the process of breaking down a string into meaningful pieces that the programming language can understand.
@@ -1613,96 +1618,96 @@ In short, <code>R</code>’s lexical scoping follows these four primary rules;</
 <li>Dynamic lookup:</li>
 </ul>
 <p>In <code>R</code>, dynamic lookup focuses on where to look for values, not when to look for them. In other words, <code>R</code> looks for values when the function is run, not when the function is created. For example, defining the following function won’t throw and error; even if <code>x</code> has not been defined yet:</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="r-programming.html#cb134-1" tabindex="-1"></a>fct <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb134-2"><a href="r-programming.html#cb134-2" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb134-3"><a href="r-programming.html#cb134-3" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="r-programming.html#cb135-1" tabindex="-1"></a>fct <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb135-2"><a href="r-programming.html#cb135-2" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb135-3"><a href="r-programming.html#cb135-3" tabindex="-1"></a>}</span></code></pre></div>
 <p>But once we call <code>fct()</code>, <code>R</code> tries to look for <code>x</code> and returns an error, if <code>x</code> does not exist:</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="r-programming.html#cb135-1" tabindex="-1"></a><span class="fu">fct</span>()</span>
-<span id="cb135-2"><a href="r-programming.html#cb135-2" tabindex="-1"></a><span class="co">#&gt; Error in fct(): object &#39;x&#39; not found</span></span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="r-programming.html#cb136-1" tabindex="-1"></a><span class="fu">fct</span>()</span>
+<span id="cb136-2"><a href="r-programming.html#cb136-2" tabindex="-1"></a><span class="co">#&gt; Error in fct(): object &#39;x&#39; not found</span></span></code></pre></div>
 <ul>
 <li>A fresh start:</li>
 </ul>
 <p>Every time a function is called, a new environment is created to host its execution. This means that each invocation is completely independent of all prior invocations:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="r-programming.html#cb136-1" tabindex="-1"></a>fct <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb136-2"><a href="r-programming.html#cb136-2" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">&quot;x&quot;</span>)) x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="cf">else</span> x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb136-3"><a href="r-programming.html#cb136-3" tabindex="-1"></a>  x</span>
-<span id="cb136-4"><a href="r-programming.html#cb136-4" tabindex="-1"></a>}</span>
-<span id="cb136-5"><a href="r-programming.html#cb136-5" tabindex="-1"></a></span>
-<span id="cb136-6"><a href="r-programming.html#cb136-6" tabindex="-1"></a><span class="fu">fct</span>()</span>
-<span id="cb136-7"><a href="r-programming.html#cb136-7" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
-<span id="cb136-8"><a href="r-programming.html#cb136-8" tabindex="-1"></a><span class="fu">fct</span>()</span>
-<span id="cb136-9"><a href="r-programming.html#cb136-9" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
-<p>You are, however, able to circumvent this using the super assignment <code>&lt;&lt;-</code>. Super assignment never creates a variable in the current environment, but modifies an existing variable found in a parent environment. If the variable is not found in a parent environment, super assignment will create one in the global environment:</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="r-programming.html#cb137-1" tabindex="-1"></a>fct <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb137-2"><a href="r-programming.html#cb137-2" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">&quot;x&quot;</span>)) x <span class="ot">&lt;&lt;-</span> <span class="dv">1</span> <span class="cf">else</span> x <span class="ot">&lt;&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb137-2"><a href="r-programming.html#cb137-2" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">&quot;x&quot;</span>)) x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="cf">else</span> x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb137-3"><a href="r-programming.html#cb137-3" tabindex="-1"></a>  x</span>
 <span id="cb137-4"><a href="r-programming.html#cb137-4" tabindex="-1"></a>}</span>
 <span id="cb137-5"><a href="r-programming.html#cb137-5" tabindex="-1"></a></span>
 <span id="cb137-6"><a href="r-programming.html#cb137-6" tabindex="-1"></a><span class="fu">fct</span>()</span>
 <span id="cb137-7"><a href="r-programming.html#cb137-7" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
 <span id="cb137-8"><a href="r-programming.html#cb137-8" tabindex="-1"></a><span class="fu">fct</span>()</span>
-<span id="cb137-9"><a href="r-programming.html#cb137-9" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
-<span id="cb137-10"><a href="r-programming.html#cb137-10" tabindex="-1"></a><span class="fu">fct</span>()</span>
-<span id="cb137-11"><a href="r-programming.html#cb137-11" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span></code></pre></div>
+<span id="cb137-9"><a href="r-programming.html#cb137-9" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+<p>You are, however, able to circumvent this using the super assignment <code>&lt;&lt;-</code>. Super assignment never creates a variable in the current environment, but modifies an existing variable found in a parent environment. If the variable is not found in a parent environment, super assignment will create one in the global environment:</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="r-programming.html#cb138-1" tabindex="-1"></a>fct <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb138-2"><a href="r-programming.html#cb138-2" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">&quot;x&quot;</span>)) x <span class="ot">&lt;&lt;-</span> <span class="dv">1</span> <span class="cf">else</span> x <span class="ot">&lt;&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb138-3"><a href="r-programming.html#cb138-3" tabindex="-1"></a>  x</span>
+<span id="cb138-4"><a href="r-programming.html#cb138-4" tabindex="-1"></a>}</span>
+<span id="cb138-5"><a href="r-programming.html#cb138-5" tabindex="-1"></a></span>
+<span id="cb138-6"><a href="r-programming.html#cb138-6" tabindex="-1"></a><span class="fu">fct</span>()</span>
+<span id="cb138-7"><a href="r-programming.html#cb138-7" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb138-8"><a href="r-programming.html#cb138-8" tabindex="-1"></a><span class="fu">fct</span>()</span>
+<span id="cb138-9"><a href="r-programming.html#cb138-9" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb138-10"><a href="r-programming.html#cb138-10" tabindex="-1"></a><span class="fu">fct</span>()</span>
+<span id="cb138-11"><a href="r-programming.html#cb138-11" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span></code></pre></div>
 <ul>
 <li>Functions versus variables:</li>
 </ul>
 <p>Whenever a function and a non-function in two different environments share the same name, <code>R</code> ignores non-function objects when looking for that value:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="r-programming.html#cb138-1" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x <span class="sc">+</span> <span class="dv">10</span></span>
-<span id="cb138-2"><a href="r-programming.html#cb138-2" tabindex="-1"></a></span>
-<span id="cb138-3"><a href="r-programming.html#cb138-3" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb138-4"><a href="r-programming.html#cb138-4" tabindex="-1"></a>  f1 <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb138-5"><a href="r-programming.html#cb138-5" tabindex="-1"></a>  <span class="fu">f1</span>(f1)</span>
-<span id="cb138-6"><a href="r-programming.html#cb138-6" tabindex="-1"></a>}</span>
-<span id="cb138-7"><a href="r-programming.html#cb138-7" tabindex="-1"></a></span>
-<span id="cb138-8"><a href="r-programming.html#cb138-8" tabindex="-1"></a><span class="fu">f2</span>()</span>
-<span id="cb138-9"><a href="r-programming.html#cb138-9" tabindex="-1"></a><span class="co">#&gt; [1] 40</span></span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="r-programming.html#cb139-1" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x <span class="sc">+</span> <span class="dv">10</span></span>
+<span id="cb139-2"><a href="r-programming.html#cb139-2" tabindex="-1"></a></span>
+<span id="cb139-3"><a href="r-programming.html#cb139-3" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb139-4"><a href="r-programming.html#cb139-4" tabindex="-1"></a>  f1 <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb139-5"><a href="r-programming.html#cb139-5" tabindex="-1"></a>  <span class="fu">f1</span>(f1)</span>
+<span id="cb139-6"><a href="r-programming.html#cb139-6" tabindex="-1"></a>}</span>
+<span id="cb139-7"><a href="r-programming.html#cb139-7" tabindex="-1"></a></span>
+<span id="cb139-8"><a href="r-programming.html#cb139-8" tabindex="-1"></a><span class="fu">f2</span>()</span>
+<span id="cb139-9"><a href="r-programming.html#cb139-9" tabindex="-1"></a><span class="co">#&gt; [1] 40</span></span></code></pre></div>
 <ul>
 <li>Name masking:</li>
 </ul>
 <p>Name masking is the basic principle of lexical scoping. It controls that names defined inside a function mask names defined outside that function. Name masking is related closely to the third exception <em>Every environment has a parent environment</em> mentioned in connection to environments in the beginning of this section.</p>
 <p>The four rules defining <code>R</code>’s lexical scoping have some implications that may be confusing at first. As mentioned above, the output of a function may depend on the objects defined outside of the function:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="r-programming.html#cb139-1" tabindex="-1"></a>fct <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb139-2"><a href="r-programming.html#cb139-2" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb139-3"><a href="r-programming.html#cb139-3" tabindex="-1"></a>}</span>
-<span id="cb139-4"><a href="r-programming.html#cb139-4" tabindex="-1"></a></span>
-<span id="cb139-5"><a href="r-programming.html#cb139-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">15</span></span>
-<span id="cb139-6"><a href="r-programming.html#cb139-6" tabindex="-1"></a><span class="fu">fct</span>()</span>
-<span id="cb139-7"><a href="r-programming.html#cb139-7" tabindex="-1"></a><span class="co">#&gt; [1] 16</span></span>
-<span id="cb139-8"><a href="r-programming.html#cb139-8" tabindex="-1"></a></span>
-<span id="cb139-9"><a href="r-programming.html#cb139-9" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb139-10"><a href="r-programming.html#cb139-10" tabindex="-1"></a><span class="fu">fct</span>()</span>
-<span id="cb139-11"><a href="r-programming.html#cb139-11" tabindex="-1"></a><span class="co">#&gt; [1] 11</span></span></code></pre></div>
-<p>Conversely, lexical scoping can also lead to a function being independent of the objects outside of the function:</p>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="r-programming.html#cb140-1" tabindex="-1"></a>fct <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb140-2"><a href="r-programming.html#cb140-2" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb140-3"><a href="r-programming.html#cb140-3" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb140-4"><a href="r-programming.html#cb140-4" tabindex="-1"></a>}</span>
-<span id="cb140-5"><a href="r-programming.html#cb140-5" tabindex="-1"></a></span>
-<span id="cb140-6"><a href="r-programming.html#cb140-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">15</span></span>
-<span id="cb140-7"><a href="r-programming.html#cb140-7" tabindex="-1"></a><span class="fu">fct</span>()</span>
-<span id="cb140-8"><a href="r-programming.html#cb140-8" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span></code></pre></div>
+<span id="cb140-2"><a href="r-programming.html#cb140-2" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb140-3"><a href="r-programming.html#cb140-3" tabindex="-1"></a>}</span>
+<span id="cb140-4"><a href="r-programming.html#cb140-4" tabindex="-1"></a></span>
+<span id="cb140-5"><a href="r-programming.html#cb140-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb140-6"><a href="r-programming.html#cb140-6" tabindex="-1"></a><span class="fu">fct</span>()</span>
+<span id="cb140-7"><a href="r-programming.html#cb140-7" tabindex="-1"></a><span class="co">#&gt; [1] 16</span></span>
+<span id="cb140-8"><a href="r-programming.html#cb140-8" tabindex="-1"></a></span>
+<span id="cb140-9"><a href="r-programming.html#cb140-9" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb140-10"><a href="r-programming.html#cb140-10" tabindex="-1"></a><span class="fu">fct</span>()</span>
+<span id="cb140-11"><a href="r-programming.html#cb140-11" tabindex="-1"></a><span class="co">#&gt; [1] 11</span></span></code></pre></div>
+<p>Conversely, lexical scoping can also lead to a function being independent of the objects outside of the function:</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="r-programming.html#cb141-1" tabindex="-1"></a>fct <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb141-2"><a href="r-programming.html#cb141-2" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb141-3"><a href="r-programming.html#cb141-3" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb141-4"><a href="r-programming.html#cb141-4" tabindex="-1"></a>}</span>
+<span id="cb141-5"><a href="r-programming.html#cb141-5" tabindex="-1"></a></span>
+<span id="cb141-6"><a href="r-programming.html#cb141-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb141-7"><a href="r-programming.html#cb141-7" tabindex="-1"></a><span class="fu">fct</span>()</span>
+<span id="cb141-8"><a href="r-programming.html#cb141-8" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span></code></pre></div>
 <p>We generally want to avoid this behavior, as it can lead to errors and misunderstandings. Furthermore, lexical scoping may lead to erroneous outputs. For example, if you make a spelling mistake in your code and write <code>y</code> instead of <code>z</code> in the body of the function, the output will not be as expected:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="r-programming.html#cb141-1" tabindex="-1"></a>fct <span class="ot">&lt;-</span> <span class="cf">function</span>(x, z) {</span>
-<span id="cb141-2"><a href="r-programming.html#cb141-2" tabindex="-1"></a>  x<span class="sc">^</span>y <span class="co"># instead of x^z</span></span>
-<span id="cb141-3"><a href="r-programming.html#cb141-3" tabindex="-1"></a>}</span>
-<span id="cb141-4"><a href="r-programming.html#cb141-4" tabindex="-1"></a></span>
-<span id="cb141-5"><a href="r-programming.html#cb141-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb141-6"><a href="r-programming.html#cb141-6" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb141-7"><a href="r-programming.html#cb141-7" tabindex="-1"></a>z <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span>
-<span id="cb141-8"><a href="r-programming.html#cb141-8" tabindex="-1"></a><span class="fu">fct</span>(x, z)</span>
-<span id="cb141-9"><a href="r-programming.html#cb141-9" tabindex="-1"></a><span class="co">#&gt; [1] 8</span></span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="r-programming.html#cb142-1" tabindex="-1"></a>fct <span class="ot">&lt;-</span> <span class="cf">function</span>(x, z) {</span>
+<span id="cb142-2"><a href="r-programming.html#cb142-2" tabindex="-1"></a>  x<span class="sc">^</span>y <span class="co"># instead of x^z</span></span>
+<span id="cb142-3"><a href="r-programming.html#cb142-3" tabindex="-1"></a>}</span>
+<span id="cb142-4"><a href="r-programming.html#cb142-4" tabindex="-1"></a></span>
+<span id="cb142-5"><a href="r-programming.html#cb142-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb142-6"><a href="r-programming.html#cb142-6" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb142-7"><a href="r-programming.html#cb142-7" tabindex="-1"></a>z <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span>
+<span id="cb142-8"><a href="r-programming.html#cb142-8" tabindex="-1"></a><span class="fu">fct</span>(x, z)</span>
+<span id="cb142-9"><a href="r-programming.html#cb142-9" tabindex="-1"></a><span class="co">#&gt; [1] 8</span></span></code></pre></div>
 <p>Another potential problem to be aware of is that you can accidentally redefine functions without noticing:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="r-programming.html#cb142-1" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="cf">function</span>(...) <span class="fu">paste0</span>(...)</span>
-<span id="cb142-2"><a href="r-programming.html#cb142-2" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb142-3"><a href="r-programming.html#cb142-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;123&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="r-programming.html#cb143-1" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="cf">function</span>(...) <span class="fu">paste0</span>(...)</span>
+<span id="cb143-2"><a href="r-programming.html#cb143-2" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb143-3"><a href="r-programming.html#cb143-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;123&quot;</span></span></code></pre></div>
 <p>The function <code>c()</code> defined above will mask the base <code>R</code> function <code>c()</code> combining values into a vector (<code>R</code> will look for the name <code>c</code> in the current environment first). If this happens, you need to tell <code>R</code> to look for the original function in the package that includes that function in order to use it, i.e.:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="r-programming.html#cb143-1" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb143-2"><a href="r-programming.html#cb143-2" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="r-programming.html#cb144-1" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb144-2"><a href="r-programming.html#cb144-2" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3</span></span></code></pre></div>
 <p>Fortunately, you can easily remove the duplicated function from the current environment with <code>rm()</code>, as <code>R</code> will start looking for the name in the current environment. When calling the function <code>c()</code> afterwards, the name <code>c</code> is no longer defined in the current environment, and <code>R</code> will look for the name in the parent environments:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="r-programming.html#cb144-1" tabindex="-1"></a><span class="fu">rm</span>(c)</span>
-<span id="cb144-2"><a href="r-programming.html#cb144-2" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb144-3"><a href="r-programming.html#cb144-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="r-programming.html#cb145-1" tabindex="-1"></a><span class="fu">rm</span>(c)</span>
+<span id="cb145-2"><a href="r-programming.html#cb145-2" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb145-3"><a href="r-programming.html#cb145-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3</span></span></code></pre></div>
 <p>If you are still confused about environments and scoping, we recommend you take a look at these other materials:</p>
 <ul>
 <li><a href="https://adv-r.hadley.nz/functions.html">Chapter 6 <em>Functions</em></a> of <em>Advanced R</em> by Hadley Wickham.</li>
