@@ -15,7 +15,6 @@ url: 'https\://privefl.github.io/advr38book/'
 cover-image: "images/new_hexsticker.png"
 ---
 
-
 # Preface {.unnumbered}
 
 ```{r setup, include=FALSE}
@@ -68,7 +67,7 @@ The reader does not need to read through the materials from beginning to end. We
 
 This material is licensed under the [Creative Commons Attribution-ShareAlike 3.0 License](http://creativecommons.org/licenses/by-sa/3.0/). 
 
-```{r, out.width="80%", echo=FALSE}
+```{r, out.width="60%", echo=FALSE}
 knitr::include_graphics("images/new_hexsticker.png")
 ```
 
