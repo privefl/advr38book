@@ -75,3 +75,8 @@ Unfortunately, we won't have time to cover them in class. A brief introduction o
 - a tidy API for graph manipulation: [package {tidygraph}](https://github.com/thomasp85/tidygraph),
 
 - many other packages..
+
+## Summary
+
+
+## Useful resources {.unnumbered}
