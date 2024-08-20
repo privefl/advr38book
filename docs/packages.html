@@ -249,7 +249,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#resources"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
-<li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#project-exercise"><i class="fa fa-check"></i><b>6.2</b> Project exercise</a></li>
+<li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#package-exercise"><i class="fa fa-check"></i><b>6.2</b> Package exercise</a></li>
 <li class="chapter" data-level="6.3" data-path="packages.html"><a href="packages.html#pkg-start"><i class="fa fa-check"></i><b>6.3</b> Quick start</a></li>
 <li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>6.4</b> Basic stuff</a>
 <ul>
@@ -324,16 +324,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><a href="https://github.com/jtleek/simplystats_posts_sisbid/blob/master/posts/2015-11-06-how-i-decide-when-to-trust-an-r-package.md">How to decide when to trust an R package?</a></p></li>
 </ul>
 </div>
-<div id="project-exercise" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Project exercise<a href="packages.html#project-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="package-exercise" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Package exercise<a href="packages.html#package-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Just to experiment with making an R package, we’ll try to make a small package that implements some of the features of package {dplyr} that we learned in chapter <a href="tidyverse.html#tidyverse">4</a>. We can call this package {minidplyr}.</p>
 <ol style="list-style-type: decimal">
-<li><p>After having read the following two sections (<a href="packages.html#pkg-start">6.3</a> and <a href="packages.html#pkg-basics">6.4</a>), create a first function that helps you <code>select</code> variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it. Bonus (for later): can you use base R function <code>subset</code> to use variables names without quoting them?</p></li>
-<li><p>Check your package with <code>Ctrl/Cmd + Shift + E</code> and fix all problems. At this point, there should be no ERROR or WARNING, unless you did not document the previous function properly. However, you should still update the <em>DESCRIPTION</em> file with proper information. Do it, fix any problem, and run checks again. You could submit this package to CRAN in its present form; congratulations on your new R package!</p></li>
+<li><p>After having read the following two sections (<a href="packages.html#pkg-start">6.3</a> and <a href="packages.html#pkg-basics">6.4</a>), create a first function that helps you <code>select</code> variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it.</p></li>
+<li><p>Check your package with <code>Ctrl/Cmd + Shift + E</code> and fix all problems. At this point, there should be no ERROR or WARNING, unless you did not document the previous function properly. However, you should still update the <em>DESCRIPTION</em> file with proper information. Do it, fix any problem, and run checks again. You could almost submit this package to CRAN in its current form; congratulations on your new R package!</p></li>
 <li><p>Commit everything and push to GitHub. Try to install the package from someone else using <code>remotes::install_github("&lt;github-username&gt;/minidplyr")</code>.</p></li>
 <li><p>Learn how to make unit tests in section <a href="packages.html#pkg-tests">6.5.1</a> and do that for your new function <code>select2</code>. Which silly cases you should test? Here, you can use <code>usethis::use_package("dplyr", type = "Suggests")</code> to add package {dplyr} to the suggested packages (because you will use this package in tests only). You can see <a href="https://github.com/privefl/minidplyr/blob/master/tests/testthat/test-select.R">the unit tests I came up with for this function</a>.</p></li>
 <li><p>Make a function <code>filter2</code> that enables to filter rows of a data frame. Add some documentation and tests for this function as well.</p></li>
-<li><p>Learn about continuous checking of your package in section <a href="packages.html#pkg-ci">6.5.2</a>. Follow the instructions, commit and push your changes. Go check your new badges on GitHub!</p></li>
+<li><p>Learn about continuous checking of your package in section <a href="packages.html#pkg-ci">6.5.2</a>. Follow the instructions to set it up. Check your package locally, then commit and push your changes. Go check your new badges on GitHub!</p></li>
 <li><p>Learn how to make a website out of your package in section <a href="packages.html#pkgdown">6.5.3</a> and build one for this package (or another of your packages).</p></li>
 <li><p>Implement more functions if you find this project interesting. For example, make a function <code>mutate2</code> with the help of base R function <code>transform</code> (or <code>within</code>). Try to make the previous functions more general by taking many arguments at once (in <code>...</code>). <strong>Make sure to keep your existing code as internal functions in order to break your code in manageable parts.</strong></p></li>
 </ol>
@@ -345,11 +345,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><p>Create a new RStudio project (not a package). Here, I advise you to create a new project on GitHub (with a README) and then clone it as an RStudio project. It is a good practice to put all your (public) stuff on GitHub (as we learned in section <a href="good-practices.html#git">2.3</a>).</p></li>
 <li><p>Run the following lines of R code.</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="packages.html#cb453-1" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_description</span>(<span class="fu">list</span>(<span class="at">License =</span> <span class="st">&quot;GPL-3&quot;</span>))</span>
-<span id="cb453-2"><a href="packages.html#cb453-2" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_namespace</span>()</span>
-<span id="cb453-3"><a href="packages.html#cb453-3" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;R&quot;</span>)</span>
-<span id="cb453-4"><a href="packages.html#cb453-4" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package_doc</span>()</span>
-<span id="cb453-5"><a href="packages.html#cb453-5" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_roxygen_md</span>()</span></code></pre></div></li>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="packages.html#cb1-1" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_description</span>(<span class="fu">list</span>(<span class="at">License =</span> <span class="st">&quot;GPL-3&quot;</span>))</span>
+<span id="cb1-2"><a href="packages.html#cb1-2" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_namespace</span>()</span>
+<span id="cb1-3"><a href="packages.html#cb1-3" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;R&quot;</span>)</span>
+<span id="cb1-4"><a href="packages.html#cb1-4" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package_doc</span>()</span>
+<span id="cb1-5"><a href="packages.html#cb1-5" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_roxygen_md</span>()</span></code></pre></div></li>
 <li><p><strong>Restart RStudio</strong> and change the following options. You should see a new “Build” panel next to the “Git” panel.</p>
 <p><img src="https://privefl.github.io/R-presentation/build-doc.png" width="60%" style="display: block; margin: auto;" /></p></li>
 <li><p>Then use <code>Ctrl/Cmd + Shift + B</code> to build and reload your package.</p></li>
@@ -369,8 +369,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Never explicitly load a package with <code>library()</code> or <code>require()</code>. Use <code>usethis::use_package()</code> to add one package to your <em>DESCRIPTION</em> file. Then, refer to some function with <code>&lt;package&gt;::&lt;function&gt;()</code> in your code, or by using the <code>@import &lt;package&gt;</code> or <code>@importFrom &lt;package&gt; &lt;function&gt;</code> roxygen tags.</p></li>
 <li><p>If one R function need another function in another R file, use the <code>@import &lt;basename&gt;.R</code> to make sure it is built and documented before; it is for example useful if you define new generics and methods in different files.</p></li>
 <li><p>If you modify global <code>options()</code> or graphics <code>par()</code> in a function of your package (try to avoid it), save the old values and reset when you are done:</p>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="packages.html#cb454-1" tabindex="-1"></a>old <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb454-2"><a href="packages.html#cb454-2" tabindex="-1"></a><span class="fu">on.exit</span>(<span class="fu">options</span>(old), <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code></pre></div></li>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="packages.html#cb2-1" tabindex="-1"></a>old <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-2"><a href="packages.html#cb2-2" tabindex="-1"></a><span class="fu">on.exit</span>(<span class="fu">options</span>(old), <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code></pre></div></li>
 </ul>
 </div>
 <div id="documentation" class="section level3 hasAnchor" number="6.4.3">
@@ -379,9 +379,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Forget about the <code>man/</code> (manual) directory, files in this directory will be automatically generated thanks to the roxygen comments you use on top of your R functions.</p>
 <p>Learn more with <a href="http://r-pkgs.had.co.nz/man.html">this chapter</a>. Note that you can now use the Markdown syntax in the documentation. For example, instead of having to use <code>\code{foo}</code>, you can directly use <code>`foo`</code> in the roxygen comments.</p>
 <p>To use (and export) functions already implemented in other packages, for example the pipe from package {magrittr}, you can use <code>usethis::use_package("magrittr")</code> and put the following code somewhere in an R file of your package.</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="packages.html#cb455-1" tabindex="-1"></a><span class="co">#&#39; @importFrom magrittr %&gt;%</span></span>
-<span id="cb455-2"><a href="packages.html#cb455-2" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
-<span id="cb455-3"><a href="packages.html#cb455-3" tabindex="-1"></a>magrittr<span class="sc">::</span><span class="st">`</span><span class="at">%&gt;%</span><span class="st">`</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="packages.html#cb3-1" tabindex="-1"></a><span class="co">#&#39; @importFrom magrittr %&gt;%</span></span>
+<span id="cb3-2"><a href="packages.html#cb3-2" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb3-3"><a href="packages.html#cb3-3" tabindex="-1"></a>magrittr<span class="sc">::</span><span class="st">`</span><span class="at">%&gt;%</span><span class="st">`</span></span></code></pre></div>
 <p>Fun: <a href="http://colinfay.me/dancing-banana-r-package-doc/">[How to] Include a dancing banana in your R package documentation</a>.</p>
 </div>
 <div id="namespace-file" class="section level3 hasAnchor" number="6.4.4">
@@ -402,9 +402,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.5.2</span> Continuous checking<a href="packages.html#pkg-ci" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>I would rarely trust a package that doesn’t use these continuous integration services.
 It’s good practice to check your package regularly and on different Operating Systems (OS). Learn more about the different checks <a href="http://r-pkgs.had.co.nz/check.html">there</a>.</p>
-<p>An easy way to regularly check your package on GitHub is to use <a href="https://github.com/features/actions">GitHub Actions</a>. Indeed, each time you push to your GitHub repository, checks are run on different OS. To use this service, you can run <code>usethis::use_github_action_check_standard()</code>.</p>
+<p>An easy way to regularly check your package on GitHub is to use <a href="https://github.com/features/actions">GitHub Actions</a>. Indeed, each time you push to your GitHub repository, checks are run on different OS. To use this service, you can run <code>usethis::use_github_action("check-standard")</code>.</p>
 <p>To get the coverage of your tests, use <a href="https://codecov.io/">Codecov</a> by running <code>usethis::use_coverage()</code> and <code>usethis::use_github_action("test-coverage")</code>.</p>
-<p>Finally, to prevent typos in your package and especially for non-native English speakers, it can be useful to check the spelling in your package. If you think that the word “programmation” exists and that “prefered” has only one ‘r’ at the end (I did!), you should definitely use package {spelling}. Just run <code>spelling::spell_check_setup()</code>; this will check spelling in your package at the end of checks. If it reports words you want to ignore, just put these words in a text file <code>inst/WORDLIST</code> (with one word by line).</p>
+<p>Finally, to prevent typos in your package and especially for non-native English speakers, it can be useful to check the spelling in your package. If you think that the word “programmation” exists and that “prefered” has only one ‘r’ at the end (I did!), you should definitely use package {spelling}. Just run <code>spelling::spell_check_setup()</code>; this will check spelling in your package at the end of checks. If it reports words you want to ignore, just put these words in a text file <code>inst/WORDLIST</code> (with one word per line).</p>
 </div>
 <div id="pkgdown" class="section level3 hasAnchor" number="6.5.3">
 <h3><span class="header-section-number">6.5.3</span> Pkgdown<a href="packages.html#pkgdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -413,7 +413,7 @@ It’s good practice to check your package regularly and on different Operating 
 <li><p>Run <code>pkgdown:::build_site()</code>.</p></li>
 <li><p>On GitHub, go to the settings of your repo, and enable GitHub Pages from the <code>/docs</code> folder.
 <img src="images/github-pages.jpg" width="70%" style="display: block; margin: auto;" /></p></li>
-<li><p>Push the new files. This will render everything that you have in this folder as a website (after 0-2 minutes).</p></li>
+<li><p>Push the new files. This will render everything that you have in this folder as a website (after 0-2 minutes). You will find your package’s website at <code>https://&lt;github-username&gt;.github.io/minidplyr/</code>.</p></li>
 </ol>
 <p>To get more information and especially to configure the website, see <a href="http://pkgdown.r-lib.org/articles/pkgdown.html">the documentation</a>, as a {pkgdown} website, of course.
 For an example, see <a href="https://privefl.github.io/bigstatsr/">the website of my package {bigstatsr}</a> and <a href="https://github.com/privefl/bigstatsr/blob/master/_pkgdown.yml">the corresponding YAML file</a>.</p>
@@ -424,19 +424,19 @@ For an example, see <a href="https://privefl.github.io/bigstatsr/">the website o
 <h2><span class="header-section-number">6.6</span> More<a href="packages.html#more" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="rcpp" class="section level3 hasAnchor" number="6.6.1">
 <h3><span class="header-section-number">6.6.1</span> Rcpp<a href="packages.html#rcpp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We learned about Rcpp in section <a href="performance.html#Rcpp">5.4</a>. To use Rcpp code in your package, just use <code>usethis::use_rcpp()</code> and put the 2 roxygen tags e.g. in the file <code>R/&lt;package&gt;-package.R</code>. Then, create .cpp files with RStudio and save them the <code>src/</code> directory.</p>
+<p>We learned about Rcpp in section <a href="performance.html#Rcpp">5.4</a>. To use Rcpp code in your package, just run <code>usethis::use_rcpp()</code>. Then, create .cpp files with RStudio and save them the <code>src/</code> directory.</p>
 <p>Note that the <code>// [[Rcpp::export]]</code> makes the C++ function available to R, it doesn’t export the function as part of your package (though you could access it with <code>&lt;package&gt;:::&lt;rcpp-fun&gt;()</code>). If you want your package to explicitly provides an Rcpp function (as an R function), you also need roxygen comments (beginning with <code>//'</code> instead of <code>#'</code>, including <code>//' @export</code>) on top of your Rcpp function.</p>
 <p>If you need some C++ code from another package (e.g. from package {RcppArmadillo}), normally you would use</p>
-<div class="sourceCode" id="cb456"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb456-1"><a href="packages.html#cb456-1" tabindex="-1"></a><span class="co">// [[Rcpp::depends(RcppArmadillo)]]</span></span>
-<span id="cb456-2"><a href="packages.html#cb456-2" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;RcppArmadillo.h&gt;</span></span></code></pre></div>
-<p>In an R package, you don’t need the first line but instead you need to add the package to the <code>LinkingTo</code> field of the <em>DESCRIPTION</em> file (e.g. with <code>usethis::use_package("RcppArmadillo", "LinkingTo")</code>).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="packages.html#cb4-1" tabindex="-1"></a><span class="co">// [[Rcpp::depends(RcppArmadillo)]]</span></span>
+<span id="cb4-2"><a href="packages.html#cb4-2" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;RcppArmadillo.h&gt;</span></span></code></pre></div>
+<p>In an R package, you don’t need the first line <code>// [[Rcpp::depends(RcppArmadillo)]]</code>, but instead you need to add the package to the <code>LinkingTo</code> field of the <em>DESCRIPTION</em> file (e.g. with <code>usethis::use_package("RcppArmadillo", "LinkingTo")</code>).</p>
 </div>
 <div id="ignore-files" class="section level3 hasAnchor" number="6.6.2">
 <h3><span class="header-section-number">6.6.2</span> Ignore files<a href="packages.html#ignore-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are two types of ignore:</p>
 <ul>
 <li><p>Files ignored by Git, specified in the <em>.gitignore</em> file. For example, you don’t want to track changes for some large data files or some binaries often changing. You can ignore files by using <code>usethis::use_git_ignore()</code>.</p></li>
-<li><p>Files ignored during the build of your package, specified in the <em>.Rbuildignore</em> file. For example, in my packages, I generally have two directories called <code>tmp-tests</code> and <code>tmp-save</code> where I just put some random code that I used once during development. Checks will tell you if your package contains non-standard files or directories. Moreover, I generally ignore vignettes; they are still built as part of the {pkgdown} website.
+<li><p>Files ignored during the build of your package, specified in the <em>.Rbuildignore</em> file. For example, in my packages, I generally have directories called <code>tmp-tests</code> and <code>tmp-data</code> where I put code and data that I used during development, but that should not be part of the final package. Checks will tell you if your package contains non-standard files or directories. Moreover, I generally ignore vignettes; they are still built as part of the {pkgdown} website.
 There is also a {usethis} function for this: <code>usethis::use_build_ignore()</code>.</p></li>
 </ul>
 </div>
@@ -521,20 +521,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
