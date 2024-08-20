@@ -251,12 +251,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#resources"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
 <li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#package-exercise"><i class="fa fa-check"></i><b>6.2</b> Package exercise</a></li>
 <li class="chapter" data-level="6.3" data-path="packages.html"><a href="packages.html#pkg-start"><i class="fa fa-check"></i><b>6.3</b> Quick start</a></li>
-<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>6.4</b> Basic stuff</a>
+<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>6.4</b> Package basics</a>
 <ul>
 <li class="chapter" data-level="6.4.1" data-path="packages.html"><a href="packages.html#description-file"><i class="fa fa-check"></i><b>6.4.1</b> <em>DESCRIPTION</em> file</a></li>
 <li class="chapter" data-level="6.4.2" data-path="packages.html"><a href="packages.html#r-code"><i class="fa fa-check"></i><b>6.4.2</b> R code</a></li>
 <li class="chapter" data-level="6.4.3" data-path="packages.html"><a href="packages.html#documentation"><i class="fa fa-check"></i><b>6.4.3</b> Documentation</a></li>
 <li class="chapter" data-level="6.4.4" data-path="packages.html"><a href="packages.html#namespace-file"><i class="fa fa-check"></i><b>6.4.4</b> <em>NAMESPACE</em> file</a></li>
+<li class="chapter" data-level="6.4.5" data-path="packages.html"><a href="packages.html#exercise-2"><i class="fa fa-check"></i><b>6.4.5</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.5</b> Good practices</a>
 <ul>
@@ -326,21 +327,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="package-exercise" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Package exercise<a href="packages.html#package-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Just to experiment with making an R package, we’ll try to make a small package that implements some of the features of package {dplyr} that we learned in chapter <a href="tidyverse.html#tidyverse">4</a>. We can call this package {minidplyr}.</p>
-<ol style="list-style-type: decimal">
-<li><p>After having read the following two sections (<a href="packages.html#pkg-start">6.3</a> and <a href="packages.html#pkg-basics">6.4</a>), create a first function that helps you <code>select</code> variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it.</p></li>
-<li><p>Check your package with <code>Ctrl/Cmd + Shift + E</code> and fix all problems. At this point, there should be no ERROR or WARNING, unless you did not document the previous function properly. However, you should still update the <em>DESCRIPTION</em> file with proper information. Do it, fix any problem, and run checks again. You could almost submit this package to CRAN in its current form; congratulations on your new R package!</p></li>
-<li><p>Commit everything and push to GitHub. Try to install the package from someone else using <code>remotes::install_github("&lt;github-username&gt;/minidplyr")</code>.</p></li>
-<li><p>Learn how to make unit tests in section <a href="packages.html#pkg-tests">6.5.1</a> and do that for your new function <code>select2</code>. Which silly cases you should test? Here, you can use <code>usethis::use_package("dplyr", type = "Suggests")</code> to add package {dplyr} to the suggested packages (because you will use this package in tests only). You can see <a href="https://github.com/privefl/minidplyr/blob/master/tests/testthat/test-select.R">the unit tests I came up with for this function</a>.</p></li>
-<li><p>Make a function <code>filter2</code> that enables to filter rows of a data frame. Add some documentation and tests for this function as well.</p></li>
-<li><p>Learn about continuous checking of your package in section <a href="packages.html#pkg-ci">6.5.2</a>. Follow the instructions to set it up. Check your package locally, then commit and push your changes. Go check your new badges on GitHub!</p></li>
-<li><p>Learn how to make a website out of your package in section <a href="packages.html#pkgdown">6.5.3</a> and build one for this package (or another of your packages).</p></li>
-<li><p>Implement more functions if you find this project interesting. For example, make a function <code>mutate2</code> with the help of base R function <code>transform</code> (or <code>within</code>). Try to make the previous functions more general by taking many arguments at once (in <code>...</code>). <strong>Make sure to keep your existing code as internal functions in order to break your code in manageable parts.</strong></p></li>
-</ol>
+<p>In my first package, I just put some functions I used again and again in my work.</p>
+<p>To experiment with making an R package, we’ll build a small package throughout this chapter. It will implement some of the features of package {dplyr} that we learned in chapter <a href="tidyverse.html#tidyverse">4</a>. We can call this package {minidplyr}.</p>
 </div>
 <div id="pkg-start" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> Quick start<a href="packages.html#pkg-start" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In my first package, I just put some functions I used again and again in my work.</p>
 <p>To quickly start your package, just follow these steps:</p>
 <ol style="list-style-type: decimal">
 <li><p>Create a new RStudio project (not a package). Here, I advise you to create a new project on GitHub (with a README) and then clone it as an RStudio project. It is a good practice to put all your (public) stuff on GitHub (as we learned in section <a href="good-practices.html#git">2.3</a>).</p></li>
@@ -357,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 </div>
 <div id="pkg-basics" class="section level2 hasAnchor" number="6.4">
-<h2><span class="header-section-number">6.4</span> Basic stuff<a href="packages.html#pkg-basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">6.4</span> Package basics<a href="packages.html#pkg-basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="description-file" class="section level3 hasAnchor" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> <em>DESCRIPTION</em> file<a href="packages.html#description-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>See <a href="https://r-pkgs.org/description.html">this chapter on the DESCRIPTION file</a>.</p>
@@ -389,6 +380,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can also forget about this for now because it should be automatically generated by {roxygen}.</p>
 <p>If you want to understand what’s going on, read <a href="https://r-pkgs.org/dependencies-mindset-background.html#sec-dependencies-namespace">this chapter</a>.</p>
 </div>
+<div id="exercise-2" class="section level3 hasAnchor" number="6.4.5">
+<h3><span class="header-section-number">6.4.5</span> Exercise<a href="packages.html#exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>Create a first function that helps you <code>select</code> variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it.</p></li>
+<li><p>Check your package with <code>Ctrl/Cmd + Shift + E</code> and fix all problems. At this point, there should be no ERROR or WARNING, unless you did not document the previous function properly. However, you should still update the <em>DESCRIPTION</em> file with proper information. Do it, fix any problem, and run checks again. You could almost submit this package to CRAN in its current form; congratulations on your new R package!</p></li>
+<li><p>Commit everything and push to GitHub. Try to install the package from someone else using <code>remotes::install_github("&lt;github-username&gt;/minidplyr")</code>.</p></li>
+</ol>
+</div>
 </div>
 <div id="good-practices-1" class="section level2 hasAnchor" number="6.5">
 <h2><span class="header-section-number">6.5</span> Good practices<a href="packages.html#good-practices-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -397,6 +396,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You are probably already testing your code, you’re only doing it informally. The problem with this approach is that when you come back to this code in 3 months time to add a new feature, you’ve probably forgotten some of the informal tests you ran the first time around. This makes it very easy to break existing code that used to work (which you should avoid as much as you can). A very good practice is to use unit tests.</p>
 <p>Read <a href="https://r-pkgs.org/testing-basics.html">this chapter</a>.</p>
 <p>To make your first unit tests, use <code>usethis::use_test()</code> while having open the R file you want to test. Write some unit tests, then you can run tests of your package with <code>Ctrl/Cmd + Shift + T</code>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Add unit tests for your new function <code>select2</code>. Which silly cases you should test? Here you can use <code>usethis::use_package("dplyr", type = "Suggests")</code> to add package {dplyr} to the suggested packages (because you will use this package in tests only). You can see <a href="https://github.com/privefl/minidplyr/blob/master/tests/testthat/test-select.R">the unit tests I came up with for this function</a>.</p></li>
+<li><p>Make a function <code>filter2</code> that enables to filter rows of a data frame. Add some documentation and tests for this function as well.</p></li>
+</ol>
 </div>
 <div id="pkg-ci" class="section level3 hasAnchor" number="6.5.2">
 <h3><span class="header-section-number">6.5.2</span> Continuous checking<a href="packages.html#pkg-ci" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -405,6 +408,7 @@ It’s good practice to check your package regularly and on different Operating 
 <p>An easy way to regularly check your package on GitHub is to use <a href="https://github.com/features/actions">GitHub Actions</a>. Indeed, each time you push to your GitHub repository, checks are run on different OS. To use this service, you can run <code>usethis::use_github_action("check-standard")</code>.</p>
 <p>To get the coverage of your tests, use <a href="https://codecov.io/">Codecov</a> by running <code>usethis::use_coverage()</code> and <code>usethis::use_github_action("test-coverage")</code>.</p>
 <p>Finally, to prevent typos in your package and especially for non-native English speakers, it can be useful to check the spelling in your package. If you think that the word “programmation” exists and that “prefered” has only one ‘r’ at the end (I did!), you should definitely use package {spelling}. Just run <code>spelling::spell_check_setup()</code>; this will check spelling in your package at the end of checks. If it reports words you want to ignore, just put these words in a text file <code>inst/WORDLIST</code> (with one word per line).</p>
+<p>Set this up. Check your package locally, then commit and push your changes. Go check your new badges on GitHub!</p>
 </div>
 <div id="pkgdown" class="section level3 hasAnchor" number="6.5.3">
 <h3><span class="header-section-number">6.5.3</span> Pkgdown<a href="packages.html#pkgdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>

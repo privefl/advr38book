@@ -6,6 +6,7 @@ source("knitr-options.R")
 source("spelling-check.R")
 ```
 
+
 ## Resources
 
 - [R Packages book](http://r-pkgs.had.co.nz/) (**read it!**)
@@ -24,28 +25,12 @@ source("spelling-check.R")
 
 ## Package exercise
 
-Just to experiment with making an R package, we'll try to make a small package that implements some of the features of package {dplyr} that we learned in chapter \@ref(tidyverse). We can call this package {minidplyr}.
+In my first package, I just put some functions I used again and again in my work.
 
-1. After having read the following two sections (\@ref(pkg-start) and \@ref(pkg-basics)), create a first function that helps you `select` variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it.
-
-1. Check your package with `Ctrl/Cmd + Shift + E` and fix all problems. At this point, there should be no ERROR or WARNING, unless you did not document the previous function properly. However, you should still update the *DESCRIPTION* file with proper information. Do it, fix any problem, and run checks again. You could almost submit this package to CRAN in its current form; congratulations on your new R package!
-
-1. Commit everything and push to GitHub. Try to install the package from someone else using `remotes::install_github("<github-username>/minidplyr")`.
-
-1. Learn how to make unit tests in section \@ref(pkg-tests) and do that for your new function `select2`. Which silly cases you should test? Here, you can use `usethis::use_package("dplyr", type = "Suggests")` to add package {dplyr} to the suggested packages (because you will use this package in tests only). You can see [the unit tests I came up with for this function](https://github.com/privefl/minidplyr/blob/master/tests/testthat/test-select.R).
-
-1. Make a function `filter2` that enables to filter rows of a data frame. Add some documentation and tests for this function as well.
-
-1. Learn about continuous checking of your package in section \@ref(pkg-ci). Follow the instructions to set it up. Check your package locally, then commit and push your changes. Go check your new badges on GitHub!
-
-1. Learn how to make a website out of your package in section \@ref(pkgdown) and build one for this package (or another of your packages).
-
-1. Implement more functions if you find this project interesting. For example, make a function `mutate2` with the help of base R function `transform` (or `within`). Try to make the previous functions more general by taking many arguments at once (in `...`). **Make sure to keep your existing code as internal functions in order to break your code in manageable parts.**
+To experiment with making an R package, we'll build a small package throughout this chapter. It will implement some of the features of package {dplyr} that we learned in chapter \@ref(tidyverse). We can call this package {minidplyr}.
 
 
 ## Quick start {#pkg-start}
-
-In my first package, I just put some functions I used again and again in my work.
 
 To quickly start your package, just follow these steps:
 
@@ -72,7 +57,7 @@ To quickly start your package, just follow these steps:
 1. Create a simple function and put it in an `.R` file in the `R/` directory. Inside the function, use *Code -> Insert Roxygen Skeleton*. Build and reload your package and check the documentation of your new function and that you can use it.
 
 
-## Basic stuff {#pkg-basics}
+## Package basics {#pkg-basics}
 
 ### *DESCRIPTION* file
 
@@ -117,6 +102,14 @@ You can also forget about this for now because it should be automatically genera
 
 If you want to understand what's going on, read [this chapter](https://r-pkgs.org/dependencies-mindset-background.html#sec-dependencies-namespace).
 
+### Exercise
+
+1.  Create a first function that helps you `select` variables of a data frame by using a character vector of variable names or an integer vector of variable positions. Which accessor could you use? Document this function and use it.
+
+1.  Check your package with `Ctrl/Cmd + Shift + E` and fix all problems. At this point, there should be no ERROR or WARNING, unless you did not document the previous function properly. However, you should still update the *DESCRIPTION* file with proper information. Do it, fix any problem, and run checks again. You could almost submit this package to CRAN in its current form; congratulations on your new R package!
+
+1.  Commit everything and push to GitHub. Try to install the package from someone else using `remotes::install_github("<github-username>/minidplyr")`.
+
 
 ## Good practices
 
@@ -128,6 +121,10 @@ Read [this chapter](https://r-pkgs.org/testing-basics.html).
 
 To make your first unit tests, use `usethis::use_test()` while having open the R file you want to test. Write some unit tests, then you can run tests of your package with `Ctrl/Cmd + Shift + T`.
 
+1. Add unit tests for your new function `select2`. Which silly cases you should test? Here you can use `usethis::use_package("dplyr", type = "Suggests")` to add package {dplyr} to the suggested packages (because you will use this package in tests only). You can see [the unit tests I came up with for this function](https://github.com/privefl/minidplyr/blob/master/tests/testthat/test-select.R).
+
+1. Make a function `filter2` that enables to filter rows of a data frame. Add some documentation and tests for this function as well.
+
 ### Continuous checking {#pkg-ci}
 
 I would rarely trust a package that doesn't use these continuous integration services.
@@ -138,6 +135,8 @@ An easy way to regularly check your package on GitHub is to use [GitHub Actions]
 To get the coverage of your tests, use [Codecov](https://codecov.io/) by running `usethis::use_coverage()` and `usethis::use_github_action("test-coverage")`.
 
 Finally, to prevent typos in your package and especially for non-native English speakers, it can be useful to check the spelling in your package. If you think that the word "programmation" exists and that "prefered" has only one 'r' at the end (I did!), you should definitely use package {spelling}. Just run `spelling::spell_check_setup()`; this will check spelling in your package at the end of checks. If it reports words you want to ignore, just put these words in a text file `inst/WORDLIST` (with one word per line).
+
+Set this up. Check your package locally, then commit and push your changes. Go check your new badges on GitHub!
 
 ### Pkgdown {#pkgdown}
 

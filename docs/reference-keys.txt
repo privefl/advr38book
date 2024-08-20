@@ -95,3 +95,4 @@ compilation-of-tweets
 example-1
 presentation
 package-exercise
+exercise-2
