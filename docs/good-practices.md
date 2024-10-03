@@ -27,7 +27,7 @@ Most infix operators (`==`, `+`, `-`, `<-`, etc.) are also surrounded by
 spaces, except those with relatively high precedence: `^`, `:`, `::`, and `:::`. Always put a space after a comma, and never before (just like in regular English).
 
 
-```r
+``` r
 # Good
 average <- mean((feet / 12) + inches, na.rm = TRUE)
 x <- 1:10
@@ -44,7 +44,7 @@ base :: sum
 Curly braces, `{}`, define the most important hierarchy of R code. To make this hierarchy easy to see, always indent the code inside `{}` by two spaces. This should be automatic in RStudio.
 
 
-```r
+``` r
 # Good
 if (y < 0 && debug) {
   message("y is negative")
@@ -87,7 +87,7 @@ a separate function. In RStudio -> Tools -> Global Options, set
 - Use `<-`, not `=`, for assignment. Keep `=` for parameters.
 
 
-```r
+``` r
 # Good
 x <- 5
 system.time(
@@ -107,7 +107,7 @@ on the same line.
 - Only use `return()` for early returns. Otherwise rely on R to return the result of the last evaluated expression.
 
 
-```r
+``` r
 # Good
 add_two <- function(x, y) {
   x + y
@@ -122,7 +122,7 @@ add_two <- function(x, y) {
 - Use `"`, not `'`, for quoting text. The only exception is when the text already contains double quotes and no single quotes.
 
 
-```r
+``` r
 # Good
 "Text"
 'Text with "quotes"'
@@ -261,7 +261,7 @@ ssh-add <path_to_public_key>` (cf. [this SO answer](https://stackoverflow.com/a/
 A basic solution is to print everything, but it's usually not working well on complex problems. A convenient solution to see all the variables' states in your code is to place some `browser()` from where you want to check the variables' states. To debug functions, `debugonce()` is also very useful.
 
 
-```r
+``` r
 my_log <- function(x) log(x - 1)
 
 my_fun <- function(a, b) {
@@ -284,7 +284,7 @@ my_fun(1, 0)
 Try to uncomment `browser()` or use `debugonce(my_fun)`:
 
 
-```r
+``` r
 debugonce(my_fun)
 my_fun(1, 0)
 ```
@@ -306,4 +306,4 @@ You can ask questions on Stack Overflow (using the tag `r`). You need to [make a
 
 If you are confident enough with your R skills, you can take the next step and [answer questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). It's a good way to increase your skills, or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).
 
-You can also join communities, e.g. [join the French-speaking R community](https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM) or [join the R-Ladies community](https://rladies-community-slack.herokuapp.com/) on Slack. These are generally much friendlier and welcoming spaces compared to Stack Overflow.
+You can also join communities, e.g. [join the French-speaking R community](https://join.slack.com/t/r-grrr/shared_invite/enQtMzI4MzgwNTc4OTAxLWZlOGZiZTBiMWU0NDQ3OTYzOGE1YThiODgwZWNhNWEyYjI4ZDJiNmNhY2YyYWI5YzFiOTFkNDYxYzkwODUwNWM) or [join the R-Ladies community](https://airtable.com/appJZFYABfCIdPYMR/pagw7FJB5tm2UQ55o/form) on Slack. These are generally much friendlier and welcoming spaces compared to Stack Overflow.
