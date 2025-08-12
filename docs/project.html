@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Project | Advanced R Course</title>
   <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Project | Advanced R Course" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2023-08-22" />
+<meta name="date" content="2025-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -129,6 +129,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -249,14 +253,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#resources"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
-<li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#project-exercise"><i class="fa fa-check"></i><b>6.2</b> Project exercise</a></li>
+<li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#package-exercise"><i class="fa fa-check"></i><b>6.2</b> Package exercise</a></li>
 <li class="chapter" data-level="6.3" data-path="packages.html"><a href="packages.html#pkg-start"><i class="fa fa-check"></i><b>6.3</b> Quick start</a></li>
-<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>6.4</b> Basic stuff</a>
+<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>6.4</b> Package basics</a>
 <ul>
 <li class="chapter" data-level="6.4.1" data-path="packages.html"><a href="packages.html#description-file"><i class="fa fa-check"></i><b>6.4.1</b> <em>DESCRIPTION</em> file</a></li>
 <li class="chapter" data-level="6.4.2" data-path="packages.html"><a href="packages.html#r-code"><i class="fa fa-check"></i><b>6.4.2</b> R code</a></li>
 <li class="chapter" data-level="6.4.3" data-path="packages.html"><a href="packages.html#documentation"><i class="fa fa-check"></i><b>6.4.3</b> Documentation</a></li>
 <li class="chapter" data-level="6.4.4" data-path="packages.html"><a href="packages.html#namespace-file"><i class="fa fa-check"></i><b>6.4.4</b> <em>NAMESPACE</em> file</a></li>
+<li class="chapter" data-level="6.4.5" data-path="packages.html"><a href="packages.html#exercise-2"><i class="fa fa-check"></i><b>6.4.5</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.5</b> Good practices</a>
 <ul>
@@ -345,20 +350,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="choose-a-dataset" class="section level3 hasAnchor" number="8.2.1">
 <h3><span class="header-section-number">8.2.1</span> Choose a dataset<a href="project.html#choose-a-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Install the {tidytuesdayR} package:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="project.html#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidytuesdayR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="project.html#cb456-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidytuesdayR&quot;</span>)</span></code></pre></div>
 <p>Some interesting datasets:</p>
 <ul>
-<li><a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-07-27/readme.md">Olympic medals</a></li>
+<li><p><a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-07-27/readme.md">Olympic medals</a></p></li>
+<li><p><a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-20/readme.md">Netflix titles</a></p></li>
+<li><p><a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md">Spotify songs</a></p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="project.html#cb2-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2021-07-27&#39;</span>)[[<span class="st">&quot;olympics&quot;</span>]]</span></code></pre></div>
-<ul>
-<li><a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-20/readme.md">Netflix titles</a></li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="project.html#cb3-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2021-04-20&#39;</span>)[[<span class="st">&quot;netflix_titles&quot;</span>]]</span></code></pre></div>
-<ul>
-<li><a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md">Spotify songs</a></li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="project.html#cb4-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2020-01-21&#39;</span>)[[<span class="st">&quot;spotify_songs&quot;</span>]]</span></code></pre></div>
 <p>If you do not like any of these, you can also choose from all the previous tidy Tuesday datasets <a href="https://github.com/rfordatascience/tidytuesday#datasets">here</a>.</p>
 </div>
 <div id="visualize-the-data" class="section level3 hasAnchor" number="8.2.2">
@@ -383,34 +381,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p><br></p>
 <p>Clara’s (quick) version:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="project.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2"><a href="project.html#cb5-2" tabindex="-1"></a>netflix_titles <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2021-04-20&#39;</span>)[[<span class="st">&quot;netflix_titles&quot;</span>]]</span></code></pre></div>
-<pre><code>## 
-##  Downloading file 1 of 1: `netflix_titles.csv`</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="project.html#cb7-1" tabindex="-1"></a>netflix_titles <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="project.html#cb7-2" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&quot;Movie&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="project.html#cb7-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duration =</span> <span class="fu">as.numeric</span>(<span class="fu">str_extract</span>(duration, <span class="st">&quot;(</span><span class="sc">\\</span><span class="st">d)+&quot;</span>)),</span>
-<span id="cb7-4"><a href="project.html#cb7-4" tabindex="-1"></a>         <span class="at">cat =</span> <span class="fu">map_chr</span>(listed_in, <span class="sc">~</span><span class="fu">str_split</span>(.x, <span class="st">&quot;, &quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]),</span>
-<span id="cb7-5"><a href="project.html#cb7-5" tabindex="-1"></a>         <span class="at">cat =</span> <span class="fu">case_when</span>(</span>
-<span id="cb7-6"><a href="project.html#cb7-6" tabindex="-1"></a>    cat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Horror Movies&quot;</span>, <span class="st">&quot;Thrillers&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Horror Movies &amp; Thrillers&quot;</span>,</span>
-<span id="cb7-7"><a href="project.html#cb7-7" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> cat)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-8"><a href="project.html#cb7-8" tabindex="-1"></a>  <span class="fu">group_by</span>(release_year, cat) <span class="sc">%&gt;%</span></span>
-<span id="cb7-9"><a href="project.html#cb7-9" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_duration =</span> <span class="fu">mean</span>(duration)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-10"><a href="project.html#cb7-10" tabindex="-1"></a>  <span class="fu">filter</span>(cat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Action &amp; Adventure&quot;</span>, <span class="st">&quot;Children &amp; Family Movies&quot;</span>,</span>
-<span id="cb7-11"><a href="project.html#cb7-11" tabindex="-1"></a>                    <span class="st">&quot;Comedies&quot;</span>, <span class="st">&quot;Documentaries&quot;</span>, <span class="st">&quot;Dramas&quot;</span>, </span>
-<span id="cb7-12"><a href="project.html#cb7-12" tabindex="-1"></a>                    <span class="st">&quot;Horror Movies &amp; Thrillers&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-13"><a href="project.html#cb7-13" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> release_year, <span class="at">y =</span> mean_duration, <span class="at">color =</span> cat)) <span class="sc">+</span></span>
-<span id="cb7-14"><a href="project.html#cb7-14" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb7-15"><a href="project.html#cb7-15" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1980</span>, <span class="dv">2020</span>)) <span class="sc">+</span></span>
-<span id="cb7-16"><a href="project.html#cb7-16" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">160</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">50</span>,<span class="dv">150</span>, <span class="dv">25</span>)) <span class="sc">+</span></span>
-<span id="cb7-17"><a href="project.html#cb7-17" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cat) <span class="sc">+</span></span>
-<span id="cb7-18"><a href="project.html#cb7-18" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb7-19"><a href="project.html#cb7-19" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb7-20"><a href="project.html#cb7-20" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, </span>
-<span id="cb7-21"><a href="project.html#cb7-21" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb7-22"><a href="project.html#cb7-22" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Children&#39;s movies and Dramas decrease in duration over time&quot;</span>, </span>
-<span id="cb7-23"><a href="project.html#cb7-23" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Average movie duration (min)&quot;</span>)</span></code></pre></div>
-<p><img src="presentation_project_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="project.html#cb457-1" tabindex="-1"></a><span class="co"># usethis::create_github_token()</span></span>
+<span id="cb457-2"><a href="project.html#cb457-2" tabindex="-1"></a>netflix_titles <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2021-04-20&#39;</span>)[[<span class="st">&quot;netflix_titles&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="project.html#cb458-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb458-2"><a href="project.html#cb458-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb458-3"><a href="project.html#cb458-3" tabindex="-1"></a></span>
+<span id="cb458-4"><a href="project.html#cb458-4" tabindex="-1"></a>netflix_titles <span class="sc">%&gt;%</span></span>
+<span id="cb458-5"><a href="project.html#cb458-5" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&quot;Movie&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb458-6"><a href="project.html#cb458-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duration =</span> <span class="fu">as.numeric</span>(stringr<span class="sc">::</span><span class="fu">str_extract</span>(duration, <span class="st">&quot;(</span><span class="sc">\\</span><span class="st">d)+&quot;</span>)),  <span class="co"># bad actually</span></span>
+<span id="cb458-7"><a href="project.html#cb458-7" tabindex="-1"></a>         <span class="at">cat =</span> purrr<span class="sc">::</span><span class="fu">map_chr</span>(listed_in, <span class="sc">~</span>stringr<span class="sc">::</span><span class="fu">str_split</span>(.x, <span class="st">&quot;, &quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]),</span>
+<span id="cb458-8"><a href="project.html#cb458-8" tabindex="-1"></a>         <span class="at">cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb458-9"><a href="project.html#cb458-9" tabindex="-1"></a>    cat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Horror Movies&quot;</span>, <span class="st">&quot;Thrillers&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Horror Movies &amp; Thrillers&quot;</span>,</span>
+<span id="cb458-10"><a href="project.html#cb458-10" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> cat)) <span class="sc">%&gt;%</span></span>
+<span id="cb458-11"><a href="project.html#cb458-11" tabindex="-1"></a>  <span class="fu">group_by</span>(release_year, cat) <span class="sc">%&gt;%</span></span>
+<span id="cb458-12"><a href="project.html#cb458-12" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_duration =</span> <span class="fu">mean</span>(duration)) <span class="sc">%&gt;%</span></span>
+<span id="cb458-13"><a href="project.html#cb458-13" tabindex="-1"></a>  <span class="fu">filter</span>(cat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Action &amp; Adventure&quot;</span>, <span class="st">&quot;Children &amp; Family Movies&quot;</span>,</span>
+<span id="cb458-14"><a href="project.html#cb458-14" tabindex="-1"></a>                    <span class="st">&quot;Comedies&quot;</span>, <span class="st">&quot;Documentaries&quot;</span>, <span class="st">&quot;Dramas&quot;</span>, </span>
+<span id="cb458-15"><a href="project.html#cb458-15" tabindex="-1"></a>                    <span class="st">&quot;Horror Movies &amp; Thrillers&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb458-16"><a href="project.html#cb458-16" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> release_year, <span class="at">y =</span> mean_duration, <span class="at">color =</span> cat)) <span class="sc">+</span></span>
+<span id="cb458-17"><a href="project.html#cb458-17" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb458-18"><a href="project.html#cb458-18" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1980</span>, <span class="dv">2020</span>)) <span class="sc">+</span></span>
+<span id="cb458-19"><a href="project.html#cb458-19" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">160</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">50</span>,<span class="dv">150</span>, <span class="dv">25</span>)) <span class="sc">+</span></span>
+<span id="cb458-20"><a href="project.html#cb458-20" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cat) <span class="sc">+</span></span>
+<span id="cb458-21"><a href="project.html#cb458-21" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb458-22"><a href="project.html#cb458-22" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb458-23"><a href="project.html#cb458-23" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, </span>
+<span id="cb458-24"><a href="project.html#cb458-24" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb458-25"><a href="project.html#cb458-25" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Children&#39;s movies and Dramas decrease in duration over time&quot;</span>, </span>
+<span id="cb458-26"><a href="project.html#cb458-26" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Average movie duration (min)&quot;</span>)</span></code></pre></div>
+<p><img src="presentation_project_files/figure-html/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="presentation" class="section level3 hasAnchor" number="8.2.5">
 <h3><span class="header-section-number">8.2.5</span> Presentation<a href="project.html#presentation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -461,46 +460,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -405,7 +405,7 @@ system.time(res <- monte_carlo(N))
 res
 ```
 
-Your task: find a vectorized solution for this problem:
+Your task: implement a vectorized function `monte_carlo_vec` for this problem (step by step):
 
 ```{r echo=FALSE}
 monte_carlo_vec <- function(N) mean(runif(N)^2 > runif(N))

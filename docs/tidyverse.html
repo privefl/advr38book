@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Data analysis with the tidyverse | Advanced R Course</title>
   <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Data analysis with the tidyverse | Advanced R Course" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2023-08-22" />
+<meta name="date" content="2025-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -129,6 +129,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -249,14 +253,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#resources"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
-<li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#project-exercise"><i class="fa fa-check"></i><b>6.2</b> Project exercise</a></li>
+<li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#package-exercise"><i class="fa fa-check"></i><b>6.2</b> Package exercise</a></li>
 <li class="chapter" data-level="6.3" data-path="packages.html"><a href="packages.html#pkg-start"><i class="fa fa-check"></i><b>6.3</b> Quick start</a></li>
-<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>6.4</b> Basic stuff</a>
+<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>6.4</b> Package basics</a>
 <ul>
 <li class="chapter" data-level="6.4.1" data-path="packages.html"><a href="packages.html#description-file"><i class="fa fa-check"></i><b>6.4.1</b> <em>DESCRIPTION</em> file</a></li>
 <li class="chapter" data-level="6.4.2" data-path="packages.html"><a href="packages.html#r-code"><i class="fa fa-check"></i><b>6.4.2</b> R code</a></li>
 <li class="chapter" data-level="6.4.3" data-path="packages.html"><a href="packages.html#documentation"><i class="fa fa-check"></i><b>6.4.3</b> Documentation</a></li>
 <li class="chapter" data-level="6.4.4" data-path="packages.html"><a href="packages.html#namespace-file"><i class="fa fa-check"></i><b>6.4.4</b> <em>NAMESPACE</em> file</a></li>
+<li class="chapter" data-level="6.4.5" data-path="packages.html"><a href="packages.html#exercise-2"><i class="fa fa-check"></i><b>6.4.5</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.5</b> Good practices</a>
 <ul>
@@ -318,10 +323,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.1</span> Program<a href="tidyverse.html#program" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p><a href="https://privefl.github.io/R-presentation/rmarkdown.html">my {R Markdown} presentation</a> (also see <a href="https://r4ds.had.co.nz/r-markdown.html" class="uri">https://r4ds.had.co.nz/r-markdown.html</a>)</p></li>
+<li><p><a href="http://r4ds.had.co.nz/tidy-data.html">tidy data</a> will rationalize the concept of “tidy” data that is used in the tidyverse and that is easier to work with</p></li>
 <li><p><a href="https://privefl.github.io/R-presentation/ggplot2.html">my {ggplot2} presentation</a> + exercises from <a href="http://r4ds.had.co.nz/data-visualisation.html">data visualization with {ggplot2}</a></p></li>
 <li><p><a href="https://r4ds.had.co.nz/tibbles.html">tibbles</a></p></li>
 <li><p><a href="http://r4ds.had.co.nz/transform.html">data transformation with {dplyr}</a></p></li>
-<li><p><a href="http://r4ds.had.co.nz/tidy-data.html">tidy data</a> will rationalize the concept of “tidy” data that is used in the tidyverse and that is easier to work with</p></li>
 <li><p><a href="http://r4ds.had.co.nz/relational-data.html">relational data</a> will give you tools to <em>join</em> information from several datasets</p></li>
 <li><p>more if time allows it (see below)</p></li>
 </ol>
@@ -386,42 +391,42 @@ Unfortunately, we won’t have time to cover them in class. A brief introduction
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

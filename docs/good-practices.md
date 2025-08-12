@@ -159,7 +159,7 @@ RStudio features:
 
 <img src="images/data-import-environment.png" width="70%" style="display: block; margin: auto;" />
 
-- Use [code diagnostics](https://support.posit.co/hc/en-us/articles/205753617-Code-Diagnostics-in-the-RStudio-IDE):
+- Use [code diagnostics](https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html):
 
 <img src="images/diagnostics.png" width="70%" style="display: block; margin: auto;" />
 
@@ -235,7 +235,8 @@ Also, see https://stackoverflow.com/q/2712421/6103040.
     - after opening a project, always pull
     - before closing a project, always commit/push
     
-- Use git even when you do not have any internet connection! (e.g. on a secure server) Just use commits for version control locally.
+- Use git even when you do not have any internet connection! (e.g. on a secure server)    
+Just use commits for version control locally.
 
 - How to link between an RStudio project and a GitHub repository?
 

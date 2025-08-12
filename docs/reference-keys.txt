@@ -65,13 +65,14 @@ exos
 parallel-computing
 packages
 resources
-project-exercise
+package-exercise
 pkg-start
 pkg-basics
 description-file
 r-code
 documentation
 namespace-file
+exercise-2
 good-practices-1
 pkg-tests
 pkg-ci
@@ -94,5 +95,3 @@ visualize-the-data
 compilation-of-tweets
 example-1
 presentation
-package-exercise
-exercise-2

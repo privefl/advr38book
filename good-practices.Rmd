@@ -164,7 +164,7 @@ RStudio features:
 knitr::include_graphics("images/data-import-environment.png")
 ```
 
-- Use [code diagnostics](https://support.posit.co/hc/en-us/articles/205753617-Code-Diagnostics-in-the-RStudio-IDE):
+- Use [code diagnostics](https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html):
 
 ```{r, echo=FALSE}
 knitr::include_graphics("images/diagnostics.png")
@@ -245,7 +245,8 @@ knitr::include_graphics("images/git.svg")
     - after opening a project, always pull
     - before closing a project, always commit/push
     
-- Use git even when you do not have any internet connection! (e.g. on a secure server) Just use commits for version control locally.
+- Use git even when you do not have any internet connection! (e.g. on a secure server)    
+Just use commits for version control locally.
 
 - How to link between an RStudio project and a GitHub repository?
 

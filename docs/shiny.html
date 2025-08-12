@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Shiny | Advanced R Course</title>
   <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Shiny | Advanced R Course" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2023-08-22" />
+<meta name="date" content="2025-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -129,6 +129,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -249,14 +253,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>6</b> Packages</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="packages.html"><a href="packages.html#resources"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
-<li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#project-exercise"><i class="fa fa-check"></i><b>6.2</b> Project exercise</a></li>
+<li class="chapter" data-level="6.2" data-path="packages.html"><a href="packages.html#package-exercise"><i class="fa fa-check"></i><b>6.2</b> Package exercise</a></li>
 <li class="chapter" data-level="6.3" data-path="packages.html"><a href="packages.html#pkg-start"><i class="fa fa-check"></i><b>6.3</b> Quick start</a></li>
-<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>6.4</b> Basic stuff</a>
+<li class="chapter" data-level="6.4" data-path="packages.html"><a href="packages.html#pkg-basics"><i class="fa fa-check"></i><b>6.4</b> Package basics</a>
 <ul>
 <li class="chapter" data-level="6.4.1" data-path="packages.html"><a href="packages.html#description-file"><i class="fa fa-check"></i><b>6.4.1</b> <em>DESCRIPTION</em> file</a></li>
 <li class="chapter" data-level="6.4.2" data-path="packages.html"><a href="packages.html#r-code"><i class="fa fa-check"></i><b>6.4.2</b> R code</a></li>
 <li class="chapter" data-level="6.4.3" data-path="packages.html"><a href="packages.html#documentation"><i class="fa fa-check"></i><b>6.4.3</b> Documentation</a></li>
 <li class="chapter" data-level="6.4.4" data-path="packages.html"><a href="packages.html#namespace-file"><i class="fa fa-check"></i><b>6.4.4</b> <em>NAMESPACE</em> file</a></li>
+<li class="chapter" data-level="6.4.5" data-path="packages.html"><a href="packages.html#exercise-2"><i class="fa fa-check"></i><b>6.4.5</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="packages.html"><a href="packages.html#good-practices-1"><i class="fa fa-check"></i><b>6.5</b> Good practices</a>
 <ul>
@@ -315,11 +320,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="example" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Example<a href="shiny.html#example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You see my Shiny App for creating pixel art models.</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="shiny.html#cb457-1" tabindex="-1"></a><span class="co"># Installation</span></span>
-<span id="cb457-2"><a href="shiny.html#cb457-2" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;privefl/pixelart&quot;</span>)</span>
-<span id="cb457-3"><a href="shiny.html#cb457-3" tabindex="-1"></a></span>
-<span id="cb457-4"><a href="shiny.html#cb457-4" tabindex="-1"></a><span class="co"># Run Shiny App</span></span>
-<span id="cb457-5"><a href="shiny.html#cb457-5" tabindex="-1"></a>pixelart<span class="sc">::</span><span class="fu">run_pixelart</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="shiny.html#cb455-1" tabindex="-1"></a><span class="co"># Installation</span></span>
+<span id="cb455-2"><a href="shiny.html#cb455-2" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;privefl/pixelart&quot;</span>)</span>
+<span id="cb455-3"><a href="shiny.html#cb455-3" tabindex="-1"></a></span>
+<span id="cb455-4"><a href="shiny.html#cb455-4" tabindex="-1"></a><span class="co"># Run Shiny App</span></span>
+<span id="cb455-5"><a href="shiny.html#cb455-5" tabindex="-1"></a>pixelart<span class="sc">::</span><span class="fu">run_pixelart</span>()</span></code></pre></div>
 </div>
 <div id="datacamp-course" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> DataCamp course<a href="shiny.html#datacamp-course" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -364,42 +369,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

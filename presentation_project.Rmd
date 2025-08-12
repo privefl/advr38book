@@ -55,21 +55,9 @@ Some interesting datasets:
 
 - [Olympic medals](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-07-27/readme.md)
 
-```{r eval=FALSE, tidy=FALSE}
-data <- tidytuesdayR::tt_load('2021-07-27')[["olympics"]]
-```
-
 - [Netflix titles](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-20/readme.md)
 
-```{r eval=FALSE, tidy=FALSE}
-data <- tidytuesdayR::tt_load('2021-04-20')[["netflix_titles"]]
-```
-
 - [Spotify songs](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md)
-
-```{r eval=FALSE, tidy=FALSE}
-data <- tidytuesdayR::tt_load('2020-01-21')[["spotify_songs"]]
-```
 
 If you do not like any of these, you can also choose from all the previous tidy Tuesday datasets [here](https://github.com/rfordatascience/tidytuesday#datasets). 
 
@@ -107,15 +95,18 @@ tweetrmd::tweet_embed("https://twitter.com/marieke_k_jones/status/13845600978216
 Clara's (quick) version:
 
 ```{r message=FALSE, warning=FALSE}
-library(tidyverse)
+# usethis::create_github_token()
 netflix_titles <- tidytuesdayR::tt_load('2021-04-20')[["netflix_titles"]]
 ```
 
 ```{r, message=FALSE, warning=FALSE, fig.align='center', fig.width=10}
+library(dplyr)
+library(ggplot2)
+
 netflix_titles %>%
   filter(type == "Movie") %>%
-  mutate(duration = as.numeric(str_extract(duration, "(\\d)+")),
-         cat = map_chr(listed_in, ~str_split(.x, ", ")[[1]][1]),
+  mutate(duration = as.numeric(stringr::str_extract(duration, "(\\d)+")),  # bad actually
+         cat = purrr::map_chr(listed_in, ~stringr::str_split(.x, ", ")[[1]][1]),
          cat = case_when(
     cat %in% c("Horror Movies", "Thrillers") ~ "Horror Movies & Thrillers",
     TRUE ~ cat)) %>%

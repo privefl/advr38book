@@ -31,10 +31,10 @@ dplyr::near(0.1 + 0.2, 0.3)  ## similar, from the {dplyr} package
 ### Arguments
 
 ```{r}
-min(-1, 5, 118)
-max(-1, 5, 118)
-mean(-1, 5, 118)
-median(-1, 5, 118)
+min(0, 5, 10)
+max(0, 5, 10)
+mean(0, 5, 10)
+median(0, 5, 10)
 ```
 
 How to explain the issue with `mean` and `median`? Let us look at the parameters of these functions:
@@ -48,10 +48,10 @@ args(median)
 One solution is to always use a vector:
 
 ```{r}
-min(c(-1, 5, 118))
-max(c(-1, 5, 118))
-mean(c(-1, 5, 118))
-median(c(-1, 5, 118))
+min(c(0, 5, 10))
+max(c(0, 5, 10))
+mean(c(0, 5, 10))
+median(c(0, 5, 10))
 ```
 
 ### Others
@@ -115,9 +115,9 @@ Use the automatic type coercion to convert this boolean matrix to a numeric one 
 
 - "atomic" vector: vector of one base type (see above).
 
-- scalar: this doesn't exist, this is a vector of length 1.
+- scalar: this doesn't exist in R, this is a vector of length 1.
 
-- matrices / arrays: **a vector** with some dimensions (attribute).
+- matrices / arrays: **a vector** with some dimensions (as attributes).
 
 ```{r}
 (vec <- 1:12)
@@ -181,7 +181,7 @@ knitr::include_graphics("https://pbs.twimg.com/media/DQ5en8XWAAICIaJ.jpg")
 3. Beware partial matching
 
 ```{r}
-x <- list(aardvark = 1:5)
+x <- list(abc = 1:5)
 x$a
 x[["a"]]
 x[["a", exact = FALSE]]
@@ -196,9 +196,9 @@ mat[, 1:2]
 mat[1, 1:2]
 mat[1, 1:2, drop = FALSE]
 (two_col_ind <- cbind(c(1, 3, 2), c(1, 4, 2)))
-mat[two_col_ind]
+mat[two_col_ind]  ## special matrix accessor
 mat[]
-mat[] <- 2
+mat[] <- 2  ## good to reset everything to same value
 mat
 ```
 
@@ -265,15 +265,8 @@ rm(list = ls())  ## remove all objects in the global environment
 ```
 
 ```{r}
-# For a particular method, list available implementations for different classes 
-methods(summary)
-# List methods available for a particular class
-methods(class = "lm")
-```
-
-```{r}
-# Call a function with arguments as a list
 (list_of_int <- as.list(1:5))
+# Call a function with arguments as a list
 do.call('c', list_of_int)
 ```
 
@@ -303,15 +296,16 @@ gtools::mixedsort(c("a1", "a2", "a10"))  ## not in base, but useful
 which.max(c(1, 5, 3, 6, 2, 0))
 which.min(c(1, 5, 3, 6, 2, 0))
 unique(c(1, NA, 2, 3, 2, NA, 3))
-table(rep(1:4, 4:1))
-table(A = c(1, 1, 1, 2, 2), B = c(1, 2, 1, 2, 1))
+table(c(1, 1, 1, 2, 2))
+table(A = c(1, 1, 1, 2, 2), B = c(1, 2, 1, 2, 1))  ## useful for e.g. confusion matrices
 sample(10)
 sample(3:10, 5)
 sample(3:10, 50, replace = TRUE)
 ```
 
 ```{r}
-round(x <- runif(10, max = 100))  ## 10 random numbers between 0 and 100
+(x <- runif(10, max = 100))  ## 10 random numbers between 0 and 100
+round(x)
 round(x, digits = 2)
 round(x, -1)
 pmin(1:4, 4:1)
@@ -346,13 +340,13 @@ setdiff(letters[1:4], letters[3:5])
 ```{r, error=TRUE}
 TRUE | stop("will go there")
 TRUE || stop("won't go there")  ## won't evaluate second condition if first one is TRUE
-c(TRUE, FALSE, TRUE, TRUE) & c(FALSE, TRUE, TRUE, FALSE) 
+c(TRUE, FALSE, TRUE, TRUE) & c(FALSE, TRUE, TRUE, FALSE)  ## vectorized
 c(TRUE, FALSE, TRUE, TRUE) && c(FALSE, TRUE, TRUE, FALSE)  ## /!\ no warning in prior R versions
 ```
 
 ```{r}
 (x <- rnorm(10))
-ifelse(x > 0, x, -x)  # try to find two other equivalents
+ifelse(x > 0, x, -x)
 ```
 
 Beware with `ifelse()` (learn more [there](https://privefl.github.io/blog/On-the-ifelse-function/)), for example 
@@ -385,24 +379,7 @@ if (FALSE) 0 else 1:5
     quantile(replicate(1e6, mean(sample(x, replace = TRUE))), probs = c(0.025, 0.975))
     ```
 
-1. Use `match()` and some special accessor to add a column "my_val" to this data `my_mtcars` by putting the corresponding value of the column specified in "my_col". [Can your solution be used for any number of column names?]
-
-    ```{r}
-    my_mtcars <- mtcars[c("mpg", "hp")]
-    my_mtcars$my_col <- sample(c("mpg", "hp"), size = nrow(my_mtcars), replace = TRUE)
-    head(my_mtcars)
-    ```
-
-    Expected result (head):
-    
-    ```{r, echo=FALSE}
-    ind <- cbind(seq_len(nrow(my_mtcars)), 
-                 match(my_mtcars[["my_col"]], names(my_mtcars)))
-    my_mtcars$my_val <- my_mtcars[ind]
-    head(my_mtcars)
-    ```
-
-1. In the following data frame (recall that a data frame is also a list), for the first 3 columns, replace letters by corresponding numbers based on the `code`:
+1. In the following data frame `df` (recall that a data frame is also a list), for the first 3 columns, replace letters by corresponding numbers based on the `code`:
 
     ```{r}
     df <- data.frame(
@@ -463,7 +440,7 @@ count2 <- 0
 f <- function(i) {
   count1 <-  count1 + 1  ## will assign a new (temporary) count1 each time
   count2 <<- count2 + 1  ## will increment count2 on top
-  i + 1
+  i
 }
 sapply(1:10, f)
 c(count1, count2)
@@ -509,6 +486,9 @@ class(mylm <- lm(Sepal.Length ~ ., data = iris))
 I've just fitted a linear model in order to predict the sepal length variable of the `iris` dataset based on the other variables. Using `lm()` gets me an object of class `lm`. What are the methods I can use for this object?
 
 ```{r}
+# For a particular method, list available implementations for different classes 
+methods(summary)
+# List methods available for a particular class
 methods(class = class(mylm))
 summary(mylm)
 plot(mylm)

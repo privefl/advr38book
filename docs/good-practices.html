@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Good practices | Advanced R Course</title>
   <meta name="description" content="This contains materials for the Advanced R course of the doctoral school of Grenoble, France." />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Good practices | Advanced R Course" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Florian Privé" />
 
 
-<meta name="date" content="2023-08-22" />
+<meta name="date" content="2025-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -452,7 +452,7 @@ on the same line.</p></li>
 </ul>
 <p><img src="images/data-import-environment.png" width="70%" style="display: block; margin: auto;" /></p>
 <ul>
-<li>Use <a href="https://support.posit.co/hc/en-us/articles/205753617-Code-Diagnostics-in-the-RStudio-IDE">code diagnostics</a>:</li>
+<li>Use <a href="https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html">code diagnostics</a>:</li>
 </ul>
 <p><img src="images/diagnostics.png" width="70%" style="display: block; margin: auto;" /></p>
 <ul>
@@ -533,7 +533,8 @@ Figure 2.1: You don’t use Version Control?
 <li>after opening a project, always pull</li>
 <li>before closing a project, always commit/push</li>
 </ul></li>
-<li><p>Use git even when you do not have any internet connection! (e.g. on a secure server) Just use commits for version control locally.</p></li>
+<li><p>Use git even when you do not have any internet connection! (e.g. on a secure server)<br />
+Just use commits for version control locally.</p></li>
 <li><p>How to link between an RStudio project and a GitHub repository?</p></li>
 </ul>
 <center>
@@ -607,46 +608,60 @@ Figure 2.1: You don’t use Version Control?
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
